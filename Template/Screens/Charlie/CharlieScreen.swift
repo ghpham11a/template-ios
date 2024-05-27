@@ -13,6 +13,9 @@ struct CharlieScreen: View {
             Text("Charlie")
                 .navigationTitle("Charlie")
         }
+        .onAppear {
+            Router.shared.replace(url: "charlie")
+        }
     }
 }
 

@@ -13,6 +13,9 @@ struct DeltaScreen: View {
             Text("Delta")
                 .navigationTitle("Delta")
         }
+        .onAppear {
+            Router.shared.replace(url: "delta")
+        }
     }
 }
 

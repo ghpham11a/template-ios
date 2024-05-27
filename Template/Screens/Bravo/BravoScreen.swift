@@ -10,17 +10,29 @@ import SwiftUI
 struct BravoScreen: View {
     
     @StateObject private var viewModel = BravoViewModel()
+    @StateObject private var userRepo = UserRepo.shared
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.todos, id: \.id) { todo in
-                    Text(todo.title ?? "NULL")
+            if (userRepo.isAuthenticated) {
+                List {
+                    ForEach(viewModel.todos, id: \.id) { todo in
+                        Text(todo.title ?? "NULL")
+                    }
+                }
+                .onAppear {
+                    viewModel.fetchTodos()
+                }
+            } else {
+                NavigationLink(destination: AuthScreen()) {
+                    Text("Login")
+                        .padding()
                 }
             }
-            .onAppear {
-                viewModel.fetchTodos()
-            }
+            
+        }
+        .onAppear {
+            Router.shared.replace(url: "alpha")
         }
     }
 }

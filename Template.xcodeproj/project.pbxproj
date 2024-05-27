@@ -26,6 +26,14 @@
 		CEF208812C00D70100212C47 /* CharlieScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208802C00D70100212C47 /* CharlieScreen.swift */; };
 		CEF208832C00D70D00212C47 /* DeltaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208822C00D70D00212C47 /* DeltaScreen.swift */; };
 		CEF208852C03CE1100212C47 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF208842C03CE1100212C47 /* awsconfiguration.json */; };
+		CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208862C03D97000212C47 /* AppDelegate.swift */; };
+		CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208882C03DF7600212C47 /* UserRepo.swift */; };
+		CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */; };
+		CEF2088E2C03E3D400212C47 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2088D2C03E3D400212C47 /* AuthScreen.swift */; };
+		CEF208912C03E4F800212C47 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208902C03E4F800212C47 /* Constants.swift */; };
+		CEF208932C04A97A00212C47 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208922C04A97A00212C47 /* Router.swift */; };
+		CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208952C04AB4E00212C47 /* SnagScreen.swift */; };
+		CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208992C04DBD700212C47 /* BackButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +82,14 @@
 		CEF208802C00D70100212C47 /* CharlieScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharlieScreen.swift; sourceTree = "<group>"; };
 		CEF208822C00D70D00212C47 /* DeltaScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaScreen.swift; sourceTree = "<group>"; };
 		CEF208842C03CE1100212C47 /* awsconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
+		CEF208862C03D97000212C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CEF208882C03DF7600212C47 /* UserRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
+		CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSMobileClientResponse.swift; sourceTree = "<group>"; };
+		CEF2088D2C03E3D400212C47 /* AuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreen.swift; sourceTree = "<group>"; };
+		CEF208902C03E4F800212C47 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CEF208922C04A97A00212C47 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		CEF208952C04AB4E00212C47 /* SnagScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnagScreen.swift; sourceTree = "<group>"; };
+		CEF208992C04DBD700212C47 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +155,8 @@
 		CEF2080B2BFADF0100212C47 /* Template */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208972C04DBC100212C47 /* Components */,
+				CEF2088F2C03E4E100212C47 /* Utils */,
 				CEF208792BFFD5B100212C47 /* Repos */,
 				CEF208742BFFD4C400212C47 /* Networking */,
 				CEF208712BFFD4A400212C47 /* Screens */,
@@ -148,6 +166,7 @@
 				CEF208102BFADF0400212C47 /* Assets.xcassets */,
 				CEF208122BFADF0400212C47 /* Preview Content */,
 				CEF208842C03CE1100212C47 /* awsconfiguration.json */,
+				CEF208862C03D97000212C47 /* AppDelegate.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -181,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF208772BFFD57D00212C47 /* Todo.swift */,
+				CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -188,6 +208,8 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208942C04AB4300212C47 /* Snag */,
+				CEF2088C2C03E3B400212C47 /* Auth */,
 				CEF2087F2C00D6F200212C47 /* Delta */,
 				CEF2087E2C00D6ED00212C47 /* Charlie */,
 				CEF208732BFFD4B000212C47 /* Bravo */,
@@ -225,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF2087A2BFFD5C500212C47 /* JSONPlaceholderRepo.swift */,
+				CEF208882C03DF7600212C47 /* UserRepo.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -245,6 +268,47 @@
 			path = Delta;
 			sourceTree = "<group>";
 		};
+		CEF2088C2C03E3B400212C47 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				CEF2088D2C03E3D400212C47 /* AuthScreen.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		CEF2088F2C03E4E100212C47 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208902C03E4F800212C47 /* Constants.swift */,
+				CEF208922C04A97A00212C47 /* Router.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		CEF208942C04AB4300212C47 /* Snag */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208952C04AB4E00212C47 /* SnagScreen.swift */,
+			);
+			path = Snag;
+			sourceTree = "<group>";
+		};
+		CEF208972C04DBC100212C47 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208982C04DBC800212C47 /* BackButton */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		CEF208982C04DBC800212C47 /* BackButton */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208992C04DBD700212C47 /* BackButton.swift */,
+			);
+			path = BackButton;
+			sourceTree = "<group>";
+		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,7 +319,6 @@
 				812AEF9E44A4EE73087A1723 /* Pods-TemplateTests.debug.xcconfig */,
 				0060027214131DFD7E0D6BB6 /* Pods-TemplateTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -270,6 +333,7 @@
 				CEF208052BFADF0100212C47 /* Sources */,
 				CEF208062BFADF0100212C47 /* Frameworks */,
 				CEF208072BFADF0100212C47 /* Resources */,
+				4D237D3AE248C7D769E4C369 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -307,6 +371,7 @@
 				CEF2081F2BFADF0400212C47 /* Sources */,
 				CEF208202BFADF0400212C47 /* Frameworks */,
 				CEF208212BFADF0400212C47 /* Resources */,
+				48A9A902BC825F981800CDF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -389,6 +454,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		48A9A902BC825F981800CDF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Template-TemplateUITests/Pods-Template-TemplateUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Template-TemplateUITests/Pods-Template-TemplateUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Template-TemplateUITests/Pods-Template-TemplateUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D237D3AE248C7D769E4C369 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Template/Pods-Template-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Template/Pods-Template-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Template/Pods-Template-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		61A47640395CBE464273BECE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -462,14 +561,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
 				CEF208832C00D70D00212C47 /* DeltaScreen.swift in Sources */,
+				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
+				CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
+				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
+				CEF208932C04A97A00212C47 /* Router.swift in Sources */,
+				CEF2088E2C03E3D400212C47 /* AuthScreen.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
 				CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */,
 				CEF2087D2BFFD67800212C47 /* BravoViewModel.swift in Sources */,
 				CEF208392BFC1F0400212C47 /* BravoScreen.swift in Sources */,
+				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,
+				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
 				CEF208372BFC1EDA00212C47 /* AlphaScreen.swift in Sources */,
 				CEF208812C00D70100212C47 /* CharlieScreen.swift in Sources */,
 			);
@@ -638,6 +745,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Template/Preview Content\"";
 				DEVELOPMENT_TEAM = 29JU3556U2;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -668,6 +776,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Template/Preview Content\"";
 				DEVELOPMENT_TEAM = 29JU3556U2;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

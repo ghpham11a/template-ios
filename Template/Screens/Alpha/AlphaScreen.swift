@@ -13,6 +13,9 @@ struct AlphaScreen: View {
             Text("Alpha")
                 .navigationTitle("Alpha")
         }
+        .onAppear {
+            Router.shared.replace(url: "alpha")
+        }
     }
 }
 
