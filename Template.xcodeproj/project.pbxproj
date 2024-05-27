@@ -29,11 +29,15 @@
 		CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208862C03D97000212C47 /* AppDelegate.swift */; };
 		CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208882C03DF7600212C47 /* UserRepo.swift */; };
 		CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */; };
-		CEF2088E2C03E3D400212C47 /* AuthScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2088D2C03E3D400212C47 /* AuthScreen.swift */; };
+		CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2088D2C03E3D400212C47 /* AuthHubScreen.swift */; };
 		CEF208912C03E4F800212C47 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208902C03E4F800212C47 /* Constants.swift */; };
 		CEF208932C04A97A00212C47 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208922C04A97A00212C47 /* Router.swift */; };
 		CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208952C04AB4E00212C47 /* SnagScreen.swift */; };
 		CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208992C04DBD700212C47 /* BackButton.swift */; };
+		CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2089C2C04DE1B00212C47 /* AddNewUserInfoScreen.swift */; };
+		CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208A12C04E77800212C47 /* EnterPasswordScreen.swift */; };
+		CEF208A42C04E84900212C47 /* AuthHubViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208A32C04E84900212C47 /* AuthHubViewModel.swift */; };
+		CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208A62C04EC5000212C47 /* LoadingButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,11 +89,15 @@
 		CEF208862C03D97000212C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF208882C03DF7600212C47 /* UserRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
 		CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSMobileClientResponse.swift; sourceTree = "<group>"; };
-		CEF2088D2C03E3D400212C47 /* AuthScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreen.swift; sourceTree = "<group>"; };
+		CEF2088D2C03E3D400212C47 /* AuthHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHubScreen.swift; sourceTree = "<group>"; };
 		CEF208902C03E4F800212C47 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CEF208922C04A97A00212C47 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		CEF208952C04AB4E00212C47 /* SnagScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnagScreen.swift; sourceTree = "<group>"; };
 		CEF208992C04DBD700212C47 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
+		CEF2089C2C04DE1B00212C47 /* AddNewUserInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserInfoScreen.swift; sourceTree = "<group>"; };
+		CEF208A12C04E77800212C47 /* EnterPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPasswordScreen.swift; sourceTree = "<group>"; };
+		CEF208A32C04E84900212C47 /* AuthHubViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHubViewModel.swift; sourceTree = "<group>"; };
+		CEF208A62C04EC5000212C47 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,8 +216,10 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208A02C04E76400212C47 /* EnterPassword */,
+				CEF2089B2C04DDED00212C47 /* AddNewUserInfo */,
 				CEF208942C04AB4300212C47 /* Snag */,
-				CEF2088C2C03E3B400212C47 /* Auth */,
+				CEF2088C2C03E3B400212C47 /* AuthHub */,
 				CEF2087F2C00D6F200212C47 /* Delta */,
 				CEF2087E2C00D6ED00212C47 /* Charlie */,
 				CEF208732BFFD4B000212C47 /* Bravo */,
@@ -268,12 +278,13 @@
 			path = Delta;
 			sourceTree = "<group>";
 		};
-		CEF2088C2C03E3B400212C47 /* Auth */ = {
+		CEF2088C2C03E3B400212C47 /* AuthHub */ = {
 			isa = PBXGroup;
 			children = (
-				CEF2088D2C03E3D400212C47 /* AuthScreen.swift */,
+				CEF2088D2C03E3D400212C47 /* AuthHubScreen.swift */,
+				CEF208A32C04E84900212C47 /* AuthHubViewModel.swift */,
 			);
-			path = Auth;
+			path = AuthHub;
 			sourceTree = "<group>";
 		};
 		CEF2088F2C03E4E100212C47 /* Utils */ = {
@@ -296,17 +307,34 @@
 		CEF208972C04DBC100212C47 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				CEF208982C04DBC800212C47 /* BackButton */,
+				CEF208982C04DBC800212C47 /* Buttons */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		CEF208982C04DBC800212C47 /* BackButton */ = {
+		CEF208982C04DBC800212C47 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
 				CEF208992C04DBD700212C47 /* BackButton.swift */,
+				CEF208A62C04EC5000212C47 /* LoadingButton.swift */,
 			);
-			path = BackButton;
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		CEF2089B2C04DDED00212C47 /* AddNewUserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				CEF2089C2C04DE1B00212C47 /* AddNewUserInfoScreen.swift */,
+			);
+			path = AddNewUserInfo;
+			sourceTree = "<group>";
+		};
+		CEF208A02C04E76400212C47 /* EnterPassword */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208A12C04E77800212C47 /* EnterPasswordScreen.swift */,
+			);
+			path = EnterPassword;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -561,16 +589,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF208A42C04E84900212C47 /* AuthHubViewModel.swift in Sources */,
 				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
+				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
 				CEF208832C00D70D00212C47 /* DeltaScreen.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
 				CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */,
+				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
+				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
 				CEF208932C04A97A00212C47 /* Router.swift in Sources */,
-				CEF2088E2C03E3D400212C47 /* AuthScreen.swift in Sources */,
+				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
 				CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */,
 				CEF2087D2BFFD67800212C47 /* BravoViewModel.swift in Sources */,

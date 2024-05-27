@@ -24,7 +24,7 @@ struct BravoScreen: View {
                     viewModel.fetchTodos()
                 }
             } else {
-                NavigationLink(destination: AuthScreen()) {
+                NavigationLink(destination: AuthHubScreen()) {
                     Text("Login")
                         .padding()
                 }
@@ -32,7 +32,7 @@ struct BravoScreen: View {
             
         }
         .onAppear {
-            Router.shared.replace(url: "alpha")
+            Router.shared.replace(url: Constants.Route.BRAVO_TAB)
         }
     }
 }

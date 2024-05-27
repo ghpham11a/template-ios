@@ -14,7 +14,7 @@ struct DeltaScreen: View {
                 .navigationTitle("Delta")
         }
         .onAppear {
-            Router.shared.replace(url: "delta")
+            Router.shared.replace(url: Constants.Route.DELTA_TAB)
         }
     }
 }

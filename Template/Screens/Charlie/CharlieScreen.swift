@@ -14,7 +14,7 @@ struct CharlieScreen: View {
                 .navigationTitle("Charlie")
         }
         .onAppear {
-            Router.shared.replace(url: "charlie")
+            Router.shared.replace(url: Constants.Route.CHARLIE_TAB)
         }
     }
 }
