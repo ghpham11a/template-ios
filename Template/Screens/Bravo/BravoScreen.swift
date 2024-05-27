@@ -12,8 +12,14 @@ struct BravoScreen: View {
     @StateObject private var viewModel = BravoViewModel()
     @StateObject private var userRepo = UserRepo.shared
     
+    @Binding private var path: NavigationPath
+    
+    init(path: Binding<NavigationPath>) {
+        self._path = path
+    }
+    
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             if (userRepo.isAuthenticated) {
                 List {
                     ForEach(viewModel.todos, id: \.id) { todo in
@@ -24,15 +30,22 @@ struct BravoScreen: View {
                     viewModel.fetchTodos()
                 }
             } else {
-                NavigationLink(destination: AuthHubScreen()) {
-                    Text("Login")
-                        .padding()
+                Button("Login Bitch") {
+                    path.append(Constants.Route.AUTH_HUB)
+                }
+                .navigationDestination(for: String.self) { route in
+                    if route == Constants.Route.AUTH_HUB {
+                        AuthHubScreen(path: $path)
+                    }
+                    if route == Constants.Route.AUTH_ENTER_PASSWORD {
+                        EnterPasswordScreen(path: $path)
+                    }
+                    if route == Constants.Route.AUTH_ADD_INFO {
+                        AddNewUserInfoScreen(path: $path)
+                    }
                 }
             }
             
-        }
-        .onAppear {
-            Router.shared.replace(url: Constants.Route.BRAVO_TAB)
         }
     }
 }

@@ -9,31 +9,31 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject private var router = Router.shared
+    @State private var path = NavigationPath()
     
     var body: some View {
         
-        return TabView {
-            AlphaScreen()
+        TabView {
+            AlphaScreen(path: $path)
                 .tabItem {
                     Label("Alpha", systemImage: "person.3")
                 }
-                .toolbar(router.isToolBarVisible, for: .tabBar)
-            BravoScreen()
+                .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
+            BravoScreen(path: $path)
                 .tabItem {
                     Label("Bravo", systemImage: "checkmark.circle")
                 }
-                .toolbar(router.isToolBarVisible, for: .tabBar)
-            CharlieScreen()
+                .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
+            CharlieScreen(path: $path)
                 .tabItem {
                     Label("Charlie", systemImage: "checkmark.circle")
                 }
-                .toolbar(router.isToolBarVisible, for: .tabBar)
-            DeltaScreen()
+                .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
+            DeltaScreen(path: $path)
                 .tabItem {
                     Label("Delta", systemImage: "checkmark.circle")
                 }
-                .toolbar(router.isToolBarVisible, for: .tabBar)
+                .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
         }
     }
 }

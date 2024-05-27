@@ -31,7 +31,7 @@
 		CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */; };
 		CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2088D2C03E3D400212C47 /* AuthHubScreen.swift */; };
 		CEF208912C03E4F800212C47 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208902C03E4F800212C47 /* Constants.swift */; };
-		CEF208932C04A97A00212C47 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208922C04A97A00212C47 /* Router.swift */; };
+		CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208922C04A97A00212C47 /* TabBarManager.swift */; };
 		CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208952C04AB4E00212C47 /* SnagScreen.swift */; };
 		CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208992C04DBD700212C47 /* BackButton.swift */; };
 		CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2089C2C04DE1B00212C47 /* AddNewUserInfoScreen.swift */; };
@@ -91,7 +91,7 @@
 		CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSMobileClientResponse.swift; sourceTree = "<group>"; };
 		CEF2088D2C03E3D400212C47 /* AuthHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHubScreen.swift; sourceTree = "<group>"; };
 		CEF208902C03E4F800212C47 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		CEF208922C04A97A00212C47 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		CEF208922C04A97A00212C47 /* TabBarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarManager.swift; sourceTree = "<group>"; };
 		CEF208952C04AB4E00212C47 /* SnagScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnagScreen.swift; sourceTree = "<group>"; };
 		CEF208992C04DBD700212C47 /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		CEF2089C2C04DE1B00212C47 /* AddNewUserInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserInfoScreen.swift; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF208902C03E4F800212C47 /* Constants.swift */,
-				CEF208922C04A97A00212C47 /* Router.swift */,
+				CEF208922C04A97A00212C47 /* TabBarManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -601,7 +601,7 @@
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
-				CEF208932C04A97A00212C47 /* Router.swift in Sources */,
+				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
 				CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */,

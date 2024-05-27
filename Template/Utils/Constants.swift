@@ -18,5 +18,7 @@ struct Constants {
         static let DELTA_TAB = "delta_tab"
         
         static let AUTH_HUB = "auth/hub"
+        static let AUTH_ADD_INFO = "auth/add_info"
+        static let AUTH_ENTER_PASSWORD = "auth/enter_password"
     }
 }

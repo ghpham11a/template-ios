@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct AlphaScreen: View {
+    
+    @Binding private var path: NavigationPath
+    
+    init(path: Binding<NavigationPath>) {
+        self._path = path
+    }
+    
     var body: some View {
         NavigationStack {
             Text("Alpha")
                 .navigationTitle("Alpha")
-        }
-        .onAppear {
-            Router.shared.replace(url: Constants.Route.ALPHA_TAB)
         }
     }
 }

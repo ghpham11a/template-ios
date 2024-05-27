@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct CharlieScreen: View {
+    
+    @Binding private var path: NavigationPath
+    
+    init(path: Binding<NavigationPath>) {
+        self._path = path
+    }
+    
     var body: some View {
         NavigationStack {
             Text("Charlie")
                 .navigationTitle("Charlie")
         }
-        .onAppear {
-            Router.shared.replace(url: Constants.Route.CHARLIE_TAB)
-        }
     }
 }
 
 //#Preview {
-//    DeltaScreen()
+//    CharlieScreen()
 //}

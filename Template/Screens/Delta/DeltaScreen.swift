@@ -8,13 +8,17 @@
 import SwiftUI
 
 struct DeltaScreen: View {
+    
+    @Binding private var path: NavigationPath
+    
+    init(path: Binding<NavigationPath>) {
+        self._path = path
+    }
+    
     var body: some View {
         NavigationStack {
             Text("Delta")
                 .navigationTitle("Delta")
-        }
-        .onAppear {
-            Router.shared.replace(url: Constants.Route.DELTA_TAB)
         }
     }
 }

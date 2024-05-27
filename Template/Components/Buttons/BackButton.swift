@@ -31,7 +31,7 @@ struct BackButton: View {
     
     var body: some View {
         Button(action: {
-            Router.shared.pop()
+            TabBarManager.shared.pop()
             self.presentationMode.wrappedValue.dismiss()
         }) {
             HStack {
