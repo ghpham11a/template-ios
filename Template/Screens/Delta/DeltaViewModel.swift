@@ -10,8 +10,19 @@ import Foundation
 
 class DeltaViewModel: ObservableObject {
     
+    @Published var isLoading: Bool = false
+    
     func signOut() {
+        
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+        
         AWSMobileClient.default().signOut()
         UserRepo.shared.logOut()
+        
+        DispatchQueue.main.async {
+            self.isLoading = false
+        }
     }
 }

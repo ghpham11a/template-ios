@@ -23,9 +23,9 @@ struct DeltaScreen: View {
                 .navigationTitle("Delta")
             
             if (userRepo.isAuthenticated) {
-                Button("Logout") {
+                LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, action: {
                     viewModel.signOut()
-                }
+                })
             }
         }
     }

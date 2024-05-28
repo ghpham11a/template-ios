@@ -31,8 +31,7 @@ struct EnterPasswordScreen: View {
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
             
-            
-            Button(action: {
+            LoadingButton(title: "Sign in", isLoading: $viewModel.isLoading, action: {
                 viewModel.signIn(username: username, password: viewModel.password) { response in
                     if response.isSuccessful == true {
                         path = NavigationPath()
@@ -44,18 +43,7 @@ struct EnterPasswordScreen: View {
                         }
                     }
                 }
-            }) {
-                Text("Sign in")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.blue)
-                    .cornerRadius(5.0)
-            }
-            .padding(.top, 20)
-            
-            Spacer()
+            })
         }
     }
 }

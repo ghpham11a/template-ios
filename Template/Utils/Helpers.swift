@@ -7,22 +7,60 @@
 
 import Foundation
 
-func parseRouteParams(from urlString: String) -> [String: String] {
-    var params = [String: String]()
+enum RegisteredRoute {
+    case authHub
+    case addNewUserInfo
+    case enterPassword
+    case codeVerification
+    case snag
+}
+
+struct RegisteredParams {
+    var username: String = ""
+    var password: String = ""
+}
+
+func parseRouteParams(from urlString: String) -> (route: RegisteredRoute, params: RegisteredParams)? {
+    var params = RegisteredParams()
+    
+    var registeredRoute: RegisteredRoute = .snag
+    
+    if urlString.contains("auth/hub") {
+        registeredRoute = .authHub
+    }
+    if urlString.contains("auth/enter_password") {
+        registeredRoute = .enterPassword
+    }
+    if urlString.contains("auth/add_info") {
+        registeredRoute = .addNewUserInfo
+    }
+    if urlString.contains("auth/code_verification") {
+        registeredRoute = .codeVerification
+    }
+    if urlString.contains("snag") {
+        registeredRoute = .snag
+    }
     
     // Separate the URL components
     guard let urlComponents = URLComponents(string: urlString) else {
-        return params
+        return nil
     }
     
     // Extract the query items
     if let queryItems = urlComponents.queryItems {
         for item in queryItems {
             if let value = item.value {
-                params[item.name] = value
+                switch item.name {
+                case "username":
+                    params.username = value
+                case "password":
+                    params.password = value
+                default:
+                    continue
+                }
             }
         }
     }
     
-    return params
+    return (route: registeredRoute ,params: params)
 }

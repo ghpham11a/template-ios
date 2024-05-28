@@ -34,21 +34,19 @@ struct BravoScreen: View {
                     path.append(Constants.Route.AUTH_HUB)
                 }
                 .navigationDestination(for: String.self) { route in
-                    let params = parseRouteParams(from: route)
-                    if route.contains(Constants.Route.AUTH_HUB_ROOT) {
-                        AuthHubScreen(path: $path)
-                    }
-                    if route.contains(Constants.Route.AUTH_ENTER_PASSWORD_ROOT), let username = params["username"] {
-                        EnterPasswordScreen(path: $path, username: username)
-                    }
-                    if route.contains(Constants.Route.AUTH_ADD_INFO_ROOT), let username = params["username"] {
-                        AddNewUserInfoScreen(path: $path, username: username)
-                    }
-                    if route.contains(Constants.Route.AUTH_CODE_VERIFICATION_ROOT), let username = params["username"], let password = params["password"] {
-                        CodeVerificationScreen(path: $path, username: username, password: password)
-                    }
-                    if route.contains(Constants.Route.SNAG) {
-                        SnagScreen()
+                    if let parsedRoute = parseRouteParams(from: route) {
+                        switch parsedRoute.route {
+                        case .authHub:
+                            AuthHubScreen(path: $path)
+                        case .enterPassword:
+                            EnterPasswordScreen(path: $path, username: parsedRoute.params.username)
+                        case .addNewUserInfo:
+                            AddNewUserInfoScreen(path: $path, username: parsedRoute.params.username)
+                        case .codeVerification:
+                            CodeVerificationScreen(path: $path, username: parsedRoute.params.username, password: parsedRoute.params.password)
+                        case .snag:
+                            SnagScreen()
+                        }
                     }
                 }
             }

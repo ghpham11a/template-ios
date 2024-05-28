@@ -25,23 +25,19 @@ class EnterPasswordViewModel: ObservableObject {
                 self.isLoading = false
             }
             
-            onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: nil))
+            if let error = error {
+                onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: String(describing: error)))
+            } else if let signInResult = signInResult {
             
-            
-//            if let error = error {
-//                onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: String(describing: error)))
-//            } else if let signInResult = signInResult {
-//            
-//            
-//                if signInResult.signInState == .signedIn {
-//                    AWSMobileClient.default().getTokens() { (tokens, error) in
-//                        UserRepo.shared.setLoggedIn(token: tokens?.accessToken?.tokenString ?? "")
-//                    }
-//                }
-//                
-//                onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: true, result: signInResult, exception: nil))
-//        
-//            }
+                if signInResult.signInState == .signedIn {
+                    AWSMobileClient.default().getTokens() { (tokens, error) in
+                        UserRepo.shared.setLoggedIn(token: tokens?.accessToken?.tokenString ?? "")
+                    }
+                }
+                
+                onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: true, result: signInResult, exception: nil))
+        
+            }
         }
     }
 }
