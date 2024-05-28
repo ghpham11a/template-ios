@@ -8,7 +8,7 @@
 import Foundation
 
 struct AWSMobileClientResponse<T> {
-    let isSuccessful: Int?
-    let result: T? = nil
-    let exception: String? = nil
+    let isSuccessful: Bool?
+    let result: T?
+    let exception: String?
 }

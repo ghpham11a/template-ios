@@ -10,56 +10,42 @@ import SwiftUI
 struct EnterPasswordScreen: View {
     
     @Binding private var path: NavigationPath
+    @StateObject private var viewModel = EnterPasswordViewModel()
+    @State private var username: String
     
-    @State private var username: String = ""
-    @State private var password: String = ""
-    @State private var showPassword: Bool = false
-    
-    init(path: Binding<NavigationPath>) {
+    init(path: Binding<NavigationPath>, username: String) {
         self._path = path
+        self.username = username
     }
 
     var body: some View {
         VStack {
-            Text("Login")
+            Text("Enter password")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .padding(.bottom, 40)
             
-            TextField("Username", text: $username)
+            SecureField("Password", text: $viewModel.password)
                 .padding()
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
             
-            if showPassword {
-                TextField("Password", text: $password)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(5.0)
-                    .padding(.bottom, 20)
-            } else {
-                SecureField("Password", text: $password)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(5.0)
-                    .padding(.bottom, 20)
-            }
             
             Button(action: {
-                showPassword.toggle()
+                viewModel.signIn(username: username, password: viewModel.password) { response in
+                    if response.isSuccessful == true {
+                        path = NavigationPath()
+                    } else {
+                        if response.exception?.contains("userNotConfirmed") == true {
+                            path.append(String(format: Constants.Route.AUTH_CODE_VERIFICATION, username, viewModel.password))
+                        } else {
+                            path = NavigationPath([Constants.Route.SNAG])
+                        }
+                    }
+                }
             }) {
-                Text(showPassword ? "Hide Password" : "Show Password")
-                    .font(.subheadline)
-                    .foregroundColor(.blue)
-            }
-            .padding(.bottom, 20)
-            
-            Button(action: {
-                // Handle login action
-                print("Username: \(username), Password: \(password)")
-            }) {
-                Text("Login")
+                Text("Sign in")
                     .font(.headline)
                     .foregroundColor(.white)
                     .padding()

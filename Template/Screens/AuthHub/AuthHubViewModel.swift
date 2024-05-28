@@ -5,6 +5,7 @@
 //  Created by Anthony Pham on 5/27/24.
 //
 
+import AWSMobileClient
 import Foundation
 
 class AuthHubViewModel: ObservableObject {
@@ -12,16 +13,16 @@ class AuthHubViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var isLoading: Bool = false
     
-    func checkIfUserExists() async -> Bool {
+    func checkIfUserExists() async -> (isSuccessful: Bool, doesUserExist: Bool) {
         
         DispatchQueue.main.async {
             self.isLoading = true
         }
         
-        let users = Set(["gm.pham@gmail.com"])
+        let users = Set(["gm.pham@gmail.com", "anthony.b.pham@outlook.com"])
         
         do {
-            try await Task.sleep(nanoseconds: 3 * 1_000_000_000)
+            try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
         } catch {
             
         }
@@ -30,6 +31,6 @@ class AuthHubViewModel: ObservableObject {
             self.isLoading = false
         }
         
-        return users.contains(username.lowercased())
+        return (true, users.contains(username.lowercased()))
     }
 }

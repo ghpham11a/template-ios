@@ -10,6 +10,8 @@ import SwiftUI
 struct DeltaScreen: View {
     
     @Binding private var path: NavigationPath
+    @StateObject private var viewModel = DeltaViewModel()
+    @StateObject private var userRepo = UserRepo.shared
     
     init(path: Binding<NavigationPath>) {
         self._path = path
@@ -19,6 +21,12 @@ struct DeltaScreen: View {
         NavigationStack {
             Text("Delta")
                 .navigationTitle("Delta")
+            
+            if (userRepo.isAuthenticated) {
+                Button("Logout") {
+                    viewModel.signOut()
+                }
+            }
         }
     }
 }

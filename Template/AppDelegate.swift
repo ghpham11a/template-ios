@@ -16,8 +16,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             if let error = error {
                 print("Error initializing AWSMobileClient: \(error.localizedDescription)")
             } else if let userState = userState {
+                let defaults = UserDefaults.standard
+                let isUserStateSignedIn = userState == UserState.signedIn
+                let userDefaultsAuthKeyExists = defaults.object(forKey: Constants.USER_DEFAULTS_KEY_AUTH_TOKEN) != nil
+                if (isUserStateSignedIn && !userDefaultsAuthKeyExists) || !isUserStateSignedIn {
+                    AWSMobileClient.default().signOut()
+                    defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_AUTH_TOKEN)
+                }
                 _ = UserRepo.shared.isLoggedIn()
-                print("AWSMobileClient initialized. Current UserState: \(userState.rawValue)")
             }
         }
         

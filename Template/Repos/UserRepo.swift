@@ -28,9 +28,15 @@ class UserRepo: ObservableObject {
     func setLoggedIn(token: String) {
         let defaults = UserDefaults.standard
         defaults.set(token, forKey: Constants.USER_DEFAULTS_KEY_AUTH_TOKEN)
+        DispatchQueue.main.async {
+            self.isAuthenticated = true
+        }
     }
 
     func logOut() {
+        DispatchQueue.main.async {
+            self.isAuthenticated = false
+        }
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_AUTH_TOKEN)
     }

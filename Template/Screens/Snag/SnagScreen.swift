@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SnagScreen: View {
     var body: some View {
-        NavigationStack {
+        VStack {
             Text("Snag")
                 .navigationTitle("Snag")
         }

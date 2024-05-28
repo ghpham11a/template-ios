@@ -10,7 +10,6 @@ import SwiftUI
 struct AuthHubScreen: View {
     
     @Binding private var path: NavigationPath
-    
     @StateObject private var viewModel = AuthHubViewModel()
     
     init(path: Binding<NavigationPath>) {
@@ -37,10 +36,14 @@ struct AuthHubScreen: View {
             LoadingButton(title: "Continue", isLoading: $viewModel.isLoading, action: {
                 Task {
                     let result = await viewModel.checkIfUserExists()
-                    if result {
-                        path.append(Constants.Route.AUTH_ENTER_PASSWORD)
+                    if result.isSuccessful {
+                        if result.doesUserExist {
+                            path.append(String(format: Constants.Route.AUTH_ENTER_PASSWORD, viewModel.username))
+                        } else {
+                            path.append(String(format: Constants.Route.AUTH_ADD_INFO, viewModel.username))
+                        }
                     } else {
-                        path.append(Constants.Route.AUTH_ADD_INFO)
+                        path = NavigationPath([Constants.Route.SNAG])
                     }
                 }
             })
