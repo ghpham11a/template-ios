@@ -18,6 +18,7 @@ enum RegisteredRoute {
 struct RegisteredParams {
     var username: String = ""
     var password: String = ""
+    var status: String = ""
 }
 
 func parseRouteParams(from urlString: String) -> (route: RegisteredRoute, params: RegisteredParams)? {
@@ -55,6 +56,8 @@ func parseRouteParams(from urlString: String) -> (route: RegisteredRoute, params
                     params.username = value
                 case "password":
                     params.password = value
+                case "status":
+                    params.status = value
                 default:
                     continue
                 }

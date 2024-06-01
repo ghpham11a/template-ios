@@ -44,6 +44,8 @@
 		CEF208B62C055F0E00212C47 /* AddNewUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B52C055F0E00212C47 /* AddNewUserInfoViewModel.swift */; };
 		CEF208B82C05674A00212C47 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B72C05674A00212C47 /* Helpers.swift */; };
 		CEF208BA2C0577AF00212C47 /* DeltaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B92C0577AF00212C47 /* DeltaViewModel.swift */; };
+		CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */; };
+		CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208BD2C09320900212C47 /* APIGatewayService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,8 @@
 		CEF208B52C055F0E00212C47 /* AddNewUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserInfoViewModel.swift; sourceTree = "<group>"; };
 		CEF208B72C05674A00212C47 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		CEF208B92C0577AF00212C47 /* DeltaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaViewModel.swift; sourceTree = "<group>"; };
+		CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIfUserExistsResponse.swift; sourceTree = "<group>"; };
+		CEF208BD2C09320900212C47 /* APIGatewayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGatewayService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +225,7 @@
 			children = (
 				CEF208772BFFD57D00212C47 /* Todo.swift */,
 				CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */,
+				CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF208752BFFD4D200212C47 /* NetworkManager.swift */,
+				CEF208BD2C09320900212C47 /* APIGatewayService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -621,6 +627,8 @@
 				CEF208832C00D70D00212C47 /* DeltaScreen.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
+				CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */,
+				CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */,
 				CEF208B62C055F0E00212C47 /* AddNewUserInfoViewModel.swift in Sources */,
 				CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */,
 				CEF208B42C055EFF00212C47 /* EnterPasswordViewModel.swift in Sources */,

@@ -37,9 +37,12 @@ struct AuthHubScreen: View {
                 Task {
                     let result = await viewModel.checkIfUserExists()
                     if result.isSuccessful {
-                        if result.doesUserExist {
-                            path.append(String(format: Constants.Route.AUTH_ENTER_PASSWORD, viewModel.username))
-                        } else {
+                        switch result.userStatus {
+                        case .existsAndEnabled:
+                            path.append(String(format: Constants.Route.AUTH_ENTER_PASSWORD, viewModel.username, "enabled"))
+                        case .existsAndDisabled:
+                            path.append(String(format: Constants.Route.AUTH_ENTER_PASSWORD, viewModel.username, "disabled"))
+                        case .doesNotExist:
                             path.append(String(format: Constants.Route.AUTH_ADD_INFO, viewModel.username))
                         }
                     } else {

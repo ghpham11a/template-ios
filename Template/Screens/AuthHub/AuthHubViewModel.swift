@@ -13,24 +13,18 @@ class AuthHubViewModel: ObservableObject {
     @Published var username: String = ""
     @Published var isLoading: Bool = false
     
-    func checkIfUserExists() async -> (isSuccessful: Bool, doesUserExist: Bool) {
+    func checkIfUserExists() async -> (isSuccessful: Bool, userStatus: UserStatus) {
         
         DispatchQueue.main.async {
             self.isLoading = true
         }
         
-        let users = Set(["gm.pham@gmail.com", "anthony.b.pham@outlook.com"])
-        
-        do {
-            try await Task.sleep(nanoseconds: 1 * 1_000_000_000)
-        } catch {
-            
-        }
+        let result = await UserRepo.shared.checkUserStatus(username: username.lowercased())
         
         DispatchQueue.main.async {
             self.isLoading = false
         }
         
-        return (true, users.contains(username.lowercased()))
+        return (true, result)
     }
 }

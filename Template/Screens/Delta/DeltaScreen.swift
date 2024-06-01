@@ -26,6 +26,22 @@ struct DeltaScreen: View {
                 LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, action: {
                     viewModel.signOut()
                 })
+                LoadingButton(title: "Deactivate Account", isLoading: $viewModel.isLoading, action: {
+                    Task {
+                        let result = await viewModel.disableUser()
+                        if result {
+                            path = NavigationPath()
+                        }
+                    }
+                })
+                LoadingButton(title: "Delete Account", isLoading: $viewModel.isLoading, action: {
+                    Task {
+                        let result = await viewModel.deleteUser()
+                        if result {
+                            path = NavigationPath()
+                        }
+                    }
+                })
             }
         }
     }

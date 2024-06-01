@@ -58,7 +58,9 @@ class CodeVerificationViewModel: ObservableObject {
             self.isLoading = true
         }
         
-        AWSMobileClient.default().signIn(username: username.lowercased(), password: password) { (signInResult, error) in
+        let formattedUsername = username.lowercased()
+        
+        AWSMobileClient.default().signIn(username: formattedUsername, password: password) { (signInResult, error) in
             
             DispatchQueue.main.async {
                 self.isLoading = false
@@ -70,11 +72,16 @@ class CodeVerificationViewModel: ObservableObject {
                 
                 if signInResult.signInState == .signedIn {
                     AWSMobileClient.default().getTokens() { (tokens, error) in
-                        UserRepo.shared.setLoggedIn(token: tokens?.accessToken?.tokenString ?? "")
+                        if let tokens = tokens {
+                            UserRepo.shared.setLoggedIn(tokens: tokens, username: formattedUsername)
+                            onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: true, result: signInResult, exception: nil))
+                        } else {
+                            onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: nil))
+                        }
                     }
+                } else {
+                    onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: nil))
                 }
-                
-                onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: true, result: signInResult, exception: nil))
             }
         }
     }

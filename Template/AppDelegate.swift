@@ -18,10 +18,13 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             } else if let userState = userState {
                 let defaults = UserDefaults.standard
                 let isUserStateSignedIn = userState == UserState.signedIn
-                let userDefaultsAuthKeyExists = defaults.object(forKey: Constants.USER_DEFAULTS_KEY_AUTH_TOKEN) != nil
+                let userDefaultsAuthKeyExists = defaults.object(forKey: Constants.USER_DEFAULTS_KEY_ID_TOKEN) != nil
                 if (isUserStateSignedIn && !userDefaultsAuthKeyExists) || !isUserStateSignedIn {
                     AWSMobileClient.default().signOut()
-                    defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_AUTH_TOKEN)
+                    defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_ID_TOKEN)
+                    defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN)
+                    defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_USERNAME)
+                    defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE)
                 }
                 _ = UserRepo.shared.isLoggedIn()
             }

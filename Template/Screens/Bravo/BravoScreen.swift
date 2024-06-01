@@ -39,7 +39,7 @@ struct BravoScreen: View {
                         case .authHub:
                             AuthHubScreen(path: $path)
                         case .enterPassword:
-                            EnterPasswordScreen(path: $path, username: parsedRoute.params.username)
+                            EnterPasswordScreen(path: $path, username: parsedRoute.params.username, status: parsedRoute.params.status)
                         case .addNewUserInfo:
                             AddNewUserInfoScreen(path: $path, username: parsedRoute.params.username)
                         case .codeVerification:
