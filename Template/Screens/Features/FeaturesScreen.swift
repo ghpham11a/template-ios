@@ -10,52 +10,67 @@ import SwiftUI
 struct FeaturesScreen: View {
     
     @StateObject private var viewModel = FeaturesViewModel()
-    @StateObject private var userRepo = UserRepo.shared
+    @State private var selectedTab = 0
     
     @Binding private var path: NavigationPath
     
     init(path: Binding<NavigationPath>) {
         self._path = path
     }
-    
+
     var body: some View {
-        NavigationStack(path: $path) {
-    
-            if (userRepo.isAuthenticated) {
-                List {
-                    ForEach(viewModel.todos, id: \.id) { todo in
-                        Text(todo.title ?? "NULL")
-                    }
+        VStack {
+            Text("Features")
+            HStack {
+                TabButton(title: "New", isSelected: selectedTab == 0) {
+                    selectedTab = 0
                 }
-                .onAppear {
-                    viewModel.fetchTodos()
-                }
-            } else {
-                Button("Login Bitch") {
-                    path.append(Constants.Route.AUTH_HUB)
-                }
-                .navigationDestination(for: String.self) { route in
-                    if let parsedRoute = parseRouteParams(from: route) {
-                        switch parsedRoute.route {
-                        case .authHub:
-                            AuthHubScreen(path: $path)
-                        case .enterPassword:
-                            EnterPasswordScreen(path: $path, username: parsedRoute.params.username, status: parsedRoute.params.status)
-                        case .addNewUserInfo:
-                            AddNewUserInfoScreen(path: $path, username: parsedRoute.params.username)
-                        case .codeVerification:
-                            CodeVerificationScreen(path: $path, username: parsedRoute.params.username, password: parsedRoute.params.password)
-                        case .snag:
-                            SnagScreen()
-                        }
-                    }
+
+                TabButton(title: "Old", isSelected: selectedTab == 1) {
+                    selectedTab = 1
                 }
             }
+            .background(Color(.systemBackground))
+            .padding(.top, 10)
             
+            Spacer()
+
+            if selectedTab == 0 {
+                NewScreen(path: $path)
+            } else if selectedTab == 1 {
+                OldScreen(path: $path)
+            }
+
+            Spacer()
+        }
+    }
+}
+
+struct TabButton: View {
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack {
+                Text(title)
+                if isSelected {
+                    Rectangle()
+                        .frame(height: 2)
+                        .foregroundColor(.blue)
+                } else {
+                    Rectangle()
+                        .frame(height: 2)
+                        .foregroundColor(.clear)
+                }
+            }
+            .padding()
+            .foregroundColor(isSelected ? .blue : .gray)
         }
     }
 }
 
 //#Preview {
-//    BravoScreen()
+//    FeaturesScreen()
 //}

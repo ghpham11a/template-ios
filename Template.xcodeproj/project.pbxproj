@@ -45,6 +45,10 @@
 		CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B92C0577AF00212C47 /* ProfileViewModel.swift */; };
 		CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */; };
 		CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208BD2C09320900212C47 /* APIGatewayService.swift */; };
+		CEF208C12C0C255400212C47 /* FilterListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C02C0C255400212C47 /* FilterListScreen.swift */; };
+		CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C22C0C256500212C47 /* FilterListViewModel.swift */; };
+		CEF208C52C0C273F00212C47 /* NewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C42C0C273F00212C47 /* NewScreen.swift */; };
+		CEF208C72C0C274A00212C47 /* OldScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C62C0C274A00212C47 /* OldScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +116,10 @@
 		CEF208B92C0577AF00212C47 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIfUserExistsResponse.swift; sourceTree = "<group>"; };
 		CEF208BD2C09320900212C47 /* APIGatewayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGatewayService.swift; sourceTree = "<group>"; };
+		CEF208C02C0C255400212C47 /* FilterListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListScreen.swift; sourceTree = "<group>"; };
+		CEF208C22C0C256500212C47 /* FilterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListViewModel.swift; sourceTree = "<group>"; };
+		CEF208C42C0C273F00212C47 /* NewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewScreen.swift; sourceTree = "<group>"; };
+		CEF208C62C0C274A00212C47 /* OldScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +239,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208BF2C0C254000212C47 /* FilterList */,
 				CEF208AC2C0553CA00212C47 /* CodeVerification */,
 				CEF208A02C04E76400212C47 /* EnterPassword */,
 				CEF2089B2C04DDED00212C47 /* AddNewUserInfo */,
@@ -256,6 +265,8 @@
 			children = (
 				CEF208382BFC1F0400212C47 /* FeaturesScreen.swift */,
 				CEF2087C2BFFD67800212C47 /* FeaturesViewModel.swift */,
+				CEF208C42C0C273F00212C47 /* NewScreen.swift */,
+				CEF208C62C0C274A00212C47 /* OldScreen.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -356,6 +367,15 @@
 				CEF208B12C055EF400212C47 /* CodeVerificationViewModel.swift */,
 			);
 			path = CodeVerification;
+			sourceTree = "<group>";
+		};
+		CEF208BF2C0C254000212C47 /* FilterList */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208C02C0C255400212C47 /* FilterListScreen.swift */,
+				CEF208C22C0C256500212C47 /* FilterListViewModel.swift */,
+			);
+			path = FilterList;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -630,9 +650,13 @@
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
+				CEF208C52C0C273F00212C47 /* NewScreen.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
+				CEF208C72C0C274A00212C47 /* OldScreen.swift in Sources */,
+				CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
 				CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */,
+				CEF208C12C0C255400212C47 /* FilterListScreen.swift in Sources */,
 				CEF2087D2BFFD67800212C47 /* FeaturesViewModel.swift in Sources */,
 				CEF208392BFC1F0400212C47 /* FeaturesScreen.swift in Sources */,
 				CEF208B82C05674A00212C47 /* Helpers.swift in Sources */,
