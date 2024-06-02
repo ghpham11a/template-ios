@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct BravoScreen: View {
+struct FeaturesScreen: View {
     
-    @StateObject private var viewModel = BravoViewModel()
+    @StateObject private var viewModel = FeaturesViewModel()
     @StateObject private var userRepo = UserRepo.shared
     
     @Binding private var path: NavigationPath
@@ -20,6 +20,7 @@ struct BravoScreen: View {
     
     var body: some View {
         NavigationStack(path: $path) {
+    
             if (userRepo.isAuthenticated) {
                 List {
                     ForEach(viewModel.todos, id: \.id) { todo in

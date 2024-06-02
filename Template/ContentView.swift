@@ -14,24 +14,19 @@ struct ContentView: View {
     var body: some View {
         
         TabView {
-            AlphaScreen(path: $path)
+            HomeScreen(path: $path)
                 .tabItem {
-                    Label("Alpha", systemImage: "person.3")
+                    Label("Home", systemImage: "person.3")
                 }
                 .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
-            BravoScreen(path: $path)
+            FeaturesScreen(path: $path)
                 .tabItem {
-                    Label("Bravo", systemImage: "checkmark.circle")
+                    Label("Features", systemImage: "checkmark.circle")
                 }
                 .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
-            CharlieScreen(path: $path)
+            ProfileScreen(path: $path)
                 .tabItem {
-                    Label("Charlie", systemImage: "checkmark.circle")
-                }
-                .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
-            DeltaScreen(path: $path)
-                .tabItem {
-                    Label("Delta", systemImage: "checkmark.circle")
+                    Label("Profile", systemImage: "checkmark.circle")
                 }
                 .toolbar(path.count == 0 ? .visible : .hidden, for: .tabBar)
         }

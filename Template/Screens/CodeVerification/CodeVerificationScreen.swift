@@ -65,11 +65,13 @@ struct CodeVerificationScreen: View {
             
             Button("Submit") {
                 viewModel.confirmSignUp(username: username, password: password, confirmationCode: code.joined()) { response in
-                    if response.isSuccessful == true {
-                        path = NavigationPath()
-                    } else {
-                        path = NavigationPath()
-                        path.append(Constants.Route.SNAG)
+                    DispatchQueue.main.async {
+                        if response.isSuccessful == true {
+                            path = NavigationPath()
+                        } else {
+                            path = NavigationPath()
+                            path.append(Constants.Route.SNAG)
+                        }
                     }
                 }
             }

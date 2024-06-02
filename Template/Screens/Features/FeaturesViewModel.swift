@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BravoViewModel: ObservableObject {
+class FeaturesViewModel: ObservableObject {
     
     @Published var todos: [Todo] = []
     @Published var errorMessage: String?

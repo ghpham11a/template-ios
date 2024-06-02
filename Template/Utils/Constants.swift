@@ -18,10 +18,9 @@ struct Constants {
     static let AWS_COGNITO_USER_DOES_NOT_EXIST_MESSAGE = "User does not exist"
     
     struct Route {
-        static let ALPHA_TAB = "alpha_tab"
-        static let BRAVO_TAB = "bravo_tab"
-        static let CHARLIE_TAB = "charlie_tab"
-        static let DELTA_TAB = "delta_tab"
+        static let HOME_TAB = "home_tab"
+        static let FEATURES_TAB = "features_tab"
+        static let PROFILE_TAB = "profile_tab"
         
         static let SNAG = "snag"
         

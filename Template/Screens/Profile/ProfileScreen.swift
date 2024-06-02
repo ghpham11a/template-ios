@@ -1,5 +1,5 @@
 //
-//  DeltaScreen.swift
+//  ProfileScreen.swift
 //  Template
 //
 //  Created by Anthony Pham on 5/24/24.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct DeltaScreen: View {
+struct ProfileScreen: View {
     
     @Binding private var path: NavigationPath
-    @StateObject private var viewModel = DeltaViewModel()
+    @StateObject private var viewModel = ProfileViewModel()
     @StateObject private var userRepo = UserRepo.shared
     
     init(path: Binding<NavigationPath>) {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AlphaScreen: View {
+struct HomeScreen: View {
     
     @Binding private var path: NavigationPath
     

@@ -8,7 +8,7 @@
 import AWSMobileClient
 import Foundation
 
-class DeltaViewModel: ObservableObject {
+class ProfileViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
     

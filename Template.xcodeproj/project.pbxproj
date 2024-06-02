@@ -17,14 +17,13 @@
 		CEF2081E2BFADF0400212C47 /* TemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2081D2BFADF0400212C47 /* TemplateTests.swift */; };
 		CEF208282BFADF0400212C47 /* TemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208272BFADF0400212C47 /* TemplateUITests.swift */; };
 		CEF2082A2BFADF0400212C47 /* TemplateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208292BFADF0400212C47 /* TemplateUITestsLaunchTests.swift */; };
-		CEF208372BFC1EDA00212C47 /* AlphaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208362BFC1EDA00212C47 /* AlphaScreen.swift */; };
-		CEF208392BFC1F0400212C47 /* BravoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208382BFC1F0400212C47 /* BravoScreen.swift */; };
+		CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208362BFC1EDA00212C47 /* HomeScreen.swift */; };
+		CEF208392BFC1F0400212C47 /* FeaturesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208382BFC1F0400212C47 /* FeaturesScreen.swift */; };
 		CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208752BFFD4D200212C47 /* NetworkManager.swift */; };
 		CEF208782BFFD57D00212C47 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208772BFFD57D00212C47 /* Todo.swift */; };
 		CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2087A2BFFD5C500212C47 /* JSONPlaceholderRepo.swift */; };
-		CEF2087D2BFFD67800212C47 /* BravoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2087C2BFFD67800212C47 /* BravoViewModel.swift */; };
-		CEF208812C00D70100212C47 /* CharlieScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208802C00D70100212C47 /* CharlieScreen.swift */; };
-		CEF208832C00D70D00212C47 /* DeltaScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208822C00D70D00212C47 /* DeltaScreen.swift */; };
+		CEF2087D2BFFD67800212C47 /* FeaturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2087C2BFFD67800212C47 /* FeaturesViewModel.swift */; };
+		CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208822C00D70D00212C47 /* ProfileScreen.swift */; };
 		CEF208852C03CE1100212C47 /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = CEF208842C03CE1100212C47 /* awsconfiguration.json */; };
 		CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208862C03D97000212C47 /* AppDelegate.swift */; };
 		CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208882C03DF7600212C47 /* UserRepo.swift */; };
@@ -43,7 +42,7 @@
 		CEF208B42C055EFF00212C47 /* EnterPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B32C055EFF00212C47 /* EnterPasswordViewModel.swift */; };
 		CEF208B62C055F0E00212C47 /* AddNewUserInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B52C055F0E00212C47 /* AddNewUserInfoViewModel.swift */; };
 		CEF208B82C05674A00212C47 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B72C05674A00212C47 /* Helpers.swift */; };
-		CEF208BA2C0577AF00212C47 /* DeltaViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B92C0577AF00212C47 /* DeltaViewModel.swift */; };
+		CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208B92C0577AF00212C47 /* ProfileViewModel.swift */; };
 		CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */; };
 		CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208BD2C09320900212C47 /* APIGatewayService.swift */; };
 /* End PBXBuildFile section */
@@ -85,14 +84,13 @@
 		CEF208232BFADF0400212C47 /* TemplateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemplateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF208272BFADF0400212C47 /* TemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateUITests.swift; sourceTree = "<group>"; };
 		CEF208292BFADF0400212C47 /* TemplateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CEF208362BFC1EDA00212C47 /* AlphaScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaScreen.swift; sourceTree = "<group>"; };
-		CEF208382BFC1F0400212C47 /* BravoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BravoScreen.swift; sourceTree = "<group>"; };
+		CEF208362BFC1EDA00212C47 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		CEF208382BFC1F0400212C47 /* FeaturesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesScreen.swift; sourceTree = "<group>"; };
 		CEF208752BFFD4D200212C47 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEF208772BFFD57D00212C47 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		CEF2087A2BFFD5C500212C47 /* JSONPlaceholderRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONPlaceholderRepo.swift; sourceTree = "<group>"; };
-		CEF2087C2BFFD67800212C47 /* BravoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BravoViewModel.swift; sourceTree = "<group>"; };
-		CEF208802C00D70100212C47 /* CharlieScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharlieScreen.swift; sourceTree = "<group>"; };
-		CEF208822C00D70D00212C47 /* DeltaScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaScreen.swift; sourceTree = "<group>"; };
+		CEF2087C2BFFD67800212C47 /* FeaturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesViewModel.swift; sourceTree = "<group>"; };
+		CEF208822C00D70D00212C47 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		CEF208842C03CE1100212C47 /* awsconfiguration.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		CEF208862C03D97000212C47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF208882C03DF7600212C47 /* UserRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepo.swift; sourceTree = "<group>"; };
@@ -111,7 +109,7 @@
 		CEF208B32C055EFF00212C47 /* EnterPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewModel.swift; sourceTree = "<group>"; };
 		CEF208B52C055F0E00212C47 /* AddNewUserInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewUserInfoViewModel.swift; sourceTree = "<group>"; };
 		CEF208B72C05674A00212C47 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		CEF208B92C0577AF00212C47 /* DeltaViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeltaViewModel.swift; sourceTree = "<group>"; };
+		CEF208B92C0577AF00212C47 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIfUserExistsResponse.swift; sourceTree = "<group>"; };
 		CEF208BD2C09320900212C47 /* APIGatewayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGatewayService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,29 +236,28 @@
 				CEF2089B2C04DDED00212C47 /* AddNewUserInfo */,
 				CEF208942C04AB4300212C47 /* Snag */,
 				CEF2088C2C03E3B400212C47 /* AuthHub */,
-				CEF2087F2C00D6F200212C47 /* Delta */,
-				CEF2087E2C00D6ED00212C47 /* Charlie */,
-				CEF208732BFFD4B000212C47 /* Bravo */,
-				CEF208722BFFD4AB00212C47 /* Alpha */,
+				CEF2087F2C00D6F200212C47 /* Profile */,
+				CEF208732BFFD4B000212C47 /* Features */,
+				CEF208722BFFD4AB00212C47 /* Home */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		CEF208722BFFD4AB00212C47 /* Alpha */ = {
+		CEF208722BFFD4AB00212C47 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				CEF208362BFC1EDA00212C47 /* AlphaScreen.swift */,
+				CEF208362BFC1EDA00212C47 /* HomeScreen.swift */,
 			);
-			path = Alpha;
+			path = Home;
 			sourceTree = "<group>";
 		};
-		CEF208732BFFD4B000212C47 /* Bravo */ = {
+		CEF208732BFFD4B000212C47 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				CEF208382BFC1F0400212C47 /* BravoScreen.swift */,
-				CEF2087C2BFFD67800212C47 /* BravoViewModel.swift */,
+				CEF208382BFC1F0400212C47 /* FeaturesScreen.swift */,
+				CEF2087C2BFFD67800212C47 /* FeaturesViewModel.swift */,
 			);
-			path = Bravo;
+			path = Features;
 			sourceTree = "<group>";
 		};
 		CEF208742BFFD4C400212C47 /* Networking */ = {
@@ -281,21 +278,13 @@
 			path = Repos;
 			sourceTree = "<group>";
 		};
-		CEF2087E2C00D6ED00212C47 /* Charlie */ = {
+		CEF2087F2C00D6F200212C47 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				CEF208802C00D70100212C47 /* CharlieScreen.swift */,
+				CEF208822C00D70D00212C47 /* ProfileScreen.swift */,
+				CEF208B92C0577AF00212C47 /* ProfileViewModel.swift */,
 			);
-			path = Charlie;
-			sourceTree = "<group>";
-		};
-		CEF2087F2C00D6F200212C47 /* Delta */ = {
-			isa = PBXGroup;
-			children = (
-				CEF208822C00D70D00212C47 /* DeltaScreen.swift */,
-				CEF208B92C0577AF00212C47 /* DeltaViewModel.swift */,
-			);
-			path = Delta;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		CEF2088C2C03E3B400212C47 /* AuthHub */ = {
@@ -624,7 +613,7 @@
 				CEF208A42C04E84900212C47 /* AuthHubViewModel.swift in Sources */,
 				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
 				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
-				CEF208832C00D70D00212C47 /* DeltaScreen.swift in Sources */,
+				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
 				CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */,
@@ -636,7 +625,7 @@
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
-				CEF208BA2C0577AF00212C47 /* DeltaViewModel.swift in Sources */,
+				CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
@@ -644,13 +633,12 @@
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
 				CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */,
-				CEF2087D2BFFD67800212C47 /* BravoViewModel.swift in Sources */,
-				CEF208392BFC1F0400212C47 /* BravoScreen.swift in Sources */,
+				CEF2087D2BFFD67800212C47 /* FeaturesViewModel.swift in Sources */,
+				CEF208392BFC1F0400212C47 /* FeaturesScreen.swift in Sources */,
 				CEF208B82C05674A00212C47 /* Helpers.swift in Sources */,
 				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,
 				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
-				CEF208372BFC1EDA00212C47 /* AlphaScreen.swift in Sources */,
-				CEF208812C00D70100212C47 /* CharlieScreen.swift in Sources */,
+				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
