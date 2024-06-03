@@ -26,6 +26,7 @@ struct EditProfileScreen: View {
                     .scaledToFit()
                     .frame(width: 200, height: 200)
                     .clipShape(.circle)
+                    .listRowBackground(Color.clear)
             } else {
                 AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userSub ?? ""))) { phase in
                     switch phase {
@@ -46,6 +47,7 @@ struct EditProfileScreen: View {
                 .scaledToFit()
                 .clipShape(.circle)
                 .frame(width: 200, height: 200)
+                .listRowBackground(Color.clear)
             }
 
             Button(action: {
@@ -58,6 +60,7 @@ struct EditProfileScreen: View {
                     .cornerRadius(8)
             }
             .padding()
+            .listRowBackground(Color.clear)
             .sheet(isPresented: $isImagePickerPresented) {
                 ImagePicker(image: $image)
                     .onDisappear{
@@ -66,6 +69,10 @@ struct EditProfileScreen: View {
                                 let result = await self.viewModel.updateImage(image: self.image)
                                 if !result {
                                     self.image = nil
+                                } else {
+                                    DispatchQueue.main.async {
+                                        UserRepo.shared.imageRefreshId = UUID().uuidString
+                                    }
                                 }
                             }
                         }
@@ -73,7 +80,7 @@ struct EditProfileScreen: View {
                 
             }
         }
-        .background(Color.white)
+        .background(Color.clear)
     }
 }
 

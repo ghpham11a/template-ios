@@ -56,6 +56,8 @@
 		CEF208D62C0D2FDE00212C47 /* PublicProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D52C0D2FDE00212C47 /* PublicProfileViewModel.swift */; };
 		CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D72C0D346100212C47 /* EditProfileViewModel.swift */; };
 		CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D92C0D352500212C47 /* UpdateUserBody.swift */; };
+		CEF208DC2C0D51E000212C47 /* HorizontalIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208DB2C0D51E000212C47 /* HorizontalIconButton.swift */; };
+		CEF208DE2C0D533900212C47 /* MyProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208DD2C0D533900212C47 /* MyProfileRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,8 @@
 		CEF208D52C0D2FDE00212C47 /* PublicProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileViewModel.swift; sourceTree = "<group>"; };
 		CEF208D72C0D346100212C47 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		CEF208D92C0D352500212C47 /* UpdateUserBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBody.swift; sourceTree = "<group>"; };
+		CEF208DB2C0D51E000212C47 /* HorizontalIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalIconButton.swift; sourceTree = "<group>"; };
+		CEF208DD2C0D533900212C47 /* MyProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,6 +316,7 @@
 			children = (
 				CEF208822C00D70D00212C47 /* ProfileScreen.swift */,
 				CEF208B92C0577AF00212C47 /* ProfileViewModel.swift */,
+				CEF208DD2C0D533900212C47 /* MyProfileRow.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -356,6 +361,7 @@
 			children = (
 				CEF208992C04DBD700212C47 /* BackButton.swift */,
 				CEF208A62C04EC5000212C47 /* LoadingButton.swift */,
+				CEF208DB2C0D51E000212C47 /* HorizontalIconButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -693,6 +699,7 @@
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
 				CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */,
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
+				CEF208DC2C0D51E000212C47 /* HorizontalIconButton.swift in Sources */,
 				CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
@@ -708,6 +715,7 @@
 				CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */,
 				CEF208C12C0C255400212C47 /* FilterListScreen.swift in Sources */,
 				CEF2087D2BFFD67800212C47 /* FeaturesViewModel.swift in Sources */,
+				CEF208DE2C0D533900212C47 /* MyProfileRow.swift in Sources */,
 				CEF208392BFC1F0400212C47 /* FeaturesScreen.swift in Sources */,
 				CEF208B82C05674A00212C47 /* Helpers.swift in Sources */,
 				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,

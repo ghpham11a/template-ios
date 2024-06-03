@@ -19,6 +19,7 @@ class UserRepo: ObservableObject {
     static let shared = UserRepo()
     
     @Published var isAuthenticated: Bool = false
+    @Published var imageRefreshId: String = ""
     
     var userStatus: UserStatus = .doesNotExist
     

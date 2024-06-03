@@ -12,6 +12,7 @@ struct PublicProfileScreen: View {
     @Binding private var path: NavigationPath
     @StateObject private var viewModel = PublicProfileViewModel()
     @State private var username: String
+    @StateObject private var userRepo = UserRepo.shared
 
     init(path: Binding<NavigationPath>, username: String) {
         self._path = path
@@ -38,16 +39,16 @@ struct PublicProfileScreen: View {
                         EmptyView()
                     }
                 }
+                .id(userRepo.imageRefreshId)
                 .clipShape(.circle)
                 .frame(width: 100, height: 100)
+                .listRowBackground(Color.clear)
                 
                 Button("Edit") {
                     path.append(String(format: Constants.Route.EDIT_PROFILE))
                 }
+                .listRowBackground(Color.clear)
             }
-            
-            Text("PublicProfileScreen")
-                .navigationTitle("PublicProfileScreen")
         }
         .onAppear {
             viewModel.checkIfEditable(username: username)

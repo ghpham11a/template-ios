@@ -22,28 +22,10 @@ struct ProfileScreen: View {
             List {
                 if (userRepo.isAuthenticated) {
                     
-                    AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userSub ?? ""))) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                        case .failure:
-                            Image(systemName: "person.crop.circle.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                        @unknown default:
-                            EmptyView()
-                        }
-                    }
-                    .clipShape(.circle)
-                    .frame(width: 40, height: 40)
-                    
-                    Button("View Profile") {
+                    MyProfileRow(title: UserRepo.shared.username ?? "", subtitle: "View Profile") {
                         path.append(String(format: Constants.Route.PUBLIC_PROFILE, UserRepo.shared.username ?? ""))
                     }
+
                     LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, action: {
                         viewModel.signOut()
                     })
@@ -62,6 +44,10 @@ struct ProfileScreen: View {
                                 path = NavigationPath()
                             }
                         }
+                    })
+                    
+                    HorizontalIconButton(iconName: "star.fill", buttonText: "Button Title", action: {
+                        print("Button 1 tapped")
                     })
                 } else {
                     Button("Login Bitch") {
