@@ -49,6 +49,13 @@
 		CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C22C0C256500212C47 /* FilterListViewModel.swift */; };
 		CEF208C52C0C273F00212C47 /* NewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C42C0C273F00212C47 /* NewScreen.swift */; };
 		CEF208C72C0C274A00212C47 /* OldScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C62C0C274A00212C47 /* OldScreen.swift */; };
+		CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C82C0C2B0000212C47 /* ImagePicker.swift */; };
+		CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */; };
+		CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D02C0D2F5C00212C47 /* PublicProfileScreen.swift */; };
+		CEF208D42C0D2F7000212C47 /* EditProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D32C0D2F7000212C47 /* EditProfileScreen.swift */; };
+		CEF208D62C0D2FDE00212C47 /* PublicProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D52C0D2FDE00212C47 /* PublicProfileViewModel.swift */; };
+		CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D72C0D346100212C47 /* EditProfileViewModel.swift */; };
+		CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D92C0D352500212C47 /* UpdateUserBody.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +127,13 @@
 		CEF208C22C0C256500212C47 /* FilterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListViewModel.swift; sourceTree = "<group>"; };
 		CEF208C42C0C273F00212C47 /* NewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewScreen.swift; sourceTree = "<group>"; };
 		CEF208C62C0C274A00212C47 /* OldScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldScreen.swift; sourceTree = "<group>"; };
+		CEF208C82C0C2B0000212C47 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
+		CEF208D02C0D2F5C00212C47 /* PublicProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileScreen.swift; sourceTree = "<group>"; };
+		CEF208D32C0D2F7000212C47 /* EditProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileScreen.swift; sourceTree = "<group>"; };
+		CEF208D52C0D2FDE00212C47 /* PublicProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileViewModel.swift; sourceTree = "<group>"; };
+		CEF208D72C0D346100212C47 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		CEF208D92C0D352500212C47 /* UpdateUserBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBody.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +199,7 @@
 		CEF2080B2BFADF0100212C47 /* Template */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208CC2C0D233200212C47 /* Extensions */,
 				CEF208972C04DBC100212C47 /* Components */,
 				CEF2088F2C03E4E100212C47 /* Utils */,
 				CEF208792BFFD5B100212C47 /* Repos */,
@@ -232,6 +247,7 @@
 				CEF208772BFFD57D00212C47 /* Todo.swift */,
 				CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */,
 				CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */,
+				CEF208D92C0D352500212C47 /* UpdateUserBody.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -239,6 +255,8 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208D22C0D2F6200212C47 /* EditProfile */,
+				CEF208CF2C0D2F4C00212C47 /* PublicProfile */,
 				CEF208BF2C0C254000212C47 /* FilterList */,
 				CEF208AC2C0553CA00212C47 /* CodeVerification */,
 				CEF208A02C04E76400212C47 /* EnterPassword */,
@@ -376,6 +394,33 @@
 				CEF208C22C0C256500212C47 /* FilterListViewModel.swift */,
 			);
 			path = FilterList;
+			sourceTree = "<group>";
+		};
+		CEF208CC2C0D233200212C47 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CEF208CF2C0D2F4C00212C47 /* PublicProfile */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208D02C0D2F5C00212C47 /* PublicProfileScreen.swift */,
+				CEF208D52C0D2FDE00212C47 /* PublicProfileViewModel.swift */,
+			);
+			path = PublicProfile;
+			sourceTree = "<group>";
+		};
+		CEF208D22C0D2F6200212C47 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208C82C0C2B0000212C47 /* ImagePicker.swift */,
+				CEF208D32C0D2F7000212C47 /* EditProfileScreen.swift */,
+				CEF208D72C0D346100212C47 /* EditProfileViewModel.swift */,
+			);
+			path = EditProfile;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -630,9 +675,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEF208D62C0D2FDE00212C47 /* PublicProfileViewModel.swift in Sources */,
 				CEF208A42C04E84900212C47 /* AuthHubViewModel.swift in Sources */,
 				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
 				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
+				CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
@@ -644,6 +691,7 @@
 				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
+				CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */,
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
 				CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
@@ -653,6 +701,8 @@
 				CEF208C52C0C273F00212C47 /* NewScreen.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
 				CEF208C72C0C274A00212C47 /* OldScreen.swift in Sources */,
+				CEF208D42C0D2F7000212C47 /* EditProfileScreen.swift in Sources */,
+				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
 				CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
 				CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */,
@@ -662,7 +712,9 @@
 				CEF208B82C05674A00212C47 /* Helpers.swift in Sources */,
 				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,
 				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
+				CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */,
 				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
+				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

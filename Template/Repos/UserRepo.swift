@@ -31,6 +31,11 @@ class UserRepo: ObservableObject {
         let defaults = UserDefaults.standard
         return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_ID_TOKEN) as? String
     }
+    
+    var userSub: String? {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_SUB) as? String
+    }
 
     func isLoggedIn() -> Bool {
         
@@ -45,7 +50,7 @@ class UserRepo: ObservableObject {
         return isAuthenticated
     }
     
-    func setLoggedIn(tokens: Tokens, username: String) {
+    func setLoggedIn(tokens: Tokens, username: String, userSub: String) {
         let defaults = UserDefaults.standard
         
         guard let idToken = tokens.idToken, let accessToken = tokens.accessToken, let expiration = tokens.expiration else {
@@ -61,6 +66,7 @@ class UserRepo: ObservableObject {
         defaults.set(accessToken.tokenString, forKey: Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN)
         defaults.set(username, forKey: Constants.USER_DEFAULTS_KEY_USERNAME)
         defaults.set(expirationDate, forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE)
+        defaults.set(userSub, forKey: Constants.USER_DEFAULTS_KEY_SUB)
         
         DispatchQueue.main.async {
             self.isAuthenticated = true
@@ -76,6 +82,7 @@ class UserRepo: ObservableObject {
         defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN)
         defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_USERNAME)
         defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE)
+        defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_SUB)
     }
     
     func checkUserStatus(username: String) async -> UserStatus {

@@ -25,6 +25,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
                     defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN)
                     defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_USERNAME)
                     defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE)
+                    defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_SUB)
                 }
                 _ = UserRepo.shared.isLoggedIn()
             }

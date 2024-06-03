@@ -47,6 +47,8 @@ struct FilterListScreen: View {
                             CodeVerificationScreen(path: $path, username: parsedRoute.params.username, password: parsedRoute.params.password)
                         case .snag:
                             SnagScreen()
+                        default:
+                            SnagScreen()
                         }
                     }
                 }

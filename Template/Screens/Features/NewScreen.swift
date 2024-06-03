@@ -16,6 +16,8 @@ struct NewScreen: View {
     }
     
     var body: some View {
-        Text("New Screen")
+        List{
+            Text("New Screen")
+        }
     }
 }

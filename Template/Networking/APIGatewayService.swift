@@ -40,4 +40,10 @@ class APIGatewayService {
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         return try await NetworkManager.shared.delete(urlString: url, headers: headers)
     }
+    
+    func updateUser(userSub: String, body: [String: Any]) async throws -> String? {
+        let url = "\(baseURL)/users/\(userSub)"
+        let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
+        return try await NetworkManager.shared.patch(urlString: url, headers: headers, body: body)
+    }
 }

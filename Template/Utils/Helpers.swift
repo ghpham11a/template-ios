@@ -13,6 +13,8 @@ enum RegisteredRoute {
     case enterPassword
     case codeVerification
     case snag
+    case public_profile
+    case edit_profile
 }
 
 struct RegisteredParams {
@@ -34,6 +36,15 @@ func parseRouteParams(from urlString: String) -> (route: RegisteredRoute, params
     }
     if urlString.contains("auth/add_info") {
         registeredRoute = .addNewUserInfo
+    }
+    if urlString.contains("profile_tab/public_profile") {
+        registeredRoute = .public_profile
+    }
+    if urlString.contains("profile_tab/edit_profile") {
+        registeredRoute = .edit_profile
+    }
+    if urlString.contains("snag") {
+        registeredRoute = .snag
     }
     if urlString.contains("auth/code_verification") {
         registeredRoute = .codeVerification

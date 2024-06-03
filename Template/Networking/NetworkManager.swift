@@ -118,6 +118,43 @@ class NetworkManager {
         return decodedData
     }
     
+    func patch<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: [String: Any]) async throws -> T {
+        var formattedUrl = urlString
+
+        if !queryParams.isEmpty {
+            formattedUrl += "?"
+            let queryParamsArray = Array(queryParams)
+            for (index, element) in queryParamsArray.enumerated() {
+                formattedUrl += "\(element.key)=\(element.value)"
+                if index < queryParamsArray.count - 1 {
+                    formattedUrl += "&"
+                }
+            }
+        }
+
+        guard let url = URL(string: formattedUrl) else {
+            throw URLError(.badURL)
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+
+        if !headers.isEmpty {
+            let headersArray = Array(headers)
+            for (_, element) in headersArray.enumerated() {
+                request.addValue(element.value, forHTTPHeaderField: element.key)
+            }
+        }
+
+        let jsonData = try JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+        request.httpBody = jsonData
+
+        let (data, _) = try await URLSession.shared.data(for: request)
+
+        let decodedData = try JSONDecoder().decode(T.self, from: data)
+        return decodedData
+    }
+    
     func post<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: [String: Any]) async throws -> T {
         var formattedUrl = urlString
 

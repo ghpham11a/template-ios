@@ -13,14 +13,20 @@ struct Constants {
     static let USER_DEFAULTS_KEY_ACCESS_TOKEN = "access_token"
     static let USER_DEFAULTS_KEY_USERNAME = "username"
     static let USER_DEFAULTS_KEY_EXPIRATION_DATE = "expiration_date"
+    static let USER_DEFAULTS_KEY_SUB = "sub"
     static let INTERNAL_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss"
     static let AWS_COGNITO_USER_DOES_EXIST_MESSAGE = "User exists"
     static let AWS_COGNITO_USER_DOES_NOT_EXIST_MESSAGE = "User does not exist"
+    
+    static let USER_IMAGE_URL = "https://template-public-resources.s3.amazonaws.com/%@.jpg"
     
     struct Route {
         static let HOME_TAB = "home_tab"
         static let FEATURES_TAB = "features_tab"
         static let PROFILE_TAB = "profile_tab"
+        
+        static let PUBLIC_PROFILE = "profile_tab/public_profile?username=%@"
+        static let EDIT_PROFILE = "profile_tab/edit_profile"
         
         static let SNAG = "snag"
         
