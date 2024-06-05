@@ -15,12 +15,19 @@ enum RegisteredRoute {
     case snag
     case public_profile
     case edit_profile
+    case login_and_security
+    case payments_and_payouts
+    case reset_password
+    case newPassword
+    case resetPasswordSuccess
 }
 
 struct RegisteredParams {
     var username: String = ""
     var password: String = ""
     var status: String = ""
+    var verificationType: String = ""
+    var code: String = ""
 }
 
 func parseRouteParams(from urlString: String) -> (route: RegisteredRoute, params: RegisteredParams)? {
@@ -52,6 +59,21 @@ func parseRouteParams(from urlString: String) -> (route: RegisteredRoute, params
     if urlString.contains("snag") {
         registeredRoute = .snag
     }
+    if urlString.contains("profile_tab/login_and_security") {
+        registeredRoute = .login_and_security
+    }
+    if urlString.contains("profile_tab/payments_and_payouts") {
+        registeredRoute = .payments_and_payouts
+    }
+    if urlString.contains("auth/hub/reset_password") {
+        registeredRoute = .reset_password
+    }
+    if urlString.contains("auth/new_password") {
+        registeredRoute = .newPassword
+    }
+    if urlString.contains("reset_password_success") {
+        registeredRoute = .resetPasswordSuccess
+    }
     
     // Separate the URL components
     guard let urlComponents = URLComponents(string: urlString) else {
@@ -69,6 +91,10 @@ func parseRouteParams(from urlString: String) -> (route: RegisteredRoute, params
                     params.password = value
                 case "status":
                     params.status = value
+                case "verificationType":
+                    params.verificationType = value
+                case "code":
+                    params.code = value
                 default:
                     continue
                 }

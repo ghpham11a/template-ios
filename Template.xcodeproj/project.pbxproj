@@ -58,6 +58,14 @@
 		CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D92C0D352500212C47 /* UpdateUserBody.swift */; };
 		CEF208DC2C0D51E000212C47 /* HorizontalIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208DB2C0D51E000212C47 /* HorizontalIconButton.swift */; };
 		CEF208DE2C0D533900212C47 /* MyProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208DD2C0D533900212C47 /* MyProfileRow.swift */; };
+		CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208E02C0EA4B400212C47 /* LoginAndSecurityScreen.swift */; };
+		CEF208E42C0EA4D400212C47 /* ResetPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208E32C0EA4D400212C47 /* ResetPasswordScreen.swift */; };
+		CEF208E62C0EA4E000212C47 /* ResetPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208E52C0EA4E000212C47 /* ResetPasswordViewModel.swift */; };
+		CEF208E82C0EA4F100212C47 /* LoginAndSecurityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208E72C0EA4F100212C47 /* LoginAndSecurityViewModel.swift */; };
+		CEF208EB2C0EA51200212C47 /* NewPasswordScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208EA2C0EA51200212C47 /* NewPasswordScreen.swift */; };
+		CEF208ED2C0EA51E00212C47 /* NewPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208EC2C0EA51E00212C47 /* NewPasswordViewModel.swift */; };
+		CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208EF2C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift */; };
+		CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +146,14 @@
 		CEF208D92C0D352500212C47 /* UpdateUserBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserBody.swift; sourceTree = "<group>"; };
 		CEF208DB2C0D51E000212C47 /* HorizontalIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalIconButton.swift; sourceTree = "<group>"; };
 		CEF208DD2C0D533900212C47 /* MyProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileRow.swift; sourceTree = "<group>"; };
+		CEF208E02C0EA4B400212C47 /* LoginAndSecurityScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndSecurityScreen.swift; sourceTree = "<group>"; };
+		CEF208E32C0EA4D400212C47 /* ResetPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordScreen.swift; sourceTree = "<group>"; };
+		CEF208E52C0EA4E000212C47 /* ResetPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewModel.swift; sourceTree = "<group>"; };
+		CEF208E72C0EA4F100212C47 /* LoginAndSecurityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAndSecurityViewModel.swift; sourceTree = "<group>"; };
+		CEF208EA2C0EA51200212C47 /* NewPasswordScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordScreen.swift; sourceTree = "<group>"; };
+		CEF208EC2C0EA51E00212C47 /* NewPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewModel.swift; sourceTree = "<group>"; };
+		CEF208EF2C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetSuccessScreen.swift; sourceTree = "<group>"; };
+		CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +275,10 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208EE2C0FD29C00212C47 /* PasswordResetSuccess */,
+				CEF208E92C0EA50200212C47 /* NewPassword */,
+				CEF208E22C0EA4BE00212C47 /* ResetPassword */,
+				CEF208DF2C0EA49700212C47 /* LoginAndSecurity */,
 				CEF208D22C0D2F6200212C47 /* EditProfile */,
 				CEF208CF2C0D2F4C00212C47 /* PublicProfile */,
 				CEF208BF2C0C254000212C47 /* FilterList */,
@@ -351,6 +371,7 @@
 		CEF208972C04DBC100212C47 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208F12C0FD95400212C47 /* Inputs */,
 				CEF208982C04DBC800212C47 /* Buttons */,
 			);
 			path = Components;
@@ -427,6 +448,49 @@
 				CEF208D72C0D346100212C47 /* EditProfileViewModel.swift */,
 			);
 			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		CEF208DF2C0EA49700212C47 /* LoginAndSecurity */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208E02C0EA4B400212C47 /* LoginAndSecurityScreen.swift */,
+				CEF208E72C0EA4F100212C47 /* LoginAndSecurityViewModel.swift */,
+			);
+			path = LoginAndSecurity;
+			sourceTree = "<group>";
+		};
+		CEF208E22C0EA4BE00212C47 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208E32C0EA4D400212C47 /* ResetPasswordScreen.swift */,
+				CEF208E52C0EA4E000212C47 /* ResetPasswordViewModel.swift */,
+			);
+			path = ResetPassword;
+			sourceTree = "<group>";
+		};
+		CEF208E92C0EA50200212C47 /* NewPassword */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208EA2C0EA51200212C47 /* NewPasswordScreen.swift */,
+				CEF208EC2C0EA51E00212C47 /* NewPasswordViewModel.swift */,
+			);
+			path = NewPassword;
+			sourceTree = "<group>";
+		};
+		CEF208EE2C0FD29C00212C47 /* PasswordResetSuccess */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208EF2C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift */,
+			);
+			path = PasswordResetSuccess;
+			sourceTree = "<group>";
+		};
+		CEF208F12C0FD95400212C47 /* Inputs */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */,
+			);
+			path = Inputs;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -686,17 +750,24 @@
 				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
 				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
 				CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */,
+				CEF208E42C0EA4D400212C47 /* ResetPasswordScreen.swift in Sources */,
+				CEF208E82C0EA4F100212C47 /* LoginAndSecurityViewModel.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
+				CEF208E62C0EA4E000212C47 /* ResetPasswordViewModel.swift in Sources */,
 				CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */,
+				CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */,
 				CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */,
 				CEF208B62C055F0E00212C47 /* AddNewUserInfoViewModel.swift in Sources */,
+				CEF208ED2C0EA51E00212C47 /* NewPasswordViewModel.swift in Sources */,
 				CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */,
 				CEF208B42C055EFF00212C47 /* EnterPasswordViewModel.swift in Sources */,
 				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
+				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
+				CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */,
 				CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */,
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
 				CEF208DC2C0D51E000212C47 /* HorizontalIconButton.swift in Sources */,
@@ -708,6 +779,7 @@
 				CEF208C52C0C273F00212C47 /* NewScreen.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
 				CEF208C72C0C274A00212C47 /* OldScreen.swift in Sources */,
+				CEF208EB2C0EA51200212C47 /* NewPasswordScreen.swift in Sources */,
 				CEF208D42C0D2F7000212C47 /* EditProfileScreen.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
 				CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */,

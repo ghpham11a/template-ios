@@ -28,11 +28,18 @@ struct Constants {
         static let PUBLIC_PROFILE = "profile_tab/public_profile?username=%@"
         static let EDIT_PROFILE = "profile_tab/edit_profile"
         
+        static let LOGIN_SECURITY = "profile_tab/login_and_security"
+        static let PAYMENTS_AND_PAYOUTS = "profile_tab/payments_and_payouts"
+        static let RESET_PASSWORD = "auth/hub/reset_password"
+        static let NEW_PASSWORD = "auth/new_password?username=%@&code=%@"
+        
+        static let RESET_PASSWORD_SUCCESS = "reset_password_success"
+        
         static let SNAG = "snag"
         
         static let AUTH_HUB = "auth/hub"
         static let AUTH_ADD_INFO = "auth/add_info?username=%@"
         static let AUTH_ENTER_PASSWORD = "auth/enter_password?username=%@&status=%@"
-        static let AUTH_CODE_VERIFICATION = "auth/code_verification?username=%@&password=%@"
+        static let AUTH_CODE_VERIFICATION = "auth/code_verification?verificationType=%@&username=%@&password=%@"
     }
 }

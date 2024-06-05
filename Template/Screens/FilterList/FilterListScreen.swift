@@ -44,7 +44,7 @@ struct FilterListScreen: View {
                         case .addNewUserInfo:
                             AddNewUserInfoScreen(path: $path, username: parsedRoute.params.username)
                         case .codeVerification:
-                            CodeVerificationScreen(path: $path, username: parsedRoute.params.username, password: parsedRoute.params.password)
+                            CodeVerificationScreen(path: $path, verificationType: parsedRoute.params.verificationType, username: parsedRoute.params.username, password: parsedRoute.params.password)
                         case .snag:
                             SnagScreen()
                         default:
@@ -59,5 +59,5 @@ struct FilterListScreen: View {
 }
 
 //#Preview {
-//    BravoScreen()
+//    FilterListScreen()
 //}

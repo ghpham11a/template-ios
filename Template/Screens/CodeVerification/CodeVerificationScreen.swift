@@ -13,9 +13,11 @@ struct CodeVerificationScreen: View {
     @StateObject private var viewModel = CodeVerificationViewModel()
     @State private var username: String
     @State private var password: String
+    @State private var verificationType: String
     
-    init(path: Binding<NavigationPath>, username: String, password: String) {
+    init(path: Binding<NavigationPath>, verificationType: String, username: String, password: String) {
         self._path = path
+        self.verificationType = verificationType
         self.username = username
         self.password = password
     }
@@ -64,16 +66,23 @@ struct CodeVerificationScreen: View {
             Spacer()
             
             Button("Submit") {
-                viewModel.confirmSignUp(username: username, password: password, confirmationCode: code.joined()) { response in
-                    DispatchQueue.main.async {
-                        if response.isSuccessful == true {
-                            path = NavigationPath()
-                        } else {
-                            path = NavigationPath()
-                            path.append(Constants.Route.SNAG)
+                
+                if verificationType == "SIGN_UP" {
+                    viewModel.confirmSignUp(username: username, password: password, confirmationCode: code.joined()) { response in
+                        DispatchQueue.main.async {
+                            if response.isSuccessful == true {
+                                path = NavigationPath()
+                            } else {
+                                path = NavigationPath()
+                                path.append(Constants.Route.SNAG)
+                            }
                         }
                     }
                 }
+                if verificationType == "RESET_PASSWORD" {
+                    path.append(String(format: Constants.Route.NEW_PASSWORD, username, code.joined()))
+                }
+            
             }
             .padding()
         }

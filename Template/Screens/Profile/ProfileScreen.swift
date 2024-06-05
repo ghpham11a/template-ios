@@ -19,36 +19,23 @@ struct ProfileScreen: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            List {
+            ScrollView {
                 if (userRepo.isAuthenticated) {
                     
                     MyProfileRow(title: UserRepo.shared.username ?? "", subtitle: "View Profile") {
                         path.append(String(format: Constants.Route.PUBLIC_PROFILE, UserRepo.shared.username ?? ""))
                     }
-
+                    
+                    Spacer()
+                    
+                    HorizontalIconButton(iconName: "star.fill", buttonText: "Button Title", action: {
+                        path.append(Constants.Route.LOGIN_SECURITY)
+                    })
+                    
                     LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, action: {
                         viewModel.signOut()
                     })
-                    LoadingButton(title: "Deactivate Account", isLoading: $viewModel.isLoading, action: {
-                        Task {
-                            let result = await viewModel.disableUser()
-                            if result {
-                                path = NavigationPath()
-                            }
-                        }
-                    })
-                    LoadingButton(title: "Delete Account", isLoading: $viewModel.isLoading, action: {
-                        Task {
-                            let result = await viewModel.deleteUser()
-                            if result {
-                                path = NavigationPath()
-                            }
-                        }
-                    })
                     
-                    HorizontalIconButton(iconName: "star.fill", buttonText: "Button Title", action: {
-                        print("Button 1 tapped")
-                    })
                 } else {
                     Button("Login Bitch") {
                         path.append(Constants.Route.AUTH_HUB)
@@ -66,13 +53,23 @@ struct ProfileScreen: View {
                     case .addNewUserInfo:
                         AddNewUserInfoScreen(path: $path, username: parsedRoute.params.username)
                     case .codeVerification:
-                        CodeVerificationScreen(path: $path, username: parsedRoute.params.username, password: parsedRoute.params.password)
+                        CodeVerificationScreen(path: $path, verificationType: parsedRoute.params.verificationType, username: parsedRoute.params.username, password: parsedRoute.params.password)
                     case .snag:
                         SnagScreen()
                     case .public_profile:
                         PublicProfileScreen(path: $path, username: parsedRoute.params.username)
                     case .edit_profile:
                         EditProfileScreen(path: $path)
+                    case .reset_password:
+                        ResetPasswordScreen(path: $path)
+                    case .newPassword:
+                        NewPasswordScreen(path: $path, username: parsedRoute.params.username, code: parsedRoute.params.code)
+                    case .resetPasswordSuccess:
+                        PasswordResetSucesssScreen(path: $path)
+                    case .login_and_security:
+                        LoginAndSecurityScreen(path: $path)
+                    default:
+                        SnagScreen()
                     }
                 }
             }

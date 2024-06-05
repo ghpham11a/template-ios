@@ -50,6 +50,12 @@ struct AuthHubScreen: View {
                     }
                 }
             })
+            
+            Text("Forgot your password?")
+            
+            Button("Resit it") {
+                path.append(Constants.Route.RESET_PASSWORD)
+            }
         }
     }
 }
