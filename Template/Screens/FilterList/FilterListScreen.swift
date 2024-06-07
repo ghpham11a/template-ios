@@ -32,25 +32,10 @@ struct FilterListScreen: View {
                 }
             } else {
                 Button("Login Bitch") {
-                    path.append(Constants.Route.AUTH_HUB)
+                    path.append(Route.auth)
                 }
                 .navigationDestination(for: Route.self) { route in
-//                    if let parsedRoute = parseRouteParams(from: route) {
-//                        switch parsedRoute.route {
-//                        case .authHub:
-//                            AuthHubScreen(path: $path)
-//                        case .enterPassword:
-//                            EnterPasswordScreen(path: $path, username: parsedRoute.params.username, status: parsedRoute.params.status)
-//                        case .addNewUserInfo:
-//                            AddNewUserInfoScreen(path: $path, username: parsedRoute.params.username)
-//                        case .codeVerification:
-//                            CodeVerificationScreen(path: $path, verificationType: parsedRoute.params.verificationType, username: parsedRoute.params.username, password: parsedRoute.params.password)
-//                        case .snag:
-//                            SnagScreen()
-//                        default:
-//                            SnagScreen()
-//                        }
-//                    }
+
                 }
             }
             
