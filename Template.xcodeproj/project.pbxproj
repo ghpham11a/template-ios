@@ -66,6 +66,8 @@
 		CEF208ED2C0EA51E00212C47 /* NewPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208EC2C0EA51E00212C47 /* NewPasswordViewModel.swift */; };
 		CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208EF2C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift */; };
 		CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */; };
+		CEF208F62C127E6400212C47 /* StepsGuideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */; };
+		CEF208F82C127FB300212C47 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F72C127FB300212C47 /* Routes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -154,6 +156,8 @@
 		CEF208EC2C0EA51E00212C47 /* NewPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewModel.swift; sourceTree = "<group>"; };
 		CEF208EF2C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetSuccessScreen.swift; sourceTree = "<group>"; };
 		CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableView.swift; sourceTree = "<group>"; };
+		CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsGuideScreen.swift; sourceTree = "<group>"; };
+		CEF208F72C127FB300212C47 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +236,7 @@
 				CEF208122BFADF0400212C47 /* Preview Content */,
 				CEF208842C03CE1100212C47 /* awsconfiguration.json */,
 				CEF208862C03D97000212C47 /* AppDelegate.swift */,
+				CEF208F72C127FB300212C47 /* Routes.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF208F42C127E4B00212C47 /* StepsGuide */,
 				CEF208EE2C0FD29C00212C47 /* PasswordResetSuccess */,
 				CEF208E92C0EA50200212C47 /* NewPassword */,
 				CEF208E22C0EA4BE00212C47 /* ResetPassword */,
@@ -491,6 +497,14 @@
 				CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */,
 			);
 			path = Inputs;
+			sourceTree = "<group>";
+		};
+		CEF208F42C127E4B00212C47 /* StepsGuide */ = {
+			isa = PBXGroup;
+			children = (
+				CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */,
+			);
+			path = StepsGuide;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -766,6 +780,7 @@
 				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
+				CEF208F82C127FB300212C47 /* Routes.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
 				CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */,
 				CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */,
@@ -792,6 +807,7 @@
 				CEF208B82C05674A00212C47 /* Helpers.swift in Sources */,
 				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,
 				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
+				CEF208F62C127E6400212C47 /* StepsGuideScreen.swift in Sources */,
 				CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */,
 				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
 				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,

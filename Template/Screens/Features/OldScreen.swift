@@ -16,6 +16,8 @@ struct OldScreen: View {
     }
     
     var body: some View {
-        Text("Old Screen")
+        List{
+            Text("Old Screen")
+        }
     }
 }

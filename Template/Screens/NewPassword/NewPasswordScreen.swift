@@ -48,10 +48,10 @@ struct NewPasswordScreen: View {
                 viewModel.confirmPasswordReset(username: username, password: viewModel.password, passwordVerification: viewModel.passwordVerification, code: code) { response in
                     if response.isSuccessful == true {
                         path = NavigationPath()
-                        path.append(Constants.Route.RESET_PASSWORD_SUCCESS)
+                        path.append(Route.resetPasswordSuccess)
                     } else {
                         path = NavigationPath()
-                        path.append(Constants.Route.SNAG)
+                        path.append(Route.snag)
                     }
                 }
             })

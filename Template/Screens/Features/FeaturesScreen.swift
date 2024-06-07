@@ -19,29 +19,36 @@ struct FeaturesScreen: View {
     }
 
     var body: some View {
-        VStack {
-            Text("Features")
-            HStack {
+        VStack(spacing: 0) {
+            Spacer()
+            HStack(spacing: 0) {
                 TabButton(title: "New", isSelected: selectedTab == 0) {
                     selectedTab = 0
                 }
+                .frame(width: 100)
+                .padding(0)
 
                 TabButton(title: "Old", isSelected: selectedTab == 1) {
                     selectedTab = 1
                 }
+                .frame(width: 100)
+                .padding(0)
+                
+                Spacer()
+                    .padding(0)
             }
-            .background(Color(.systemBackground))
-            .padding(.top, 10)
+            .padding(0)
             
-            Spacer()
+            Rectangle()
+                .frame(height: 1)
+                .foregroundColor(.blue)
+                .padding(.horizontal)
 
             if selectedTab == 0 {
                 NewScreen(path: $path)
             } else if selectedTab == 1 {
                 OldScreen(path: $path)
             }
-
-            Spacer()
         }
     }
 }
@@ -57,15 +64,16 @@ struct TabButton: View {
                 Text(title)
                 if isSelected {
                     Rectangle()
-                        .frame(height: 2)
+                        .frame(height: 3)
                         .foregroundColor(.blue)
                 } else {
                     Rectangle()
-                        .frame(height: 2)
+                        .frame(height: 3)
                         .foregroundColor(.clear)
                 }
             }
-            .padding()
+            .padding(0)
+            .padding(.horizontal)
             .foregroundColor(isSelected ? .blue : .gray)
         }
     }

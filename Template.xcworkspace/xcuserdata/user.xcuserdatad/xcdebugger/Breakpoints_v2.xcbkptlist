@@ -100,5 +100,67 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F23863D5-D195-486D-B46C-3C3105BBD231"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Template/Screens/NewPassword/NewPasswordViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "confirmPasswordReset(username:password:passwordVerification:code:onResult:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03C7C9F1-6332-41BA-B39C-018888BE7CFE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Template/Screens/NewPassword/NewPasswordViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "confirmPasswordReset(username:password:passwordVerification:code:onResult:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "03C7C9F1-6332-41BA-B39C-018888BE7CFE - c00c4974879bc070"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Optional&lt;AWSMobileClient.ForgotPasswordResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Template.NewPasswordViewModel.confirmPasswordReset(username: Swift.String, password: Swift.String, passwordVerification: Swift.String, code: Swift.String, onResult: (Template.AWSMobileClientResponse&lt;AWSMobileClient.ForgotPasswordResult&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Template"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Documents/template-ios/Template/Screens/NewPassword/NewPasswordViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33">
+               </Location>
+               <Location
+                  uuid = "03C7C9F1-6332-41BA-B39C-018888BE7CFE - 1e271dff59b06c45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Swift.MainActor () -&gt; () in closure #2 (Swift.Optional&lt;AWSMobileClient.ForgotPasswordResult&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Template.NewPasswordViewModel.confirmPasswordReset(username: Swift.String, password: Swift.String, passwordVerification: Swift.String, code: Swift.String, onResult: (Template.AWSMobileClientResponse&lt;AWSMobileClient.ForgotPasswordResult&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Template"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Documents/template-ios/Template/Screens/NewPassword/NewPasswordViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

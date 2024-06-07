@@ -27,9 +27,9 @@ struct LoadingButton: View {
                             .foregroundColor(.white)
                     }
                 }
-                .frame(maxWidth: .infinity, maxHeight: 50)
-                .background(Color.blue)
+                .frame(maxWidth: .infinity, minHeight: 50)
                 .cornerRadius(10)
+                .background(Color.blue)
                 .padding(.horizontal)
             }
             .disabled(isLoading) // Disable button while loading

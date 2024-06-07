@@ -46,9 +46,9 @@ struct EnterPasswordScreen: View {
                         path = NavigationPath()
                     } else {
                         if response.exception?.contains("userNotConfirmed") == true {
-                            path.append(String(format: Constants.Route.AUTH_CODE_VERIFICATION, username, viewModel.password))
+                            path.append(Route.authCodeVerification(verificationType: "SIGN_UP", username: username, password: viewModel.password))
                         } else {
-                            path = NavigationPath([Constants.Route.SNAG])
+                            path = NavigationPath([Route.snag])
                         }
                     }
                 }

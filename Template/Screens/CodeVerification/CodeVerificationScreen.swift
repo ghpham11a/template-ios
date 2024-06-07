@@ -74,13 +74,13 @@ struct CodeVerificationScreen: View {
                                 path = NavigationPath()
                             } else {
                                 path = NavigationPath()
-                                path.append(Constants.Route.SNAG)
+                                path.append(Route.snag)
                             }
                         }
                     }
                 }
                 if verificationType == "RESET_PASSWORD" {
-                    path.append(String(format: Constants.Route.NEW_PASSWORD, username, code.joined()))
+                    path.append(Route.newPassword(username: username, code: code.joined()))
                 }
             
             }

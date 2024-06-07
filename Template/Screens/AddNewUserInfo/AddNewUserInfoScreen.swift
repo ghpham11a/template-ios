@@ -34,9 +34,9 @@ struct AddNewUserInfoScreen: View {
             Button(action: {
                 viewModel.signUp(username: username, password: viewModel.password) { response in
                     if response.isSuccessful == true {
-                        path.append(String(format: Constants.Route.AUTH_CODE_VERIFICATION, "SIGN_UP", username, viewModel.password))
+                        path.append(Route.authCodeVerification(verificationType: "SIGN_UP", username: username, password: viewModel.password))
                     } else {
-                        path = NavigationPath([Constants.Route.SNAG])
+                        path = NavigationPath([Route.snag])
                     }
                 }
             }) {

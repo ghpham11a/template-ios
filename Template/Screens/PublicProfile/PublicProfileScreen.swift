@@ -20,8 +20,18 @@ struct PublicProfileScreen: View {
     }
     
     var body: some View {
-        List {
-            if viewModel.isEditable {
+        
+        VStack {
+            HStack {
+                Spacer()
+                if viewModel.isEditable {
+                    Button("Edit") {
+                        path.append(Route.editProfile)
+                    }
+                }
+            }
+            .padding(.horizontal)
+            ScrollView {
                 
                 AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userSub ?? ""))) { phase in
                     switch phase {
@@ -42,12 +52,6 @@ struct PublicProfileScreen: View {
                 .id(userRepo.imageRefreshId)
                 .clipShape(.circle)
                 .frame(width: 100, height: 100)
-                .listRowBackground(Color.clear)
-                
-                Button("Edit") {
-                    path.append(String(format: Constants.Route.EDIT_PROFILE))
-                }
-                .listRowBackground(Color.clear)
             }
         }
         .onAppear {

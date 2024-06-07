@@ -19,12 +19,12 @@ struct EditProfileScreen: View {
     }
     
     var body: some View {
-        List {
+        ScrollView {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 200, height: 200)
+                    .frame(width: 150, height: 150)
                     .clipShape(.circle)
                     .listRowBackground(Color.clear)
             } else {
@@ -46,7 +46,7 @@ struct EditProfileScreen: View {
                 }
                 .scaledToFit()
                 .clipShape(.circle)
-                .frame(width: 200, height: 200)
+                .frame(width: 150, height: 150)
                 .listRowBackground(Color.clear)
             }
 

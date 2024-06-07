@@ -23,13 +23,13 @@ struct ProfileScreen: View {
                 if (userRepo.isAuthenticated) {
                     
                     MyProfileRow(title: UserRepo.shared.username ?? "", subtitle: "View Profile") {
-                        path.append(String(format: Constants.Route.PUBLIC_PROFILE, UserRepo.shared.username ?? ""))
+                        path.append(Route.publicProfile(username: UserRepo.shared.username ?? ""))
                     }
                     
                     Spacer()
                     
                     HorizontalIconButton(iconName: "star.fill", buttonText: "Button Title", action: {
-                        path.append(Constants.Route.LOGIN_SECURITY)
+                        path.append(Route.loginSecurity)
                     })
                     
                     LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, action: {
@@ -38,39 +38,36 @@ struct ProfileScreen: View {
                     
                 } else {
                     Button("Login Bitch") {
-                        path.append(Constants.Route.AUTH_HUB)
+                        path.append(Route.auth)
                     }
                 }
             }
-            .navigationDestination(for: String.self) { route in
-                
-                if let parsedRoute = parseRouteParams(from: route) {
-                    switch parsedRoute.route {
-                    case .authHub:
-                        AuthHubScreen(path: $path)
-                    case .enterPassword:
-                        EnterPasswordScreen(path: $path, username: parsedRoute.params.username, status: parsedRoute.params.status)
-                    case .addNewUserInfo:
-                        AddNewUserInfoScreen(path: $path, username: parsedRoute.params.username)
-                    case .codeVerification:
-                        CodeVerificationScreen(path: $path, verificationType: parsedRoute.params.verificationType, username: parsedRoute.params.username, password: parsedRoute.params.password)
-                    case .snag:
-                        SnagScreen()
-                    case .public_profile:
-                        PublicProfileScreen(path: $path, username: parsedRoute.params.username)
-                    case .edit_profile:
-                        EditProfileScreen(path: $path)
-                    case .reset_password:
-                        ResetPasswordScreen(path: $path)
-                    case .newPassword:
-                        NewPasswordScreen(path: $path, username: parsedRoute.params.username, code: parsedRoute.params.code)
-                    case .resetPasswordSuccess:
-                        PasswordResetSucesssScreen(path: $path)
-                    case .login_and_security:
-                        LoginAndSecurityScreen(path: $path)
-                    default:
-                        SnagScreen()
-                    }
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .auth:
+                    AuthHubScreen(path: $path)
+                case .authEnterPassword(let username, let status):
+                    EnterPasswordScreen(path: $path, username: username, status: status)
+                case .authAddInfo(let username):
+                    AddNewUserInfoScreen(path: $path, username: username)
+                case .authCodeVerification(let verificationType, let username, let password):
+                    CodeVerificationScreen(path: $path, verificationType: verificationType, username: username, password: password)
+                case .snag:
+                    SnagScreen()
+                case .publicProfile(let username):
+                    PublicProfileScreen(path: $path, username: username)
+                case .editProfile:
+                    EditProfileScreen(path: $path)
+                case .resetPassword:
+                    ResetPasswordScreen(path: $path)
+                case .newPassword(let username, let code):
+                    NewPasswordScreen(path: $path, username: username, code: code)
+                case .resetPasswordSuccess:
+                    PasswordResetSucesssScreen(path: $path)
+                case .loginSecurity:
+                    LoginAndSecurityScreen(path: $path)
+                default:
+                    SnagScreen()
                 }
             }
         }

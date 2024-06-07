@@ -37,10 +37,10 @@ struct ResetPasswordScreen: View {
                 viewModel.resetPassword(username: viewModel.username) { response in
                     DispatchQueue.main.async {
                         if response.isSuccessful == true {
-                            path.append(String(format: Constants.Route.AUTH_CODE_VERIFICATION, "RESET_PASSWORD", viewModel.username, "IGNORE"))
+                            path.append(Route.authCodeVerification(verificationType: "RESET_PASSWORD", username: viewModel.username, password: "IGNORE"))
                         } else {
                             path = NavigationPath()
-                            path.append(Constants.Route.SNAG)
+                            path.append(Route.snag)
                         }
                     }
                 }

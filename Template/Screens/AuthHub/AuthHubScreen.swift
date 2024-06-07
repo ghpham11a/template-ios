@@ -39,22 +39,23 @@ struct AuthHubScreen: View {
                     if result.isSuccessful {
                         switch result.userStatus {
                         case .existsAndEnabled:
-                            path.append(String(format: Constants.Route.AUTH_ENTER_PASSWORD, viewModel.username, "enabled"))
+                            path.append(Route.authEnterPassword(username: viewModel.username, status: "enabled"))
                         case .existsAndDisabled:
-                            path.append(String(format: Constants.Route.AUTH_ENTER_PASSWORD, viewModel.username, "disabled"))
+                            path.append(Route.authEnterPassword(username: viewModel.username, status: "disabled"))
                         case .doesNotExist:
-                            path.append(String(format: Constants.Route.AUTH_ADD_INFO, viewModel.username))
+                            path.append(Route.authAddInfo(username: viewModel.username))
+
                         }
                     } else {
-                        path = NavigationPath([Constants.Route.SNAG])
+                        path = NavigationPath([Route.snag])
                     }
                 }
             })
             
             Text("Forgot your password?")
             
-            Button("Resit it") {
-                path.append(Constants.Route.RESET_PASSWORD)
+            Button("Reset it") {
+                path.append(Route.resetPassword)
             }
         }
     }
