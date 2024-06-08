@@ -30,12 +30,10 @@ struct LoadingButton: View {
                 .frame(maxWidth: .infinity, minHeight: 50)
                 .cornerRadius(10)
                 .background(Color.blue)
-                .padding(.horizontal)
             }
             .disabled(isLoading) // Disable button while loading
-            
-            Spacer()
         }
+        .padding(0)
     }
 }
 

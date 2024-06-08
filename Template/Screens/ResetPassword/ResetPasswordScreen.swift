@@ -27,11 +27,7 @@ struct ResetPasswordScreen: View {
                 .cornerRadius(5.0)
                 .padding(.bottom, 20)
             
-            Spacer()
-            
             Divider()
-        
-            Spacer()
             
             LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, action: {
                 viewModel.resetPassword(username: viewModel.username) { response in
@@ -45,7 +41,10 @@ struct ResetPasswordScreen: View {
                     }
                 }
             })
+            
+            Spacer()
         }
+        .padding(.horizontal)
     }
 }
 

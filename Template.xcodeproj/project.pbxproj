@@ -68,6 +68,8 @@
 		CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */; };
 		CEF208F62C127E6400212C47 /* StepsGuideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */; };
 		CEF208F82C127FB300212C47 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F72C127FB300212C47 /* Routes.swift */; };
+		CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F92C13ECC000212C47 /* ResetLinkText.swift */; };
+		CEF208FC2C13EDA000212C47 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208FB2C13EDA000212C47 /* OutlinedButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,8 @@
 		CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableView.swift; sourceTree = "<group>"; };
 		CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsGuideScreen.swift; sourceTree = "<group>"; };
 		CEF208F72C127FB300212C47 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		CEF208F92C13ECC000212C47 /* ResetLinkText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetLinkText.swift; sourceTree = "<group>"; };
+		CEF208FB2C13EDA000212C47 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +356,7 @@
 			children = (
 				CEF2088D2C03E3D400212C47 /* AuthHubScreen.swift */,
 				CEF208A32C04E84900212C47 /* AuthHubViewModel.swift */,
+				CEF208F92C13ECC000212C47 /* ResetLinkText.swift */,
 			);
 			path = AuthHub;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				CEF208992C04DBD700212C47 /* BackButton.swift */,
 				CEF208A62C04EC5000212C47 /* LoadingButton.swift */,
 				CEF208DB2C0D51E000212C47 /* HorizontalIconButton.swift */,
+				CEF208FB2C13EDA000212C47 /* OutlinedButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -768,6 +774,7 @@
 				CEF208E82C0EA4F100212C47 /* LoginAndSecurityViewModel.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
+				CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
 				CEF208E62C0EA4E000212C47 /* ResetPasswordViewModel.swift in Sources */,
 				CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */,
@@ -781,6 +788,7 @@
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF208F82C127FB300212C47 /* Routes.swift in Sources */,
+				CEF208FC2C13EDA000212C47 /* OutlinedButton.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
 				CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */,
 				CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */,
