@@ -17,7 +17,14 @@ struct NewScreen: View {
     
     var body: some View {
         List{
-            Text("New Screen")
+            Button(action: {
+                path.append(Route.stepsGuide)
+            }) {
+                VStack {
+                    Text("Alpha")
+                    Text("Alpha")
+                }
+            }
         }
     }
 }

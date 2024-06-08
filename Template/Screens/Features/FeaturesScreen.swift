@@ -19,35 +19,45 @@ struct FeaturesScreen: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            Spacer()
-            HStack(spacing: 0) {
-                TabButton(title: "New", isSelected: selectedTab == 0) {
-                    selectedTab = 0
-                }
-                .frame(width: 100)
-                .padding(0)
+        NavigationStack(path: $path) {
+            VStack(spacing: 0) {
+                Spacer()
+                HStack(spacing: 0) {
+                    TabButton(title: "New", isSelected: selectedTab == 0) {
+                        selectedTab = 0
+                    }
+                    .frame(width: 100)
+                    .padding(0)
 
-                TabButton(title: "Old", isSelected: selectedTab == 1) {
-                    selectedTab = 1
+                    TabButton(title: "Old", isSelected: selectedTab == 1) {
+                        selectedTab = 1
+                    }
+                    .frame(width: 100)
+                    .padding(0)
+                    
+                    Spacer()
+                        .padding(0)
                 }
-                .frame(width: 100)
                 .padding(0)
                 
-                Spacer()
-                    .padding(0)
-            }
-            .padding(0)
-            
-            Rectangle()
-                .frame(height: 1)
-                .foregroundColor(.blue)
-                .padding(.horizontal)
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundColor(.blue)
+                    .padding(.horizontal)
 
-            if selectedTab == 0 {
-                NewScreen(path: $path)
-            } else if selectedTab == 1 {
-                OldScreen(path: $path)
+                if selectedTab == 0 {
+                    NewScreen(path: $path)
+                } else if selectedTab == 1 {
+                    OldScreen(path: $path)
+                }
+            }
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .stepsGuide:
+                    StepsGuideScreen(path: $path)
+                default:
+                    SnagScreen()
+                }
             }
         }
     }

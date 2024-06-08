@@ -21,5 +21,5 @@ enum Route: Hashable {
     case authAddInfo(username: String)
     case authEnterPassword(username: String, status: String)
     case authCodeVerification(verificationType: String, username: String, password: String)
-
+    case stepsGuide
 }
