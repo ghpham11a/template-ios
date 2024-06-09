@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Route: Hashable {
+enum Route: Hashable, Codable {
     
     case publicProfile(username: String)
     case editProfile
@@ -21,5 +21,7 @@ enum Route: Hashable {
     case authAddInfo(username: String)
     case authEnterPassword(username: String, status: String)
     case authCodeVerification(verificationType: String, username: String, password: String)
-    case stepsGuide
+    case thing
+    case thingBuilder(mode: String, steps: String)
+    case filterList
 }

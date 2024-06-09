@@ -19,26 +19,13 @@ struct FilterListScreen: View {
     }
     
     var body: some View {
-        NavigationStack(path: $path) {
-    
-            if (userRepo.isAuthenticated) {
-                List {
-                    ForEach(viewModel.todos, id: \.id) { todo in
-                        Text(todo.title ?? "NULL")
-                    }
-                }
-                .onAppear {
-                    viewModel.fetchTodos()
-                }
-            } else {
-                Button("Login Bitch") {
-                    path.append(Route.auth)
-                }
-                .navigationDestination(for: Route.self) { route in
-
-                }
+        List {
+            ForEach(viewModel.todos, id: \.id) { todo in
+                Text(todo.title ?? "NULL")
             }
-            
+        }
+        .onAppear {
+            viewModel.fetchTodos()
         }
     }
 }

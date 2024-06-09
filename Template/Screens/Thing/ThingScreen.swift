@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct StepsGuideScreen: View {
+struct ThingScreen: View {
     
     @Binding private var path: NavigationPath
     @State private var numberOfSteps: String = ""
+    @State private var showingBottomSheet: Bool = false
     
     init(path: Binding<NavigationPath>) {
         self._path = path
@@ -30,7 +31,7 @@ struct StepsGuideScreen: View {
                 )
             
             Button(action: {
-                
+                path.append(Route.thingBuilder(mode: "SHEET", steps: getStepString(stepCount: numberOfSteps)))
             }) {
                 Text("Launch in screen")
             }
@@ -39,7 +40,7 @@ struct StepsGuideScreen: View {
             Divider()
             
             Button(action: {
-                
+                showingBottomSheet.toggle()
             }) {
                 Text("Launch in bottom sheet")
             }
@@ -47,6 +48,21 @@ struct StepsGuideScreen: View {
             Spacer()
         }
         .padding(.horizontal)
+        .sheet(isPresented: $showingBottomSheet) {
+            ThingBuilderScreen(path: $path, mode: "BOTTOM_SHEET", steps: getStepString(stepCount: numberOfSteps), action: {
+                showingBottomSheet.toggle()
+            })
+                .presentationDetents([.large])
+        }
+    }
+    
+    private func getStepString(stepCount: String) -> String {
+        if let stepCountInt = Int(stepCount) {
+            let stepArray = Array(0..<stepCountInt)
+            return stepArray.map { String($0) }.joined(separator: ",")
+        } else {
+            return ""
+        }
     }
 }
 

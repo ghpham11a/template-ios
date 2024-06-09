@@ -46,18 +46,39 @@ struct FeaturesScreen: View {
                     .padding(.horizontal)
 
                 if selectedTab == 0 {
-                    NewScreen(path: $path)
+                    List {
+                        ForEach(viewModel.newItems, id: \.title) { feature in
+                            FeaturesCard(title: feature.title, description: feature.description) {
+                                path.append(feature.route)
+                            }
+                        }
+                    }
                 } else if selectedTab == 1 {
-                    OldScreen(path: $path)
+                    List {
+                        ForEach(viewModel.oldItems, id: \.title) { feature in
+                            FeaturesCard(title: feature.title, description: feature.description) {
+                                path.append(feature.route)
+                            }
+                        }
+                    }
                 }
             }
             .navigationDestination(for: Route.self) { route in
                 switch route {
-                case .stepsGuide:
-                    StepsGuideScreen(path: $path)
+                case .thing:
+                    ThingScreen(path: $path)
+                case .thingBuilder(let mode, let steps):
+                    ThingBuilderScreen(path: $path, mode: mode, steps: steps, action: {
+                        path.removeLast()
+                    })
+                case .filterList:
+                    FilterListScreen(path: $path)
                 default:
                     SnagScreen()
                 }
+            }
+            .onAppear {
+                viewModel.fetchItems()
             }
         }
     }

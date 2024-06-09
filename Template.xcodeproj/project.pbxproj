@@ -47,8 +47,6 @@
 		CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208BD2C09320900212C47 /* APIGatewayService.swift */; };
 		CEF208C12C0C255400212C47 /* FilterListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C02C0C255400212C47 /* FilterListScreen.swift */; };
 		CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C22C0C256500212C47 /* FilterListViewModel.swift */; };
-		CEF208C52C0C273F00212C47 /* NewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C42C0C273F00212C47 /* NewScreen.swift */; };
-		CEF208C72C0C274A00212C47 /* OldScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C62C0C274A00212C47 /* OldScreen.swift */; };
 		CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208C82C0C2B0000212C47 /* ImagePicker.swift */; };
 		CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */; };
 		CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208D02C0D2F5C00212C47 /* PublicProfileScreen.swift */; };
@@ -66,10 +64,13 @@
 		CEF208ED2C0EA51E00212C47 /* NewPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208EC2C0EA51E00212C47 /* NewPasswordViewModel.swift */; };
 		CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208EF2C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift */; };
 		CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */; };
-		CEF208F62C127E6400212C47 /* StepsGuideScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */; };
+		CEF208F62C127E6400212C47 /* ThingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F52C127E6400212C47 /* ThingScreen.swift */; };
 		CEF208F82C127FB300212C47 /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F72C127FB300212C47 /* Routes.swift */; };
 		CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208F92C13ECC000212C47 /* ResetLinkText.swift */; };
 		CEF208FC2C13EDA000212C47 /* OutlinedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208FB2C13EDA000212C47 /* OutlinedButton.swift */; };
+		CEF208FE2C14CDC000212C47 /* ThingBuilderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208FD2C14CDC000212C47 /* ThingBuilderScreen.swift */; };
+		CEF209002C14D0BF00212C47 /* Feature.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208FF2C14D0BF00212C47 /* Feature.swift */; };
+		CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209012C14D47700212C47 /* FeatureCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,8 +140,6 @@
 		CEF208BD2C09320900212C47 /* APIGatewayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIGatewayService.swift; sourceTree = "<group>"; };
 		CEF208C02C0C255400212C47 /* FilterListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListScreen.swift; sourceTree = "<group>"; };
 		CEF208C22C0C256500212C47 /* FilterListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterListViewModel.swift; sourceTree = "<group>"; };
-		CEF208C42C0C273F00212C47 /* NewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewScreen.swift; sourceTree = "<group>"; };
-		CEF208C62C0C274A00212C47 /* OldScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldScreen.swift; sourceTree = "<group>"; };
 		CEF208C82C0C2B0000212C47 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		CEF208D02C0D2F5C00212C47 /* PublicProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicProfileScreen.swift; sourceTree = "<group>"; };
@@ -158,10 +157,13 @@
 		CEF208EC2C0EA51E00212C47 /* NewPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewModel.swift; sourceTree = "<group>"; };
 		CEF208EF2C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetSuccessScreen.swift; sourceTree = "<group>"; };
 		CEF208F22C0FD9BC00212C47 /* ExpandableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableView.swift; sourceTree = "<group>"; };
-		CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepsGuideScreen.swift; sourceTree = "<group>"; };
+		CEF208F52C127E6400212C47 /* ThingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingScreen.swift; sourceTree = "<group>"; };
 		CEF208F72C127FB300212C47 /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		CEF208F92C13ECC000212C47 /* ResetLinkText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetLinkText.swift; sourceTree = "<group>"; };
 		CEF208FB2C13EDA000212C47 /* OutlinedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlinedButton.swift; sourceTree = "<group>"; };
+		CEF208FD2C14CDC000212C47 /* ThingBuilderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingBuilderScreen.swift; sourceTree = "<group>"; };
+		CEF208FF2C14D0BF00212C47 /* Feature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feature.swift; sourceTree = "<group>"; };
+		CEF209012C14D47700212C47 /* FeatureCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +279,7 @@
 				CEF2088A2C03E33E00212C47 /* AWSMobileClientResponse.swift */,
 				CEF208BB2C092EE800212C47 /* CheckIfUserExistsResponse.swift */,
 				CEF208D92C0D352500212C47 /* UpdateUserBody.swift */,
+				CEF208FF2C14D0BF00212C47 /* Feature.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -284,7 +287,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				CEF208F42C127E4B00212C47 /* StepsGuide */,
+				CEF208F42C127E4B00212C47 /* Thing */,
 				CEF208EE2C0FD29C00212C47 /* PasswordResetSuccess */,
 				CEF208E92C0EA50200212C47 /* NewPassword */,
 				CEF208E22C0EA4BE00212C47 /* ResetPassword */,
@@ -317,8 +320,7 @@
 			children = (
 				CEF208382BFC1F0400212C47 /* FeaturesScreen.swift */,
 				CEF2087C2BFFD67800212C47 /* FeaturesViewModel.swift */,
-				CEF208C42C0C273F00212C47 /* NewScreen.swift */,
-				CEF208C62C0C274A00212C47 /* OldScreen.swift */,
+				CEF209012C14D47700212C47 /* FeatureCard.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -505,12 +507,13 @@
 			path = Inputs;
 			sourceTree = "<group>";
 		};
-		CEF208F42C127E4B00212C47 /* StepsGuide */ = {
+		CEF208F42C127E4B00212C47 /* Thing */ = {
 			isa = PBXGroup;
 			children = (
-				CEF208F52C127E6400212C47 /* StepsGuideScreen.swift */,
+				CEF208F52C127E6400212C47 /* ThingScreen.swift */,
+				CEF208FD2C14CDC000212C47 /* ThingBuilderScreen.swift */,
 			);
-			path = StepsGuide;
+			path = Thing;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -777,6 +780,7 @@
 				CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
 				CEF208E62C0EA4E000212C47 /* ResetPasswordViewModel.swift in Sources */,
+				CEF208FE2C14CDC000212C47 /* ThingBuilderScreen.swift in Sources */,
 				CEF208BC2C092EE800212C47 /* CheckIfUserExistsResponse.swift in Sources */,
 				CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */,
 				CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */,
@@ -798,10 +802,10 @@
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
+				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
-				CEF208C52C0C273F00212C47 /* NewScreen.swift in Sources */,
+				CEF209002C14D0BF00212C47 /* Feature.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
-				CEF208C72C0C274A00212C47 /* OldScreen.swift in Sources */,
 				CEF208EB2C0EA51200212C47 /* NewPasswordScreen.swift in Sources */,
 				CEF208D42C0D2F7000212C47 /* EditProfileScreen.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
@@ -815,7 +819,7 @@
 				CEF208B82C05674A00212C47 /* Helpers.swift in Sources */,
 				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,
 				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
-				CEF208F62C127E6400212C47 /* StepsGuideScreen.swift in Sources */,
+				CEF208F62C127E6400212C47 /* ThingScreen.swift in Sources */,
 				CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */,
 				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
 				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,
