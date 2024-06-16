@@ -28,7 +28,13 @@ struct ProfileScreen: View {
                     
                     Spacer()
                     
-                    HorizontalIconButton(iconName: "star.fill", buttonText: "Button Title", action: {
+                    Text("Settings")
+                    
+                    HorizontalIconButton(iconName: "star.fill", buttonText: "Personal information", action: {
+                        path.append(Route.personalInfo)
+                    })
+                    
+                    HorizontalIconButton(iconName: "star.fill", buttonText: "Login and security", action: {
                         path.append(Route.loginSecurity)
                     })
                     
@@ -42,6 +48,7 @@ struct ProfileScreen: View {
                     }
                 }
             }
+            .padding()
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .auth:
@@ -66,6 +73,8 @@ struct ProfileScreen: View {
                     PasswordResetSucesssScreen(path: $path)
                 case .loginSecurity:
                     LoginAndSecurityScreen(path: $path)
+                case .personalInfo:
+                    PersonalInfoScreen(path: $path)
                 default:
                     SnagScreen()
                 }

@@ -36,9 +36,12 @@ struct EnterPasswordScreen: View {
             
             SecureField("Password", text: $viewModel.password)
                 .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(5.0)
-                .padding(.bottom, 20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+            
+            Spacer()
             
             LoadingButton(title: "Sign in", isLoading: $viewModel.isLoading, action: {
                 viewModel.signIn(username: username, password: viewModel.password) { response in
@@ -53,7 +56,10 @@ struct EnterPasswordScreen: View {
                     }
                 }
             })
+            
+            Spacer()
         }
+        .padding()
     }
 }
 

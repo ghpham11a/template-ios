@@ -13,6 +13,8 @@ struct PublicProfileScreen: View {
     @StateObject private var viewModel = PublicProfileViewModel()
     @State private var username: String
     @StateObject private var userRepo = UserRepo.shared
+    
+    @State private var schoolName: String = ""
 
     init(path: Binding<NavigationPath>, username: String) {
         self._path = path
@@ -20,42 +22,50 @@ struct PublicProfileScreen: View {
     }
     
     var body: some View {
-        
-        VStack {
-            HStack {
-                Spacer()
-                if viewModel.isEditable {
-                    Button("Edit") {
-                        path.append(Route.editProfile)
-                    }
+        ScrollView {
+            AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userSub ?? ""))) { phase in
+                switch phase {
+                case .empty:
+                    ProgressView()
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                case .failure:
+                    Image(systemName: "person.crop.circle.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                @unknown default:
+                    EmptyView()
                 }
             }
-            .padding(.horizontal)
-            ScrollView {
-                
-                AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userSub ?? ""))) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    case .failure:
-                        Image(systemName: "person.crop.circle.fill")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    @unknown default:
-                        EmptyView()
-                    }
-                }
-                .id(userRepo.imageRefreshId)
-                .clipShape(.circle)
-                .frame(width: 100, height: 100)
-            }
+            .id(userRepo.imageRefreshId)
+            .clipShape(.circle)
+            .frame(width: 100, height: 100)
+            
+            HorizontalIconButton(iconName: "star.fill", buttonText: "Where I went to school \(schoolName != "" ? ": \(schoolName)" : "")", action: {})
         }
         .onAppear {
             viewModel.checkIfEditable(username: username)
+            Task {
+                await readUser()
+            }
+        }
+        .navigationBarItems(trailing: viewModel.isEditable ? Button(action: {
+            path.append(Route.editProfile)
+        }) {
+            Text("Edit")
+        } : nil)
+    }
+    
+    private func readUser() async {
+        let userSub = UserRepo.shared.userSub ?? ""
+        let response = await UserRepo.shared.publicReadUser(userSub: userSub)
+        switch response {
+        case .success(let data):
+            schoolName = data.schoolName ?? ""
+        case .failure(let error):
+            break
         }
     }
 }

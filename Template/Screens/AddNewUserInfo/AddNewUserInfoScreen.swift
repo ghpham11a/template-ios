@@ -9,27 +9,47 @@ import SwiftUI
 
 struct AddNewUserInfoScreen: View {
     
-    @Binding private var path: NavigationPath
-    @StateObject private var viewModel = AddNewUserInfoViewModel()
-    @State private var username: String
+    @Binding var path: NavigationPath
+    var username: String = ""
+    var phoneNumber: String = ""
     
-    init(path: Binding<NavigationPath>, username: String) {
-        self._path = path
-        self.username = username
-    }
+    @StateObject private var viewModel = AddNewUserInfoViewModel()
 
     var body: some View {
-        VStack {
-            Text("Sign up as \(username)")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding(.bottom, 40)
+        ScrollView {
+            
+            TextField("First name on ID", text: $viewModel.firstName)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+            
+            Spacer()
+            
+            TextField("Last name on ID", text: $viewModel.lastName)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+            
+            Spacer()
+            
+            TextField("Email", text: $viewModel.username)
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+                .disabled(username != "")
             
             SecureField("Password", text: $viewModel.password)
                 .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(5.0)
-                .padding(.bottom, 20)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
             
             Button(action: {
                 viewModel.signUp(username: username, password: viewModel.password) { response in
@@ -52,6 +72,11 @@ struct AddNewUserInfoScreen: View {
             
             Spacer()
         }
+        .onAppear {
+            viewModel.username = username
+            viewModel.phoneNumber = phoneNumber
+        }
+        .padding()
     }
 }
 

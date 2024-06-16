@@ -26,7 +26,7 @@ struct CodeVerificationScreen: View {
     @FocusState private var focusedField: Int?
 
     var body: some View {
-        VStack {
+        ScrollView {
             HStack(spacing: 10) {
                 ForEach(0..<6, id: \.self) { index in
                     TextField("", text: $code[index])
@@ -55,36 +55,38 @@ struct CodeVerificationScreen: View {
             
             Spacer()
             
-            Button("Resend Code") {
-                viewModel.resendConfirmationCode(username: username) { response in
-                    if response.isSuccessful == true {
-                        
-                    }
-                }
-            }
-            
-            Spacer()
-            
-            Button("Submit") {
-                
-                if verificationType == "SIGN_UP" {
-                    viewModel.confirmSignUp(username: username, password: password, confirmationCode: code.joined()) { response in
-                        DispatchQueue.main.async {
-                            if response.isSuccessful == true {
-                                path = NavigationPath()
-                            } else {
-                                path = NavigationPath()
-                                path.append(Route.snag)
-                            }
+            LoadingButton(title: "Resend Code", isLoading: $viewModel.isLoading, action: {
+                Task {
+                    viewModel.resendConfirmationCode(username: username) { response in
+                        if response.isSuccessful == true {
+                            
                         }
                     }
                 }
-                if verificationType == "RESET_PASSWORD" {
-                    path.append(Route.newPassword(username: username, code: code.joined()))
-                }
+            })
             
-            }
-            .padding()
+            Spacer()
+            
+            LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, action: {
+                Task {
+                    if verificationType == "SIGN_UP" {
+                        viewModel.confirmSignUp(username: username, password: password, confirmationCode: code.joined()) { response in
+                            DispatchQueue.main.async {
+                                if response.isSuccessful == true {
+                                    path = NavigationPath()
+                                } else {
+                                    path = NavigationPath()
+                                    path.append(Route.snag)
+                                }
+                            }
+                        }
+                    }
+                    if verificationType == "RESET_PASSWORD" {
+                        path.append(Route.newPassword(username: username, code: code.joined()))
+                    }
+                }
+            })
+
         }
         .onAppear {
             focusedField = 0

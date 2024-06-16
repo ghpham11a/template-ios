@@ -37,6 +37,40 @@ class UserRepo: ObservableObject {
         let defaults = UserDefaults.standard
         return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_SUB) as? String
     }
+    
+    var userPrivate: ReadUserPrivateResponse? = nil
+    var userPublic: ReadUserPublicResponse? = nil
+    
+    func privateReadUser(userSub: String) async -> APIResponse<ReadUserPrivateResponse> {
+        if let safeUserPrivate = userPrivate {
+            return .success(safeUserPrivate)
+        }
+        
+        let response = await APIGatewayService.shared.privateReadUser(userSub: userSub)
+        switch response {
+        case .success(let response):
+            userPrivate = response
+            return .success(response)
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
+    
+    func publicReadUser(userSub: String) async -> APIResponse<ReadUserPublicResponse> {
+
+        if let safeUserPublic = userPublic {
+            return .success(safeUserPublic)
+        }
+        
+        let response = await APIGatewayService.shared.publicReadUser(userSub: userSub)
+        switch response {
+        case .success(let response):
+            userPublic = response
+            return .success(response)
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
 
     func isLoggedIn() -> Bool {
         
@@ -84,26 +118,6 @@ class UserRepo: ObservableObject {
         defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_USERNAME)
         defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE)
         defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_SUB)
-    }
-    
-    func checkUserStatus(username: String) async -> UserStatus {
-        do {
-            let data: CheckIfUserExistsResponse? = try await APIGatewayService.shared.adminGetUser(username: username)
-            
-            if data?.message == Constants.AWS_COGNITO_USER_DOES_EXIST_MESSAGE {
-                if data?.data.enabled == true {
-                    userStatus = .existsAndEnabled
-                } else {
-                    userStatus = .existsAndDisabled
-                }
-            } else {
-                userStatus = .doesNotExist
-            }
-    
-            return userStatus
-        } catch {
-            return .doesNotExist
-        }
     }
     
 }

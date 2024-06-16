@@ -8,10 +8,21 @@
 import Foundation
 
 struct UpdateUserBody: Codable {
-    let updateImage: UpdateImage?
-
+    // Personal info
+    var updateImage: UpdateImage? = nil
+    var updateLegalName: UpdateLegalName? = nil
+    var updatePreferredName: UpdatePreferredName? = nil
+    var updatePhoneNumber: UpdatePhoneNumber? = nil
+    
+    // Profile
+    var updateSchool: UpdateSchool? = nil
+    
     enum CodingKeys: String, CodingKey {
         case updateImage = "updateImage"
+        case updateLegalName = "updateLegalName"
+        case updatePreferredName = "updatePreferredName"
+        case updatePhoneNumber = "updatePhoneNumber"
+        case updateSchool = "updateSchool"
     }
 }
 
@@ -20,5 +31,43 @@ struct UpdateImage: Codable {
 
     enum CodingKeys: String, CodingKey {
         case imageData = "imageData"
+    }
+}
+
+struct UpdateLegalName: Codable {
+    let firstName: String
+    let lastName: String
+
+    enum CodingKeys: String, CodingKey {
+        case firstName = "firstName"
+        case lastName = "lastName"
+    }
+}
+
+struct UpdatePreferredName: Codable {
+    let preferredName: String
+
+    enum CodingKeys: String, CodingKey {
+        case preferredName = "preferredName"
+    }
+}
+
+struct UpdatePhoneNumber: Codable {
+    let countryCode: String
+    let phoneNumber: String
+    let username: String
+
+    enum CodingKeys: String, CodingKey {
+        case countryCode = "countryCode"
+        case phoneNumber = "phoneNumber"
+        case username = "username"
+    }
+}
+
+struct UpdateSchool: Codable {
+    let schoolName: String
+    
+    enum CodingKeys: String, CodingKey {
+        case schoolName = "schoolName"
     }
 }

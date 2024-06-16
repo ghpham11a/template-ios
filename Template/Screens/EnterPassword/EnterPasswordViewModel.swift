@@ -10,25 +10,24 @@ import Foundation
 
 class EnterPasswordViewModel: ObservableObject {
     
-    @Published var password: String = ""
+    @Published var password: String = "ABcd1234$$"
     @Published var isLoading: Bool = false
     
     private func enableUser(username: String, password: String, onResult: @escaping (AWSMobileClientResponse<SignInResult>) -> Void) {
         DispatchQueue.main.async { self.isLoading = true }
         Task {
-            do {
-                let body = ["status": "enable", "username": username]
-                let data: String? = try await APIGatewayService.shared.adminEnableUser(username: username, body: body)
-                
-                DispatchQueue.main.async { self.isLoading = false }
-                
-                if data?.contains("enabled successfully") == true {
+            let body = ["status": "enable", "username": username]
+            let response = await APIGatewayService.shared.adminEnableUser(username: username, body: body)
+            
+            DispatchQueue.main.async { self.isLoading = false }
+            switch response {
+            case .success(let data):
+                if data.contains("enabled successfully") == true {
                     signIn(username: username, password: password, onResult: onResult)
                 } else {
                     onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: nil))
                 }
-            } catch {
-                DispatchQueue.main.async { self.isLoading = false }
+            case .failure(let error):
                 onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: error.localizedDescription))
             }
         }

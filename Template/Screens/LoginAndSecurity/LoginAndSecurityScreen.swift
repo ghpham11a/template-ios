@@ -16,13 +16,16 @@ struct LoginAndSecurityScreen: View {
     @State private var newPassword: String = ""
     @State private var confirmPassword: String = ""
     
+    @State private var isPasswordExpanded: Bool = false
+    @State private var isPasswordEnabled: Bool = true
+    
     init(path: Binding<NavigationPath>) {
         self._path = path
     }
     
     var body: some View {
         ScrollView {
-            ExpandableView(title: "Password", openedTitle: "Edit", closedTitle: "Cancel") {
+            ExpandableView(isExpanded: $isPasswordExpanded, isEnabled: $isPasswordEnabled, title: "Password", openedTitle: "Edit", closedTitle: "Cancel") {
                 VStack(alignment: .leading) {
                     TextField("Current password", text: $currentPassword)
                         .padding()
@@ -46,17 +49,19 @@ struct LoginAndSecurityScreen: View {
                         viewModel.changePassword(currentPassword: currentPassword, proposedPassword: newPassword) { response in
                             DispatchQueue.main.async {
                                 if response.isSuccessful == true {
-                                    print("__DEBUG SUCCESS")
+                                    isPasswordExpanded.toggle()
                                 } else {
-                                    print("__DEBUG FAIL")
+                                    
                                 }
                             }
                         }
                     }
                 }
+            } onExpansionChanged: { value in
+                
             }
             
-            LoadingButton(title: "Deactivate Account", isLoading: $viewModel.isLoading, action: {
+            LoadingButton(title: "Deactivate Account", isLoading: $viewModel.isDisabling, action: {
                 Task {
                     let result = await viewModel.disableUser()
                     if result {
@@ -65,7 +70,7 @@ struct LoginAndSecurityScreen: View {
                 }
             })
             
-            LoadingButton(title: "Delete Account", isLoading: $viewModel.isLoading, action: {
+            LoadingButton(title: "Delete Account", isLoading: $viewModel.isDeleting, action: {
                 Task {
                     let result = await viewModel.deleteUser()
                     if result {
@@ -74,5 +79,6 @@ struct LoginAndSecurityScreen: View {
                 }
             })
         }
+        .padding()
     }
 }

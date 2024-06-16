@@ -32,34 +32,36 @@ struct ThingBuilderScreen: View {
         steps.split(separator: ",").count
     }
     
+    var stepsMap: [Int: String] {
+        Dictionary(uniqueKeysWithValues: steps.components(separatedBy: ",").enumerated().map { ($0, $1)})
+    }
+    
     var body: some View {
         VStack {
             
-            HStack {
-                Button(action: action) {
-                    Text("Back")
+            if mode == "BOTTOM_SHEET" {
+                HStack {
+                    Button(action: action) {
+                        Text("Back")
+                    }
+                    Spacer()
                 }
+                .frame(alignment: .leading)
+                .padding()
             }
             
             TabView(selection: $currentPage) {
-                StepView(stepNumber: 1, stepDescription: "Step 1: Introduction")
-                    .tag(0)
-                StepView(stepNumber: 2, stepDescription: "Step 2: Details")
-                    .tag(1)
-                StepView(stepNumber: 3, stepDescription: "Step 3: Confirmation")
-                    .tag(2)
-                StepView(stepNumber: 4, stepDescription: "Step 4: Confirmation")
-                    .tag(3)
-                StepView(stepNumber: 5, stepDescription: "Step 5: Confirmation")
-                    .tag(4)
-                StepView(stepNumber: 6, stepDescription: "Step 6: Confirmation")
-                    .tag(5)
-                StepView(stepNumber: 7, stepDescription: "Step 7: Confirmation")
-                    .tag(6)
-                StepView(stepNumber: 8, stepDescription: "Step 8: Confirmation")
-                    .tag(7)
-                StepView(stepNumber: 9, stepDescription: "Step 9: Confirmation")
-                    .tag(8)
+                
+                switch stepsMap[currentPage] {
+                case Constants.ThingScreen.THING_TYPE:
+                    ThingTypeScreen()
+                case Constants.ThingScreen.THING_DESCRIPTION:
+                    ThingDescriptionScreen()
+                case Constants.ThingScreen.THING_METHODS:
+                    ThingTypeScreen()
+                default:
+                    SnagScreen()
+                }
             }
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle())

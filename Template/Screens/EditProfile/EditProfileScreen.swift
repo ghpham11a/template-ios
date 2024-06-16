@@ -13,6 +13,11 @@ struct EditProfileScreen: View {
     @State private var image: UIImage? = nil
     @State private var isImagePickerPresented = false
     @StateObject private var viewModel = EditProfileViewModel()
+    
+    @State private var schoolName = ""
+    @State private var isSchoolExpanded = false
+    @State private var isSchoolEnabled = true
+    @State private var isSchoolFieldLoading = false
 
     init(path: Binding<NavigationPath>) {
         self._path = path
@@ -79,9 +84,63 @@ struct EditProfileScreen: View {
                     }
                 
             }
+            
+            BottomsheetField(isExpanded: $isSchoolExpanded, isEnabled: $isSchoolEnabled, title: "Where I went to school\(schoolName != "" ? ": \(schoolName)" : "")") {
+                
+                OutlinedTextField(title: "Where I went to school",  placeholder: "", text: $schoolName)
+                LoadingButton(title: "Sign in", isLoading: $isSchoolFieldLoading, action: {
+                    isSchoolFieldLoading.toggle()
+                    Task {
+                        let success = await updateSchool(schoolName: schoolName)
+                        if success {
+                            isSchoolFieldLoading = false
+                            isSchoolExpanded = false
+                        }
+                    }
+                })
+                
+            } onExpansionChanged: { value in
+               
+            }
+            
         }
         .background(Color.clear)
+        .onAppear {
+            Task {
+                await readUser()
+            }
+        }
+    }
+    
+    private func readUser() async {
+        let userSub = UserRepo.shared.userSub ?? ""
+        let response = await UserRepo.shared.publicReadUser(userSub: userSub)
+        switch response {
+        case .success(let data):
+            schoolName = data.schoolName ?? ""
+        case .failure(let error):
+            break
+        }
+    }
+    
+    private func updateSchool(schoolName: String) async -> Bool {
+        var body = UpdateUserBody()
+        body.updateSchool = UpdateSchool(schoolName: schoolName)
+        let response = await executeUpdate(body: body)
+        return response
+    }
+    
+    private func executeUpdate(body: UpdateUserBody) async -> Bool {
+        let userSub = UserRepo.shared.userSub ?? ""
+        let response = await APIGatewayService.shared.updateUser(userSub: userSub, body: body)
+        switch response {
+        case .success(let data):
+            return true
+        case .failure(let error):
+            return false
+        }
     }
 }
+
 
 

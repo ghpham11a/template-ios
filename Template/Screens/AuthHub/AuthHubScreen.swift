@@ -8,62 +8,11 @@
 import SwiftUI
 
 
-struct CountryCodeSheet: View {
-    @Binding var selectedCountryCode: String
-    let countryCodes: [String]
-
-    var body: some View {
-        VStack {
-            ZStack {
-                HStack {
-                    Button(action: {
-                        exit()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                    }
-                    .padding()
-                    Spacer()
-                }
-                Text("Select Country Code")
-                    .font(.headline)
-            }
-
-
-            List(countryCodes, id: \.self) { code in
-                Button(action: {
-                    selectedCountryCode = code
-                    // Dismiss the sheet
-                    exit()
-                }) {
-                    Text(code)
-                        .foregroundColor(.black)
-                }
-            }
-        }
-    }
-    
-    func exit() {
-        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
-            if let rootViewController = scene.windows.first(where: { $0.isKeyWindow })?.rootViewController {
-                rootViewController.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-}
-
 struct AuthHubScreen: View {
     
     @Binding private var path: NavigationPath
     @StateObject private var viewModel = AuthHubViewModel()
     @State private var isPhoneNumberMode: Bool = false
-    
-    @State private var selectedCountryCode = "+1"
-    @State private var phoneNumber = ""
-    @State private var showCountryCodeSheet = false
-
-    let countryCodes = ["United States ( +1 )", "India ( +91 )", "Isle of Man ( +44 )", "Australia ( +61 )", "Japan ( +81 )"]
     
     init(path: Binding<NavigationPath>) {
         self._path = path
@@ -73,19 +22,13 @@ struct AuthHubScreen: View {
         VStack {
             Text("Login or sign up")
             
-            // ResetLinkText(path: $path)
-            
             if !isPhoneNumberMode {
                 
-                TextField("Username", text: $viewModel.username)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(5.0)
-                    .padding(.bottom, 20)
+                OutlinedTextField(title: "Email", placeholder: "", text: $viewModel.username)
                 
                 LoadingButton(title: "Continue", isLoading: $viewModel.isLoading, action: {
                     Task {
-                        let result = await viewModel.checkIfUserExists()
+                        let result = await viewModel.checkIfUserExists(username: viewModel.username)
                         if result.isSuccessful {
                             switch result.userStatus {
                             case .existsAndEnabled:
@@ -94,7 +37,6 @@ struct AuthHubScreen: View {
                                 path.append(Route.authEnterPassword(username: viewModel.username, status: "disabled"))
                             case .doesNotExist:
                                 path.append(Route.authAddInfo(username: viewModel.username))
-
                             }
                         } else {
                             path = NavigationPath([Route.snag])
@@ -116,46 +58,37 @@ struct AuthHubScreen: View {
                 
             } else {
                 
-                VStack(spacing: 16) {
-                    Button(action: {
-                        self.showCountryCodeSheet = true
-                    }) {
-                        HStack {
-                            Text(selectedCountryCode)
-                                .foregroundColor(.black)
-                            Spacer()
-                            Image(systemName: "chevron.down")
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
+                PhoneNumberField(selectedCountryCode: $viewModel.selectedCountryCode, phoneNumber: $viewModel.phoneNumber)
+                
+                Button(action: {
+                    Task {
+                        
+                        let code = viewModel.selectedCountryCode.filter { $0.isNumber }
+                        let formattedPhoneNumber = "+\(code)\(viewModel.phoneNumber.filter{ $0.isNumber })"
+                        let result = await viewModel.checkIfUserExists(phoneNumber: formattedPhoneNumber)
+//                        if result.isSuccessful {
+//                            switch result.userStatus {
+//                            case .existsAndEnabled:
+//                                path.append(Route.authEnterPassword(username: viewModel.username, status: "enabled"))
+//                            case .existsAndDisabled:
+//                                path.append(Route.authEnterPassword(username: viewModel.username, status: "disabled"))
+//                            case .doesNotExist:
+//                                path.append(Route.authAddInfo(username: viewModel.username))
+//                            }
+//                        } else {
+//                            path = NavigationPath([Route.snag])
+//                        }
                     }
-
-                    TextField("Phone Number", text: $phoneNumber)
-                        .keyboardType(.phonePad)
+                    
+                    
+                    
+                }) {
+                    Text("Submit")
+                        .frame(maxWidth: .infinity)
                         .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray, lineWidth: 1)
-                        )
-
-                    Button(action: {
-                        // Handle form submission
-                        print("Country Code: \(selectedCountryCode), Phone Number: \(phoneNumber)")
-                    }) {
-                        Text("Submit")
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(8)
-                    }
-                }
-                .sheet(isPresented: $showCountryCodeSheet) {
-                    CountryCodeSheet(selectedCountryCode: $selectedCountryCode, countryCodes: countryCodes)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
                 }
             }
             

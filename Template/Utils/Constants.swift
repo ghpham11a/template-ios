@@ -19,4 +19,13 @@ struct Constants {
     static let AWS_COGNITO_USER_DOES_NOT_EXIST_MESSAGE = "User does not exist"
     
     static let USER_IMAGE_URL = "https://template-public-resources.s3.amazonaws.com/%@.jpg"
+    
+    
+    struct ThingScreen {
+        static let THING_TYPE = "THING_TYPE"
+        static let THING_DESCRIPTION = "THING_DESCRIPTION"
+        static let THING_METHODS = "THING_METHODS"
+        static let THING_LOCATION = "THING_LOCATION"
+        static let THING_TIME = "THING_TIME"
+    }
 }

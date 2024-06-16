@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct CheckIfUserExistsResponse: Codable {
-    let data: Data
-    let message: String
+struct AdminReadUserResponse: Codable {
+    let data: Data?
+    let message: String?
 }
 
 struct Data: Codable {

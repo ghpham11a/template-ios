@@ -75,10 +75,28 @@ class NetworkManager {
             }
         }
 
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
 
-        let decodedData = try JSONDecoder().decode(T.self, from: data)
-        return decodedData
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200..<300:
+                // Successful HTTP status code
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                return decodedData
+            case 400..<500:
+                // Client error HTTP status code
+                throw URLError(.badServerResponse)
+            case 500..<600:
+                // Server error HTTP status code
+                throw URLError(.serverCertificateUntrusted)
+            default:
+                // Other HTTP status code
+                throw URLError(.unknown)
+            }
+        } else {
+            // The response was not an HTTP response
+            throw URLError(.badServerResponse)
+        }
     }
     
     func put<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: [String: Any]) async throws -> T {
@@ -112,13 +130,31 @@ class NetworkManager {
         let jsonData = try JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
         request.httpBody = jsonData
 
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
 
-        let decodedData = try JSONDecoder().decode(T.self, from: data)
-        return decodedData
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200..<300:
+                // Successful HTTP status code
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                return decodedData
+            case 400..<500:
+                // Client error HTTP status code
+                throw URLError(.badServerResponse)
+            case 500..<600:
+                // Server error HTTP status code
+                throw URLError(.serverCertificateUntrusted)
+            default:
+                // Other HTTP status code
+                throw URLError(.unknown)
+            }
+        } else {
+            // The response was not an HTTP response
+            throw URLError(.badServerResponse)
+        }
     }
     
-    func patch<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: [String: Any]) async throws -> T {
+    func patch<T: Codable, Body: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: Body) async throws -> T {
         var formattedUrl = urlString
 
         if !queryParams.isEmpty {
@@ -146,13 +182,31 @@ class NetworkManager {
             }
         }
 
-        let jsonData = try JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+        let jsonData = try JSONEncoder().encode(body)
         request.httpBody = jsonData
 
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
 
-        let decodedData = try JSONDecoder().decode(T.self, from: data)
-        return decodedData
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200..<300:
+                // Successful HTTP status code
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                return decodedData
+            case 400..<500:
+                // Client error HTTP status code
+                throw URLError(.badServerResponse)
+            case 500..<600:
+                // Server error HTTP status code
+                throw URLError(.serverCertificateUntrusted)
+            default:
+                // Other HTTP status code
+                throw URLError(.unknown)
+            }
+        } else {
+            // The response was not an HTTP response
+            throw URLError(.badServerResponse)
+        }
     }
     
     func post<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: [String: Any]) async throws -> T {
@@ -186,10 +240,28 @@ class NetworkManager {
         let jsonData = try JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
         request.httpBody = jsonData
 
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
 
-        let decodedData = try JSONDecoder().decode(T.self, from: data)
-        return decodedData
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200..<300:
+                // Successful HTTP status code
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                return decodedData
+            case 400..<500:
+                // Client error HTTP status code
+                throw URLError(.badServerResponse)
+            case 500..<600:
+                // Server error HTTP status code
+                throw URLError(.serverCertificateUntrusted)
+            default:
+                // Other HTTP status code
+                throw URLError(.unknown)
+            }
+        } else {
+            // The response was not an HTTP response
+            throw URLError(.badServerResponse)
+        }
     }
     
     func delete<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:]) async throws -> T {
@@ -220,9 +292,27 @@ class NetworkManager {
             }
         }
 
-        let (data, _) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await URLSession.shared.data(for: request)
 
-        let decodedData = try JSONDecoder().decode(T.self, from: data)
-        return decodedData
+        if let httpResponse = response as? HTTPURLResponse {
+            switch httpResponse.statusCode {
+            case 200..<300:
+                // Successful HTTP status code
+                let decodedData = try JSONDecoder().decode(T.self, from: data)
+                return decodedData
+            case 400..<500:
+                // Client error HTTP status code
+                throw URLError(.badServerResponse)
+            case 500..<600:
+                // Server error HTTP status code
+                throw URLError(.serverCertificateUntrusted)
+            default:
+                // Other HTTP status code
+                throw URLError(.unknown)
+            }
+        } else {
+            // The response was not an HTTP response
+            throw URLError(.badServerResponse)
+        }
     }
 }

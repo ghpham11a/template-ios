@@ -10,21 +10,42 @@ import Foundation
 
 class AuthHubViewModel: ObservableObject {
     
-    @Published var username: String = ""
+    @Published var username: String = "gm.pham@gmail.com"
     @Published var isLoading: Bool = false
+    @Published var selectedCountryCode = "United States ( +1 )"
+    @Published var phoneNumber = ""
     
-    func checkIfUserExists() async -> (isSuccessful: Bool, userStatus: UserStatus) {
+    func checkIfUserExists(username: String = "", phoneNumber: String = "") async -> (isSuccessful: Bool, userStatus: UserStatus) {
         
         DispatchQueue.main.async {
             self.isLoading = true
         }
         
-        let result = await UserRepo.shared.checkUserStatus(username: username.lowercased())
+        var usernameParam = ""
+        var phoneNumberParam = ""
+        if username != "" {
+            usernameParam = username.lowercased()
+        } else {
+            phoneNumberParam = phoneNumber
+        }
         
+        var result = await APIGatewayService.shared.adminReadtUser(username: usernameParam, phoneNumber: phoneNumberParam)
         DispatchQueue.main.async {
             self.isLoading = false
         }
-        
-        return (true, result)
+        switch result {
+        case .success(let response):
+            if response.message == Constants.AWS_COGNITO_USER_DOES_EXIST_MESSAGE {
+                if response.data?.enabled == true {
+                    return (true, .existsAndEnabled)
+                } else {
+                    return (true, .existsAndDisabled)
+                }
+            } else {
+                return (true, .doesNotExist)
+            }
+        case .failure(let error):
+            return (false, .doesNotExist)
+        }
     }
 }

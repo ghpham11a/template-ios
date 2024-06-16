@@ -11,6 +11,7 @@ struct FeaturesScreen: View {
     
     @StateObject private var viewModel = FeaturesViewModel()
     @State private var selectedTab = 0
+    @StateObject private var userRepo = UserRepo.shared
     
     @Binding private var path: NavigationPath
     
@@ -21,50 +22,66 @@ struct FeaturesScreen: View {
     var body: some View {
         NavigationStack(path: $path) {
             VStack(spacing: 0) {
-                Spacer()
-                HStack(spacing: 0) {
-                    TabButton(title: "New", isSelected: selectedTab == 0) {
-                        selectedTab = 0
-                    }
-                    .frame(width: 100)
-                    .padding(0)
+                
+                if userRepo.isAuthenticated {
+                    Spacer()
+                    HStack(spacing: 0) {
+                        TabButton(title: "New", isSelected: selectedTab == 0) {
+                            selectedTab = 0
+                        }
+                        .frame(width: 100)
+                        .padding(0)
 
-                    TabButton(title: "Old", isSelected: selectedTab == 1) {
-                        selectedTab = 1
+                        TabButton(title: "Old", isSelected: selectedTab == 1) {
+                            selectedTab = 1
+                        }
+                        .frame(width: 100)
+                        .padding(0)
+                        
+                        Spacer()
+                            .padding(0)
                     }
-                    .frame(width: 100)
                     .padding(0)
                     
-                    Spacer()
-                        .padding(0)
-                }
-                .padding(0)
-                
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(.blue)
-                    .padding(.horizontal)
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.blue)
+                        .padding(.horizontal)
 
-                if selectedTab == 0 {
-                    List {
-                        ForEach(viewModel.newItems, id: \.title) { feature in
-                            FeaturesCard(title: feature.title, description: feature.description) {
-                                path.append(feature.route)
+                    if selectedTab == 0 {
+                        List {
+                            ForEach(viewModel.newItems, id: \.title) { feature in
+                                FeaturesCard(title: feature.title, description: feature.description) {
+                                    path.append(feature.route)
+                                }
+                            }
+                        }
+                    } else if selectedTab == 1 {
+                        List {
+                            ForEach(viewModel.oldItems, id: \.title) { feature in
+                                FeaturesCard(title: feature.title, description: feature.description) {
+                                    path.append(feature.route)
+                                }
                             }
                         }
                     }
-                } else if selectedTab == 1 {
-                    List {
-                        ForEach(viewModel.oldItems, id: \.title) { feature in
-                            FeaturesCard(title: feature.title, description: feature.description) {
-                                path.append(feature.route)
-                            }
-                        }
+                } else {
+                    Button("Login Bitch") {
+                        path.append(Route.auth)
                     }
                 }
+                
             }
             .navigationDestination(for: Route.self) { route in
                 switch route {
+                case .auth:
+                    AuthHubScreen(path: $path)
+                case .authAddInfo(let username):
+                    AddNewUserInfoScreen(path: $path, username: username)
+                case .authEnterPassword(let username, let status):
+                    EnterPasswordScreen(path: $path, username: username, status: status)
+                case .authCodeVerification(let verificationType, let username, let password):
+                    CodeVerificationScreen(path: $path, verificationType: verificationType, username: username, password: password)
                 case .thing:
                     ThingScreen(path: $path)
                 case .thingBuilder(let mode, let steps):

@@ -17,18 +17,18 @@ struct HorizontalIconButton: View {
             Button(action: action) {
                 HStack {
                     Image(systemName: iconName)
-                        .foregroundColor(.blue) // Customize the color as needed
+                        .foregroundColor(.blue)
                     Text(buttonText)
-                        .foregroundColor(.primary) // Customize the text color as needed
+                        .foregroundColor(.primary)
                     Spacer()
                     Image(systemName: "chevron.right")
-                        .foregroundColor(.gray) // Customize the chevron color as needed
+                        .foregroundColor(.gray)
                 }
                 .padding()
             }
             Divider()
-                .padding(.leading) // Optional: Adjust padding to match your layout
+                .padding(.leading)
         }
-        .background(Color.white) // Optional: Customize the background color
+        .background(Color.white)
     }
 }

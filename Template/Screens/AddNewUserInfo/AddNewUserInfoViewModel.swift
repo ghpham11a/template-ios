@@ -10,7 +10,12 @@ import Foundation
 
 class AddNewUserInfoViewModel: ObservableObject {
     
-    @Published var password: String = ""
+    @Published var firstName: String = "Anthony"
+    @Published var lastName: String = "Pham"
+    @Published var dateOfBirth: String = "1988-10-11"
+    @Published var phoneNumber: String = ""
+    @Published var username: String = ""
+    @Published var password: String = "ABcd1234$$"
     @Published var isLoading: Bool = false
     
     func signUp(username: String, password: String, onResult: @escaping (AWSMobileClientResponse<SignUpResult>) -> Void) {
@@ -20,7 +25,17 @@ class AddNewUserInfoViewModel: ObservableObject {
         }
         
         let formattedUsername = username.lowercased()
-        let userAttributes = ["email": formattedUsername]
+        var userAttributes = [
+            "birthdate": dateOfBirth,
+            "email": formattedUsername,
+            "given_name": firstName,
+            "family_name": lastName
+        ]
+        
+        if phoneNumber != "" {
+            userAttributes["phone_number"] = phoneNumber
+        }
+        
         AWSMobileClient.default().signUp(username: formattedUsername, password: password, userAttributes: userAttributes) { (signUpResult, error) in
             
             DispatchQueue.main.async {

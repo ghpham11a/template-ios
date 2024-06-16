@@ -5,7 +5,7 @@
 //  Created by Anthony Pham on 6/6/24.
 //
 
-import Foundation
+import SwiftUI
 
 enum Route: Hashable, Codable {
     
@@ -24,4 +24,5 @@ enum Route: Hashable, Codable {
     case thing
     case thingBuilder(mode: String, steps: String)
     case filterList
+    case personalInfo
 }

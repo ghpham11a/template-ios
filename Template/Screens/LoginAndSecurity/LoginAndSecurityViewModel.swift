@@ -11,6 +11,8 @@ import UIKit
 class LoginAndSecurityViewModel: ObservableObject {
     
     @Published var isLoading: Bool = false
+    @Published var isDisabling: Bool = false
+    @Published var isDeleting: Bool = false
 
     @Published var username: String = ""
     
@@ -30,42 +32,44 @@ class LoginAndSecurityViewModel: ObservableObject {
     }
     
     func disableUser() async -> Bool {
-        DispatchQueue.main.async { self.isLoading = true }
-        do {
-            let username = UserRepo.shared.username ?? ""
-            let body = ["status": "disable", "username": username]
-            let data: String? = try await APIGatewayService.shared.adminUpdateUser(username: username, body: body)
-            
-            DispatchQueue.main.async { self.isLoading = false }
-            
-            if data?.contains("disabled successfully") == true {
+        DispatchQueue.main.async { self.isDisabling = true }
+        
+        let username = UserRepo.shared.username ?? ""
+        let body = ["status": "disable", "username": username]
+        let response = await APIGatewayService.shared.adminUpdateUser(username: username, body: body)
+        
+        DispatchQueue.main.async { self.isDisabling = false }
+        
+        switch response {
+        case .success(let data):
+            if data.contains("disabled successfully") == true {
                 UserRepo.shared.logOut()
                 return true
             } else {
                 return false
             }
-        } catch {
-            DispatchQueue.main.async { self.isLoading = false }
+        case .failure(let error):
             return false
         }
     }
     
     func deleteUser() async -> Bool {
-        DispatchQueue.main.async { self.isLoading = true }
-        do {
-            let username = UserRepo.shared.username ?? ""
-            let data: String? = try await APIGatewayService.shared.adminDeleteUser(username: username)
-            
-            DispatchQueue.main.async { self.isLoading = false }
-            
-            if data?.contains("deleted successfully") == true {
+        DispatchQueue.main.async { self.isDeleting = true }
+        
+        let username = UserRepo.shared.username ?? ""
+        let response = await APIGatewayService.shared.adminDeleteUser(username: username)
+        
+        DispatchQueue.main.async { self.isDeleting = false }
+        
+        switch response {
+        case .success(let data):
+            if data.contains("deleted successfully") == true {
                 UserRepo.shared.logOut()
                 return true
             } else {
                 return false
             }
-        } catch {
-            DispatchQueue.main.async { self.isLoading = false }
+        case .failure(let error):
             return false
         }
     }
