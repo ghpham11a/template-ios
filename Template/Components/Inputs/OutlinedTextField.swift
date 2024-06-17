@@ -25,7 +25,7 @@ struct OutlinedTextField: View {
                 .foregroundColor(.gray)
                 .padding(.leading)
                 .background(Color.white)
-                .offset(x: 10, y: -10)
+                .offset(x: 0, y: -15)
         }
         .padding(.top, 10)
     }

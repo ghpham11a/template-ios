@@ -88,6 +88,9 @@ struct ThingBuilderScreen: View {
                 Spacer()
                 
                 if viewModel.currentPage < (viewModel.pageCount - 1) {
+                    
+                    
+                    
                     LoadingButton(title: "Next", isLoading: $loadingPlaceholder, isEnabled: $viewModel.isNextEnabled, action: {
                         withAnimation {
                             viewModel.updateCurrentPage(currentPage: viewModel.currentPage + 1)
