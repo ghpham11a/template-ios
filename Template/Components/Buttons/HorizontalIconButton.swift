@@ -11,6 +11,7 @@ struct HorizontalIconButton: View {
     var iconName: String
     var buttonText: String
     var action: () -> Void
+    var isLabelOnly: Bool = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -21,8 +22,10 @@ struct HorizontalIconButton: View {
                     Text(buttonText)
                         .foregroundColor(.primary)
                     Spacer()
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.gray)
+                    if !isLabelOnly {
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.gray)
+                    }
                 }
                 .padding()
             }

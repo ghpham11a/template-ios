@@ -15,6 +15,8 @@ struct CodeVerificationScreen: View {
     @State private var password: String
     @State private var verificationType: String
     
+    @State private var isEnabledPlaceholder: Bool = false
+    
     init(path: Binding<NavigationPath>, verificationType: String, username: String, password: String) {
         self._path = path
         self.verificationType = verificationType
@@ -55,7 +57,7 @@ struct CodeVerificationScreen: View {
             
             Spacer()
             
-            LoadingButton(title: "Resend Code", isLoading: $viewModel.isLoading, action: {
+            LoadingButton(title: "Resend Code", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlaceholder, action: {
                 Task {
                     viewModel.resendConfirmationCode(username: username) { response in
                         if response.isSuccessful == true {
@@ -67,7 +69,7 @@ struct CodeVerificationScreen: View {
             
             Spacer()
             
-            LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, action: {
+            LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlaceholder, action: {
                 Task {
                     if verificationType == "SIGN_UP" {
                         viewModel.confirmSignUp(username: username, password: password, confirmationCode: code.joined()) { response in

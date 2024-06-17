@@ -13,6 +13,8 @@ struct ProfileScreen: View {
     @StateObject private var viewModel = ProfileViewModel()
     @StateObject private var userRepo = UserRepo.shared
     
+    @State private var isEnabledPlacholder: Bool = true
+    
     init(path: Binding<NavigationPath>) {
         self._path = path
     }
@@ -38,7 +40,7 @@ struct ProfileScreen: View {
                         path.append(Route.loginSecurity)
                     })
                     
-                    LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, action: {
+                    LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlacholder, action: {
                         viewModel.signOut()
                     })
                     

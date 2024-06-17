@@ -19,6 +19,7 @@ struct ThingScreen: View {
     @State private var isThingLocationChecked: Bool = false
     
     @State private var isLoading = false
+    @State private var isEnabledPlaceholder: Bool = true
     
     init(path: Binding<NavigationPath>) {
         self._path = path
@@ -51,14 +52,14 @@ struct ThingScreen: View {
 
             }
             
-            LoadingButton(title: "Launch in screen", isLoading: $isLoading, action: {
+            LoadingButton(title: "Launch in screen", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
                 path.append(Route.thingBuilder(mode: "SHEET", steps: getStepString()))
             })
             
             
             Divider()
             
-            LoadingButton(title: "Launch in bottom sheet", isLoading: $isLoading, action: {
+            LoadingButton(title: "Launch in bottom sheet", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
                 showingBottomSheet.toggle()
             })
             

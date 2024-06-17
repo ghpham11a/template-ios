@@ -14,6 +14,8 @@ struct NewPasswordScreen: View {
     @State private var username: String
     @State private var code: String
     
+    @State private var isEnabledPlaceholder: Bool = true
+    
     init(path: Binding<NavigationPath>, username: String, code: String) {
         self._path = path
         self.username = username
@@ -43,7 +45,7 @@ struct NewPasswordScreen: View {
         
             Spacer()
             
-            LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, action: {
+            LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlaceholder, action: {
                 
                 viewModel.confirmPasswordReset(username: username, password: viewModel.password, passwordVerification: viewModel.passwordVerification, code: code) { response in
                     if response.isSuccessful == true {

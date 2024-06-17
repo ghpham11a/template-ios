@@ -19,6 +19,8 @@ struct LoginAndSecurityScreen: View {
     @State private var isPasswordExpanded: Bool = false
     @State private var isPasswordEnabled: Bool = true
     
+    @State private var isEnabledPlaceholder: Bool = true
+    
     init(path: Binding<NavigationPath>) {
         self._path = path
     }
@@ -61,7 +63,7 @@ struct LoginAndSecurityScreen: View {
                 
             }
             
-            LoadingButton(title: "Deactivate Account", isLoading: $viewModel.isDisabling, action: {
+            LoadingButton(title: "Deactivate Account", isLoading: $viewModel.isDisabling, isEnabled: $isEnabledPlaceholder, action: {
                 Task {
                     let result = await viewModel.disableUser()
                     if result {
@@ -70,7 +72,7 @@ struct LoginAndSecurityScreen: View {
                 }
             })
             
-            LoadingButton(title: "Delete Account", isLoading: $viewModel.isDeleting, action: {
+            LoadingButton(title: "Delete Account", isLoading: $viewModel.isDeleting, isEnabled: $isEnabledPlaceholder, action: {
                 Task {
                     let result = await viewModel.deleteUser()
                     if result {

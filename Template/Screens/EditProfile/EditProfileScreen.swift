@@ -18,6 +18,8 @@ struct EditProfileScreen: View {
     @State private var isSchoolExpanded = false
     @State private var isSchoolEnabled = true
     @State private var isSchoolFieldLoading = false
+    
+    @State private var isEnabledPlaceholder = false
 
     init(path: Binding<NavigationPath>) {
         self._path = path
@@ -88,7 +90,7 @@ struct EditProfileScreen: View {
             BottomsheetField(isExpanded: $isSchoolExpanded, isEnabled: $isSchoolEnabled, title: "Where I went to school\(schoolName != "" ? ": \(schoolName)" : "")") {
                 
                 OutlinedTextField(title: "Where I went to school",  placeholder: "", text: $schoolName)
-                LoadingButton(title: "Sign in", isLoading: $isSchoolFieldLoading, action: {
+                LoadingButton(title: "Sign in", isLoading: $isSchoolFieldLoading, isEnabled: $isEnabledPlaceholder, action: {
                     isSchoolFieldLoading.toggle()
                     Task {
                         let success = await updateSchool(schoolName: schoolName)

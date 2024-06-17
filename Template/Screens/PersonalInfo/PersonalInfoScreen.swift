@@ -35,59 +35,69 @@ struct PersonalInfoScreen: View {
     @State var isEmergencyContactExpanded: Bool = false
     @State var isEmergencyContactEnabled: Bool = true
     
+    @State private var isScreenLoading: Bool = true
+    
     var body: some View {
-        ScrollView {
-            
-            ExpandableView(isExpanded: $isLegalNameExpanded, isEnabled: $isLegalNameEnabled, title: "Legal name", openedTitle: "Edit", closedTitle: "Cancel") {
-                VStack(alignment: .leading) {
-                    OutlinedTextField(title: "First name on ID", placeholder: "", text: $firstName)
-                    OutlinedTextField(title: "Last name on ID", placeholder: "", text: $lastName)
-                    Button("Save") {
-                        Task {
-                            let success = await updateLegalName(firstName: firstName, lastName: lastName)
-                            if success {
-                                isLegalNameExpanded = false
+        if isScreenLoading {
+            LoadingScreen()
+                .onAppear {
+                    Task {
+                        await readUser()
+                    }
+                }
+        } else {
+            ScrollView {
+                ExpandableView(isExpanded: $isLegalNameExpanded, isEnabled: $isLegalNameEnabled, title: "Legal name", openedTitle: "Edit", closedTitle: "Cancel") {
+                    VStack(alignment: .leading) {
+                        OutlinedTextField(title: "First name on ID", placeholder: "", text: $firstName)
+                        OutlinedTextField(title: "Last name on ID", placeholder: "", text: $lastName)
+                        Button("Save") {
+                            Task {
+                                let success = await updateLegalName(firstName: firstName, lastName: lastName)
+                                if success {
+                                    isLegalNameExpanded = false
+                                }
                             }
                         }
                     }
+                } onExpansionChanged: { value in
+                    updateEnabledAndDisabledSections(field: "Legal name", isEnabled: value)
                 }
-            } onExpansionChanged: { value in
-                updateEnabledAndDisabledSections(field: "Legal name", isEnabled: value)
-            }
-            
-            ExpandableView(isExpanded: $isPreferredNameExpanded, isEnabled: $isPreferredNameEnabled, title: "Preferred first name", openedTitle: "Edit", closedTitle: "Cancel") {
-                VStack(alignment: .leading) {
-                    OutlinedTextField(title: "Preferred first name (optional)", placeholder: "", text: $preferredName)
-                    Button("Save") {
-                        Task {
-                            let success = await updatePreferredName(preferredName: preferredName)
-                            if success {
-                                isPreferredNameExpanded = false
+                
+                ExpandableView(isExpanded: $isPreferredNameExpanded, isEnabled: $isPreferredNameEnabled, title: "Preferred first name", openedTitle: "Edit", closedTitle: "Cancel") {
+                    VStack(alignment: .leading) {
+                        OutlinedTextField(title: "Preferred first name (optional)", placeholder: "", text: $preferredName)
+                        Button("Save") {
+                            Task {
+                                let success = await updatePreferredName(preferredName: preferredName)
+                                if success {
+                                    isPreferredNameExpanded = false
+                                }
                             }
                         }
                     }
+                } onExpansionChanged: { value in
+                    updateEnabledAndDisabledSections(field: "Preferred first name", isEnabled: value)
                 }
-            } onExpansionChanged: { value in
-                updateEnabledAndDisabledSections(field: "Preferred first name", isEnabled: value)
-            }
-            
-            ExpandableView(isExpanded: $isPhoneNumberExpanded, isEnabled: $isPhoneNumberEnabled, title: "Phone number", openedTitle: "Edit", closedTitle: "Cancel") {
-                VStack(alignment: .leading) {
+                
+                ExpandableView(isExpanded: $isPhoneNumberExpanded, isEnabled: $isPhoneNumberEnabled, title: "Phone number", openedTitle: "Edit", closedTitle: "Cancel") {
+                    VStack(alignment: .leading) {
 
-                    Button("Save") {
-                        
+                        Button("Save") {
+                            
+                        }
                     }
+                } onExpansionChanged: { value in
+                    updateEnabledAndDisabledSections(field: "Phone number", isEnabled: value)
                 }
-            } onExpansionChanged: { value in
-                updateEnabledAndDisabledSections(field: "Phone number", isEnabled: value)
             }
-        }
-        .onAppear {
-            Task {
-                await readUser()
+            .onAppear {
+                Task {
+                    await readUser()
+                }
             }
+            .padding()
         }
-        .padding()
     }
     
     
@@ -124,7 +134,9 @@ struct PersonalInfoScreen: View {
             firstName = data.firstName ?? ""
             lastName = data.lastName ?? ""
             preferredName = data.preferredName ?? ""
-        case .failure(let error):
+            isScreenLoading = false
+        case .failure(_):
+            isScreenLoading = false
             break
         }
     }

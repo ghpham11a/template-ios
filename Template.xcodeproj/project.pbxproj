@@ -82,6 +82,10 @@
 		CEF209152C1E285200212C47 /* ThingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209142C1E285200212C47 /* ThingMethods.swift */; };
 		CEF209172C1E2B2700212C47 /* BottomsheetField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209162C1E2B2600212C47 /* BottomsheetField.swift */; };
 		CEF209192C1E432800212C47 /* ReadUserPublicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209182C1E432800212C47 /* ReadUserPublicResponse.swift */; };
+		CEF2091B2C1F76AC00212C47 /* ThingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2091A2C1F76AC00212C47 /* ThingType.swift */; };
+		CEF2091D2C1F775400212C47 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2091C2C1F775400212C47 /* Thing.swift */; };
+		CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2091E2C1F796600212C47 /* ThingViewModel.swift */; };
+		CEF209222C1FB90500212C47 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209212C1FB90500212C47 /* LoadingScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -186,6 +190,10 @@
 		CEF209142C1E285200212C47 /* ThingMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingMethods.swift; sourceTree = "<group>"; };
 		CEF209162C1E2B2600212C47 /* BottomsheetField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomsheetField.swift; sourceTree = "<group>"; };
 		CEF209182C1E432800212C47 /* ReadUserPublicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadUserPublicResponse.swift; sourceTree = "<group>"; };
+		CEF2091A2C1F76AC00212C47 /* ThingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingType.swift; sourceTree = "<group>"; };
+		CEF2091C2C1F775400212C47 /* Thing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		CEF2091E2C1F796600212C47 /* ThingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingViewModel.swift; sourceTree = "<group>"; };
+		CEF209212C1FB90500212C47 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +313,8 @@
 				CEF2090C2C16995600212C47 /* ReadUserPrivateResponse.swift */,
 				CEF209102C1DA9BD00212C47 /* NetworkModels.swift */,
 				CEF209182C1E432800212C47 /* ReadUserPublicResponse.swift */,
+				CEF2091A2C1F76AC00212C47 /* ThingType.swift */,
+				CEF2091C2C1F775400212C47 /* Thing.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +420,7 @@
 		CEF208972C04DBC100212C47 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				CEF209202C1FB8EE00212C47 /* Misc */,
 				CEF208F12C0FD95400212C47 /* Inputs */,
 				CEF208982C04DBC800212C47 /* Buttons */,
 			);
@@ -545,6 +556,7 @@
 				CEF209032C162AC400212C47 /* ThingTypeScreen.swift */,
 				CEF209052C162AD500212C47 /* ThingDescriptionScreen.swift */,
 				CEF209142C1E285200212C47 /* ThingMethods.swift */,
+				CEF2091E2C1F796600212C47 /* ThingViewModel.swift */,
 			);
 			path = Thing;
 			sourceTree = "<group>";
@@ -555,6 +567,14 @@
 				CEF2090A2C16381F00212C47 /* PersonalInfoScreen.swift */,
 			);
 			path = PersonalInfo;
+			sourceTree = "<group>";
+		};
+		CEF209202C1FB8EE00212C47 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				CEF209212C1FB90500212C47 /* LoadingScreen.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -846,6 +866,7 @@
 				CEF2090D2C16995600212C47 /* ReadUserPrivateResponse.swift in Sources */,
 				CEF208DC2C0D51E000212C47 /* HorizontalIconButton.swift in Sources */,
 				CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */,
+				CEF2091B2C1F76AC00212C47 /* ThingType.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2090F2C1CBB9200212C47 /* PhoneNumberField.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
@@ -858,7 +879,9 @@
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
 				CEF208EB2C0EA51200212C47 /* NewPasswordScreen.swift in Sources */,
 				CEF208D42C0D2F7000212C47 /* EditProfileScreen.swift in Sources */,
+				CEF209222C1FB90500212C47 /* LoadingScreen.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
+				CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */,
 				CEF209082C1630F800212C47 /* CheckboxRow.swift in Sources */,
 				CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
@@ -872,6 +895,7 @@
 				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
 				CEF209152C1E285200212C47 /* ThingMethods.swift in Sources */,
 				CEF208F62C127E6400212C47 /* ThingScreen.swift in Sources */,
+				CEF2091D2C1F775400212C47 /* Thing.swift in Sources */,
 				CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */,
 				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
 				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,

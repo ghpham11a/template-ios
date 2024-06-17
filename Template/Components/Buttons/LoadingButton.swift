@@ -11,7 +11,9 @@ struct LoadingButton: View {
     
     @State var title: String = ""
     @Binding var isLoading: Bool
+    @Binding var isEnabled: Bool
     var action: () -> Void
+    
     
     var body: some View {
         VStack {
@@ -29,9 +31,9 @@ struct LoadingButton: View {
                 }
                 .frame(maxWidth: .infinity, minHeight: 50)
                 .cornerRadius(10)
-                .background(Color.blue)
+                .background((isLoading || !isEnabled) ? Color.gray : Color.blue)
             }
-            .disabled(isLoading) // Disable button while loading
+            .disabled(isLoading || !isEnabled)
         }
         .padding(0)
     }

@@ -14,6 +14,8 @@ struct AuthHubScreen: View {
     @StateObject private var viewModel = AuthHubViewModel()
     @State private var isPhoneNumberMode: Bool = false
     
+    @State private var isEnabledPlaceholder: Bool = true
+    
     init(path: Binding<NavigationPath>) {
         self._path = path
     }
@@ -26,7 +28,7 @@ struct AuthHubScreen: View {
                 
                 OutlinedTextField(title: "Email", placeholder: "", text: $viewModel.username)
                 
-                LoadingButton(title: "Continue", isLoading: $viewModel.isLoading, action: {
+                LoadingButton(title: "Continue", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlaceholder, action: {
                     Task {
                         let result = await viewModel.checkIfUserExists(username: viewModel.username)
                         if result.isSuccessful {

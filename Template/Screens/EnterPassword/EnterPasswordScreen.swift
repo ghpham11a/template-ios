@@ -14,6 +14,8 @@ struct EnterPasswordScreen: View {
     @State private var username: String
     @State private var status: String
     
+    @State private var isEnabledPlaceholder: Bool = true
+    
     init(path: Binding<NavigationPath>, username: String, status: String) {
         self._path = path
         self.username = username
@@ -43,7 +45,7 @@ struct EnterPasswordScreen: View {
             
             Spacer()
             
-            LoadingButton(title: "Sign in", isLoading: $viewModel.isLoading, action: {
+            LoadingButton(title: "Sign in", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlaceholder, action: {
                 viewModel.signIn(username: username, password: viewModel.password) { response in
                     if response.isSuccessful == true {
                         path = NavigationPath()

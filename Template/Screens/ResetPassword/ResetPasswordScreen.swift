@@ -12,6 +12,8 @@ struct ResetPasswordScreen: View {
     @Binding private var path: NavigationPath
     @StateObject private var viewModel = ResetPasswordViewModel()
     
+    @State private var isEnabledPlaceholder: Bool = true
+    
     init(path: Binding<NavigationPath>) {
         self._path = path
     }
@@ -29,7 +31,7 @@ struct ResetPasswordScreen: View {
             
             Divider()
             
-            LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, action: {
+            LoadingButton(title: "Submit", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlaceholder, action: {
                 viewModel.resetPassword(username: viewModel.username) { response in
                     DispatchQueue.main.async {
                         if response.isSuccessful == true {

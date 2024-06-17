@@ -26,11 +26,10 @@ struct ThingBuilderScreen: View {
     @State var steps: String = ""
     var action: () -> Void
     
-    @State private var currentPage = 0
+    @StateObject private var viewModel = ThingViewModel()
     
-    var pageCount: Int {
-        steps.split(separator: ",").count
-    }
+    @State var loadingPlaceholder = false
+    @State var enabledPlaceholder = true
     
     var stepsMap: [Int: String] {
         Dictionary(uniqueKeysWithValues: steps.components(separatedBy: ",").enumerated().map { ($0, $1)})
@@ -50,15 +49,15 @@ struct ThingBuilderScreen: View {
                 .padding()
             }
             
-            TabView(selection: $currentPage) {
+            TabView(selection: $viewModel.currentPage) {
                 
-                switch stepsMap[currentPage] {
+                switch stepsMap[viewModel.currentPage] {
                 case Constants.ThingScreen.THING_TYPE:
-                    ThingTypeScreen()
+                    ThingTypeScreen(viewModel: viewModel)
                 case Constants.ThingScreen.THING_DESCRIPTION:
-                    ThingDescriptionScreen()
+                    ThingDescriptionScreen(viewModel: viewModel)
                 case Constants.ThingScreen.THING_METHODS:
-                    ThingTypeScreen()
+                    ThingDescriptionScreen(viewModel: viewModel)
                 default:
                     SnagScreen()
                 }
@@ -68,45 +67,42 @@ struct ThingBuilderScreen: View {
             .modifier(NonScrollable())
             
             HStack(spacing: 8) {
-                ForEach(0..<pageCount, id: \.self) { i in
+                ForEach(0..<viewModel.pageCount, id: \.self) { i in
                     Rectangle()
-                        .fill(i <= currentPage ? Color.blue : Color.gray)
+                        .fill(i <= viewModel.currentPage ? Color.blue : Color.gray)
                         .frame(maxWidth: .infinity, maxHeight: 5)
                 }
             }
             
             HStack {
-                if currentPage > 0 {
-                    Button(action: {
+                if viewModel.currentPage > 0 {
+                    LoadingButton(title: "Previous", isLoading: $loadingPlaceholder, isEnabled: $enabledPlaceholder, action: {
                         withAnimation {
-                            currentPage -= 1
+                            viewModel.updateCurrentPage(currentPage: viewModel.currentPage - 1)
                         }
-                    }) {
-                        Text("Previous")
-                    }
+                    })
                 } else {
                     Spacer().frame(width: 80)
                 }
                 
                 Spacer()
                 
-                if currentPage < (steps.split(separator: ",").count - 1) {
-                    Button(action: {
+                if viewModel.currentPage < (viewModel.pageCount - 1) {
+                    LoadingButton(title: "Next", isLoading: $loadingPlaceholder, isEnabled: $viewModel.isNextEnabled, action: {
                         withAnimation {
-                            currentPage += 1
+                            viewModel.updateCurrentPage(currentPage: viewModel.currentPage + 1)
                         }
-                    }) {
-                        Text("Next")
-                    }
+                    })
                 } else {
-                    Button(action: {
-           
-                    }) {
-                        Text("Save")
-                    }
+                    LoadingButton(title: "Save", isLoading: $viewModel.isLoading, isEnabled: $viewModel.isSaveEnabled, action: {
+    
+                    })
                 }
             }
             .padding()
+            .onAppear {
+                viewModel.udpatePageCount(pageCount: steps.split(separator: ",").count)
+            }
         }
     }
 }
