@@ -30,7 +30,7 @@ struct ProfileScreen: View {
                     
                     Spacer()
                     
-                    Text("Settings")
+                    HeadingText(title: "Settings")
                     
                     HorizontalIconButton(iconName: "star.fill", buttonText: "Personal information", action: {
                         path.append(Route.personalInfo)
@@ -38,6 +38,10 @@ struct ProfileScreen: View {
                     
                     HorizontalIconButton(iconName: "star.fill", buttonText: "Login and security", action: {
                         path.append(Route.loginSecurity)
+                    })
+                    
+                    HorizontalIconButton(iconName: "star.fill", buttonText: "Payments & payouts", action: {
+                        path.append(Route.paymentsHub)
                     })
                     
                     LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlacholder, action: {
@@ -77,6 +81,14 @@ struct ProfileScreen: View {
                     LoginAndSecurityScreen(path: $path)
                 case .personalInfo:
                     PersonalInfoScreen(path: $path)
+                case .paymentsHub:
+                    PaymentsHubScreen(path: $path)
+                case .paymentMethods:
+                    PaymentMethodsScreen(path: $path)
+                case .yourPayments:
+                    YourPaymentsScreen(path: $path)
+                case .payoutMethods:
+                    PayoutMethodsScreen(path: $path)
                 default:
                     SnagScreen()
                 }

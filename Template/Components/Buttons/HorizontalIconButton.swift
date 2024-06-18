@@ -29,8 +29,8 @@ struct HorizontalIconButton: View {
                 }
                 .padding()
             }
-            Divider()
-                .padding(.leading)
+//            Divider()
+//                .padding(.leading)
         }
         .background(Color.white)
     }

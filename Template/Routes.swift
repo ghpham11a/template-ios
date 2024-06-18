@@ -25,4 +25,8 @@ enum Route: Hashable, Codable {
     case thingBuilder(mode: String, steps: String)
     case filterList
     case personalInfo
+    case paymentsHub
+    case paymentMethods
+    case yourPayments
+    case payoutMethods
 }
