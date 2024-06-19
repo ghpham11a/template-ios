@@ -7,7 +7,7 @@ target 'Template' do
 
   # Pods for Template
   pod 'AWSMobileClient', '~> 2.25.0'
-  # pod 'AWSAuthUI', '~> 2.25.0'
+  pod 'Stripe'
 
   target 'TemplateTests' do
     inherit! :search_paths

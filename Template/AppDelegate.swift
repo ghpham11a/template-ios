@@ -5,12 +5,19 @@
 //  Created by Anthony Pham on 5/26/24.
 //
 
-import UIKit
 import AWSMobileClient
+import Stripe
+import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        if let path = Bundle.main.path(forResource: "Properties", ofType: "plist"), let dictionary = NSDictionary(contentsOfFile: path) as? [String: Any] {
+            if let stripePublishableKey = dictionary["STRIPE_API_KEY"] as? String {
+                StripeAPI.defaultPublishableKey = stripePublishableKey
+            }
+        }
         
         AWSMobileClient.default().initialize { (userState, error) in
             if let error = error {

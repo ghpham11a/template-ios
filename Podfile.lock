@@ -11,9 +11,36 @@ PODS:
     - AWSCognitoIdentityProvider (= 2.25.0)
     - AWSCognitoIdentityProviderASF (= 2.25.0)
     - AWSCore (= 2.25.0)
+  - Stripe (23.13.0):
+    - StripeApplePay (= 23.13.0)
+    - StripeCore (= 23.13.0)
+    - StripePayments (= 23.13.0)
+    - StripePaymentsUI (= 23.13.0)
+    - StripeUICore (= 23.13.0)
+  - StripeApplePay (23.13.0):
+    - StripeCore (= 23.13.0)
+  - StripeCore (23.13.0)
+  - StripePayments (23.13.0):
+    - StripeCore (= 23.13.0)
+    - StripePayments/Stripe3DS2 (= 23.13.0)
+  - StripePayments/Stripe3DS2 (23.13.0):
+    - StripeCore (= 23.13.0)
+  - StripePaymentSheet (23.13.0):
+    - StripeApplePay (= 23.13.0)
+    - StripeCore (= 23.13.0)
+    - StripePayments (= 23.13.0)
+    - StripePaymentsUI (= 23.13.0)
+  - StripePaymentsUI (23.13.0):
+    - StripeCore (= 23.13.0)
+    - StripePayments (= 23.13.0)
+    - StripeUICore (= 23.13.0)
+  - StripeUICore (23.13.0):
+    - StripeCore (= 23.13.0)
 
 DEPENDENCIES:
   - AWSMobileClient (~> 2.25.0)
+  - Stripe
+  - StripePaymentSheet
 
 SPEC REPOS:
   trunk:
@@ -22,6 +49,13 @@ SPEC REPOS:
     - AWSCognitoIdentityProviderASF
     - AWSCore
     - AWSMobileClient
+    - Stripe
+    - StripeApplePay
+    - StripeCore
+    - StripePayments
+    - StripePaymentSheet
+    - StripePaymentsUI
+    - StripeUICore
 
 SPEC CHECKSUMS:
   AWSAuthCore: c1ea75ec283e5ac3eb042de21f7ab127ad50de11
@@ -29,7 +63,14 @@ SPEC CHECKSUMS:
   AWSCognitoIdentityProviderASF: d58893fe74d0db1817e77592eed30c4f5b5a2672
   AWSCore: 9c51a3004e9e91528160ea978fd0c5d92780a45e
   AWSMobileClient: b4480d4b69b1ae52a76588f74bf9c936f7600e46
+  Stripe: ee21be55cfcd4b4797486b1afaeb0d822d7ae8fd
+  StripeApplePay: 70a263e288bcf4e2011cf4027a2fc0813a6f8c09
+  StripeCore: 0f01d8c435d94b9e6bf937006a6144544e580c90
+  StripePayments: 47e26bb98818fbdc331cec8cb11a03c08f47305b
+  StripePaymentSheet: ca5ba76d1957a18077a5d83bff8b2aaf3f772973
+  StripePaymentsUI: 58029c55b661c176c8d2e406393fff9eb46bb8ce
+  StripeUICore: 171fcf535c658ee1ebd7aaf08fa6a0eceb3fb3db
 
-PODFILE CHECKSUM: 58504164966bc91d4ed8dad961b2bcc6303a5123
+PODFILE CHECKSUM: fce08f7bad1522087a1e0ce3f271e33b62ed6ec7
 
 COCOAPODS: 1.15.2
