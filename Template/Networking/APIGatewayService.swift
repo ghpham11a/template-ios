@@ -106,4 +106,16 @@ class APIGatewayService {
             return .failure(APIError(message: String(describing: error), code: 500))
         }
     }
+    
+    func privateCreateThing(thing: Thing) async -> APIResponse<CreateThingResponse> {        
+        let url = "\(baseURL)/private/things"
+        let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
+        do {
+            let data: CreateThingResponse = try await NetworkManager.shared.post(urlString: url, headers: headers, body: thing)
+            return .success(data)
+        } catch {
+            return .failure(APIError(message: String(describing: error), code: 500))
+        }
+    }
+    
 }

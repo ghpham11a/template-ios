@@ -22,9 +22,11 @@ struct NonScrollable: ViewModifier {
 struct ThingBuilderScreen: View {
     
     @Binding var path: NavigationPath
+    @State var thingId: String = ""
+    @State var action: String = ""
     @State var mode: String = ""
     @State var steps: String = ""
-    var action: () -> Void
+    var backAction: () -> Void
     
     @StateObject private var viewModel = ThingViewModel()
     
@@ -40,7 +42,7 @@ struct ThingBuilderScreen: View {
             
             if mode == "BOTTOM_SHEET" {
                 HStack {
-                    Button(action: action) {
+                    Button(action: backAction) {
                         Text("Back")
                     }
                     Spacer()
@@ -88,9 +90,6 @@ struct ThingBuilderScreen: View {
                 Spacer()
                 
                 if viewModel.currentPage < (viewModel.pageCount - 1) {
-                    
-                    
-                    
                     LoadingButton(title: "Next", isLoading: $loadingPlaceholder, isEnabled: $viewModel.isNextEnabled, action: {
                         withAnimation {
                             viewModel.updateCurrentPage(currentPage: viewModel.currentPage + 1)
@@ -98,7 +97,15 @@ struct ThingBuilderScreen: View {
                     })
                 } else {
                     LoadingButton(title: "Save", isLoading: $viewModel.isLoading, isEnabled: $viewModel.isSaveEnabled, action: {
-    
+                        Task {
+                            let success = await viewModel.saveThing()
+                            if success {
+                                path.removeLast(path.count)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    path.append(Route.thing(thingId: "new"))
+                                }
+                            }
+                        }
                     })
                 }
             }

@@ -76,4 +76,17 @@ class ThingViewModel: ObservableObject {
             }
         }
     }
+    
+    func saveThing() async -> Bool {
+        DispatchQueue.main.async { self.isLoading = true }
+        let response = await ThingRepository.shared.createThing(thing: thing)
+        switch response {
+        case .success(let data):
+            DispatchQueue.main.async { self.isLoading = false }
+            return true
+        case .failure(let error):
+            DispatchQueue.main.async { self.isLoading = false }
+            return false
+        }
+    }
 }

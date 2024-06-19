@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ThingScreen: View {
     
-    @Binding private var path: NavigationPath
+    @Binding var path: NavigationPath
+    @State var thingId: String
+    
     @State private var numberOfSteps: String = ""
     @State private var showingBottomSheet: Bool = false
     
@@ -21,53 +23,55 @@ struct ThingScreen: View {
     @State private var isLoading = false
     @State private var isEnabledPlaceholder: Bool = true
     
-    init(path: Binding<NavigationPath>) {
-        self._path = path
-    }
-    
     var body: some View {
         ScrollView {
             
-            Toggle(isOn: $isThingTypeChecked) {
-                Text("Thing type")
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            .onChange(of: isThingTypeChecked) { oldValue, newValue in
+            if thingId != "NULL" {
                 
-            }
-            
-            Toggle(isOn: $isThingDescriptionChecked) {
-                Text("Thing description")
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            .onChange(of: isThingDescriptionChecked) { oldValue, newValue in
+                Text(thingId)
+                
+            } else {
+                Toggle(isOn: $isThingTypeChecked) {
+                    Text("Thing type")
+                }
+                .toggleStyle(CheckboxToggleStyle())
+                .onChange(of: isThingTypeChecked) { oldValue, newValue in
+                    
+                }
+                
+                Toggle(isOn: $isThingDescriptionChecked) {
+                    Text("Thing description")
+                }
+                .toggleStyle(CheckboxToggleStyle())
+                .onChange(of: isThingDescriptionChecked) { oldValue, newValue in
 
-            }
-            
-            Toggle(isOn: $isThingMethodsChecked) {
-                Text("Thing methods")
-            }
-            .toggleStyle(CheckboxToggleStyle())
-            .onChange(of: isThingMethodsChecked) { oldValue, newValue in
+                }
+                
+                Toggle(isOn: $isThingMethodsChecked) {
+                    Text("Thing methods")
+                }
+                .toggleStyle(CheckboxToggleStyle())
+                .onChange(of: isThingMethodsChecked) { oldValue, newValue in
 
+                }
+                
+                LoadingButton(title: "Launch in screen", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
+                    path.append(Route.thingBuilder(thingId: "NULL", action: "CREATE", mode: "SHEET", steps: getStepString()))
+                })
+                
+                
+                Divider()
+                
+                LoadingButton(title: "Launch in bottom sheet", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
+                    showingBottomSheet.toggle()
+                })
+                
+                Spacer()
             }
-            
-            LoadingButton(title: "Launch in screen", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
-                path.append(Route.thingBuilder(mode: "SHEET", steps: getStepString()))
-            })
-            
-            
-            Divider()
-            
-            LoadingButton(title: "Launch in bottom sheet", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
-                showingBottomSheet.toggle()
-            })
-            
-            Spacer()
         }
         .padding(.horizontal)
         .sheet(isPresented: $showingBottomSheet) {
-            ThingBuilderScreen(path: $path, mode: "BOTTOM_SHEET", steps: getStepString(), action: {
+            ThingBuilderScreen(path: $path, mode: "BOTTOM_SHEET", steps: getStepString(), backAction: {
                 showingBottomSheet.toggle()
             })
                 .presentationDetents([.large])

@@ -209,7 +209,7 @@ class NetworkManager {
         }
     }
     
-    func post<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: [String: Any]) async throws -> T {
+    func post<T: Codable, Body: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: Body) async throws -> T {
         var formattedUrl = urlString
 
         if !queryParams.isEmpty {
@@ -237,7 +237,7 @@ class NetworkManager {
             }
         }
 
-        let jsonData = try JSONSerialization.data(withJSONObject: body, options: .fragmentsAllowed)
+        let jsonData = try JSONEncoder().encode(body)
         request.httpBody = jsonData
 
         let (data, response) = try await URLSession.shared.data(for: request)

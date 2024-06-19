@@ -21,8 +21,8 @@ enum Route: Hashable, Codable {
     case authAddInfo(username: String)
     case authEnterPassword(username: String, status: String)
     case authCodeVerification(verificationType: String, username: String, password: String)
-    case thing
-    case thingBuilder(mode: String, steps: String)
+    case thing(thingId: String)
+    case thingBuilder(thingId: String, action: String, mode: String, steps: String)
     case filterList
     case personalInfo
     case paymentsHub

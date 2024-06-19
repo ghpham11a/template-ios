@@ -82,10 +82,10 @@ struct FeaturesScreen: View {
                     EnterPasswordScreen(path: $path, username: username, status: status)
                 case .authCodeVerification(let verificationType, let username, let password):
                     CodeVerificationScreen(path: $path, verificationType: verificationType, username: username, password: password)
-                case .thing:
-                    ThingScreen(path: $path)
-                case .thingBuilder(let mode, let steps):
-                    ThingBuilderScreen(path: $path, mode: mode, steps: steps, action: {
+                case .thing(let thingId):
+                    ThingScreen(path: $path, thingId: thingId)
+                case .thingBuilder(let thingId, let action, let mode, let steps):
+                    ThingBuilderScreen(path: $path, thingId: thingId, action: action, mode: mode, steps: steps, backAction: {
                         path.removeLast()
                     })
                 case .filterList:
