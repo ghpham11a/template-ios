@@ -29,18 +29,19 @@ class AuthHubViewModel: ObservableObject {
             phoneNumberParam = phoneNumber
         }
         
-        var result = await APIGatewayService.shared.adminReadtUser(username: usernameParam, phoneNumber: phoneNumberParam)
+        var result = await APIGatewayService.shared.adminReadUser(username: usernameParam, phoneNumber: phoneNumberParam)
         DispatchQueue.main.async {
             self.isLoading = false
         }
         switch result {
         case .success(let response):
             if response.message == Constants.AWS_COGNITO_USER_DOES_EXIST_MESSAGE {
-                if response.data?.enabled == true {
-                    return (true, .existsAndEnabled)
-                } else {
-                    return (true, .existsAndDisabled)
-                }
+                return (true, .existsAndEnabled)
+//                if response.data?.enabled == true {
+//                    return (true, .existsAndEnabled)
+//                } else {
+//                    return (true, .existsAndDisabled)
+//                }
             } else {
                 return (true, .doesNotExist)
             }

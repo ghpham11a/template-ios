@@ -94,6 +94,15 @@
 		CEF209302C227F6A00212C47 /* CreateThingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2092F2C227F6900212C47 /* CreateThingResponse.swift */; };
 		CEF209322C227FA300212C47 /* ThingRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209312C227FA300212C47 /* ThingRepository.swift */; };
 		CEF209342C232F8D00212C47 /* Properties.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEF209332C232F8D00212C47 /* Properties.plist */; };
+		CEF209372C2378F900212C47 /* UIKitViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209362C2378F900212C47 /* UIKitViewScreen.swift */; };
+		CEF209392C2379AE00212C47 /* UIKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209382C2379AE00212C47 /* UIKitViewController.swift */; };
+		CEF2093B2C237B7900212C47 /* ThingIntroScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2093A2C237B7900212C47 /* ThingIntroScreen.swift */; };
+		CEF2093D2C23C2E700212C47 /* APIGatewayService+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2093C2C23C2E700212C47 /* APIGatewayService+Admin.swift */; };
+		CEF2093F2C23C34500212C47 /* APIGatewayService+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2093E2C23C34500212C47 /* APIGatewayService+Private.swift */; };
+		CEF209412C23C39100212C47 /* APIGatewayService+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209402C23C39100212C47 /* APIGatewayService+Public.swift */; };
+		CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209422C23C9AC00212C47 /* AdminDisableUserResponse.swift */; };
+		CEF209452C23CA2000212C47 /* AdminEnableUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209442C23CA2000212C47 /* AdminEnableUserResponse.swift */; };
+		CEF209472C23D75200212C47 /* AdminDeleteUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +219,15 @@
 		CEF2092F2C227F6900212C47 /* CreateThingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateThingResponse.swift; sourceTree = "<group>"; };
 		CEF209312C227FA300212C47 /* ThingRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingRepository.swift; sourceTree = "<group>"; };
 		CEF209332C232F8D00212C47 /* Properties.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Properties.plist; sourceTree = "<group>"; };
+		CEF209362C2378F900212C47 /* UIKitViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewScreen.swift; sourceTree = "<group>"; };
+		CEF209382C2379AE00212C47 /* UIKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitViewController.swift; sourceTree = "<group>"; };
+		CEF2093A2C237B7900212C47 /* ThingIntroScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThingIntroScreen.swift; sourceTree = "<group>"; };
+		CEF2093C2C23C2E700212C47 /* APIGatewayService+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGatewayService+Admin.swift"; sourceTree = "<group>"; };
+		CEF2093E2C23C34500212C47 /* APIGatewayService+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGatewayService+Private.swift"; sourceTree = "<group>"; };
+		CEF209402C23C39100212C47 /* APIGatewayService+Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGatewayService+Public.swift"; sourceTree = "<group>"; };
+		CEF209422C23C9AC00212C47 /* AdminDisableUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDisableUserResponse.swift; sourceTree = "<group>"; };
+		CEF209442C23CA2000212C47 /* AdminEnableUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEnableUserResponse.swift; sourceTree = "<group>"; };
+		CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDeleteUserResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +351,9 @@
 				CEF2091A2C1F76AC00212C47 /* ThingType.swift */,
 				CEF2091C2C1F775400212C47 /* Thing.swift */,
 				CEF2092F2C227F6900212C47 /* CreateThingResponse.swift */,
+				CEF209422C23C9AC00212C47 /* AdminDisableUserResponse.swift */,
+				CEF209442C23CA2000212C47 /* AdminEnableUserResponse.swift */,
+				CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -340,6 +361,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF209352C2378CC00212C47 /* UIKitView */,
 				CEF209232C21264900212C47 /* PaymentsHub */,
 				CEF209092C16380F00212C47 /* PersonalInfo */,
 				CEF208F42C127E4B00212C47 /* Thing */,
@@ -385,6 +407,9 @@
 			children = (
 				CEF208752BFFD4D200212C47 /* NetworkManager.swift */,
 				CEF208BD2C09320900212C47 /* APIGatewayService.swift */,
+				CEF2093C2C23C2E700212C47 /* APIGatewayService+Admin.swift */,
+				CEF2093E2C23C34500212C47 /* APIGatewayService+Private.swift */,
+				CEF209402C23C39100212C47 /* APIGatewayService+Public.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -578,6 +603,7 @@
 				CEF209052C162AD500212C47 /* ThingDescriptionScreen.swift */,
 				CEF209142C1E285200212C47 /* ThingMethods.swift */,
 				CEF2091E2C1F796600212C47 /* ThingViewModel.swift */,
+				CEF2093A2C237B7900212C47 /* ThingIntroScreen.swift */,
 			);
 			path = Thing;
 			sourceTree = "<group>";
@@ -615,6 +641,15 @@
 				CEF209272C21275300212C47 /* HeadingText.swift */,
 			);
 			path = Text;
+			sourceTree = "<group>";
+		};
+		CEF209352C2378CC00212C47 /* UIKitView */ = {
+			isa = PBXGroup;
+			children = (
+				CEF209362C2378F900212C47 /* UIKitViewScreen.swift */,
+				CEF209382C2379AE00212C47 /* UIKitViewController.swift */,
+			);
+			path = UIKitView;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -882,9 +917,11 @@
 				CEF209172C1E2B2700212C47 /* BottomsheetField.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
+				CEF2093D2C23C2E700212C47 /* APIGatewayService+Admin.swift in Sources */,
 				CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
 				CEF208E62C0EA4E000212C47 /* ResetPasswordViewModel.swift in Sources */,
+				CEF209452C23CA2000212C47 /* AdminEnableUserResponse.swift in Sources */,
 				CEF208FE2C14CDC000212C47 /* ThingBuilderScreen.swift in Sources */,
 				CEF208BC2C092EE800212C47 /* AdminReadUserResponse.swift in Sources */,
 				CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */,
@@ -893,6 +930,7 @@
 				CEF209132C1DE86000212C47 /* OutlinedTextField.swift in Sources */,
 				CEF208ED2C0EA51E00212C47 /* NewPasswordViewModel.swift in Sources */,
 				CEF2088B2C03E33E00212C47 /* AWSMobileClientResponse.swift in Sources */,
+				CEF209372C2378F900212C47 /* UIKitViewScreen.swift in Sources */,
 				CEF208B42C055EFF00212C47 /* EnterPasswordViewModel.swift in Sources */,
 				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
 				CEF2090B2C16381F00212C47 /* PersonalInfoScreen.swift in Sources */,
@@ -900,6 +938,7 @@
 				CEF2092C2C2128BC00212C47 /* YourPaymentsScreen.swift in Sources */,
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
+				CEF209412C23C39100212C47 /* APIGatewayService+Public.swift in Sources */,
 				CEF208F82C127FB300212C47 /* Routes.swift in Sources */,
 				CEF208FC2C13EDA000212C47 /* OutlinedButton.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
@@ -927,9 +966,11 @@
 				CEF209302C227F6A00212C47 /* CreateThingResponse.swift in Sources */,
 				CEF209222C1FB90500212C47 /* LoadingScreen.swift in Sources */,
 				CEF209252C21266200212C47 /* PaymentsHubScreen.swift in Sources */,
+				CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
 				CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */,
 				CEF2092E2C2128F500212C47 /* PayoutMethodsScreen.swift in Sources */,
+				CEF209392C2379AE00212C47 /* UIKitViewController.swift in Sources */,
 				CEF209082C1630F800212C47 /* CheckboxRow.swift in Sources */,
 				CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,
@@ -938,7 +979,9 @@
 				CEF2087D2BFFD67800212C47 /* FeaturesViewModel.swift in Sources */,
 				CEF208DE2C0D533900212C47 /* MyProfileRow.swift in Sources */,
 				CEF208392BFC1F0400212C47 /* FeaturesScreen.swift in Sources */,
+				CEF2093F2C23C34500212C47 /* APIGatewayService+Private.swift in Sources */,
 				CEF208B82C05674A00212C47 /* Helpers.swift in Sources */,
+				CEF2093B2C237B7900212C47 /* ThingIntroScreen.swift in Sources */,
 				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,
 				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
 				CEF209152C1E285200212C47 /* ThingMethods.swift in Sources */,
@@ -946,6 +989,7 @@
 				CEF2091D2C1F775400212C47 /* Thing.swift in Sources */,
 				CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */,
 				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
+				CEF209472C23D75200212C47 /* AdminDeleteUserResponse.swift in Sources */,
 				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

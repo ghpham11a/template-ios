@@ -157,7 +157,7 @@ struct PersonalInfoScreen: View {
     
     private func executeUpdate(body: UpdateUserBody) async -> Bool {
         let userSub = UserRepo.shared.userSub ?? ""
-        let response = await APIGatewayService.shared.updateUser(userSub: userSub, body: body)
+        let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)
         switch response {
         case .success(let data):
             return true

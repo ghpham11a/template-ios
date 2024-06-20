@@ -19,8 +19,9 @@ class FeaturesViewModel: ObservableObject {
     func fetchItems() {
         DispatchQueue.main.async {
             self.newItems = [
-                Feature(title: "Thing Introduction", description: "This is a flow that guides you through several steps one at a time", route: .thing(thingId: "NULL")),
-                Feature(title: "Filter List", description: "List of a lot of items that can be filtered", route: .filterList)
+                Feature(title: "Thing Introduction", description: "This is a flow that guides you through several steps one at a time", route: .thingIntro),
+                Feature(title: "Filter List", description: "List of a lot of items that can be filtered", route: .filterList),
+                Feature(title: "UIKit View", description: "A screen using UIKit", route: .uikitView)
             ]
             
             self.oldItems = []

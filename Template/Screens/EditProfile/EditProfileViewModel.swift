@@ -13,7 +13,7 @@ class EditProfileViewModel: ObservableObject {
         guard let uiImage = image, let encodedImage = uiImage.toBase64(), let userSub = UserRepo.shared.userSub  else { return false }
         var body = UpdateUserBody()
         body.updateImage = UpdateImage(imageData: encodedImage)
-        let response = await APIGatewayService.shared.updateUser(userSub: userSub, body: body)
+        let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)
         
         switch response {
         case .success(let data):

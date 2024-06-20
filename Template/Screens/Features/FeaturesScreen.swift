@@ -82,6 +82,8 @@ struct FeaturesScreen: View {
                     EnterPasswordScreen(path: $path, username: username, status: status)
                 case .authCodeVerification(let verificationType, let username, let password):
                     CodeVerificationScreen(path: $path, verificationType: verificationType, username: username, password: password)
+                case .thingIntro:
+                    ThingIntroScreen(path: $path)
                 case .thing(let thingId):
                     ThingScreen(path: $path, thingId: thingId)
                 case .thingBuilder(let thingId, let action, let mode, let steps):
@@ -90,6 +92,8 @@ struct FeaturesScreen: View {
                     })
                 case .filterList:
                     FilterListScreen(path: $path)
+                case .uikitView:
+                    UIKitViewScreen(path: $path)
                 default:
                     SnagScreen()
                 }

@@ -42,7 +42,7 @@ class LoginAndSecurityViewModel: ObservableObject {
         
         switch response {
         case .success(let data):
-            if data.contains("disabled successfully") == true {
+            if data.message?.contains("disabled successfully") == true {
                 UserRepo.shared.logOut()
                 return true
             } else {

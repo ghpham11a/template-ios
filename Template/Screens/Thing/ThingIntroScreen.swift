@@ -1,16 +1,15 @@
 //
-//  StepsGuideScreen.swift
+//  ThingIntroScreen.swift
 //  Template
 //
-//  Created by Anthony Pham on 6/6/24.
+//  Created by Anthony Pham on 6/19/24.
 //
 
 import SwiftUI
 
-struct ThingScreen: View {
+struct ThingIntroScreen: View {
     
     @Binding var path: NavigationPath
-    @State var thingId: String
     
     @State private var numberOfSteps: String = ""
     @State private var showingBottomSheet: Bool = false
@@ -26,7 +25,42 @@ struct ThingScreen: View {
     var body: some View {
         ScrollView {
             
-            Text(thingId)
+            Toggle(isOn: $isThingTypeChecked) {
+                Text("Thing type")
+            }
+            .toggleStyle(CheckboxToggleStyle())
+            .onChange(of: isThingTypeChecked) { oldValue, newValue in
+                
+            }
+            
+            Toggle(isOn: $isThingDescriptionChecked) {
+                Text("Thing description")
+            }
+            .toggleStyle(CheckboxToggleStyle())
+            .onChange(of: isThingDescriptionChecked) { oldValue, newValue in
+
+            }
+            
+            Toggle(isOn: $isThingMethodsChecked) {
+                Text("Thing methods")
+            }
+            .toggleStyle(CheckboxToggleStyle())
+            .onChange(of: isThingMethodsChecked) { oldValue, newValue in
+
+            }
+            
+            LoadingButton(title: "Launch in screen", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
+                path.append(Route.thingBuilder(thingId: "NULL", action: "CREATE", mode: "SHEET", steps: getStepString()))
+            })
+            
+            
+            Divider()
+            
+            LoadingButton(title: "Launch in bottom sheet", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
+                showingBottomSheet.toggle()
+            })
+            
+            Spacer()
         }
         .padding(.horizontal)
         .sheet(isPresented: $showingBottomSheet) {
@@ -56,3 +90,4 @@ struct ThingScreen: View {
 //#Preview {
 //    DeltaScreen()
 //}
+

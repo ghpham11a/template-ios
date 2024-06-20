@@ -1,13 +1,13 @@
 //
-//  CheckIfUserExistsResponse.swift
+//  AdminEnableUserResponse.swift
 //  Template
 //
-//  Created by Anthony Pham on 5/30/24.
+//  Created by Anthony Pham on 6/19/24.
 //
 
 import Foundation
 
-struct AdminReadUserResponse: Codable {
+struct AdminEnableUserResponse: Codable {
     let message: String?
     let error: String?
     

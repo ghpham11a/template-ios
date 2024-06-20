@@ -22,6 +22,7 @@ enum Route: Hashable, Codable {
     case authEnterPassword(username: String, status: String)
     case authCodeVerification(verificationType: String, username: String, password: String)
     case thing(thingId: String)
+    case thingIntro
     case thingBuilder(thingId: String, action: String, mode: String, steps: String)
     case filterList
     case personalInfo
@@ -29,4 +30,5 @@ enum Route: Hashable, Codable {
     case paymentMethods
     case yourPayments
     case payoutMethods
+    case uikitView
 }

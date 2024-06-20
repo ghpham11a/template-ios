@@ -16,13 +16,12 @@ class EnterPasswordViewModel: ObservableObject {
     private func enableUser(username: String, password: String, onResult: @escaping (AWSMobileClientResponse<SignInResult>) -> Void) {
         DispatchQueue.main.async { self.isLoading = true }
         Task {
-            let body = ["status": "enable", "username": username]
-            let response = await APIGatewayService.shared.adminEnableUser(username: username, body: body)
+            let response = await APIGatewayService.shared.adminEnableUser(username: username)
             
             DispatchQueue.main.async { self.isLoading = false }
             switch response {
             case .success(let data):
-                if data.contains("enabled successfully") == true {
+                if data.message?.contains("enabled successfully") == true {
                     signIn(username: username, password: password, onResult: onResult)
                 } else {
                     onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: nil))
