@@ -20,11 +20,11 @@ extension APIGatewayService {
         }
     }
     
-    func privateUpdateUser(userSub: String, body: UpdateUserBody) async -> APIResponse<String> {
+    func privateUpdateUser(userSub: String, body: UpdateUserBody) async -> APIResponse<UpdateUserPrivateResponse> {
         let url = "\(baseURL)/private/users/\(userSub)"
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         do {
-            let data: String = try await NetworkManager.shared.patch(urlString: url, headers: headers, body: body)
+            let data: UpdateUserPrivateResponse = try await NetworkManager.shared.patch(urlString: url, headers: headers, body: body)
             return .success(data)
         } catch {
             return .failure(APIError(message: String(describing: error), code: 500))

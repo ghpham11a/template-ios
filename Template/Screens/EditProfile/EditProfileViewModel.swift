@@ -17,7 +17,7 @@ class EditProfileViewModel: ObservableObject {
         
         switch response {
         case .success(let data):
-            if data.contains("Image uploaded successfully") == true {
+            if data.message?.contains("Image uploaded successfully") == true {
                 return true
             } else {
                 return false

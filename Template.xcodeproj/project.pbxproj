@@ -103,6 +103,7 @@
 		CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209422C23C9AC00212C47 /* AdminDisableUserResponse.swift */; };
 		CEF209452C23CA2000212C47 /* AdminEnableUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209442C23CA2000212C47 /* AdminEnableUserResponse.swift */; };
 		CEF209472C23D75200212C47 /* AdminDeleteUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */; };
+		CEF209492C24EEA300212C47 /* UpdateUserPrivateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +229,7 @@
 		CEF209422C23C9AC00212C47 /* AdminDisableUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDisableUserResponse.swift; sourceTree = "<group>"; };
 		CEF209442C23CA2000212C47 /* AdminEnableUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEnableUserResponse.swift; sourceTree = "<group>"; };
 		CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDeleteUserResponse.swift; sourceTree = "<group>"; };
+		CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserPrivateResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -354,6 +356,7 @@
 				CEF209422C23C9AC00212C47 /* AdminDisableUserResponse.swift */,
 				CEF209442C23CA2000212C47 /* AdminEnableUserResponse.swift */,
 				CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */,
+				CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -988,6 +991,7 @@
 				CEF208F62C127E6400212C47 /* ThingScreen.swift in Sources */,
 				CEF2091D2C1F775400212C47 /* Thing.swift in Sources */,
 				CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */,
+				CEF209492C24EEA300212C47 /* UpdateUserPrivateResponse.swift in Sources */,
 				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
 				CEF209472C23D75200212C47 /* AdminDeleteUserResponse.swift in Sources */,
 				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,
