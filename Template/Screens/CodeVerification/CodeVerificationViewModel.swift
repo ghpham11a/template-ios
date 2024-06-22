@@ -73,8 +73,10 @@ class CodeVerificationViewModel: ObservableObject {
                 if signInResult.signInState == .signedIn {
                     AWSMobileClient.default().getTokens() { (tokens, error) in
                         if let tokens = tokens {
-                            UserRepo.shared.setLoggedIn(tokens: tokens, username: formattedUsername, userSub: AWSMobileClient.default().userSub ?? "")
-                            onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: true, result: signInResult, exception: nil))
+                            AWSMobileClient.default().getUserAttributes { (userAttributes, error) in
+                                UserRepo.shared.setLoggedIn(tokens: tokens, username: formattedUsername, userAttributes: userAttributes ?? [:])
+                                onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: true, result: signInResult, exception: nil))
+                            }
                         } else {
                             onResult(AWSMobileClientResponse<SignInResult>(isSuccessful: false, result: nil, exception: nil))
                         }

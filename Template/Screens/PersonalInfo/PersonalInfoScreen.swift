@@ -104,15 +104,13 @@ struct PersonalInfoScreen: View {
                         OutlinedTextField(title: "Email", placeholder: "", text: $email)
                         
                         LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: $isEmailSaveEnabled, action: {
-                            isEmailExpanded = false
-                            isEmailVerificationCodePresented = true
-//                            Task {
-//                                let success = await updateEmail(email: email)
-//                                if success {
-//                                    isEmailExpanded = false
-//                                    isEmailVerificationCodePresented = true
-//                                }
-//                            }
+                            Task {
+                                let success = await updateEmail(email: email)
+                                if success {
+                                    isEmailExpanded = false
+                                    isEmailVerificationCodePresented = true
+                                }
+                            }
                         })
 
                     }
@@ -129,15 +127,18 @@ struct PersonalInfoScreen: View {
                         
                         Divider()
                         
-                        LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: $isEmailSaveEnabled, action: {
-                            Task {
-                                confirmEmailChange(verificationCode: emailVerificationCode.joined()) { response in
-                                    isEmailVerificationCodePresented = false
+                        HStack {
+                            LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: $isEmailSaveEnabled, action: {
+                                Task {
+                                    confirmEmailChange(verificationCode: emailVerificationCode.joined()) { response in
+                                        isEmailVerificationCodePresented = false
+                                    }
                                 }
-                            }
-                        })
+                            })
+                        }
+                        .padding()
                     }
-                    .frame(maxHeight: .infinity, alignment: .top)
+                    .presentationDetents([.fraction(0.5)])
                 }
             }
             .onAppear {
@@ -182,14 +183,14 @@ struct PersonalInfoScreen: View {
     }
     
     private func readUser() async {
-        let userSub = UserRepo.shared.userSub ?? ""
+        let userSub = UserRepo.shared.userId ?? ""
         let response = await APIGatewayService.shared.privateReadUser(userSub: userSub)
         switch response {
         case .success(let data):
-            firstName = data.firstName ?? ""
-            lastName = data.lastName ?? ""
+            firstName = UserRepo.shared.firstName ?? ""
+            lastName = UserRepo.shared.lastName ?? ""
             preferredName = data.preferredName ?? ""
-            email = data.email ?? ""
+            email = UserRepo.shared.username ?? ""
             isScreenLoading = false
         case .failure(_):
             isScreenLoading = false
@@ -228,6 +229,7 @@ struct PersonalInfoScreen: View {
                 DispatchQueue.main.async {
                     self.isLoading = false
                 }
+                UserRepo.shared.updateUser(key: Constants.USER_DEFAULTS_KEY_USERNAME, value: email)
                 onResult(AWSMobileClientResponse<Void>(isSuccessful: false, result: nil, exception: error.localizedDescription))
             } else {
                 DispatchQueue.main.async {
@@ -239,7 +241,7 @@ struct PersonalInfoScreen: View {
     }
     
     private func executeUpdate(body: UpdateUserBody) async -> Bool {
-        let userSub = UserRepo.shared.userSub ?? ""
+        let userSub = UserRepo.shared.userId ?? ""
         let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)
         switch response {
         case .success(let data):

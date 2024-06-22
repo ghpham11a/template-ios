@@ -10,7 +10,7 @@ import UIKit
 class EditProfileViewModel: ObservableObject {
     
     func updateImage(image: UIImage?) async -> Bool {
-        guard let uiImage = image, let encodedImage = uiImage.toBase64(), let userSub = UserRepo.shared.userSub  else { return false }
+        guard let uiImage = image, let encodedImage = uiImage.toBase64(), let userSub = UserRepo.shared.userId  else { return false }
         var body = UpdateUserBody()
         body.updateImage = UpdateImage(imageData: encodedImage)
         let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)

@@ -45,7 +45,7 @@ struct BottomsheetField<Content: View>: View {
         .background(Color.white)
         .sheet(isPresented: $isExpanded) {
             content
-                .padding()
+                .presentationDetents([.fraction(0.5)])
         }
     }
 }

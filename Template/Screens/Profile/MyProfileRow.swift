@@ -19,7 +19,7 @@ struct MyProfileRow: View {
             Button(action: action) {
                 HStack {
                     
-                    AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, userRepo.userSub ?? ""))) { phase in
+                    AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, userRepo.userId ?? ""))) { phase in
                         switch phase {
                         case .empty:
                             ProgressView()

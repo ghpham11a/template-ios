@@ -23,19 +23,37 @@ class UserRepo: ObservableObject {
     
     var userStatus: UserStatus = .doesNotExist
     
-    var username: String? {
+    var userId: String? {
         let defaults = UserDefaults.standard
-        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_USERNAME) as? String
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_SUB) as? String
     }
-    
     var idToken: String? {
         let defaults = UserDefaults.standard
         return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_ID_TOKEN) as? String
     }
-    
-    var userSub: String? {
+    var accessToken: String? {
         let defaults = UserDefaults.standard
-        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_SUB) as? String
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN) as? String
+    }
+    var username: String? {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_USERNAME) as? String
+    }
+    var firstName: String? {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_FIRSTNAME) as? String
+    }
+    var lastName: String? {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_LASTNAME) as? String
+    }
+    var birthDate: String? {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_BIRTHDATE) as? String
+    }
+    var expirationDate: String? {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE) as? String
     }
     
     var userPrivate: ReadUserPrivateResponse? = nil
@@ -57,7 +75,7 @@ class UserRepo: ObservableObject {
     }
     
     func publicReadUser(userSub: String) async -> APIResponse<ReadUserPublicResponse> {
-
+        
         if let safeUserPublic = userPublic {
             return .success(safeUserPublic)
         }
@@ -71,7 +89,7 @@ class UserRepo: ObservableObject {
             return .failure(error)
         }
     }
-
+    
     func isLoggedIn() -> Bool {
         
         let defaults = UserDefaults.standard
@@ -85,7 +103,7 @@ class UserRepo: ObservableObject {
         return isAuthenticated
     }
     
-    func setLoggedIn(tokens: Tokens, username: String, userSub: String) {
+    func setLoggedIn(tokens: Tokens, username: String, userAttributes: [String: String]) {
         let defaults = UserDefaults.standard
         
         guard let idToken = tokens.idToken, let accessToken = tokens.accessToken, let expiration = tokens.expiration else {
@@ -97,14 +115,41 @@ class UserRepo: ObservableObject {
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let expirationDate = dateFormatter.string(from: expiration)
         
-        defaults.set(idToken.tokenString, forKey: Constants.USER_DEFAULTS_KEY_ID_TOKEN)
-        defaults.set(accessToken.tokenString, forKey: Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN)
-        defaults.set(username, forKey: Constants.USER_DEFAULTS_KEY_USERNAME)
-        defaults.set(expirationDate, forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE)
-        defaults.set(userSub, forKey: Constants.USER_DEFAULTS_KEY_SUB)
+        defaults.updateUserId(value: userAttributes["sub"] ?? "")
+        defaults.updateIdToken(value: idToken.tokenString ?? "")
+        defaults.updateAccessToken(value: accessToken.tokenString ?? "")
+        defaults.updateEmail(value: userAttributes["email"] ?? "")
+        defaults.updateFirstName(value: userAttributes["given_name"] ?? "")
+        defaults.updateLastName(value: userAttributes["family_name"] ?? "")
+        defaults.updateBirthdate(value: userAttributes["birthdate"] ?? "")
+        defaults.updateExpirationDate(value: expirationDate)
         
         DispatchQueue.main.async {
             self.isAuthenticated = true
+        }
+    }
+    
+    func updateUser(key: String, value: String) {
+        let defaults = UserDefaults.standard
+        switch (key) {
+        case Constants.USER_DEFAULTS_KEY_SUB:
+            defaults.updateUserId(value: value)
+        case Constants.USER_DEFAULTS_KEY_ID_TOKEN:
+            defaults.updateIdToken(value: value)
+        case Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN:
+            defaults.updateAccessToken(value: value)
+        case Constants.USER_DEFAULTS_KEY_USERNAME:
+            defaults.updateEmail(value: value)
+        case Constants.USER_DEFAULTS_KEY_FIRSTNAME:
+            defaults.updateFirstName(value: value)
+        case Constants.USER_DEFAULTS_KEY_LASTNAME:
+            defaults.updateLastName(value: value)
+        case Constants.USER_DEFAULTS_KEY_BIRTHDATE:
+            defaults.updateBirthdate(value: value)
+        case Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE:
+            defaults.updateExpirationDate(value: value)
+        default:
+            break
         }
     }
 
@@ -113,11 +158,7 @@ class UserRepo: ObservableObject {
             self.isAuthenticated = false
         }
         let defaults = UserDefaults.standard
-        defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_ID_TOKEN)
-        defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_ACCESS_TOKEN)
-        defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_USERNAME)
-        defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE)
-        defaults.removeObject(forKey: Constants.USER_DEFAULTS_KEY_SUB)
+        defaults.removeValues()
     }
     
 }

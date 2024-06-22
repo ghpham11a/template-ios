@@ -35,7 +35,7 @@ struct PublicProfileScreen: View {
                 }
         } else {
             ScrollView {
-                AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userSub ?? ""))) { phase in
+                AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userId ?? ""))) { phase in
                     switch phase {
                     case .empty:
                         ProgressView()
@@ -66,7 +66,7 @@ struct PublicProfileScreen: View {
     }
     
     private func readUser() async {
-        let userSub = UserRepo.shared.userSub ?? ""
+        let userSub = UserRepo.shared.userId ?? ""
         let response = await UserRepo.shared.publicReadUser(userSub: userSub)
         switch response {
         case .success(let data):

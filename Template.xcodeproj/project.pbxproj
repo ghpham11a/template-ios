@@ -105,6 +105,7 @@
 		CEF209472C23D75200212C47 /* AdminDeleteUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */; };
 		CEF209492C24EEA300212C47 /* UpdateUserPrivateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */; };
 		CEF2094B2C26EEBD00212C47 /* CodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2094A2C26EEBD00212C47 /* CodeField.swift */; };
+		CEF2094D2C2769E300212C47 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -232,6 +233,7 @@
 		CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminDeleteUserResponse.swift; sourceTree = "<group>"; };
 		CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserPrivateResponse.swift; sourceTree = "<group>"; };
 		CEF2094A2C26EEBD00212C47 /* CodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeField.swift; sourceTree = "<group>"; };
+		CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -529,6 +531,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */,
+				CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -973,6 +976,7 @@
 				CEF209302C227F6A00212C47 /* CreateThingResponse.swift in Sources */,
 				CEF209222C1FB90500212C47 /* LoadingScreen.swift in Sources */,
 				CEF209252C21266200212C47 /* PaymentsHubScreen.swift in Sources */,
+				CEF2094D2C2769E300212C47 /* UserDefaults+Extensions.swift in Sources */,
 				CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
 				CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */,

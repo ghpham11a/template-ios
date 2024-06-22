@@ -35,7 +35,7 @@ struct EditProfileScreen: View {
                     .clipShape(.circle)
                     .listRowBackground(Color.clear)
             } else {
-                AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userSub ?? ""))) { phase in
+                AsyncImage(url: URL(string: String(format: Constants.USER_IMAGE_URL, UserRepo.shared.userId ?? ""))) { phase in
                     switch phase {
                     case .empty:
                         ProgressView()
@@ -89,17 +89,28 @@ struct EditProfileScreen: View {
             
             BottomsheetField(isExpanded: $isSchoolExpanded, isEnabled: $isSchoolEnabled, title: "Where I went to school\(schoolName != "" ? ": \(schoolName)" : "")") {
                 
-                OutlinedTextField(title: "Where I went to school",  placeholder: "", text: $schoolName)
-                LoadingButton(title: "Sign in", isLoading: $isSchoolFieldLoading, isEnabled: $isEnabledPlaceholder, action: {
-                    isSchoolFieldLoading.toggle()
-                    Task {
-                        let success = await updateSchool(schoolName: schoolName)
-                        if success {
-                            isSchoolFieldLoading = false
-                            isSchoolExpanded = false
+                VStack {
+                    OutlinedTextField(title: "Where I went to school",  placeholder: "", text: $schoolName)
+                }
+                .padding()
+                
+                Spacer()
+                
+                Divider()
+                
+                VStack {
+                    LoadingButton(title: "Save", isLoading: $isSchoolFieldLoading, isEnabled: $isEnabledPlaceholder, action: {
+                        isSchoolFieldLoading.toggle()
+                        Task {
+                            let success = await updateSchool(schoolName: schoolName)
+                            if success {
+                                isSchoolFieldLoading = false
+                                isSchoolExpanded = false
+                            }
                         }
-                    }
-                })
+                    })
+                }
+                .padding()
                 
             } onExpansionChanged: { value in
                
@@ -115,7 +126,7 @@ struct EditProfileScreen: View {
     }
     
     private func readUser() async {
-        let userSub = UserRepo.shared.userSub ?? ""
+        let userSub = UserRepo.shared.userId ?? ""
         let response = await UserRepo.shared.publicReadUser(userSub: userSub)
         switch response {
         case .success(let data):
@@ -133,7 +144,7 @@ struct EditProfileScreen: View {
     }
     
     private func executeUpdate(body: UpdateUserBody) async -> Bool {
-        let userSub = UserRepo.shared.userSub ?? ""
+        let userSub = UserRepo.shared.userId ?? ""
         let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)
         switch response {
         case .success(let data):
