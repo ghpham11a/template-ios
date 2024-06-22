@@ -13,6 +13,7 @@ struct UpdateUserBody: Codable {
     var updateLegalName: UpdateLegalName? = nil
     var updatePreferredName: UpdatePreferredName? = nil
     var updatePhoneNumber: UpdatePhoneNumber? = nil
+    var updateEmail: UpdateEmail? = nil
     
     // Profile
     var updateSchool: UpdateSchool? = nil
@@ -23,6 +24,7 @@ struct UpdateUserBody: Codable {
         case updatePreferredName = "updatePreferredName"
         case updatePhoneNumber = "updatePhoneNumber"
         case updateSchool = "updateSchool"
+        case updateEmail = "updateEmail"
     }
 }
 
@@ -69,5 +71,13 @@ struct UpdateSchool: Codable {
     
     enum CodingKeys: String, CodingKey {
         case schoolName = "schoolName"
+    }
+}
+
+struct UpdateEmail: Codable {
+    let email: String
+    
+    enum CodingKeys: String, CodingKey {
+        case email = "email"
     }
 }
