@@ -14,31 +14,43 @@ struct PersonalInfoScreen: View {
     
     @State var isLoading: Bool = false
     
+    // Legal name
     @State var isLegalNameExpanded: Bool = false
     @State var isLegalNameEnabled: Bool = true
     @State var firstName: String = ""
+    @State var firstNameField: String = ""
     @State var lastName: String = ""
+    @State var lastNameField: String = ""
     
+    // Preferred name
     @State var isPreferredNameExpanded: Bool = false
     @State var isPreferredNameEnabled: Bool = true
     @State var preferredName: String = ""
+    @State var preferredNameField: String = ""
     
+    // Phone number
     @State var isPhoneNumberExpanded: Bool = false
     @State var isPhoneNumberEnabled: Bool = true
     @State var countryCode: String = ""
+    @State var countryCodeField: String = ""
     @State var phoneNumber: String = ""
+    @State var phoneNumberField: String = ""
     @State var phoneNumberVerificationCode: [String] = ["", "", "", "", "", ""]
     
+    // Email
     @State var isEmailExpanded: Bool = false
     @State var isEmailEnabled: Bool = true
     @State var isEmailSaveEnabled: Bool = true
     @State var email: String = ""
+    @State var emailField: String = ""
     @State var emailVerificationCode: [String] = ["", "", "", "", "", ""]
     @State var isEmailVerificationCodePresented: Bool = false
     
+    // Address
     @State var isAddressExpanded: Bool = false
     @State var isAddressEnabled: Bool = true
     
+    // Emergency contact
     @State var isEmergencyContactExpanded: Bool = false
     @State var isEmergencyContactEnabled: Bool = true
     
@@ -67,24 +79,33 @@ struct PersonalInfoScreen: View {
                             }
                         }
                     }
+                } closedContent: {
+                    Text((firstName != "" && lastName != "") ? "\(firstName) \(lastName)" : "Not provided")
                 } onExpansionChanged: { value in
                     updateEnabledAndDisabledSections(field: "Legal name", isEnabled: value)
                 }
                 
                 ExpandableView(isExpanded: $isPreferredNameExpanded, isEnabled: $isPreferredNameEnabled, title: "Preferred first name", openedTitle: "Edit", closedTitle: "Cancel") {
+                    
                     VStack(alignment: .leading) {
-                        OutlinedTextField(title: "Preferred first name (optional)", placeholder: "", text: $preferredName)
-                        Button("Save") {
+                        OutlinedTextField(title: "Preferred first name (optional)", placeholder: "", text: $preferredNameField)
+                        
+                        LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: $isPreferredNameEnabled, action: {
                             Task {
-                                let success = await updatePreferredName(preferredName: preferredName)
+                                let success = await updatePreferredName(preferredName: preferredNameField)
                                 if success {
+                                    updateEnabledAndDisabledSections(field: "Preferred first name", isEnabled: false)
                                     isPreferredNameExpanded = false
                                 }
                             }
-                        }
+                        })
+
                     }
+                } closedContent: {
+                    Text(preferredName != "" ? preferredName : "Not provided")
                 } onExpansionChanged: { value in
                     updateEnabledAndDisabledSections(field: "Preferred first name", isEnabled: value)
+                    preferredNameField = preferredName
                 }
                 
                 ExpandableView(isExpanded: $isPhoneNumberExpanded, isEnabled: $isPhoneNumberEnabled, title: "Phone number", openedTitle: "Edit", closedTitle: "Cancel") {
@@ -94,18 +115,23 @@ struct PersonalInfoScreen: View {
                             
                         }
                     }
+                } closedContent: {
+                    Text("Bravo")
                 } onExpansionChanged: { value in
                     updateEnabledAndDisabledSections(field: "Phone number", isEnabled: value)
                 }
                 
                 ExpandableView(isExpanded: $isEmailExpanded, isEnabled: $isEmailEnabled, title: "Email", openedTitle: "Edit", closedTitle: "Cancel") {
+                    
+                    @State var emailField = email
+                    
                     VStack(alignment: .leading) {
 
-                        OutlinedTextField(title: "Email", placeholder: "", text: $email)
+                        OutlinedTextField(title: "Email", placeholder: "", text: $emailField)
                         
                         LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: $isEmailSaveEnabled, action: {
                             Task {
-                                let success = await updateEmail(email: email)
+                                let success = await updateEmail(email: emailField)
                                 if success {
                                     isEmailExpanded = false
                                     isEmailVerificationCodePresented = true
@@ -114,6 +140,8 @@ struct PersonalInfoScreen: View {
                         })
 
                     }
+                } closedContent: {
+                    Text(email != "" ? email : "Fill out your email")
                 } onExpansionChanged: { value in
                     updateEnabledAndDisabledSections(field: "Email", isEnabled: value)
                 }
@@ -188,9 +216,13 @@ struct PersonalInfoScreen: View {
         switch response {
         case .success(let data):
             firstName = UserRepo.shared.firstName ?? ""
+            firstNameField = UserRepo.shared.firstName ?? ""
             lastName = UserRepo.shared.lastName ?? ""
+            lastNameField = UserRepo.shared.lastName ?? ""
             preferredName = data.preferredName ?? ""
+            preferredNameField = data.preferredName ?? ""
             email = UserRepo.shared.username ?? ""
+            emailField = UserRepo.shared.username ?? ""
             isScreenLoading = false
         case .failure(_):
             isScreenLoading = false
@@ -202,6 +234,10 @@ struct PersonalInfoScreen: View {
         var body = UpdateUserBody()
         body.updateLegalName = UpdateLegalName(firstName: firstName, lastName: lastName)
         let response = await executeUpdate(body: body)
+        if response {
+            self.firstName = firstName
+            self.lastName = lastName
+        }
         return response
     }
     
@@ -209,6 +245,9 @@ struct PersonalInfoScreen: View {
         var body = UpdateUserBody()
         body.updatePreferredName = UpdatePreferredName(preferredName: preferredName)
         let response = await executeUpdate(body: body)
+        if response {
+            self.preferredName = preferredNameField
+        }
         return response
     }
     
@@ -241,12 +280,21 @@ struct PersonalInfoScreen: View {
     }
     
     private func executeUpdate(body: UpdateUserBody) async -> Bool {
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
         let userSub = UserRepo.shared.userId ?? ""
         let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)
         switch response {
         case .success(let data):
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
             return true
         case .failure(let error):
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
             return false
         }
     }

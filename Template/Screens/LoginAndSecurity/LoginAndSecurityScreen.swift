@@ -59,6 +59,8 @@ struct LoginAndSecurityScreen: View {
                         }
                     }
                 }
+            } closedContent: {
+                Text("Update your password")
             } onExpansionChanged: { value in
                 
             }

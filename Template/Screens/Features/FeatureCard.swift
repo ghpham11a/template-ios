@@ -17,13 +17,14 @@ struct FeaturesCard: View {
             VStack(alignment: .leading) {
                 Text(title)
                     .foregroundStyle(.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
                     .frame(height: 8)
                 Text(description)
                     .foregroundStyle(.black)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .frame(maxWidth: .infinity)
-            .background(Color.clear)
         }
         .buttonStyle(PlainButtonStyle())
     }

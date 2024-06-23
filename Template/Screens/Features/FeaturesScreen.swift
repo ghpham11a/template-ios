@@ -56,6 +56,7 @@ struct FeaturesScreen: View {
                                 }
                             }
                         }
+                        .frame(alignment: .leading)
                     } else if selectedTab == 1 {
                         List {
                             ForEach(viewModel.oldItems, id: \.title) { feature in
@@ -64,6 +65,7 @@ struct FeaturesScreen: View {
                                 }
                             }
                         }
+                        .frame(alignment: .leading)
                     }
                 } else {
                     Button("Login Bitch") {

@@ -7,23 +7,25 @@
 
 import SwiftUI
 
-struct ExpandableView<Content: View>: View {
+struct ExpandableView<OpenedContent: View, ClosedContent: View>: View {
     
     @Binding var isExpanded: Bool
     @Binding var isEnabled: Bool
     let title: String
     let openedTitle: String
     let closedTitle: String
-    let content: Content
+    let openedContent: OpenedContent
+    let closedContent: ClosedContent
     let onExpansionChanged: ((Bool) -> Void)?
 
-    init(isExpanded: Binding<Bool>, isEnabled: Binding<Bool>, title: String, openedTitle: String, closedTitle: String, @ViewBuilder content: () -> Content, onExpansionChanged: ((Bool) -> Void)? = nil) {
+    init(isExpanded: Binding<Bool>, isEnabled: Binding<Bool>, title: String, openedTitle: String, closedTitle: String, @ViewBuilder openedContent: () -> OpenedContent, closedContent: () -> ClosedContent, onExpansionChanged: ((Bool) -> Void)? = nil) {
         self._isExpanded = isExpanded
         self._isEnabled = isEnabled
         self.title = title
         self.openedTitle = openedTitle
         self.closedTitle = closedTitle
-        self.content = content()
+        self.openedContent = openedContent()
+        self.closedContent = closedContent()
         self.onExpansionChanged = onExpansionChanged
     }
 
@@ -50,7 +52,10 @@ struct ExpandableView<Content: View>: View {
             .padding()
 
             if isExpanded {
-                content
+                openedContent
+                    .padding([.leading, .trailing, .bottom])
+            } else {
+                closedContent
                     .padding([.leading, .trailing, .bottom])
             }
             
