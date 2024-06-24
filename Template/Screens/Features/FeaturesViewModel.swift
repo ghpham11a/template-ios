@@ -22,6 +22,7 @@ class FeaturesViewModel: ObservableObject {
                 Feature(title: "Thing Introduction", description: "This is a flow that guides you through several steps one at a time", route: .thingIntro),
                 Feature(title: "Filter List", description: "List of a lot of items that can be filtered", route: .filterList),
                 Feature(title: "UIKit View", description: "A screen using UIKit", route: .uikitView),
+                Feature(title: "Map", description: "Map view with device location and the ability to search more locations", route: .mapView),
             ]
             
             self.oldItems = []

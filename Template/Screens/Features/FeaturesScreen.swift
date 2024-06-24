@@ -96,6 +96,8 @@ struct FeaturesScreen: View {
                     FilterListScreen(path: $path)
                 case .uikitView:
                     UIKitViewScreen(path: $path)
+                case .mapView:
+                    MapScreen(path: $path)
                 default:
                     SnagScreen()
                 }

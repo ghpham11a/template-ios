@@ -106,6 +106,8 @@
 		CEF209492C24EEA300212C47 /* UpdateUserPrivateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */; };
 		CEF2094B2C26EEBD00212C47 /* CodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2094A2C26EEBD00212C47 /* CodeField.swift */; };
 		CEF2094D2C2769E300212C47 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */; };
+		CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2094F2C28E2A800212C47 /* MapScreen.swift */; };
+		CEF209532C28E8ED00212C47 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209522C28E8ED00212C47 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +236,8 @@
 		CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserPrivateResponse.swift; sourceTree = "<group>"; };
 		CEF2094A2C26EEBD00212C47 /* CodeField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeField.swift; sourceTree = "<group>"; };
 		CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
+		CEF2094F2C28E2A800212C47 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
+		CEF209522C28E8ED00212C47 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +372,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF2094E2C28E29900212C47 /* Map */,
 				CEF209352C2378CC00212C47 /* UIKitView */,
 				CEF209232C21264900212C47 /* PaymentsHub */,
 				CEF209092C16380F00212C47 /* PersonalInfo */,
@@ -457,6 +462,7 @@
 				CEF208902C03E4F800212C47 /* Constants.swift */,
 				CEF208922C04A97A00212C47 /* TabBarManager.swift */,
 				CEF208B72C05674A00212C47 /* Helpers.swift */,
+				CEF209522C28E8ED00212C47 /* LocationManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -659,6 +665,14 @@
 				CEF209382C2379AE00212C47 /* UIKitViewController.swift */,
 			);
 			path = UIKitView;
+			sourceTree = "<group>";
+		};
+		CEF2094E2C28E29900212C47 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CEF2094F2C28E2A800212C47 /* MapScreen.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
@@ -952,6 +966,7 @@
 				CEF208F82C127FB300212C47 /* Routes.swift in Sources */,
 				CEF208FC2C13EDA000212C47 /* OutlinedButton.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
+				CEF209532C28E8ED00212C47 /* LocationManager.swift in Sources */,
 				CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */,
 				CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */,
 				CEF209322C227FA300212C47 /* ThingRepository.swift in Sources */,
@@ -968,6 +983,7 @@
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
+				CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */,
 				CEF209042C162AC400212C47 /* ThingTypeScreen.swift in Sources */,
 				CEF209002C14D0BF00212C47 /* Feature.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
@@ -1181,7 +1197,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Template;
+				PRODUCT_BUNDLE_IDENTIFIER = "---com.ios.ap.Template-com.ios.ap.Template";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1212,7 +1228,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Template;
+				PRODUCT_BUNDLE_IDENTIFIER = "---com.ios.ap.Template-com.ios.ap.Template";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
