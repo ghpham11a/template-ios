@@ -10,6 +10,9 @@ import MapKit
 import SwiftUI
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+    
+    static let shared = LocationManager()
+    
     private var locationManager: CLLocationManager
 
     @Published var location: CLLocation? = nil

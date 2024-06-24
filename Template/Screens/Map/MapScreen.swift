@@ -16,7 +16,7 @@ class IdentifiablePointAnnotation: MKPointAnnotation, Identifiable {
 
 struct MapScreen: View {
     
-    @StateObject var locationManager = LocationManager()
+    @StateObject var locationManager = LocationManager.shared
     @Binding var path: NavigationPath
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 40.758896, longitude: -73.985130), // Example coordinates (San Francisco)
@@ -34,6 +34,7 @@ struct MapScreen: View {
         })
             .onAppear {
                 if let userLocation = locationManager.location {
+                    print("__DEBUG lat \(userLocation.coordinate.latitude.debugDescription) lon \(userLocation.coordinate.longitude.debugDescription)")
                     region.center = userLocation.coordinate
                 }
             }
