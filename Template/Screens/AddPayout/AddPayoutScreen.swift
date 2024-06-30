@@ -18,6 +18,8 @@ struct AddPayoutScreen: View {
     
     @State var selectedCountry: String = "United States"
     @State private var showCountrySheet = false
+    @State var isLoading = false
+    @State var isContinueEnabled = true
     
     let countryList = ["United States", "India", "Isle of Man", "Australia", "Japan"]
     
@@ -68,11 +70,37 @@ struct AddPayoutScreen: View {
                 .padding()
             }
             
+            LoadingButton(title: "Continue", isLoading: $isLoading, isEnabled: $isContinueEnabled, action: {
+                Task {
+                    await onContinue()
+                }
+            })
+            
         }
         .sheet(isPresented: $showCountrySheet) {
             CountrySheet(selectedCountryCode: $selectedCountry, countryList: countryList)
         }
         .padding()
+    }
+    
+    private func onContinue() async {
+        DispatchQueue.main.async {
+            self.isLoading = true
+        }
+        
+        let body = CreatePayoutMethodRequest(route: "hosted_manual_entry", customerId: UserRepo.shared.userPrivate?.stripeCustomerId ?? "", accountId: UserRepo.shared.userPrivate?.stripeConnectedAccountId ?? "")
+        let response = await APIGatewayService.shared.privateCreatePayoutMethod(body: body)
+        switch response {
+        case .success(let data):
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            print("__DEBUG \(data.url)")
+        case .failure(let error):
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+        }
     }
 }
 

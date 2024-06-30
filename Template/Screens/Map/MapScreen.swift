@@ -54,8 +54,9 @@ struct MapScreen: View {
                         HStack {
                             Spacer()
                             Button(action: {
-                                searchContent = searchPlaceholder
-                                searchIsOpen.toggle()
+                                searchContent = ""
+                                searchPlaceholder = "Search locations"
+                                clearLocations()
                             }) {
                                 Image(systemName: "xmark.circle.fill")
                                     .foregroundColor(.gray)
@@ -65,6 +66,9 @@ struct MapScreen: View {
                         .padding(.trailing, 8)
                     }
                     .padding()
+                    .navigationBarBackButtonHidden()
+                    .navigationBarItems(leading: MapearchBackButton(isSearchOpen: $searchIsOpen, annotations: $annotations, searchContent: $searchContent, searchPlaceholder: $searchPlaceholder, searchResults: $searchResults))
+                    
                 } else {
                     Button(action: {
                         searchIsOpen.toggle()
@@ -124,6 +128,10 @@ struct MapScreen: View {
         }
     }
     
+    private func clearLocations() {
+        self.searchResults = []
+    }
+    
     private func setupDebouncer(for query: String) -> AnyCancellable {
         let publisher = Just(query)
             .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
@@ -152,6 +160,34 @@ struct MapScreen: View {
                 return
             }
             self.searchResults = response.mapItems
+        }
+    }
+}
+
+struct MapearchBackButton: View {
+    
+    @Binding var isSearchOpen: Bool
+    @Binding var annotations: [IdentifiablePointAnnotation]
+    @Binding var searchContent: String
+    @Binding var searchPlaceholder: String
+    @Binding var searchResults: [MKMapItem]
+    
+    // @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var body: some View {
+        Button(action: {
+            if !annotations.isEmpty {
+                searchContent = searchPlaceholder
+            } else {
+                searchContent = ""
+                searchPlaceholder = "Search location"
+                searchResults = []
+            }
+            isSearchOpen.toggle()
+        }) {
+            HStack {
+                Image(systemName: "xmark")
+            }
         }
     }
 }

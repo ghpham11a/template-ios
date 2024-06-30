@@ -75,4 +75,15 @@ extension APIGatewayService {
             return .failure(APIError(message: String(describing: error), code: 500))
         }
     }
+    
+    func privateCreatePayoutMethod(body: CreatePayoutMethodRequest) async -> APIResponse<CreatePayoutMethodResponse> {
+        let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payouts"
+        let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
+        do {
+            let data: CreatePayoutMethodResponse = try await NetworkManager.shared.post(urlString: url, headers: headers, body: body)
+            return .success(data)
+        } catch {
+            return .failure(APIError(message: String(describing: error), code: 500))
+        }
+    }
 }

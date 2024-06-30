@@ -115,6 +115,8 @@
 		CEF8C6BB2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6BA2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift */; };
 		CEF8C6BD2C30BF66008A6946 /* PayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6BC2C30BF66008A6946 /* PayoutMethod.swift */; };
 		CEF8C6BF2C30BF73008A6946 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */; };
+		CEF8C6C12C31EE9C008A6946 /* CreatePayoutMethodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6C02C31EE9C008A6946 /* CreatePayoutMethodRequest.swift */; };
+		CEF8C6C32C31EEAC008A6946 /* CreatePayoutMethodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6C22C31EEAC008A6946 /* CreatePayoutMethodResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -252,6 +254,8 @@
 		CEF8C6BA2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadPayoutMethodsResponse.swift; sourceTree = "<group>"; };
 		CEF8C6BC2C30BF66008A6946 /* PayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutMethod.swift; sourceTree = "<group>"; };
 		CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
+		CEF8C6C02C31EE9C008A6946 /* CreatePayoutMethodRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePayoutMethodRequest.swift; sourceTree = "<group>"; };
+		CEF8C6C22C31EEAC008A6946 /* CreatePayoutMethodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePayoutMethodResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +389,8 @@
 				CEF8C6BA2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift */,
 				CEF8C6BC2C30BF66008A6946 /* PayoutMethod.swift */,
 				CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */,
+				CEF8C6C02C31EE9C008A6946 /* CreatePayoutMethodRequest.swift */,
+				CEF8C6C22C31EEAC008A6946 /* CreatePayoutMethodResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1018,6 +1024,7 @@
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
+				CEF8C6C12C31EE9C008A6946 /* CreatePayoutMethodRequest.swift in Sources */,
 				CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */,
 				CEF209042C162AC400212C47 /* ThingTypeScreen.swift in Sources */,
 				CEF209002C14D0BF00212C47 /* Feature.swift in Sources */,
@@ -1030,6 +1037,7 @@
 				CEF209252C21266200212C47 /* PaymentsHubScreen.swift in Sources */,
 				CEF2094D2C2769E300212C47 /* UserDefaults+Extensions.swift in Sources */,
 				CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */,
+				CEF8C6C32C31EEAC008A6946 /* CreatePayoutMethodResponse.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
 				CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */,
 				CEF2092E2C2128F500212C47 /* PayoutMethodsScreen.swift in Sources */,
