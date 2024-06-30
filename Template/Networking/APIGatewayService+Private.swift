@@ -42,8 +42,8 @@ extension APIGatewayService {
         }
     }
     
-    func privateCreateSetupIntent() async -> APIResponse<CreateSetupIntentResponse> {
-        let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payments"
+    func privateCreatePaymentSetupIntent() async -> APIResponse<CreateSetupIntentResponse> {
+        let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payments/setup-intent"
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         do {
             let request = CreateSetupIntentRequest(stripeCustomerId: UserRepo.shared.userPrivate?.stripeCustomerId ?? "")

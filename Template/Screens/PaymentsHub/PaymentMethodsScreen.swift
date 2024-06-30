@@ -66,7 +66,7 @@ struct PaymentMethodsScreen: View {
         DispatchQueue.main.async {
             self.isLoading = true
         }
-        let response = await APIGatewayService.shared.privateCreateSetupIntent()
+        let response = await APIGatewayService.shared.privateCreatePaymentSetupIntent()
         switch response {
         case .success(let data):
             DispatchQueue.main.async {
