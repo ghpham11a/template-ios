@@ -8,6 +8,7 @@ target 'Template' do
   # Pods for Template
   pod 'AWSMobileClient', '~> 2.25.0'
   pod 'Stripe'
+  pod 'StripePaymentSheet'
 
   target 'TemplateTests' do
     inherit! :search_paths

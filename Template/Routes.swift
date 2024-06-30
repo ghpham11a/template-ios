@@ -32,4 +32,5 @@ enum Route: Hashable, Codable {
     case payoutMethods
     case uikitView
     case mapView
+    case addPayout
 }

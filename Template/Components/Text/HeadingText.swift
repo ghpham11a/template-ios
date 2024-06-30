@@ -13,6 +13,7 @@ struct HeadingText: View {
     
     var body: some View {
         Text(title)
+            .frame(alignment: .leading)
     }
 }
 

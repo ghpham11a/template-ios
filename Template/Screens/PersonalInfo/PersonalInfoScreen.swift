@@ -212,7 +212,7 @@ struct PersonalInfoScreen: View {
     
     private func readUser() async {
         let userSub = UserRepo.shared.userId ?? ""
-        let response = await APIGatewayService.shared.privateReadUser(userSub: userSub)
+        let response = await UserRepo.shared.privateReadUser(userSub: userSub)
         switch response {
         case .success(let data):
             firstName = UserRepo.shared.firstName ?? ""

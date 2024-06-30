@@ -16,6 +16,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         if let path = Bundle.main.path(forResource: "Properties", ofType: "plist"), let dictionary = NSDictionary(contentsOfFile: path) as? [String: Any] {
             if let stripePublishableKey = dictionary["STRIPE_API_KEY"] as? String {
                 StripeAPI.defaultPublishableKey = stripePublishableKey
+                STPAPIClient.shared.publishableKey = stripePublishableKey
             }
         }
         

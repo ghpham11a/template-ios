@@ -15,6 +15,8 @@ struct ReadUserPrivateResponse: Codable {
     var countryCode: String?
     var phoneNumber: String?
     var preferredName: String?
+    var stripeCustomerId: String?
+    var stripeConnectedAccountId: String?
 
     enum CodingKeys: String, CodingKey {
         case userId = "userId"
@@ -24,5 +26,7 @@ struct ReadUserPrivateResponse: Codable {
         case countryCode = "countryCode"
         case phoneNumber = "phoneNumber"
         case preferredName = "preferredName"
+        case stripeCustomerId = "stripeCustomerId"
+        case stripeConnectedAccountId = "stripeConnectedAccountId"
     }
 }

@@ -35,6 +35,22 @@ struct PaymentsHubScreen: View {
                 path.append(Route.payoutMethods)
             })
         }
+        .onAppear {
+            Task {
+                await readUser()
+            }
+        }
+    }
+    
+    private func readUser() async {
+        let userSub = UserRepo.shared.userId ?? ""
+        let response = await UserRepo.shared.privateReadUser(userSub: userSub)
+        switch response {
+        case .success(let data):
+            break
+        case .failure(let error):
+            break
+        }
     }
 }
 

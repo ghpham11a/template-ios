@@ -89,10 +89,28 @@ struct ProfileScreen: View {
                     YourPaymentsScreen(path: $path)
                 case .payoutMethods:
                     PayoutMethodsScreen(path: $path)
+                case .addPayout:
+                    AddPayoutScreen(path: $path)
                 default:
                     SnagScreen()
                 }
             }
+            .onAppear {
+                Task {
+                    await readUser()
+                }
+            }
+        }
+    }
+    
+    private func readUser() async {
+        let userSub = UserRepo.shared.userId ?? ""
+        let response = await UserRepo.shared.privateReadUser(userSub: userSub)
+        switch response {
+        case .success(let data):
+            break
+        case .failure(_):
+            break
         }
     }
 }

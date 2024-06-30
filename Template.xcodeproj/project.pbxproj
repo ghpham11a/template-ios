@@ -108,6 +108,13 @@
 		CEF2094D2C2769E300212C47 /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */; };
 		CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2094F2C28E2A800212C47 /* MapScreen.swift */; };
 		CEF209532C28E8ED00212C47 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF209522C28E8ED00212C47 /* LocationManager.swift */; };
+		CEF8C6B22C2E5C99008A6946 /* CreateSetupIntentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6B12C2E5C99008A6946 /* CreateSetupIntentRequest.swift */; };
+		CEF8C6B42C2E5CA8008A6946 /* CreateSetupIntentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6B32C2E5CA8008A6946 /* CreateSetupIntentResponse.swift */; };
+		CEF8C6B72C30B307008A6946 /* AddPayoutScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6B62C30B307008A6946 /* AddPayoutScreen.swift */; };
+		CEF8C6B92C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6B82C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift */; };
+		CEF8C6BB2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6BA2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift */; };
+		CEF8C6BD2C30BF66008A6946 /* PayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6BC2C30BF66008A6946 /* PayoutMethod.swift */; };
+		CEF8C6BF2C30BF73008A6946 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -238,6 +245,13 @@
 		CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		CEF2094F2C28E2A800212C47 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		CEF209522C28E8ED00212C47 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		CEF8C6B12C2E5C99008A6946 /* CreateSetupIntentRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetupIntentRequest.swift; sourceTree = "<group>"; };
+		CEF8C6B32C2E5CA8008A6946 /* CreateSetupIntentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateSetupIntentResponse.swift; sourceTree = "<group>"; };
+		CEF8C6B62C30B307008A6946 /* AddPayoutScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPayoutScreen.swift; sourceTree = "<group>"; };
+		CEF8C6B82C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadPaymentMethodsResponse.swift; sourceTree = "<group>"; };
+		CEF8C6BA2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadPayoutMethodsResponse.swift; sourceTree = "<group>"; };
+		CEF8C6BC2C30BF66008A6946 /* PayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayoutMethod.swift; sourceTree = "<group>"; };
+		CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +379,12 @@
 				CEF209442C23CA2000212C47 /* AdminEnableUserResponse.swift */,
 				CEF209462C23D75200212C47 /* AdminDeleteUserResponse.swift */,
 				CEF209482C24EEA300212C47 /* UpdateUserPrivateResponse.swift */,
+				CEF8C6B12C2E5C99008A6946 /* CreateSetupIntentRequest.swift */,
+				CEF8C6B32C2E5CA8008A6946 /* CreateSetupIntentResponse.swift */,
+				CEF8C6B82C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift */,
+				CEF8C6BA2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift */,
+				CEF8C6BC2C30BF66008A6946 /* PayoutMethod.swift */,
+				CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -372,6 +392,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CEF8C6B52C30B2F3008A6946 /* AddPayout */,
 				CEF2094E2C28E29900212C47 /* Map */,
 				CEF209352C2378CC00212C47 /* UIKitView */,
 				CEF209232C21264900212C47 /* PaymentsHub */,
@@ -675,6 +696,14 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		CEF8C6B52C30B2F3008A6946 /* AddPayout */ = {
+			isa = PBXGroup;
+			children = (
+				CEF8C6B62C30B307008A6946 /* AddPayoutScreen.swift */,
+			);
+			path = AddPayout;
+			sourceTree = "<group>";
+		};
 		DED85F0B1E994A6BF9FBA9F1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -931,7 +960,9 @@
 				CEF208D62C0D2FDE00212C47 /* PublicProfileViewModel.swift in Sources */,
 				CEF2094B2C26EEBD00212C47 /* CodeField.swift in Sources */,
 				CEF208A42C04E84900212C47 /* AuthHubViewModel.swift in Sources */,
+				CEF8C6B42C2E5CA8008A6946 /* CreateSetupIntentResponse.swift in Sources */,
 				CEF209112C1DA9BD00212C47 /* NetworkModels.swift in Sources */,
+				CEF8C6B72C30B307008A6946 /* AddPayoutScreen.swift in Sources */,
 				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
 				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
 				CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */,
@@ -941,6 +972,7 @@
 				CEF209172C1E2B2700212C47 /* BottomsheetField.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
+				CEF8C6B22C2E5C99008A6946 /* CreateSetupIntentRequest.swift in Sources */,
 				CEF2093D2C23C2E700212C47 /* APIGatewayService+Admin.swift in Sources */,
 				CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
@@ -962,6 +994,7 @@
 				CEF2092C2C2128BC00212C47 /* YourPaymentsScreen.swift in Sources */,
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
+				CEF8C6B92C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift in Sources */,
 				CEF209412C23C39100212C47 /* APIGatewayService+Public.swift in Sources */,
 				CEF208F82C127FB300212C47 /* Routes.swift in Sources */,
 				CEF208FC2C13EDA000212C47 /* OutlinedButton.swift in Sources */,
@@ -969,6 +1002,7 @@
 				CEF209532C28E8ED00212C47 /* LocationManager.swift in Sources */,
 				CEF208F02C0FD2AF00212C47 /* PasswordResetSuccessScreen.swift in Sources */,
 				CEF208CE2C0D234400212C47 /* UIImage+Extensions.swift in Sources */,
+				CEF8C6BF2C30BF73008A6946 /* PaymentMethod.swift in Sources */,
 				CEF209322C227FA300212C47 /* ThingRepository.swift in Sources */,
 				CEF209282C21275300212C47 /* HeadingText.swift in Sources */,
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
@@ -978,6 +1012,7 @@
 				CEF2091B2C1F76AC00212C47 /* ThingType.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2090F2C1CBB9200212C47 /* PhoneNumberField.swift in Sources */,
+				CEF8C6BD2C30BF66008A6946 /* PayoutMethod.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
 				CEF209192C1E432800212C47 /* ReadUserPublicResponse.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
@@ -988,6 +1023,7 @@
 				CEF209002C14D0BF00212C47 /* Feature.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
 				CEF208EB2C0EA51200212C47 /* NewPasswordScreen.swift in Sources */,
+				CEF8C6BB2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift in Sources */,
 				CEF208D42C0D2F7000212C47 /* EditProfileScreen.swift in Sources */,
 				CEF209302C227F6A00212C47 /* CreateThingResponse.swift in Sources */,
 				CEF209222C1FB90500212C47 /* LoadingScreen.swift in Sources */,
