@@ -39,6 +39,9 @@ struct MyProfileRow: View {
                     .clipShape(.circle)
                     .frame(width: 40, height: 40)
                     
+                    Spacer()
+                        .frame(width: 20)
+                    
                     VStack(alignment: .leading) {
                         Text(title)
                             .foregroundColor(.primary)
@@ -53,7 +56,7 @@ struct MyProfileRow: View {
                     Image(systemName: "chevron.right")
                         .foregroundColor(.gray)
                 }
-                .padding()
+                .padding(.vertical)
             }
             Divider()
                 .padding(.leading)

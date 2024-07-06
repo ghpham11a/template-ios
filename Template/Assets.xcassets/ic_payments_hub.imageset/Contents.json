@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_payments_hub.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

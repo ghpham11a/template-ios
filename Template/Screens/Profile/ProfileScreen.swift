@@ -32,17 +32,23 @@ struct ProfileScreen: View {
                     
                     HeadingText(title: "Settings")
                     
-                    HorizontalIconButton(iconName: "star.fill", buttonText: "Personal information", action: {
+                    HorizontalIconButton(name: "star.fill", buttonText: "Personal information", action: {
                         path.append(Route.personalInfo)
                     })
                     
-                    HorizontalIconButton(iconName: "star.fill", buttonText: "Login and security", action: {
+                    Divider()
+                    
+                    HorizontalIconButton(name: "star.fill", buttonText: "Login and security", action: {
                         path.append(Route.loginSecurity)
                     })
                     
-                    HorizontalIconButton(iconName: "star.fill", buttonText: "Payments & payouts", action: {
+                    Divider()
+                    
+                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Payments & payouts", action: {
                         path.append(Route.paymentsHub)
                     })
+                    
+                    Divider()
                     
                     LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlacholder, action: {
                         viewModel.signOut()

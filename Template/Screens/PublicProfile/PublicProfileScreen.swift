@@ -55,7 +55,7 @@ struct PublicProfileScreen: View {
                 .clipShape(.circle)
                 .frame(width: 100, height: 100)
                 
-                HorizontalIconButton(iconName: "star.fill", buttonText: "Where I went to school \(schoolName != "" ? ": \(schoolName)" : "")", action: {}, isLabelOnly: true)
+                HorizontalIconButton(name: "star.fill", buttonText: "Where I went to school \(schoolName != "" ? ": \(schoolName)" : "")", action: {}, isLabelOnly: true)
             }
             .navigationBarItems(trailing: viewModel.isEditable ? Button(action: {
                 path.append(Route.editProfile)
