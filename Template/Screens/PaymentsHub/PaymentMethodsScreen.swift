@@ -18,6 +18,9 @@ struct PaymentMethodsScreen: View {
     
     @State var paymentMethods: [PaymentMethod] = []
     
+    @State var paymentMethodId: String = ""
+    @State var showBottomSheet: Bool = false
+    
     var body: some View {
         ScrollView {
             HeadingText(title: "Payment methods")
@@ -38,12 +41,26 @@ struct PaymentMethodsScreen: View {
                                 text: "Edit",
                                 iconName: "",
                                 action: {
-                                    
+                                    paymentMethodId = paymentMethod.id ?? ""
+                                    showBottomSheet.toggle()
                                 }
                             )
                             .frame(width: 100)
                         }
                         .padding()
+                    }
+                }
+                .sheet(isPresented: $showBottomSheet) {
+                    VStack {
+                        Button("Set Default") {
+                            
+                        }
+                        Divider()
+                        Button("Remove") {
+                            Task {
+                                await deletePaymentMethod(paymentMethodId: self.paymentMethodId)
+                            }
+                        }
                     }
                 }
             }
@@ -105,7 +122,9 @@ struct PaymentMethodsScreen: View {
             self.paymentSheet?.present(from: rootViewController) { paymentResult in
                 switch paymentResult {
                 case .completed:
-                    break
+                    Task {
+                        await readPaymentMethods()
+                    }
                 case .canceled:
                     break
                 case .failed(let error):
@@ -120,6 +139,18 @@ struct PaymentMethodsScreen: View {
         switch response {
         case .success(let data):
             paymentMethods = data.paymentMethods ?? []
+        case .failure(let error):
+            break
+        }
+    }
+    
+    func deletePaymentMethod(paymentMethodId: String) async {
+        let body = DeletePaymentMethodRequest(accountId: UserRepo.shared.userPrivate?.user?.stripeAccountId , paymentMethodId: paymentMethodId)
+        let response = await APIGatewayService.shared.privateDeletePaymentMethod(body: body)
+        switch response {
+        case .success(let data):
+            self.paymentMethodId = ""
+            self.showBottomSheet = false
         case .failure(let error):
             break
         }

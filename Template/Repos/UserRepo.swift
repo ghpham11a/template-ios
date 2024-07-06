@@ -59,8 +59,8 @@ class UserRepo: ObservableObject {
     var userPrivate: ReadUserPrivateResponse? = nil
     var userPublic: ReadUserPublicResponse? = nil
     
-    func privateReadUser(userSub: String) async -> APIResponse<ReadUserPrivateResponse> {
-        if let safeUserPrivate = userPrivate {
+    func privateReadUser(userSub: String, refresh: Bool = false) async -> APIResponse<ReadUserPrivateResponse> {
+        if let safeUserPrivate = userPrivate, refresh == false {
             return .success(safeUserPrivate)
         }
         
@@ -140,10 +140,12 @@ class UserRepo: ObservableObject {
             defaults.updateAccessToken(value: value)
         case Constants.USER_DEFAULTS_KEY_USERNAME:
             defaults.updateEmail(value: value)
-        case Constants.USER_DEFAULTS_KEY_FIRSTNAME:
-            defaults.updateFirstName(value: value)
-        case Constants.USER_DEFAULTS_KEY_LASTNAME:
-            defaults.updateLastName(value: value)
+        case Constants.UserAttributes.FirstName:
+            userPrivate?.user?.firstName = value
+        case Constants.UserAttributes.LastName:
+            userPrivate?.user?.lastName = value
+        case Constants.UserAttributes.PreferredName:
+            userPrivate?.user?.preferredName = value
         case Constants.USER_DEFAULTS_KEY_BIRTHDATE:
             defaults.updateBirthdate(value: value)
         case Constants.USER_DEFAULTS_KEY_EXPIRATION_DATE:

@@ -33,4 +33,5 @@ enum Route: Hashable, Codable {
     case uikitView
     case mapView
     case addPayout
+    case addBankInfo(country: String)
 }

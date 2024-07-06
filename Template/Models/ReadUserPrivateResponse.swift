@@ -8,25 +8,11 @@
 import Foundation
 
 struct ReadUserPrivateResponse: Codable {
-    var userId: String?
-    var email: String?
-    var firstName: String?
-    var lastName: String?
-    var countryCode: String?
-    var phoneNumber: String?
-    var preferredName: String?
-    var stripeCustomerId: String?
-    var stripeConnectedAccountId: String?
+    var user: DynamoDBUser? = nil
+    var stripeAccount: StripeAccount? = nil
 
     enum CodingKeys: String, CodingKey {
-        case userId = "userId"
-        case email = "email"
-        case firstName = "firstName"
-        case lastName = "lastName"
-        case countryCode = "countryCode"
-        case phoneNumber = "phoneNumber"
-        case preferredName = "preferredName"
-        case stripeCustomerId = "stripeCustomerId"
-        case stripeConnectedAccountId = "stripeConnectedAccountId"
+        case user = "user"
+        case stripeAccount = "stripeAccount"
     }
 }

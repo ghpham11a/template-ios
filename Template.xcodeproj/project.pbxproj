@@ -10,6 +10,10 @@
 		15D3C8F3B2B1FAD393C29BA8 /* Pods_Template.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4121D4D501849EFEDE8EDD83 /* Pods_Template.framework */; };
 		400F6054E631F4F23CF11662 /* Pods_TemplateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8F88D288926250E58CF3A6 /* Pods_TemplateTests.framework */; };
 		737734696BA1600FC3275C1D /* Pods_Template_TemplateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B922F7D955101843620EB6CA /* Pods_Template_TemplateUITests.framework */; };
+		CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */; };
+		CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */; };
+		CE3F84FD2C388F0900CCE27D /* DeletePayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */; };
+		CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */; };
 		CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080C2BFADF0100212C47 /* TemplateApp.swift */; };
 		CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080E2BFADF0100212C47 /* ContentView.swift */; };
 		CEF208112BFADF0400212C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF208102BFADF0400212C47 /* Assets.xcassets */; };
@@ -117,6 +121,7 @@
 		CEF8C6BF2C30BF73008A6946 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */; };
 		CEF8C6C12C31EE9C008A6946 /* CreatePayoutMethodRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6C02C31EE9C008A6946 /* CreatePayoutMethodRequest.swift */; };
 		CEF8C6C32C31EEAC008A6946 /* CreatePayoutMethodResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6C22C31EEAC008A6946 /* CreatePayoutMethodResponse.swift */; };
+		CEF8C6C52C333919008A6946 /* AddBankInfoScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF8C6C42C333919008A6946 /* AddBankInfoScreen.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +151,10 @@
 		8D8F88D288926250E58CF3A6 /* Pods_TemplateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemplateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		977C1EF09600D4BCA5E6AA4E /* Pods-Template.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Template.release.xcconfig"; path = "Target Support Files/Pods-Template/Pods-Template.release.xcconfig"; sourceTree = "<group>"; };
 		B922F7D955101843620EB6CA /* Pods_Template_TemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Template_TemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamoDBUser.swift; sourceTree = "<group>"; };
+		CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAccount.swift; sourceTree = "<group>"; };
+		CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePayoutMethod.swift; sourceTree = "<group>"; };
+		CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePaymentMethod.swift; sourceTree = "<group>"; };
 		CEF208092BFADF0100212C47 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF2080C2BFADF0100212C47 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		CEF2080E2BFADF0100212C47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -256,6 +265,7 @@
 		CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		CEF8C6C02C31EE9C008A6946 /* CreatePayoutMethodRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePayoutMethodRequest.swift; sourceTree = "<group>"; };
 		CEF8C6C22C31EEAC008A6946 /* CreatePayoutMethodResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePayoutMethodResponse.swift; sourceTree = "<group>"; };
+		CEF8C6C42C333919008A6946 /* AddBankInfoScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBankInfoScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -391,6 +401,10 @@
 				CEF8C6BE2C30BF73008A6946 /* PaymentMethod.swift */,
 				CEF8C6C02C31EE9C008A6946 /* CreatePayoutMethodRequest.swift */,
 				CEF8C6C22C31EEAC008A6946 /* CreatePayoutMethodResponse.swift */,
+				CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */,
+				CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */,
+				CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */,
+				CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -706,6 +720,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF8C6B62C30B307008A6946 /* AddPayoutScreen.swift */,
+				CEF8C6C42C333919008A6946 /* AddBankInfoScreen.swift */,
 			);
 			path = AddPayout;
 			sourceTree = "<group>";
@@ -966,6 +981,7 @@
 				CEF208D62C0D2FDE00212C47 /* PublicProfileViewModel.swift in Sources */,
 				CEF2094B2C26EEBD00212C47 /* CodeField.swift in Sources */,
 				CEF208A42C04E84900212C47 /* AuthHubViewModel.swift in Sources */,
+				CEF8C6C52C333919008A6946 /* AddBankInfoScreen.swift in Sources */,
 				CEF8C6B42C2E5CA8008A6946 /* CreateSetupIntentResponse.swift in Sources */,
 				CEF209112C1DA9BD00212C47 /* NetworkModels.swift in Sources */,
 				CEF8C6B72C30B307008A6946 /* AddPayoutScreen.swift in Sources */,
@@ -988,6 +1004,7 @@
 				CEF208BC2C092EE800212C47 /* AdminReadUserResponse.swift in Sources */,
 				CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */,
 				CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */,
+				CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */,
 				CEF208B62C055F0E00212C47 /* AddNewUserInfoViewModel.swift in Sources */,
 				CEF209132C1DE86000212C47 /* OutlinedTextField.swift in Sources */,
 				CEF208ED2C0EA51E00212C47 /* NewPasswordViewModel.swift in Sources */,
@@ -1002,6 +1019,7 @@
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF8C6B92C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift in Sources */,
 				CEF209412C23C39100212C47 /* APIGatewayService+Public.swift in Sources */,
+				CE3F84FD2C388F0900CCE27D /* DeletePayoutMethod.swift in Sources */,
 				CEF208F82C127FB300212C47 /* Routes.swift in Sources */,
 				CEF208FC2C13EDA000212C47 /* OutlinedButton.swift in Sources */,
 				CEF208912C03E4F800212C47 /* Constants.swift in Sources */,
@@ -1021,6 +1039,7 @@
 				CEF8C6BD2C30BF66008A6946 /* PayoutMethod.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
 				CEF209192C1E432800212C47 /* ReadUserPublicResponse.swift in Sources */,
+				CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
@@ -1042,6 +1061,7 @@
 				CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */,
 				CEF2092E2C2128F500212C47 /* PayoutMethodsScreen.swift in Sources */,
 				CEF209392C2379AE00212C47 /* UIKitViewController.swift in Sources */,
+				CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */,
 				CEF209082C1630F800212C47 /* CheckboxRow.swift in Sources */,
 				CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,

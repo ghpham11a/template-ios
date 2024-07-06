@@ -91,6 +91,8 @@ struct ProfileScreen: View {
                     PayoutMethodsScreen(path: $path)
                 case .addPayout:
                     AddPayoutScreen(path: $path)
+                case .addBankInfo(let country):
+                    AddBankInfoScreen(path: $path, country: country)
                 default:
                     SnagScreen()
                 }

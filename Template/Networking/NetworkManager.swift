@@ -270,7 +270,7 @@ class NetworkManager {
         }
     }
     
-    func delete<T: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:]) async throws -> T {
+    func delete<T: Codable, Body: Codable>(urlString: String, queryParams: [String: String] = [:], headers: [String: String] = [:], body: Body) async throws -> T {
         var formattedUrl = urlString
 
         if !queryParams.isEmpty {
@@ -290,6 +290,9 @@ class NetworkManager {
 
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
+        
+        let jsonData = try JSONEncoder().encode(body)
+        request.httpBody = jsonData
 
         if !headers.isEmpty {
             let headersArray = Array(headers)

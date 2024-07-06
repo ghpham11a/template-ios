@@ -15,7 +15,7 @@ struct CodeVerificationScreen: View {
     @State private var password: String
     @State private var verificationType: String
     
-    @State private var isEnabledPlaceholder: Bool = false
+    @State private var isEnabledPlaceholder: Bool = true
     
     init(path: Binding<NavigationPath>, verificationType: String, username: String, password: String) {
         self._path = path
@@ -53,7 +53,6 @@ struct CodeVerificationScreen: View {
                         }
                 }
             }
-            .padding()
             
             Spacer()
             
@@ -90,6 +89,7 @@ struct CodeVerificationScreen: View {
             })
 
         }
+        .padding()
         .onAppear {
             focusedField = 0
         }

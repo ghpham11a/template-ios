@@ -9,6 +9,14 @@ import Foundation
 
 struct Constants {
     
+    struct UserAttributes {
+        static let UserId = "userId"
+        static let Email = "email"
+        static let FirstName = "firstName"
+        static let LastName = "lastName"
+        static let PreferredName = "preferredName"
+    }
+    
     static let USER_DEFAULTS_KEY_SUB = "sub"
     static let USER_DEFAULTS_KEY_ID_TOKEN = "id_token"
     static let USER_DEFAULTS_KEY_ACCESS_TOKEN = "access_token"

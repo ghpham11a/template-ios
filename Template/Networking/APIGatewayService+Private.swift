@@ -43,10 +43,10 @@ extension APIGatewayService {
     }
     
     func privateCreatePaymentSetupIntent() async -> APIResponse<CreateSetupIntentResponse> {
-        let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payments/setup-intent"
+        let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payments"
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         do {
-            let request = CreateSetupIntentRequest(stripeCustomerId: UserRepo.shared.userPrivate?.stripeCustomerId ?? "")
+            let request = CreateSetupIntentRequest(stripeCustomerId: UserRepo.shared.userPrivate?.user?.stripeCustomerId ?? "")
             let data: CreateSetupIntentResponse = try await NetworkManager.shared.post(urlString: url, headers: headers, body: request)
             return .success(data)
         } catch {
@@ -58,7 +58,7 @@ extension APIGatewayService {
         let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payments"
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         do {
-            let data: ReadPaymentMethodsResponse = try await NetworkManager.shared.get(urlString: url, queryParams: ["customerId": UserRepo.shared.userPrivate?.stripeCustomerId ?? ""], headers: headers)
+            let data: ReadPaymentMethodsResponse = try await NetworkManager.shared.get(urlString: url, queryParams: ["customerId": UserRepo.shared.userPrivate?.user?.stripeCustomerId ?? ""], headers: headers)
             return .success(data)
         } catch {
             return .failure(APIError(message: String(describing: error), code: 500))
@@ -69,7 +69,7 @@ extension APIGatewayService {
         let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payouts"
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         do {
-            let data: ReadPayoutMethodsResponse = try await NetworkManager.shared.get(urlString: url, queryParams: ["accountId": UserRepo.shared.userPrivate?.stripeConnectedAccountId ?? ""], headers: headers)
+            let data: ReadPayoutMethodsResponse = try await NetworkManager.shared.get(urlString: url, queryParams: ["accountId": UserRepo.shared.userPrivate?.user?.stripeAccountId ?? ""], headers: headers)
             return .success(data)
         } catch {
             return .failure(APIError(message: String(describing: error), code: 500))
@@ -81,6 +81,28 @@ extension APIGatewayService {
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         do {
             let data: CreatePayoutMethodResponse = try await NetworkManager.shared.post(urlString: url, headers: headers, body: body)
+            return .success(data)
+        } catch {
+            return .failure(APIError(message: String(describing: error), code: 500))
+        }
+    }
+    
+    func privateDeletePaymentMethod(body: DeletePaymentMethodRequest) async -> APIResponse<DeletePaymentMethodResponse> {
+        let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payments"
+        let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
+        do {
+            let data: DeletePaymentMethodResponse = try await NetworkManager.shared.delete(urlString: url, headers: headers, body: body)
+            return .success(data)
+        } catch {
+            return .failure(APIError(message: String(describing: error), code: 500))
+        }
+    }
+    
+    func privateDeletePayoutMethod(body: DeletePayoutMethodRequest) async -> APIResponse<DeletePayoutMethodResponse> {
+        let url = "\(baseURL)/private/users/\(UserRepo.shared.userId ?? "")/payouts"
+        let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
+        do {
+            let data: DeletePayoutMethodResponse = try await NetworkManager.shared.delete(urlString: url, headers: headers, body: body)
             return .success(data)
         } catch {
             return .failure(APIError(message: String(describing: error), code: 500))

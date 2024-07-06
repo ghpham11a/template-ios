@@ -75,7 +75,7 @@ extension APIGatewayService {
         let url = "\(baseURL)/admin/users/\(encodedUsername)"
         let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
         do {
-            let data: String = try await NetworkManager.shared.delete(urlString: url, headers: headers)
+            let data: String = try await NetworkManager.shared.delete(urlString: url, headers: headers, body: EmptyBody())
             return .success(data)
         } catch {
             return .failure(APIError(message: String(describing: error), code: 500))

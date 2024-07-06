@@ -36,12 +36,11 @@ class AuthHubViewModel: ObservableObject {
         switch result {
         case .success(let response):
             if response.message == Constants.AWS_COGNITO_USER_DOES_EXIST_MESSAGE {
-                return (true, .existsAndEnabled)
-//                if response.data?.enabled == true {
-//                    return (true, .existsAndEnabled)
-//                } else {
-//                    return (true, .existsAndDisabled)
-//                }
+                if response.message?.contains("exists") == true {
+                    return (true, .existsAndEnabled)
+                } else {
+                    return (true, .existsAndDisabled)
+                }
             } else {
                 return (true, .doesNotExist)
             }

@@ -219,8 +219,8 @@ struct PersonalInfoScreen: View {
             firstNameField = UserRepo.shared.firstName ?? ""
             lastName = UserRepo.shared.lastName ?? ""
             lastNameField = UserRepo.shared.lastName ?? ""
-            preferredName = data.preferredName ?? ""
-            preferredNameField = data.preferredName ?? ""
+            preferredName = data.user?.preferredName ?? ""
+            preferredNameField = data.user?.preferredName ?? ""
             email = UserRepo.shared.username ?? ""
             emailField = UserRepo.shared.username ?? ""
             isScreenLoading = false
@@ -236,7 +236,9 @@ struct PersonalInfoScreen: View {
         let response = await executeUpdate(body: body)
         if response {
             self.firstName = firstName
+            UserRepo.shared.updateUser(key: Constants.UserAttributes.FirstName, value: firstName)
             self.lastName = lastName
+            UserRepo.shared.updateUser(key: Constants.UserAttributes.LastName, value: lastName)
         }
         return response
     }
@@ -247,6 +249,7 @@ struct PersonalInfoScreen: View {
         let response = await executeUpdate(body: body)
         if response {
             self.preferredName = preferredNameField
+            UserRepo.shared.updateUser(key: Constants.UserAttributes.PreferredName, value: preferredNameField)
         }
         return response
     }

@@ -88,18 +88,18 @@ struct AddPayoutScreen: View {
             self.isLoading = true
         }
         
-        let body = CreatePayoutMethodRequest(route: "hosted_manual_entry", customerId: UserRepo.shared.userPrivate?.stripeCustomerId ?? "", accountId: UserRepo.shared.userPrivate?.stripeConnectedAccountId ?? "")
-        let response = await APIGatewayService.shared.privateCreatePayoutMethod(body: body)
-        switch response {
-        case .success(let data):
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
-            print("__DEBUG \(data.url)")
-        case .failure(let error):
-            DispatchQueue.main.async {
-                self.isLoading = false
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.isLoading = false
+            path.append(Route.addBankInfo(country: getCountryCode(country: selectedCountry)))
+        }
+    }
+    
+    func getCountryCode(country: String) -> String {
+        switch country {
+        case "United States":
+            return "US"
+        default:
+            return ""
         }
     }
 }
