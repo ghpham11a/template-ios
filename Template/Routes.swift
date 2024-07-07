@@ -34,4 +34,5 @@ enum Route: Hashable, Codable {
     case mapView
     case addPayout
     case addBankInfo(country: String)
+    case availability
 }

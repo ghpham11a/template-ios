@@ -50,6 +50,12 @@ struct ProfileScreen: View {
                     
                     Divider()
                     
+                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Availability", action: {
+                        path.append(Route.availability)
+                    })
+                    
+                    Divider()
+                    
                     LoadingButton(title: "Logout", isLoading: $viewModel.isLoading, isEnabled: $isEnabledPlacholder, action: {
                         viewModel.signOut()
                     })
@@ -99,6 +105,8 @@ struct ProfileScreen: View {
                     AddPayoutScreen(path: $path)
                 case .addBankInfo(let country):
                     AddBankInfoScreen(path: $path, country: country)
+                case .availability:
+                    AvailabilityScreen(path: $path)
                 default:
                     SnagScreen()
                 }

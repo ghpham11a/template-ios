@@ -14,6 +14,8 @@
 		CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */; };
 		CE3F84FD2C388F0900CCE27D /* DeletePayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */; };
 		CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */; };
+		CE3F85022C3A124B00CCE27D /* AvailabilityScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85012C3A124A00CCE27D /* AvailabilityScreen.swift */; };
+		CE3F85042C3A13F300CCE27D /* DayOfWeekSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85032C3A13F300CCE27D /* DayOfWeekSelector.swift */; };
 		CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080C2BFADF0100212C47 /* TemplateApp.swift */; };
 		CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080E2BFADF0100212C47 /* ContentView.swift */; };
 		CEF208112BFADF0400212C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF208102BFADF0400212C47 /* Assets.xcassets */; };
@@ -155,6 +157,8 @@
 		CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAccount.swift; sourceTree = "<group>"; };
 		CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePayoutMethod.swift; sourceTree = "<group>"; };
 		CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePaymentMethod.swift; sourceTree = "<group>"; };
+		CE3F85012C3A124A00CCE27D /* AvailabilityScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityScreen.swift; sourceTree = "<group>"; };
+		CE3F85032C3A13F300CCE27D /* DayOfWeekSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeekSelector.swift; sourceTree = "<group>"; };
 		CEF208092BFADF0100212C47 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF2080C2BFADF0100212C47 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		CEF2080E2BFADF0100212C47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -306,6 +310,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE3F85002C3A123B00CCE27D /* Availability */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F85012C3A124A00CCE27D /* AvailabilityScreen.swift */,
+			);
+			path = Availability;
+			sourceTree = "<group>";
+		};
 		CEF208002BFADF0100212C47 = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +424,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE3F85002C3A123B00CCE27D /* Availability */,
 				CEF8C6B52C30B2F3008A6946 /* AddPayout */,
 				CEF2094E2C28E29900212C47 /* Map */,
 				CEF209352C2378CC00212C47 /* UIKitView */,
@@ -676,6 +689,7 @@
 			isa = PBXGroup;
 			children = (
 				CEF209212C1FB90500212C47 /* LoadingScreen.swift */,
+				CE3F85032C3A13F300CCE27D /* DayOfWeekSelector.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -998,6 +1012,8 @@
 				CEF2093D2C23C2E700212C47 /* APIGatewayService+Admin.swift in Sources */,
 				CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
+				CE3F85042C3A13F300CCE27D /* DayOfWeekSelector.swift in Sources */,
+				CE3F85022C3A124B00CCE27D /* AvailabilityScreen.swift in Sources */,
 				CEF208E62C0EA4E000212C47 /* ResetPasswordViewModel.swift in Sources */,
 				CEF209452C23CA2000212C47 /* AdminEnableUserResponse.swift in Sources */,
 				CEF208FE2C14CDC000212C47 /* ThingBuilderScreen.swift in Sources */,
