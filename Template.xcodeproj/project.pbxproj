@@ -16,6 +16,8 @@
 		CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */; };
 		CE3F85022C3A124B00CCE27D /* AvailabilityScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85012C3A124A00CCE27D /* AvailabilityScreen.swift */; };
 		CE3F85042C3A13F300CCE27D /* DayOfWeekSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85032C3A13F300CCE27D /* DayOfWeekSelector.swift */; };
+		CE3F85062C3A1E8500CCE27D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CE3F85052C3A1E8500CCE27D /* Localizable.xcstrings */; };
+		CE3F85082C3A224D00CCE27D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85072C3A224D00CCE27D /* String+Extensions.swift */; };
 		CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080C2BFADF0100212C47 /* TemplateApp.swift */; };
 		CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080E2BFADF0100212C47 /* ContentView.swift */; };
 		CEF208112BFADF0400212C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF208102BFADF0400212C47 /* Assets.xcassets */; };
@@ -159,6 +161,8 @@
 		CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePaymentMethod.swift; sourceTree = "<group>"; };
 		CE3F85012C3A124A00CCE27D /* AvailabilityScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityScreen.swift; sourceTree = "<group>"; };
 		CE3F85032C3A13F300CCE27D /* DayOfWeekSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOfWeekSelector.swift; sourceTree = "<group>"; };
+		CE3F85052C3A1E8500CCE27D /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CE3F85072C3A224D00CCE27D /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CEF208092BFADF0100212C47 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF2080C2BFADF0100212C47 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		CEF2080E2BFADF0100212C47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -321,6 +325,7 @@
 		CEF208002BFADF0100212C47 = {
 			isa = PBXGroup;
 			children = (
+				CE3F85052C3A1E8500CCE27D /* Localizable.xcstrings */,
 				CEF2080B2BFADF0100212C47 /* Template */,
 				CEF2081C2BFADF0400212C47 /* TemplateTests */,
 				CEF208262BFADF0400212C47 /* TemplateUITests */,
@@ -592,6 +597,7 @@
 			children = (
 				CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */,
 				CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */,
+				CE3F85072C3A224D00CCE27D /* String+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -843,6 +849,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = CEF208002BFADF0100212C47;
 			productRefGroup = CEF2080A2BFADF0100212C47 /* Products */;
@@ -862,6 +869,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEF208142BFADF0400212C47 /* Preview Assets.xcassets in Resources */,
+				CE3F85062C3A1E8500CCE27D /* Localizable.xcstrings in Resources */,
 				CEF208112BFADF0400212C47 /* Assets.xcassets in Resources */,
 				CEF208852C03CE1100212C47 /* awsconfiguration.json in Resources */,
 				CEF209342C232F8D00212C47 /* Properties.plist in Resources */,
@@ -1032,6 +1040,7 @@
 				CEF209062C162AD500212C47 /* ThingDescriptionScreen.swift in Sources */,
 				CEF2092C2C2128BC00212C47 /* YourPaymentsScreen.swift in Sources */,
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
+				CE3F85082C3A224D00CCE27D /* String+Extensions.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF8C6B92C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift in Sources */,
 				CEF209412C23C39100212C47 /* APIGatewayService+Public.swift in Sources */,

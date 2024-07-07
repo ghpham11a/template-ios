@@ -1,0 +1,281 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@ ...%@ (%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ ...%2$@ (%3$@"
+          }
+        }
+      }
+    },
+    "%@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$lld"
+          }
+        }
+      }
+    },
+    "Account holder name" : {
+
+    },
+    "Account number" : {
+
+    },
+    "Alpha" : {
+
+    },
+    "Availability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Availability"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Availabilityo"
+          }
+        }
+      }
+    },
+    "AvailabilityScreen" : {
+
+    },
+    "Back" : {
+
+    },
+    "Bank Account" : {
+
+    },
+    "Billing country/region" : {
+
+    },
+    "Bravo" : {
+
+    },
+    "Confirm account number" : {
+
+    },
+    "Confirm password" : {
+
+    },
+    "Create new password" : {
+
+    },
+    "Current password" : {
+
+    },
+    "Edit" : {
+
+    },
+    "Email" : {
+
+    },
+    "Enter password" : {
+
+    },
+    "Enter your text:" : {
+
+    },
+    "Features" : {
+
+    },
+    "First name on ID" : {
+
+    },
+    "Forgot your password? " : {
+
+    },
+    "Home" : {
+
+    },
+    "How would you like to get paid?" : {
+
+    },
+    "Last name on ID" : {
+
+    },
+    "Let's add a payout methods" : {
+
+    },
+    "Login & security" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login & security"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logino & securityo"
+          }
+        }
+      }
+    },
+    "Login Bitch" : {
+
+    },
+    "Login or sign up" : {
+
+    },
+    "New password" : {
+
+    },
+    "No payment methods added" : {
+
+    },
+    "No payout methods added" : {
+
+    },
+    "Not provided" : {
+
+    },
+    "Ok" : {
+
+    },
+    "On hold" : {
+
+    },
+    "Password" : {
+
+    },
+    "Password reset was a success. Please login using your new one." : {
+
+    },
+    "Payments & payouts" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Payments & payouts"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paymentso & payoutso"
+          }
+        }
+      }
+    },
+    "Payouts will be sent in USD" : {
+
+    },
+    "Personal information" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalo informationo"
+          }
+        }
+      }
+    },
+    "Phone Number" : {
+
+    },
+    "Profile" : {
+
+    },
+    "Refresh" : {
+
+    },
+    "Remove" : {
+
+    },
+    "Reset it." : {
+
+    },
+    "Reset Password" : {
+
+    },
+    "Routing number" : {
+
+    },
+    "Save" : {
+
+    },
+    "Select Country Code" : {
+
+    },
+    "Select Profile Photo" : {
+
+    },
+    "Set Default" : {
+
+    },
+    "Sign up" : {
+
+    },
+    "Snag" : {
+
+    },
+    "Step %lld" : {
+
+    },
+    "Submit" : {
+
+    },
+    "Thing description" : {
+
+    },
+    "Thing methods" : {
+
+    },
+    "Thing type" : {
+
+    },
+    "ThingTypeScreen %lld" : {
+
+    },
+    "This is a SwiftUI Text" : {
+
+    },
+    "This is where you opened your financial account" : {
+
+    },
+    "To start, let us know where you like us to send your money" : {
+
+    },
+    "Update your password" : {
+
+    },
+    "Verify account details through Stripe" : {
+
+    },
+    "Welcome back" : {
+
+    },
+    "Word count: %lld/200" : {
+
+    }
+  },
+  "version" : "1.0"
+}

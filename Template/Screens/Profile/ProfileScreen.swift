@@ -32,25 +32,25 @@ struct ProfileScreen: View {
                     
                     HeadingText(title: "Settings")
                     
-                    HorizontalIconButton(name: "star.fill", buttonText: "Personal information", action: {
+                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Personal information".localized, action: {
                         path.append(Route.personalInfo)
                     })
                     
                     Divider()
                     
-                    HorizontalIconButton(name: "star.fill", buttonText: "Login and security", action: {
+                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Login & security".localized, action: {
                         path.append(Route.loginSecurity)
                     })
                     
                     Divider()
                     
-                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Payments & payouts", action: {
+                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Payments & payouts".localized, action: {
                         path.append(Route.paymentsHub)
                     })
                     
                     Divider()
                     
-                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Availability", action: {
+                    HorizontalIconButton(name: "ic_payments_hub", buttonText: "Availability".localized, action: {
                         path.append(Route.availability)
                     })
                     
