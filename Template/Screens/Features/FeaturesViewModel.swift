@@ -23,6 +23,8 @@ class FeaturesViewModel: ObservableObject {
                 Feature(title: "Filter List", description: "List of a lot of items that can be filtered", route: .filterList),
                 Feature(title: "UIKit View", description: "A screen using UIKit", route: .uikitView),
                 Feature(title: "Map", description: "Map view with device location and the ability to search more locations", route: .mapView),
+                Feature(title: "Tabbed List", description: "Switch between multiple lists using a tab bar at the top", route: .tabbedList),
+                Feature(title: "Send Payments", description: "Send a payment to another account via Stripe", route: .sendPaymentHub),
             ]
             
             self.oldItems = []

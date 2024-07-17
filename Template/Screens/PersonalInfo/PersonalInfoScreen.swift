@@ -110,13 +110,24 @@ struct PersonalInfoScreen: View {
                 
                 ExpandableView(isExpanded: $isPhoneNumberExpanded, isEnabled: $isPhoneNumberEnabled, title: "Phone number", openedTitle: "Edit", closedTitle: "Cancel") {
                     VStack(alignment: .leading) {
+                        
+                        PhoneNumberField(selectedCountryCode: $countryCodeField, phoneNumber: $phoneNumberField)
 
-                        Button("Save") {
-                            
-                        }
+                        LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: $isPhoneNumberEnabled, action: {
+                            Task {
+                                let success = await updatePhoneNumber(countryCode: countryCodeField, phoneNumber: phoneNumberField)
+                                if success {
+                                    isPhoneNumberExpanded = false
+                                }
+                            }
+                        })
                     }
                 } closedContent: {
-                    Text("Bravo")
+                    if phoneNumberField != "" {
+                        Text("\(phoneNumberField)")
+                    } else {
+                        Text("Update phone number")
+                    }
                 } onExpansionChanged: { value in
                     updateEnabledAndDisabledSections(field: "Phone number", isEnabled: value)
                 }
@@ -221,6 +232,16 @@ struct PersonalInfoScreen: View {
             lastNameField = UserRepo.shared.lastName ?? ""
             preferredName = data.user?.preferredName ?? ""
             preferredNameField = data.user?.preferredName ?? ""
+            
+                
+            
+            countryCode = data.user?.countryCode ?? ""
+            countryCodeField = "United States (+1)"
+            
+            
+            phoneNumber = (data.user?.phoneNumber ?? "").replacingOccurrences(of: (data.user?.countryCode ?? ""), with: "")
+            phoneNumberField = (data.user?.phoneNumber ?? "").replacingOccurrences(of: (data.user?.countryCode ?? ""), with: "")
+            
             email = UserRepo.shared.username ?? ""
             emailField = UserRepo.shared.username ?? ""
             isScreenLoading = false
@@ -257,6 +278,14 @@ struct PersonalInfoScreen: View {
     private func updateEmail(email: String) async -> Bool {
         var body = UpdateUserBody()
         body.updateEmail = UpdateEmail(email: email)
+        let response = await executeUpdate(body: body)
+        return response
+    }
+    
+    private func updatePhoneNumber(countryCode: String, phoneNumber: String) async -> Bool {
+        var body = UpdateUserBody()
+        var code = "+" + countryCode.filter({ $0.isNumber })
+        body.updatePhoneNumber = UpdatePhoneNumber(countryCode: code, phoneNumber: code + phoneNumber, username: UserRepo.shared.userPrivate?.user?.email ?? "")
         let response = await executeUpdate(body: body)
         return response
     }

@@ -10,7 +10,7 @@ import Foundation
 
 class AuthHubViewModel: ObservableObject {
     
-    @Published var username: String = "gm.pham@gmail.com"
+    @Published var username: String = "anthony.b.pham@outlook.com"
     @Published var isLoading: Bool = false
     @Published var selectedCountryCode = "United States ( +1 )"
     @Published var phoneNumber = ""

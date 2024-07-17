@@ -35,4 +35,7 @@ enum Route: Hashable, Codable {
     case addPayout
     case addBankInfo(country: String)
     case availability
+    case tabbedList
+    case sendPaymentHub
+    case paymentAmount(accountId: String)
 }

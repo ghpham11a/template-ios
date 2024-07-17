@@ -13,6 +13,8 @@ struct DynamoDBUser: Codable {
     var firstName: String? = nil
     var lastName: String? = nil
     var preferredName: String? = nil
+    var phoneNumber: String? = nil
+    var countryCode: String? = nil
     var stripeCustomerId: String? = nil
     var stripeAccountId: String? = nil
     
@@ -22,6 +24,8 @@ struct DynamoDBUser: Codable {
         case firstName = "firstName"
         case lastName = "lastName"
         case preferredName = "preferredName"
+        case phoneNumber = "phoneNumber"
+        case countryCode = "countryCode"
         case stripeCustomerId = "stripeCustomerId"
         case stripeAccountId = "stripeAccountId"
     }

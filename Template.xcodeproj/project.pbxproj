@@ -18,6 +18,17 @@
 		CE3F85042C3A13F300CCE27D /* DayOfWeekSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85032C3A13F300CCE27D /* DayOfWeekSelector.swift */; };
 		CE3F85062C3A1E8500CCE27D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CE3F85052C3A1E8500CCE27D /* Localizable.xcstrings */; };
 		CE3F85082C3A224D00CCE27D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85072C3A224D00CCE27D /* String+Extensions.swift */; };
+		CE3F850D2C3CAA0900CCE27D /* TabbedListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F850C2C3CAA0900CCE27D /* TabbedListScreen.swift */; };
+		CE5081A42C42C998000D9E73 /* SendPaymentHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081A32C42C998000D9E73 /* SendPaymentHubScreen.swift */; };
+		CE5081A62C42C9E5000D9E73 /* PaymentReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081A52C42C9E5000D9E73 /* PaymentReceiver.swift */; };
+		CE5081A82C42CA21000D9E73 /* ReadStripeAccountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081A72C42CA21000D9E73 /* ReadStripeAccountsResponse.swift */; };
+		CE5081AA2C440E67000D9E73 /* PaymentAmountScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081A92C440E66000D9E73 /* PaymentAmountScreen.swift */; };
+		CE5081AC2C440EB8000D9E73 /* Numpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081AB2C440EB8000D9E73 /* Numpad.swift */; };
+		CE5081AE2C440EFC000D9E73 /* APIGatewayService+Stripe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081AD2C440EFC000D9E73 /* APIGatewayService+Stripe.swift */; };
+		CE5081B02C440F48000D9E73 /* CreatePaymentIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081AF2C440F48000D9E73 /* CreatePaymentIntent.swift */; };
+		CE5081B22C4582C2000D9E73 /* TagList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B12C4582C2000D9E73 /* TagList.swift */; };
+		CE5081B42C45D1A2000D9E73 /* ReadProxyCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B32C45D1A2000D9E73 /* ReadProxyCalls.swift */; };
+		CE5081B62C45D1BA000D9E73 /* ProxyCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B52C45D1BA000D9E73 /* ProxyCall.swift */; };
 		CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080C2BFADF0100212C47 /* TemplateApp.swift */; };
 		CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080E2BFADF0100212C47 /* ContentView.swift */; };
 		CEF208112BFADF0400212C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF208102BFADF0400212C47 /* Assets.xcassets */; };
@@ -25,7 +36,6 @@
 		CEF2081E2BFADF0400212C47 /* TemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2081D2BFADF0400212C47 /* TemplateTests.swift */; };
 		CEF208282BFADF0400212C47 /* TemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208272BFADF0400212C47 /* TemplateUITests.swift */; };
 		CEF2082A2BFADF0400212C47 /* TemplateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208292BFADF0400212C47 /* TemplateUITestsLaunchTests.swift */; };
-		CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208362BFC1EDA00212C47 /* HomeScreen.swift */; };
 		CEF208392BFC1F0400212C47 /* FeaturesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208382BFC1F0400212C47 /* FeaturesScreen.swift */; };
 		CEF208762BFFD4D300212C47 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208752BFFD4D200212C47 /* NetworkManager.swift */; };
 		CEF208782BFFD57D00212C47 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF208772BFFD57D00212C47 /* Todo.swift */; };
@@ -164,6 +174,18 @@
 		CE3F85052C3A1E8500CCE27D /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CE3F85072C3A224D00CCE27D /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		CE3F85092C3AF22400CCE27D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CE3F850A2C3C93BF00CCE27D /* Template.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Template.entitlements; sourceTree = "<group>"; };
+		CE3F850C2C3CAA0900CCE27D /* TabbedListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedListScreen.swift; sourceTree = "<group>"; };
+		CE5081A32C42C998000D9E73 /* SendPaymentHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPaymentHubScreen.swift; sourceTree = "<group>"; };
+		CE5081A52C42C9E5000D9E73 /* PaymentReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReceiver.swift; sourceTree = "<group>"; };
+		CE5081A72C42CA21000D9E73 /* ReadStripeAccountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadStripeAccountsResponse.swift; sourceTree = "<group>"; };
+		CE5081A92C440E66000D9E73 /* PaymentAmountScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAmountScreen.swift; sourceTree = "<group>"; };
+		CE5081AB2C440EB8000D9E73 /* Numpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numpad.swift; sourceTree = "<group>"; };
+		CE5081AD2C440EFC000D9E73 /* APIGatewayService+Stripe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGatewayService+Stripe.swift"; sourceTree = "<group>"; };
+		CE5081AF2C440F48000D9E73 /* CreatePaymentIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePaymentIntent.swift; sourceTree = "<group>"; };
+		CE5081B12C4582C2000D9E73 /* TagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagList.swift; sourceTree = "<group>"; };
+		CE5081B32C45D1A2000D9E73 /* ReadProxyCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadProxyCalls.swift; sourceTree = "<group>"; };
+		CE5081B52C45D1BA000D9E73 /* ProxyCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyCall.swift; sourceTree = "<group>"; };
 		CEF208092BFADF0100212C47 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF2080C2BFADF0100212C47 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		CEF2080E2BFADF0100212C47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,7 +196,6 @@
 		CEF208232BFADF0400212C47 /* TemplateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TemplateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF208272BFADF0400212C47 /* TemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateUITests.swift; sourceTree = "<group>"; };
 		CEF208292BFADF0400212C47 /* TemplateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		CEF208362BFC1EDA00212C47 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		CEF208382BFC1F0400212C47 /* FeaturesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturesScreen.swift; sourceTree = "<group>"; };
 		CEF208752BFFD4D200212C47 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		CEF208772BFFD57D00212C47 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
@@ -323,6 +344,23 @@
 			path = Availability;
 			sourceTree = "<group>";
 		};
+		CE3F850B2C3CA9F700CCE27D /* TabbedList */ = {
+			isa = PBXGroup;
+			children = (
+				CE3F850C2C3CAA0900CCE27D /* TabbedListScreen.swift */,
+			);
+			path = TabbedList;
+			sourceTree = "<group>";
+		};
+		CE5081A22C42C989000D9E73 /* SendPaymentHub */ = {
+			isa = PBXGroup;
+			children = (
+				CE5081A32C42C998000D9E73 /* SendPaymentHubScreen.swift */,
+				CE5081A92C440E66000D9E73 /* PaymentAmountScreen.swift */,
+			);
+			path = SendPaymentHub;
+			sourceTree = "<group>";
+		};
 		CEF208002BFADF0100212C47 = {
 			isa = PBXGroup;
 			children = (
@@ -349,6 +387,7 @@
 		CEF2080B2BFADF0100212C47 /* Template */ = {
 			isa = PBXGroup;
 			children = (
+				CE3F850A2C3C93BF00CCE27D /* Template.entitlements */,
 				CE3F85092C3AF22400CCE27D /* Info.plist */,
 				CEF208CC2C0D233200212C47 /* Extensions */,
 				CEF208972C04DBC100212C47 /* Components */,
@@ -424,6 +463,11 @@
 				CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */,
 				CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */,
 				CE3F84FE2C388F1500CCE27D /* DeletePaymentMethod.swift */,
+				CE5081A52C42C9E5000D9E73 /* PaymentReceiver.swift */,
+				CE5081A72C42CA21000D9E73 /* ReadStripeAccountsResponse.swift */,
+				CE5081AF2C440F48000D9E73 /* CreatePaymentIntent.swift */,
+				CE5081B32C45D1A2000D9E73 /* ReadProxyCalls.swift */,
+				CE5081B52C45D1BA000D9E73 /* ProxyCall.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -431,6 +475,8 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE5081A22C42C989000D9E73 /* SendPaymentHub */,
+				CE3F850B2C3CA9F700CCE27D /* TabbedList */,
 				CE3F85002C3A123B00CCE27D /* Availability */,
 				CEF8C6B52C30B2F3008A6946 /* AddPayout */,
 				CEF2094E2C28E29900212C47 /* Map */,
@@ -452,17 +498,8 @@
 				CEF2088C2C03E3B400212C47 /* AuthHub */,
 				CEF2087F2C00D6F200212C47 /* Profile */,
 				CEF208732BFFD4B000212C47 /* Features */,
-				CEF208722BFFD4AB00212C47 /* Home */,
 			);
 			path = Screens;
-			sourceTree = "<group>";
-		};
-		CEF208722BFFD4AB00212C47 /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				CEF208362BFC1EDA00212C47 /* HomeScreen.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		CEF208732BFFD4B000212C47 /* Features */ = {
@@ -483,6 +520,7 @@
 				CEF2093C2C23C2E700212C47 /* APIGatewayService+Admin.swift */,
 				CEF2093E2C23C34500212C47 /* APIGatewayService+Private.swift */,
 				CEF209402C23C39100212C47 /* APIGatewayService+Public.swift */,
+				CE5081AD2C440EFC000D9E73 /* APIGatewayService+Stripe.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -667,6 +705,7 @@
 				CEF209122C1DE86000212C47 /* OutlinedTextField.swift */,
 				CEF209162C1E2B2600212C47 /* BottomsheetField.swift */,
 				CEF2094A2C26EEBD00212C47 /* CodeField.swift */,
+				CE5081AB2C440EB8000D9E73 /* Numpad.swift */,
 			);
 			path = Inputs;
 			sourceTree = "<group>";
@@ -698,6 +737,7 @@
 			children = (
 				CEF209212C1FB90500212C47 /* LoadingScreen.swift */,
 				CE3F85032C3A13F300CCE27D /* DayOfWeekSelector.swift */,
+				CE5081B12C4582C2000D9E73 /* TagList.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -1013,7 +1053,9 @@
 				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
 				CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */,
 				CEF208E42C0EA4D400212C47 /* ResetPasswordScreen.swift in Sources */,
+				CE5081B42C45D1A2000D9E73 /* ReadProxyCalls.swift in Sources */,
 				CEF208E82C0EA4F100212C47 /* LoginAndSecurityViewModel.swift in Sources */,
+				CE5081A42C42C998000D9E73 /* SendPaymentHubScreen.swift in Sources */,
 				CEF2092A2C21289800212C47 /* PaymentMethodsScreen.swift in Sources */,
 				CEF209172C1E2B2700212C47 /* BottomsheetField.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
@@ -1021,8 +1063,10 @@
 				CEF8C6B22C2E5C99008A6946 /* CreateSetupIntentRequest.swift in Sources */,
 				CEF2093D2C23C2E700212C47 /* APIGatewayService+Admin.swift in Sources */,
 				CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */,
+				CE5081B02C440F48000D9E73 /* CreatePaymentIntent.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
 				CE3F85042C3A13F300CCE27D /* DayOfWeekSelector.swift in Sources */,
+				CE5081AE2C440EFC000D9E73 /* APIGatewayService+Stripe.swift in Sources */,
 				CE3F85022C3A124B00CCE27D /* AvailabilityScreen.swift in Sources */,
 				CEF208E62C0EA4E000212C47 /* ResetPasswordViewModel.swift in Sources */,
 				CEF209452C23CA2000212C47 /* AdminEnableUserResponse.swift in Sources */,
@@ -1043,6 +1087,7 @@
 				CEF2092C2C2128BC00212C47 /* YourPaymentsScreen.swift in Sources */,
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CE3F85082C3A224D00CCE27D /* String+Extensions.swift in Sources */,
+				CE5081A82C42CA21000D9E73 /* ReadStripeAccountsResponse.swift in Sources */,
 				CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */,
 				CEF8C6B92C30BF1C008A6946 /* ReadPaymentMethodsResponse.swift in Sources */,
 				CEF209412C23C39100212C47 /* APIGatewayService+Public.swift in Sources */,
@@ -1059,6 +1104,7 @@
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
 				CEF2090D2C16995600212C47 /* ReadUserPrivateResponse.swift in Sources */,
 				CEF208DC2C0D51E000212C47 /* HorizontalIconButton.swift in Sources */,
+				CE5081B62C45D1BA000D9E73 /* ProxyCall.swift in Sources */,
 				CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */,
 				CEF2091B2C1F76AC00212C47 /* ThingType.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
@@ -1069,12 +1115,14 @@
 				CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
+				CE5081A62C42C9E5000D9E73 /* PaymentReceiver.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
 				CEF8C6C12C31EE9C008A6946 /* CreatePayoutMethodRequest.swift in Sources */,
 				CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */,
 				CEF209042C162AC400212C47 /* ThingTypeScreen.swift in Sources */,
 				CEF209002C14D0BF00212C47 /* Feature.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
+				CE5081AC2C440EB8000D9E73 /* Numpad.swift in Sources */,
 				CEF208EB2C0EA51200212C47 /* NewPasswordScreen.swift in Sources */,
 				CEF8C6BB2C30BF29008A6946 /* ReadPayoutMethodsResponse.swift in Sources */,
 				CEF208D42C0D2F7000212C47 /* EditProfileScreen.swift in Sources */,
@@ -1085,6 +1133,7 @@
 				CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */,
 				CEF8C6C32C31EEAC008A6946 /* CreatePayoutMethodResponse.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
+				CE5081AA2C440E67000D9E73 /* PaymentAmountScreen.swift in Sources */,
 				CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */,
 				CEF2092E2C2128F500212C47 /* PayoutMethodsScreen.swift in Sources */,
 				CEF209392C2379AE00212C47 /* UIKitViewController.swift in Sources */,
@@ -1105,9 +1154,10 @@
 				CEF209152C1E285200212C47 /* ThingMethods.swift in Sources */,
 				CEF208F62C127E6400212C47 /* ThingScreen.swift in Sources */,
 				CEF2091D2C1F775400212C47 /* Thing.swift in Sources */,
+				CE3F850D2C3CAA0900CCE27D /* TabbedListScreen.swift in Sources */,
 				CEF208D12C0D2F5C00212C47 /* PublicProfileScreen.swift in Sources */,
+				CE5081B22C4582C2000D9E73 /* TagList.swift in Sources */,
 				CEF209492C24EEA300212C47 /* UpdateUserPrivateResponse.swift in Sources */,
-				CEF208372BFC1EDA00212C47 /* HomeScreen.swift in Sources */,
 				CEF209472C23D75200212C47 /* AdminDeleteUserResponse.swift in Sources */,
 				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,
 			);
@@ -1275,6 +1325,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Template/Template.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Template/Preview Content\"";
@@ -1297,6 +1349,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.ap.Template;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1309,6 +1362,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Template/Template.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Template/Preview Content\"";
@@ -1331,6 +1386,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ios.ap.Template;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

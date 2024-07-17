@@ -116,6 +116,10 @@ struct EditProfileScreen: View {
                
             }
             
+            HeadingText(title: "Tags")
+            
+            TagList(tags: ["Swift", "SwiftUI", "iOS", "Apple", "Development", "UI", "Programming", "Xcode"])
+            
         }
         .background(Color.clear)
         .onAppear {

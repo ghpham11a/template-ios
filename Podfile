@@ -9,6 +9,9 @@ target 'Template' do
   pod 'AWSMobileClient', '~> 2.25.0'
   pod 'Stripe'
   pod 'StripePaymentSheet'
+  pod 'TwilioVoice'
+  pod 'TwilioConversationsClient'
+  pod 'TwilioVideo'
 
   target 'TemplateTests' do
     inherit! :search_paths

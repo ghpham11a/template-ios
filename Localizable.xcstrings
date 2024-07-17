@@ -4,6 +4,9 @@
     "" : {
 
     },
+    "%@" : {
+
+    },
     "%@ ...%@ (%@" : {
       "localizations" : {
         "en" : {
@@ -34,13 +37,16 @@
         }
       }
     },
+    "%lld" : {
+
+    },
+    "$%@" : {
+
+    },
     "Account holder name" : {
 
     },
     "Account number" : {
-
-    },
-    "Alpha" : {
 
     },
     "Availability" : {
@@ -60,6 +66,18 @@
         }
       }
     },
+    "Availability Typ 3" : {
+
+    },
+    "Availability Typ 4" : {
+
+    },
+    "Availability Type 1" : {
+
+    },
+    "Availability Type 2" : {
+
+    },
     "AvailabilityScreen" : {
 
     },
@@ -70,9 +88,6 @@
 
     },
     "Billing country/region" : {
-
-    },
-    "Bravo" : {
 
     },
     "Confirm account number" : {
@@ -106,9 +121,6 @@
 
     },
     "Forgot your password? " : {
-
-    },
-    "Home" : {
 
     },
     "How would you like to get paid?" : {
@@ -262,6 +274,9 @@
 
     },
     "To start, let us know where you like us to send your money" : {
+
+    },
+    "Update phone number" : {
 
     },
     "Update your password" : {

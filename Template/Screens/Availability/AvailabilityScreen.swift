@@ -13,6 +13,9 @@ struct AvailabilityScreen: View {
     
     @State var selectedDay: Date = Date()
     @State var days: [Date] = []
+    @State var selectedAvailabilityType: Int = -1
+    @State var showAvailabilityTypes: Bool = false
+    
     var body: some View {
         ScrollView {
             Text("AvailabilityScreen")
@@ -20,9 +23,55 @@ struct AvailabilityScreen: View {
                 selectedDay = date
             }
             Text(selectedDay.description)
+            
+            Button(action: {
+                self.showAvailabilityTypes = true
+            }) {
+                HStack {
+                    Text("\(selectedAvailabilityType)")
+                        .foregroundColor(.black)
+                    Spacer()
+                    Image(systemName: "chevron.down")
+                        .foregroundColor(.gray)
+                }
+                .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray, lineWidth: 1)
+                )
+            }
         }
         .onAppear {
             days = [getDayOfWeek("2024-07-01"), getDayOfWeek("2024-07-02"), getDayOfWeek("2024-07-03"), getDayOfWeek("2024-07-04")]
+        }
+        .sheet(isPresented: $showAvailabilityTypes) {
+            VStack{
+                Button(action: {
+                    selectedAvailabilityType = 1
+                    showAvailabilityTypes.toggle()
+                }) {
+                    Text("Availability Type 1")
+                }
+                Button(action: {
+                    selectedAvailabilityType = 2
+                    showAvailabilityTypes.toggle()
+                }) {
+                    Text("Availability Type 2")
+                }
+                Button(action: {
+                    selectedAvailabilityType = 3
+                    showAvailabilityTypes.toggle()
+                }) {
+                    Text("Availability Typ 3")
+                }
+                Button(action: {
+                    selectedAvailabilityType = 4
+                    showAvailabilityTypes.toggle()
+                }) {
+                    Text("Availability Typ 4")
+                }
+            }
+            .presentationDetents([.fraction(0.5)])
         }
     }
 

@@ -21,58 +21,21 @@ struct FeaturesScreen: View {
 
     var body: some View {
         NavigationStack(path: $path) {
-            VStack(spacing: 0) {
-                
+            VStack {
                 if userRepo.isAuthenticated {
-                    Spacer()
-                    HStack(spacing: 0) {
-                        TabButton(title: "New", isSelected: selectedTab == 0) {
-                            selectedTab = 0
-                        }
-                        .frame(width: 100)
-                        .padding(0)
-
-                        TabButton(title: "Old", isSelected: selectedTab == 1) {
-                            selectedTab = 1
-                        }
-                        .frame(width: 100)
-                        .padding(0)
-                        
-                        Spacer()
-                            .padding(0)
-                    }
-                    .padding(0)
-                    
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(.blue)
-                        .padding(.horizontal)
-
-                    if selectedTab == 0 {
-                        List {
-                            ForEach(viewModel.newItems, id: \.title) { feature in
-                                FeaturesCard(title: feature.title, description: feature.description) {
-                                    path.append(feature.route)
-                                }
+                    List {
+                        ForEach(viewModel.newItems, id: \.title) { feature in
+                            FeaturesCard(title: feature.title, description: feature.description) {
+                                path.append(feature.route)
                             }
                         }
-                        .frame(alignment: .leading)
-                    } else if selectedTab == 1 {
-                        List {
-                            ForEach(viewModel.oldItems, id: \.title) { feature in
-                                FeaturesCard(title: feature.title, description: feature.description) {
-                                    path.append(feature.route)
-                                }
-                            }
-                        }
-                        .frame(alignment: .leading)
                     }
+                    .frame(alignment: .leading)
                 } else {
                     Button("Login Bitch") {
                         path.append(Route.auth)
                     }
                 }
-                
             }
             .navigationDestination(for: Route.self) { route in
                 switch route {
@@ -98,6 +61,12 @@ struct FeaturesScreen: View {
                     UIKitViewScreen(path: $path)
                 case .mapView:
                     MapScreen(path: $path)
+                case .tabbedList:
+                    TabbedListScreen(path: $path)
+                case .sendPaymentHub:
+                    SendPaymentHubScreen(path: $path)
+                case .paymentAmount(let accountId):
+                    PaymentAmountScreen(path: $path, accountId: accountId)
                 default:
                     SnagScreen()
                 }
@@ -105,32 +74,6 @@ struct FeaturesScreen: View {
             .onAppear {
                 viewModel.fetchItems()
             }
-        }
-    }
-}
-
-struct TabButton: View {
-    let title: String
-    let isSelected: Bool
-    let action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            VStack {
-                Text(title)
-                if isSelected {
-                    Rectangle()
-                        .frame(height: 3)
-                        .foregroundColor(.blue)
-                } else {
-                    Rectangle()
-                        .frame(height: 3)
-                        .foregroundColor(.clear)
-                }
-            }
-            .padding(0)
-            .padding(.horizontal)
-            .foregroundColor(isSelected ? .blue : .gray)
         }
     }
 }

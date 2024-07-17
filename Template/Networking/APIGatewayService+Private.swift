@@ -108,4 +108,15 @@ extension APIGatewayService {
             return .failure(APIError(message: String(describing: error), code: 500))
         }
     }
+    
+    func privateReadProxyCalls(userId: String) async -> APIResponse<ReadProxyCallsResponse> {
+        let url = "\(baseURL)/proxy-calls/\(userId)"
+        let headers = NetworkManager.shared.buildAuthorizedHeaders(token: UserRepo.shared.idToken ?? "")
+        do {
+            let data: ReadProxyCallsResponse = try await NetworkManager.shared.get(urlString: url, headers: headers)
+            return .success(data)
+        } catch {
+            return .failure(APIError(message: String(describing: error), code: 500))
+        }
+    }
 }

@@ -5,6 +5,7 @@
 //  Created by Anthony Pham on 5/19/24.
 //
 
+import Combine
 import SwiftUI
 
 @main
@@ -14,7 +15,10 @@ struct TemplateApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ZStack {
+                ContentViewControllerRepresentable(appDelegate: appDelegate)
+                ContentView()
+            }
         }
     }
 }
