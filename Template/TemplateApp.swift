@@ -16,7 +16,6 @@ struct TemplateApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                ContentViewControllerRepresentable(appDelegate: appDelegate)
                 ContentView()
             }
         }

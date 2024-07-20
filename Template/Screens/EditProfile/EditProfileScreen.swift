@@ -20,6 +20,9 @@ struct EditProfileScreen: View {
     @State private var isSchoolFieldLoading = false
     
     @State private var isEnabledPlaceholder = false
+    
+    @State private var tags = ["Swift", "SwiftUI", "iOS", "Apple", "Development", "UI", "Programming", "Xcode"]
+    @State private var showTagListSheet = false
 
     init(path: Binding<NavigationPath>) {
         self._path = path
@@ -118,7 +121,13 @@ struct EditProfileScreen: View {
             
             HeadingText(title: "Tags")
             
-            TagList(tags: ["Swift", "SwiftUI", "iOS", "Apple", "Development", "UI", "Programming", "Xcode"])
+            TagList(tags: tags)
+            
+            Button(action: {
+                showTagListSheet.toggle()
+            }) {
+                Text("Edit")
+            }
             
         }
         .background(Color.clear)
@@ -126,6 +135,9 @@ struct EditProfileScreen: View {
             Task {
                 await readUser()
             }
+        }
+        .sheet(isPresented: $showTagListSheet) {
+            TagListSheet(selectedTags: $tags, tagList: ["Swift", "SwiftUI", "iOS", "Apple", "Development", "UI", "Programming", "Xcode"])
         }
     }
     
@@ -155,6 +167,49 @@ struct EditProfileScreen: View {
             return true
         case .failure(let error):
             return false
+        }
+    }
+}
+
+struct TagListSheet: View {
+    @Binding var selectedTags: [String]
+    let tagList: [String]
+
+    var body: some View {
+        VStack {
+            ZStack {
+                HStack {
+                    Button(action: {
+                        exit()
+                    }) {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundColor(.gray)
+                            .imageScale(.large)
+                    }
+                    .padding()
+                    Spacer()
+                }
+                Text("Select Country Code")
+                    .font(.headline)
+            }
+
+
+            List(tagList, id: \.self) { code in
+                Button(action: {
+                    selectedTags.append(code)
+                }) {
+                    Text(code)
+                        .foregroundColor(.black)
+                }
+            }
+        }
+    }
+    
+    func exit() {
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            if let rootViewController = scene.windows.first(where: { $0.isKeyWindow })?.rootViewController {
+                rootViewController.dismiss(animated: true, completion: nil)
+            }
         }
     }
 }

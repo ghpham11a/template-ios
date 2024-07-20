@@ -7,48 +7,6 @@
 
 import SwiftUI
 import UIKit
-import PushKit
-
-class ContentViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        _ = LocationManager.shared
-    }
-}
-
-extension ContentViewController: PushKitEventDelegate {
-    func credentialsUpdated(credentials: PKPushCredentials) {
-
-    }
-    
-    func credentialsInvalidated() {
-
-    }
-    
-    func incomingPushReceived(payload: PKPushPayload) {
-        
-    }
-    
-    func incomingPushReceived(payload: PKPushPayload, completion: @escaping () -> Void) {
-        
-    }
-}
-
-struct ContentViewControllerRepresentable: UIViewControllerRepresentable {
-    
-    var appDelegate: AppDelegate
-    
-    func makeUIViewController(context: Context) -> UIViewController {
-        let viewController = ContentViewController()
-        appDelegate.pushKitEventDelegate = viewController
-        return viewController
-    }
-    
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-        // Update the UIViewController if needed
-    }
-}
 
 struct ContentView: View {
 
@@ -81,6 +39,9 @@ struct ContentView: View {
             }
             selectedTab = 1
             path.append(Route.mapView)
+        }
+        .onAppear {
+            _ = LocationManager.shared
         }
     }
 }

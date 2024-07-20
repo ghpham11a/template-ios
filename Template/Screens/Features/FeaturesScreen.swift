@@ -67,6 +67,12 @@ struct FeaturesScreen: View {
                     SendPaymentHubScreen(path: $path)
                 case .paymentAmount(let accountId):
                     PaymentAmountScreen(path: $path, accountId: accountId)
+                case .proxyCallHub:
+                    ProxyCallHubScreen(path: $path)
+                case .videoCallHub:
+                    VideoCallHubScreen(path: $path)
+                case .chatHub:
+                    ChatHubScreen(path: $path)
                 default:
                     SnagScreen()
                 }

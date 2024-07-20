@@ -25,6 +25,9 @@ class FeaturesViewModel: ObservableObject {
                 Feature(title: "Map", description: "Map view with device location and the ability to search more locations", route: .mapView),
                 Feature(title: "Tabbed List", description: "Switch between multiple lists using a tab bar at the top", route: .tabbedList),
                 Feature(title: "Send Payments", description: "Send a payment to another account via Stripe", route: .sendPaymentHub),
+                Feature(title: "Masked Phone Call", description: "Make a masked phone call using Twilio", route: .proxyCallHub),
+                Feature(title: "Video Calls", description: "Make a video call using Azure Communication Service", route: .videoCallHub),
+                Feature(title: "Chat", description: "Chat using Azure Communication Service", route: .chatHub),
             ]
             
             self.oldItems = []

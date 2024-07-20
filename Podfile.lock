@@ -36,23 +36,11 @@ PODS:
     - StripeUICore (= 23.13.0)
   - StripeUICore (23.13.0):
     - StripeCore (= 23.13.0)
-  - TwilioCommonLib (2.0.2)
-  - TwilioConversationsClient (4.0.2):
-    - TwilioTwilsockLib (= 2.0.2)
-  - TwilioStateMachine (2.0.2)
-  - TwilioTwilsockLib (2.0.2):
-    - TwilioCommonLib (= 2.0.2)
-    - TwilioStateMachine (= 2.0.2)
-  - TwilioVideo (5.5.0)
-  - TwilioVoice (6.8.1)
 
 DEPENDENCIES:
   - AWSMobileClient (~> 2.25.0)
   - Stripe
   - StripePaymentSheet
-  - TwilioConversationsClient
-  - TwilioVideo
-  - TwilioVoice
 
 SPEC REPOS:
   trunk:
@@ -68,12 +56,6 @@ SPEC REPOS:
     - StripePaymentSheet
     - StripePaymentsUI
     - StripeUICore
-    - TwilioCommonLib
-    - TwilioConversationsClient
-    - TwilioStateMachine
-    - TwilioTwilsockLib
-    - TwilioVideo
-    - TwilioVoice
 
 SPEC CHECKSUMS:
   AWSAuthCore: c1ea75ec283e5ac3eb042de21f7ab127ad50de11
@@ -88,13 +70,7 @@ SPEC CHECKSUMS:
   StripePaymentSheet: ca5ba76d1957a18077a5d83bff8b2aaf3f772973
   StripePaymentsUI: 58029c55b661c176c8d2e406393fff9eb46bb8ce
   StripeUICore: 171fcf535c658ee1ebd7aaf08fa6a0eceb3fb3db
-  TwilioCommonLib: cd0b6ced22d1a9a6fc9df813bd03aff113ceb91c
-  TwilioConversationsClient: 892799e4a794cc3edc112594c0c7f03fc447e776
-  TwilioStateMachine: 83d99bcb38d6133dd4f01f87464bd297f9f6c41b
-  TwilioTwilsockLib: 2ac549121dddaafdd24e36f3a44b2b14eff7f540
-  TwilioVideo: 4da3eb08eb3a318584c48de58a2cf144c02dc5fd
-  TwilioVoice: ff97d9884a575ceb9c31e9a63a7924753badeba7
 
-PODFILE CHECKSUM: 15e9134d537e03193a4204410462c8db3b071579
+PODFILE CHECKSUM: fce08f7bad1522087a1e0ce3f271e33b62ed6ec7
 
 COCOAPODS: 1.15.2

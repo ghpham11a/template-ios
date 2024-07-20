@@ -90,16 +90,25 @@
     "Billing country/region" : {
 
     },
+    "Call" : {
+
+    },
     "Confirm account number" : {
 
     },
     "Confirm password" : {
 
     },
+    "Create masked phone call" : {
+
+    },
     "Create new password" : {
 
     },
     "Current password" : {
+
+    },
+    "Delete" : {
 
     },
     "Edit" : {

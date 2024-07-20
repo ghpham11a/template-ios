@@ -38,4 +38,7 @@ enum Route: Hashable, Codable {
     case tabbedList
     case sendPaymentHub
     case paymentAmount(accountId: String)
+    case proxyCallHub
+    case videoCallHub
+    case chatHub
 }

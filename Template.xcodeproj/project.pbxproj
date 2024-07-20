@@ -29,6 +29,16 @@
 		CE5081B22C4582C2000D9E73 /* TagList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B12C4582C2000D9E73 /* TagList.swift */; };
 		CE5081B42C45D1A2000D9E73 /* ReadProxyCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B32C45D1A2000D9E73 /* ReadProxyCalls.swift */; };
 		CE5081B62C45D1BA000D9E73 /* ProxyCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B52C45D1BA000D9E73 /* ProxyCall.swift */; };
+		CE5081B92C49D9D1000D9E73 /* ProxyCallHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B82C49D9D1000D9E73 /* ProxyCallHubScreen.swift */; };
+		CE5081BC2C49DA73000D9E73 /* ReadUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081BB2C49DA73000D9E73 /* ReadUsers.swift */; };
+		CE5081BE2C4B655F000D9E73 /* CreateAZCSAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081BD2C4B655F000D9E73 /* CreateAZCSAccessToken.swift */; };
+		CE5081C02C4B65B9000D9E73 /* APIGatewayService+AZCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081BF2C4B65B9000D9E73 /* APIGatewayService+AZCS.swift */; };
+		CE5081C32C4B66F6000D9E73 /* VideoCallHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C22C4B66F6000D9E73 /* VideoCallHubScreen.swift */; };
+		CE5081C62C4B67CB000D9E73 /* ChatHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C52C4B67CB000D9E73 /* ChatHubScreen.swift */; };
+		CE5081C82C4C27A8000D9E73 /* ChatEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C72C4C27A8000D9E73 /* ChatEvent.swift */; };
+		CE5081CA2C4C27BA000D9E73 /* ProxyCallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C92C4C27BA000D9E73 /* ProxyCallEvent.swift */; };
+		CE5081CC2C4C27C6000D9E73 /* VideoCallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081CB2C4C27C5000D9E73 /* VideoCallEvent.swift */; };
+		CE5081CE2C4C2A60000D9E73 /* CreateProxyCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081CD2C4C2A60000D9E73 /* CreateProxyCall.swift */; };
 		CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080C2BFADF0100212C47 /* TemplateApp.swift */; };
 		CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080E2BFADF0100212C47 /* ContentView.swift */; };
 		CEF208112BFADF0400212C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF208102BFADF0400212C47 /* Assets.xcassets */; };
@@ -186,6 +196,16 @@
 		CE5081B12C4582C2000D9E73 /* TagList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagList.swift; sourceTree = "<group>"; };
 		CE5081B32C45D1A2000D9E73 /* ReadProxyCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadProxyCalls.swift; sourceTree = "<group>"; };
 		CE5081B52C45D1BA000D9E73 /* ProxyCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyCall.swift; sourceTree = "<group>"; };
+		CE5081B82C49D9D1000D9E73 /* ProxyCallHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyCallHubScreen.swift; sourceTree = "<group>"; };
+		CE5081BB2C49DA73000D9E73 /* ReadUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadUsers.swift; sourceTree = "<group>"; };
+		CE5081BD2C4B655F000D9E73 /* CreateAZCSAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAZCSAccessToken.swift; sourceTree = "<group>"; };
+		CE5081BF2C4B65B9000D9E73 /* APIGatewayService+AZCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGatewayService+AZCS.swift"; sourceTree = "<group>"; };
+		CE5081C22C4B66F6000D9E73 /* VideoCallHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallHubScreen.swift; sourceTree = "<group>"; };
+		CE5081C52C4B67CB000D9E73 /* ChatHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHubScreen.swift; sourceTree = "<group>"; };
+		CE5081C72C4C27A8000D9E73 /* ChatEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEvent.swift; sourceTree = "<group>"; };
+		CE5081C92C4C27BA000D9E73 /* ProxyCallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyCallEvent.swift; sourceTree = "<group>"; };
+		CE5081CB2C4C27C5000D9E73 /* VideoCallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallEvent.swift; sourceTree = "<group>"; };
+		CE5081CD2C4C2A60000D9E73 /* CreateProxyCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProxyCall.swift; sourceTree = "<group>"; };
 		CEF208092BFADF0100212C47 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF2080C2BFADF0100212C47 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		CEF2080E2BFADF0100212C47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -361,6 +381,30 @@
 			path = SendPaymentHub;
 			sourceTree = "<group>";
 		};
+		CE5081B72C49D9C2000D9E73 /* ProxyCallHub */ = {
+			isa = PBXGroup;
+			children = (
+				CE5081B82C49D9D1000D9E73 /* ProxyCallHubScreen.swift */,
+			);
+			path = ProxyCallHub;
+			sourceTree = "<group>";
+		};
+		CE5081C12C4B66E7000D9E73 /* VideoCallHub */ = {
+			isa = PBXGroup;
+			children = (
+				CE5081C22C4B66F6000D9E73 /* VideoCallHubScreen.swift */,
+			);
+			path = VideoCallHub;
+			sourceTree = "<group>";
+		};
+		CE5081C42C4B67BE000D9E73 /* ChatHub */ = {
+			isa = PBXGroup;
+			children = (
+				CE5081C52C4B67CB000D9E73 /* ChatHubScreen.swift */,
+			);
+			path = ChatHub;
+			sourceTree = "<group>";
+		};
 		CEF208002BFADF0100212C47 = {
 			isa = PBXGroup;
 			children = (
@@ -468,6 +512,12 @@
 				CE5081AF2C440F48000D9E73 /* CreatePaymentIntent.swift */,
 				CE5081B32C45D1A2000D9E73 /* ReadProxyCalls.swift */,
 				CE5081B52C45D1BA000D9E73 /* ProxyCall.swift */,
+				CE5081BB2C49DA73000D9E73 /* ReadUsers.swift */,
+				CE5081BD2C4B655F000D9E73 /* CreateAZCSAccessToken.swift */,
+				CE5081C72C4C27A8000D9E73 /* ChatEvent.swift */,
+				CE5081C92C4C27BA000D9E73 /* ProxyCallEvent.swift */,
+				CE5081CB2C4C27C5000D9E73 /* VideoCallEvent.swift */,
+				CE5081CD2C4C2A60000D9E73 /* CreateProxyCall.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -475,6 +525,9 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE5081C42C4B67BE000D9E73 /* ChatHub */,
+				CE5081C12C4B66E7000D9E73 /* VideoCallHub */,
+				CE5081B72C49D9C2000D9E73 /* ProxyCallHub */,
 				CE5081A22C42C989000D9E73 /* SendPaymentHub */,
 				CE3F850B2C3CA9F700CCE27D /* TabbedList */,
 				CE3F85002C3A123B00CCE27D /* Availability */,
@@ -521,6 +574,7 @@
 				CEF2093E2C23C34500212C47 /* APIGatewayService+Private.swift */,
 				CEF209402C23C39100212C47 /* APIGatewayService+Public.swift */,
 				CE5081AD2C440EFC000D9E73 /* APIGatewayService+Stripe.swift */,
+				CE5081BF2C4B65B9000D9E73 /* APIGatewayService+AZCS.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -1042,6 +1096,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE5081C32C4B66F6000D9E73 /* VideoCallHubScreen.swift in Sources */,
 				CEF208D62C0D2FDE00212C47 /* PublicProfileViewModel.swift in Sources */,
 				CEF2094B2C26EEBD00212C47 /* CodeField.swift in Sources */,
 				CEF208A42C04E84900212C47 /* AuthHubViewModel.swift in Sources */,
@@ -1056,6 +1111,7 @@
 				CE5081B42C45D1A2000D9E73 /* ReadProxyCalls.swift in Sources */,
 				CEF208E82C0EA4F100212C47 /* LoginAndSecurityViewModel.swift in Sources */,
 				CE5081A42C42C998000D9E73 /* SendPaymentHubScreen.swift in Sources */,
+				CE5081CC2C4C27C6000D9E73 /* VideoCallEvent.swift in Sources */,
 				CEF2092A2C21289800212C47 /* PaymentMethodsScreen.swift in Sources */,
 				CEF209172C1E2B2700212C47 /* BottomsheetField.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
@@ -1074,6 +1130,7 @@
 				CEF208BC2C092EE800212C47 /* AdminReadUserResponse.swift in Sources */,
 				CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */,
 				CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */,
+				CE5081C62C4B67CB000D9E73 /* ChatHubScreen.swift in Sources */,
 				CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */,
 				CEF208B62C055F0E00212C47 /* AddNewUserInfoViewModel.swift in Sources */,
 				CEF209132C1DE86000212C47 /* OutlinedTextField.swift in Sources */,
@@ -1082,6 +1139,7 @@
 				CEF209372C2378F900212C47 /* UIKitViewScreen.swift in Sources */,
 				CEF208B42C055EFF00212C47 /* EnterPasswordViewModel.swift in Sources */,
 				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
+				CE5081C02C4B65B9000D9E73 /* APIGatewayService+AZCS.swift in Sources */,
 				CEF2090B2C16381F00212C47 /* PersonalInfoScreen.swift in Sources */,
 				CEF209062C162AD500212C47 /* ThingDescriptionScreen.swift in Sources */,
 				CEF2092C2C2128BC00212C47 /* YourPaymentsScreen.swift in Sources */,
@@ -1103,9 +1161,11 @@
 				CEF209282C21275300212C47 /* HeadingText.swift in Sources */,
 				CEF2089D2C04DE1B00212C47 /* AddNewUserInfoScreen.swift in Sources */,
 				CEF2090D2C16995600212C47 /* ReadUserPrivateResponse.swift in Sources */,
+				CE5081C82C4C27A8000D9E73 /* ChatEvent.swift in Sources */,
 				CEF208DC2C0D51E000212C47 /* HorizontalIconButton.swift in Sources */,
 				CE5081B62C45D1BA000D9E73 /* ProxyCall.swift in Sources */,
 				CEF208BA2C0577AF00212C47 /* ProfileViewModel.swift in Sources */,
+				CE5081BC2C49DA73000D9E73 /* ReadUsers.swift in Sources */,
 				CEF2091B2C1F76AC00212C47 /* ThingType.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
 				CEF2090F2C1CBB9200212C47 /* PhoneNumberField.swift in Sources */,
@@ -1117,8 +1177,10 @@
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
 				CE5081A62C42C9E5000D9E73 /* PaymentReceiver.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
+				CE5081B92C49D9D1000D9E73 /* ProxyCallHubScreen.swift in Sources */,
 				CEF8C6C12C31EE9C008A6946 /* CreatePayoutMethodRequest.swift in Sources */,
 				CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */,
+				CE5081CA2C4C27BA000D9E73 /* ProxyCallEvent.swift in Sources */,
 				CEF209042C162AC400212C47 /* ThingTypeScreen.swift in Sources */,
 				CEF209002C14D0BF00212C47 /* Feature.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
@@ -1130,7 +1192,9 @@
 				CEF209222C1FB90500212C47 /* LoadingScreen.swift in Sources */,
 				CEF209252C21266200212C47 /* PaymentsHubScreen.swift in Sources */,
 				CEF2094D2C2769E300212C47 /* UserDefaults+Extensions.swift in Sources */,
+				CE5081BE2C4B655F000D9E73 /* CreateAZCSAccessToken.swift in Sources */,
 				CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */,
+				CE5081CE2C4C2A60000D9E73 /* CreateProxyCall.swift in Sources */,
 				CEF8C6C32C31EEAC008A6946 /* CreatePayoutMethodResponse.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
 				CE5081AA2C440E67000D9E73 /* PaymentAmountScreen.swift in Sources */,

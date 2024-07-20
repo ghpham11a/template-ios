@@ -90,6 +90,21 @@ class UserRepo: ObservableObject {
         }
     }
     
+    func createAZCSAccessToken(refresh: Bool) async -> APIResponse<CreateAZCSAccessTokenResponse> {
+        
+        if let safeUserPrivate = userPrivate, refresh == false {
+            return .success(CreateAZCSAccessTokenResponse())
+        }
+    
+        let response = await APIGatewayService.shared.azcsCreateAccessToken()
+        switch response {
+        case .success(let data):
+            return .success(data)
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
+    
     func isLoggedIn() -> Bool {
         
         let defaults = UserDefaults.standard
