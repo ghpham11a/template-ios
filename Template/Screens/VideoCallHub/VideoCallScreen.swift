@@ -22,6 +22,7 @@ enum CreateCallAgentErrors: Error {
 struct VideoCallScreen: View {
     
     @Binding var path: NavigationPath
+    @State var id: String
     
     private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
     private let acsToken = "<ACS_USER_ACCESS_TOKEN>"
@@ -76,9 +77,20 @@ struct VideoCallScreen: View {
             Text(callee)
         }
         .onAppear {
-            
             isSpeakerOn = userDefaults.value(forKey: "isSpeakerOn") as? Bool ?? false
             askForPermissions()
+            getAccessToken()
+        }
+    }
+    
+    func getAccessToken() {
+        if let event = EventsRepository.shared.videoCalls?.filter({ $0.id == id }).first {
+            if event.senderId == UserRepo.shared.userId, let token = event.senderToken {
+                authenticateClient(accessToken: token)
+            }
+            if event.receiverId == UserRepo.shared.userId, let token = event.receiverToken {
+                authenticateClient(accessToken: token)
+            }
         }
     }
 

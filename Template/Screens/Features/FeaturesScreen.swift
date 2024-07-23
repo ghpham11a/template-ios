@@ -76,8 +76,8 @@ struct FeaturesScreen: View {
                     ProxyCallHubScreen(path: $path)
                 case .videoCallHub:
                     VideoCallHubScreen(path: $path)
-                case .videoCall(let callee):
-                    VideoCallScreen(path: $path, callee: callee, appPubs: AppPubs())
+                case .videoCall(let id):
+                    VideoCallScreen(path: $path, id: id, appPubs: AppPubs())
                 case .chatHub:
                     ChatHubScreen(path: $path)
                 case .voiceCallHub:
