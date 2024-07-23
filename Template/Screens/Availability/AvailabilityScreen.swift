@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+struct Block {
+    var startTime: Date
+    var endTime: Date
+}
+
 struct AvailabilityScreen: View {
     
     @Binding var path: NavigationPath
@@ -16,8 +21,10 @@ struct AvailabilityScreen: View {
     @State var selectedAvailabilityType: Int = -1
     @State var showAvailabilityTypes: Bool = false
     
+    @State var blocks: [Block] = []
+    
     var body: some View {
-        ScrollView {
+        VStack {
             Text("AvailabilityScreen")
             DayOfWeekSelector(selectedDay: $selectedDay, days: $days) { date in
                 selectedDay = date
@@ -39,6 +46,18 @@ struct AvailabilityScreen: View {
                     RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.gray, lineWidth: 1)
                 )
+            }
+            ScrollView {
+                ForEach(blocks, id: \.startTime) { block in
+                    AvailabilityBlock(startTime: block.startTime, endTime: block.endTime)
+                }
+                Button(action: {
+                    if let start = Date.from("2024-07-01 13:00:00"), let end = Date.from("2024-07-01 15:00:00") {
+                        blocks.append(Block(startTime: start, endTime: end))
+                    }
+                }) {
+                    Text("Add")
+                }
             }
         }
         .onAppear {

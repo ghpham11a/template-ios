@@ -28,6 +28,10 @@ struct FeaturesScreen: View {
                             FeaturesCard(title: feature.title, description: feature.description) {
                                 path.append(feature.route)
                             }
+                            .padding(0)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 5, leading: 5, bottom: 10, trailing: 5))
                         }
                     }
                     .frame(alignment: .leading)
@@ -37,6 +41,7 @@ struct FeaturesScreen: View {
                     }
                 }
             }
+            .padding(0)
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .auth:
@@ -71,8 +76,12 @@ struct FeaturesScreen: View {
                     ProxyCallHubScreen(path: $path)
                 case .videoCallHub:
                     VideoCallHubScreen(path: $path)
+                case .videoCall(let callee):
+                    VideoCallScreen(path: $path, callee: callee, appPubs: AppPubs())
                 case .chatHub:
                     ChatHubScreen(path: $path)
+                case .voiceCallHub:
+                    VoiceCallHubScreen(path: $path)
                 default:
                     SnagScreen()
                 }

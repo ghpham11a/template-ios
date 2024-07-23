@@ -11,6 +11,9 @@ PODS:
     - AWSCognitoIdentityProvider (= 2.25.0)
     - AWSCognitoIdentityProviderASF (= 2.25.0)
     - AWSCore (= 2.25.0)
+  - AzureCommunicationCalling (2.10.0-beta.1):
+    - AzureCommunicationCommon (~> 1.0)
+  - AzureCommunicationCommon (1.2.0)
   - Stripe (23.13.0):
     - StripeApplePay (= 23.13.0)
     - StripeCore (= 23.13.0)
@@ -39,6 +42,7 @@ PODS:
 
 DEPENDENCIES:
   - AWSMobileClient (~> 2.25.0)
+  - AzureCommunicationCalling (= 2.10.0-beta.1)
   - Stripe
   - StripePaymentSheet
 
@@ -49,6 +53,8 @@ SPEC REPOS:
     - AWSCognitoIdentityProviderASF
     - AWSCore
     - AWSMobileClient
+    - AzureCommunicationCalling
+    - AzureCommunicationCommon
     - Stripe
     - StripeApplePay
     - StripeCore
@@ -63,6 +69,8 @@ SPEC CHECKSUMS:
   AWSCognitoIdentityProviderASF: d58893fe74d0db1817e77592eed30c4f5b5a2672
   AWSCore: 9c51a3004e9e91528160ea978fd0c5d92780a45e
   AWSMobileClient: b4480d4b69b1ae52a76588f74bf9c936f7600e46
+  AzureCommunicationCalling: 40d8b52b7d11ac901bcd813cde4f4fe327943007
+  AzureCommunicationCommon: 130a21be2be889f83dc4adbf994af6285f962de8
   Stripe: ee21be55cfcd4b4797486b1afaeb0d822d7ae8fd
   StripeApplePay: 70a263e288bcf4e2011cf4027a2fc0813a6f8c09
   StripeCore: 0f01d8c435d94b9e6bf937006a6144544e580c90
@@ -71,6 +79,6 @@ SPEC CHECKSUMS:
   StripePaymentsUI: 58029c55b661c176c8d2e406393fff9eb46bb8ce
   StripeUICore: 171fcf535c658ee1ebd7aaf08fa6a0eceb3fb3db
 
-PODFILE CHECKSUM: fce08f7bad1522087a1e0ce3f271e33b62ed6ec7
+PODFILE CHECKSUM: ca0c27069736b53afa7ac1872a2c521ed66a6ad6
 
 COCOAPODS: 1.15.2

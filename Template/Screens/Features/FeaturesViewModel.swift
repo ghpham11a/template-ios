@@ -28,6 +28,7 @@ class FeaturesViewModel: ObservableObject {
                 Feature(title: "Masked Phone Call", description: "Make a masked phone call using Twilio", route: .proxyCallHub),
                 Feature(title: "Video Calls", description: "Make a video call using Azure Communication Service", route: .videoCallHub),
                 Feature(title: "Chat", description: "Chat using Azure Communication Service", route: .chatHub),
+                Feature(title: "Voice Calls", description: "Make a VOIP call using Azure Communication Service", route: .voiceCallHub),
             ]
             
             self.oldItems = []

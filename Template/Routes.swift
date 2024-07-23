@@ -40,5 +40,7 @@ enum Route: Hashable, Codable {
     case paymentAmount(accountId: String)
     case proxyCallHub
     case videoCallHub
+    case videoCall(id: String)
     case chatHub
+    case voiceCallHub
 }

@@ -19,6 +19,20 @@
 		CE3F85062C3A1E8500CCE27D /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CE3F85052C3A1E8500CCE27D /* Localizable.xcstrings */; };
 		CE3F85082C3A224D00CCE27D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F85072C3A224D00CCE27D /* String+Extensions.swift */; };
 		CE3F850D2C3CAA0900CCE27D /* TabbedListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F850C2C3CAA0900CCE27D /* TabbedListScreen.swift */; };
+		CE4BB70A2C4D4BA6008BB1F5 /* VideoCallScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7092C4D4BA6008BB1F5 /* VideoCallScreen.swift */; };
+		CE4BB70D2C4D4C23008BB1F5 /* VoiceCallHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB70C2C4D4C23008BB1F5 /* VoiceCallHubScreen.swift */; };
+		CE4BB70F2C4D5F75008BB1F5 /* CallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB70E2C4D5F75008BB1F5 /* CallHandler.swift */; };
+		CE4BB7112C4D5FD0008BB1F5 /* CallKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7102C4D5FD0008BB1F5 /* CallKitHelper.swift */; };
+		CE4BB7132C4D5FF9008BB1F5 /* IncomingCallHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7122C4D5FF9008BB1F5 /* IncomingCallHandler.swift */; };
+		CE4BB7152C4D671F008BB1F5 /* JwtPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7142C4D671F008BB1F5 /* JwtPayload.swift */; };
+		CE4BB7172C4D67F2008BB1F5 /* AppPub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7162C4D67F2008BB1F5 /* AppPub.swift */; };
+		CE4BB7192C4D7E5E008BB1F5 /* AvailabilityBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7182C4D7E5E008BB1F5 /* AvailabilityBlock.swift */; };
+		CE4BB71B2C4D7F6D008BB1F5 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB71A2C4D7F6D008BB1F5 /* Date+Extensions.swift */; };
+		CE4BB71D2C4F3F93008BB1F5 /* APIGatewayService+Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB71C2C4F3F92008BB1F5 /* APIGatewayService+Events.swift */; };
+		CE4BB71F2C4F3FD2008BB1F5 /* CreateVideoCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB71E2C4F3FD2008BB1F5 /* CreateVideoCall.swift */; };
+		CE4BB7212C4F4042008BB1F5 /* ReadVideoCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7202C4F4042008BB1F5 /* ReadVideoCalls.swift */; };
+		CE4BB7232C4F405A008BB1F5 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7222C4F405A008BB1F5 /* EventsRepository.swift */; };
+		CE4BB7252C4F40BE008BB1F5 /* VideoCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4BB7242C4F40BE008BB1F5 /* VideoCall.swift */; };
 		CE5081A42C42C998000D9E73 /* SendPaymentHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081A32C42C998000D9E73 /* SendPaymentHubScreen.swift */; };
 		CE5081A62C42C9E5000D9E73 /* PaymentReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081A52C42C9E5000D9E73 /* PaymentReceiver.swift */; };
 		CE5081A82C42CA21000D9E73 /* ReadStripeAccountsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081A72C42CA21000D9E73 /* ReadStripeAccountsResponse.swift */; };
@@ -32,7 +46,6 @@
 		CE5081B92C49D9D1000D9E73 /* ProxyCallHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081B82C49D9D1000D9E73 /* ProxyCallHubScreen.swift */; };
 		CE5081BC2C49DA73000D9E73 /* ReadUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081BB2C49DA73000D9E73 /* ReadUsers.swift */; };
 		CE5081BE2C4B655F000D9E73 /* CreateAZCSAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081BD2C4B655F000D9E73 /* CreateAZCSAccessToken.swift */; };
-		CE5081C02C4B65B9000D9E73 /* APIGatewayService+AZCS.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081BF2C4B65B9000D9E73 /* APIGatewayService+AZCS.swift */; };
 		CE5081C32C4B66F6000D9E73 /* VideoCallHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C22C4B66F6000D9E73 /* VideoCallHubScreen.swift */; };
 		CE5081C62C4B67CB000D9E73 /* ChatHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C52C4B67CB000D9E73 /* ChatHubScreen.swift */; };
 		CE5081C82C4C27A8000D9E73 /* ChatEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C72C4C27A8000D9E73 /* ChatEvent.swift */; };
@@ -186,6 +199,20 @@
 		CE3F85092C3AF22400CCE27D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CE3F850A2C3C93BF00CCE27D /* Template.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Template.entitlements; sourceTree = "<group>"; };
 		CE3F850C2C3CAA0900CCE27D /* TabbedListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedListScreen.swift; sourceTree = "<group>"; };
+		CE4BB7092C4D4BA6008BB1F5 /* VideoCallScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallScreen.swift; sourceTree = "<group>"; };
+		CE4BB70C2C4D4C23008BB1F5 /* VoiceCallHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallHubScreen.swift; sourceTree = "<group>"; };
+		CE4BB70E2C4D5F75008BB1F5 /* CallHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallHandler.swift; sourceTree = "<group>"; };
+		CE4BB7102C4D5FD0008BB1F5 /* CallKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallKitHelper.swift; sourceTree = "<group>"; };
+		CE4BB7122C4D5FF9008BB1F5 /* IncomingCallHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingCallHandler.swift; sourceTree = "<group>"; };
+		CE4BB7142C4D671F008BB1F5 /* JwtPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JwtPayload.swift; sourceTree = "<group>"; };
+		CE4BB7162C4D67F2008BB1F5 /* AppPub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPub.swift; sourceTree = "<group>"; };
+		CE4BB7182C4D7E5E008BB1F5 /* AvailabilityBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilityBlock.swift; sourceTree = "<group>"; };
+		CE4BB71A2C4D7F6D008BB1F5 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		CE4BB71C2C4F3F92008BB1F5 /* APIGatewayService+Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGatewayService+Events.swift"; sourceTree = "<group>"; };
+		CE4BB71E2C4F3FD2008BB1F5 /* CreateVideoCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVideoCall.swift; sourceTree = "<group>"; };
+		CE4BB7202C4F4042008BB1F5 /* ReadVideoCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadVideoCalls.swift; sourceTree = "<group>"; };
+		CE4BB7222C4F405A008BB1F5 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
+		CE4BB7242C4F40BE008BB1F5 /* VideoCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCall.swift; sourceTree = "<group>"; };
 		CE5081A32C42C998000D9E73 /* SendPaymentHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPaymentHubScreen.swift; sourceTree = "<group>"; };
 		CE5081A52C42C9E5000D9E73 /* PaymentReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReceiver.swift; sourceTree = "<group>"; };
 		CE5081A72C42CA21000D9E73 /* ReadStripeAccountsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadStripeAccountsResponse.swift; sourceTree = "<group>"; };
@@ -199,7 +226,6 @@
 		CE5081B82C49D9D1000D9E73 /* ProxyCallHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyCallHubScreen.swift; sourceTree = "<group>"; };
 		CE5081BB2C49DA73000D9E73 /* ReadUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadUsers.swift; sourceTree = "<group>"; };
 		CE5081BD2C4B655F000D9E73 /* CreateAZCSAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAZCSAccessToken.swift; sourceTree = "<group>"; };
-		CE5081BF2C4B65B9000D9E73 /* APIGatewayService+AZCS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIGatewayService+AZCS.swift"; sourceTree = "<group>"; };
 		CE5081C22C4B66F6000D9E73 /* VideoCallHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallHubScreen.swift; sourceTree = "<group>"; };
 		CE5081C52C4B67CB000D9E73 /* ChatHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHubScreen.swift; sourceTree = "<group>"; };
 		CE5081C72C4C27A8000D9E73 /* ChatEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatEvent.swift; sourceTree = "<group>"; };
@@ -360,6 +386,7 @@
 			isa = PBXGroup;
 			children = (
 				CE3F85012C3A124A00CCE27D /* AvailabilityScreen.swift */,
+				CE4BB7182C4D7E5E008BB1F5 /* AvailabilityBlock.swift */,
 			);
 			path = Availability;
 			sourceTree = "<group>";
@@ -370,6 +397,14 @@
 				CE3F850C2C3CAA0900CCE27D /* TabbedListScreen.swift */,
 			);
 			path = TabbedList;
+			sourceTree = "<group>";
+		};
+		CE4BB70B2C4D4C12008BB1F5 /* VoiceCallHub */ = {
+			isa = PBXGroup;
+			children = (
+				CE4BB70C2C4D4C23008BB1F5 /* VoiceCallHubScreen.swift */,
+			);
+			path = VoiceCallHub;
 			sourceTree = "<group>";
 		};
 		CE5081A22C42C989000D9E73 /* SendPaymentHub */ = {
@@ -393,6 +428,10 @@
 			isa = PBXGroup;
 			children = (
 				CE5081C22C4B66F6000D9E73 /* VideoCallHubScreen.swift */,
+				CE4BB7092C4D4BA6008BB1F5 /* VideoCallScreen.swift */,
+				CE4BB70E2C4D5F75008BB1F5 /* CallHandler.swift */,
+				CE4BB7102C4D5FD0008BB1F5 /* CallKitHelper.swift */,
+				CE4BB7122C4D5FF9008BB1F5 /* IncomingCallHandler.swift */,
 			);
 			path = VideoCallHub;
 			sourceTree = "<group>";
@@ -448,6 +487,7 @@
 				CEF208862C03D97000212C47 /* AppDelegate.swift */,
 				CEF208F72C127FB300212C47 /* Routes.swift */,
 				CEF209332C232F8D00212C47 /* Properties.plist */,
+				CE4BB7162C4D67F2008BB1F5 /* AppPub.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -518,6 +558,10 @@
 				CE5081C92C4C27BA000D9E73 /* ProxyCallEvent.swift */,
 				CE5081CB2C4C27C5000D9E73 /* VideoCallEvent.swift */,
 				CE5081CD2C4C2A60000D9E73 /* CreateProxyCall.swift */,
+				CE4BB7142C4D671F008BB1F5 /* JwtPayload.swift */,
+				CE4BB71E2C4F3FD2008BB1F5 /* CreateVideoCall.swift */,
+				CE4BB7202C4F4042008BB1F5 /* ReadVideoCalls.swift */,
+				CE4BB7242C4F40BE008BB1F5 /* VideoCall.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -525,6 +569,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE4BB70B2C4D4C12008BB1F5 /* VoiceCallHub */,
 				CE5081C42C4B67BE000D9E73 /* ChatHub */,
 				CE5081C12C4B66E7000D9E73 /* VideoCallHub */,
 				CE5081B72C49D9C2000D9E73 /* ProxyCallHub */,
@@ -574,7 +619,7 @@
 				CEF2093E2C23C34500212C47 /* APIGatewayService+Private.swift */,
 				CEF209402C23C39100212C47 /* APIGatewayService+Public.swift */,
 				CE5081AD2C440EFC000D9E73 /* APIGatewayService+Stripe.swift */,
-				CE5081BF2C4B65B9000D9E73 /* APIGatewayService+AZCS.swift */,
+				CE4BB71C2C4F3F92008BB1F5 /* APIGatewayService+Events.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -585,6 +630,7 @@
 				CEF2087A2BFFD5C500212C47 /* JSONPlaceholderRepo.swift */,
 				CEF208882C03DF7600212C47 /* UserRepo.swift */,
 				CEF209312C227FA300212C47 /* ThingRepository.swift */,
+				CE4BB7222C4F405A008BB1F5 /* EventsRepository.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -692,6 +738,7 @@
 				CEF208CD2C0D234400212C47 /* UIImage+Extensions.swift */,
 				CEF2094C2C2769E200212C47 /* UserDefaults+Extensions.swift */,
 				CE3F85072C3A224D00CCE27D /* String+Extensions.swift */,
+				CE4BB71A2C4D7F6D008BB1F5 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1110,14 +1157,18 @@
 				CEF208E42C0EA4D400212C47 /* ResetPasswordScreen.swift in Sources */,
 				CE5081B42C45D1A2000D9E73 /* ReadProxyCalls.swift in Sources */,
 				CEF208E82C0EA4F100212C47 /* LoginAndSecurityViewModel.swift in Sources */,
+				CE4BB7232C4F405A008BB1F5 /* EventsRepository.swift in Sources */,
+				CE4BB70D2C4D4C23008BB1F5 /* VoiceCallHubScreen.swift in Sources */,
 				CE5081A42C42C998000D9E73 /* SendPaymentHubScreen.swift in Sources */,
 				CE5081CC2C4C27C6000D9E73 /* VideoCallEvent.swift in Sources */,
 				CEF2092A2C21289800212C47 /* PaymentMethodsScreen.swift in Sources */,
 				CEF209172C1E2B2700212C47 /* BottomsheetField.swift in Sources */,
 				CEF208832C00D70D00212C47 /* ProfileScreen.swift in Sources */,
+				CE4BB7152C4D671F008BB1F5 /* JwtPayload.swift in Sources */,
 				CEF208B22C055EF400212C47 /* CodeVerificationViewModel.swift in Sources */,
 				CEF8C6B22C2E5C99008A6946 /* CreateSetupIntentRequest.swift in Sources */,
 				CEF2093D2C23C2E700212C47 /* APIGatewayService+Admin.swift in Sources */,
+				CE4BB7192C4D7E5E008BB1F5 /* AvailabilityBlock.swift in Sources */,
 				CEF208FA2C13ECC000212C47 /* ResetLinkText.swift in Sources */,
 				CE5081B02C440F48000D9E73 /* CreatePaymentIntent.swift in Sources */,
 				CEF208892C03DF7600212C47 /* UserRepo.swift in Sources */,
@@ -1130,8 +1181,11 @@
 				CEF208BC2C092EE800212C47 /* AdminReadUserResponse.swift in Sources */,
 				CEF208F32C0FD9BC00212C47 /* ExpandableView.swift in Sources */,
 				CEF208BE2C09320900212C47 /* APIGatewayService.swift in Sources */,
+				CE4BB71B2C4D7F6D008BB1F5 /* Date+Extensions.swift in Sources */,
 				CE5081C62C4B67CB000D9E73 /* ChatHubScreen.swift in Sources */,
+				CE4BB7172C4D67F2008BB1F5 /* AppPub.swift in Sources */,
 				CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */,
+				CE4BB7212C4F4042008BB1F5 /* ReadVideoCalls.swift in Sources */,
 				CEF208B62C055F0E00212C47 /* AddNewUserInfoViewModel.swift in Sources */,
 				CEF209132C1DE86000212C47 /* OutlinedTextField.swift in Sources */,
 				CEF208ED2C0EA51E00212C47 /* NewPasswordViewModel.swift in Sources */,
@@ -1139,10 +1193,10 @@
 				CEF209372C2378F900212C47 /* UIKitViewScreen.swift in Sources */,
 				CEF208B42C055EFF00212C47 /* EnterPasswordViewModel.swift in Sources */,
 				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
-				CE5081C02C4B65B9000D9E73 /* APIGatewayService+AZCS.swift in Sources */,
 				CEF2090B2C16381F00212C47 /* PersonalInfoScreen.swift in Sources */,
 				CEF209062C162AD500212C47 /* ThingDescriptionScreen.swift in Sources */,
 				CEF2092C2C2128BC00212C47 /* YourPaymentsScreen.swift in Sources */,
+				CE4BB70A2C4D4BA6008BB1F5 /* VideoCallScreen.swift in Sources */,
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CE3F85082C3A224D00CCE27D /* String+Extensions.swift in Sources */,
 				CE5081A82C42CA21000D9E73 /* ReadStripeAccountsResponse.swift in Sources */,
@@ -1168,6 +1222,7 @@
 				CE5081BC2C49DA73000D9E73 /* ReadUsers.swift in Sources */,
 				CEF2091B2C1F76AC00212C47 /* ThingType.swift in Sources */,
 				CEF208782BFFD57D00212C47 /* Todo.swift in Sources */,
+				CE4BB71D2C4F3F93008BB1F5 /* APIGatewayService+Events.swift in Sources */,
 				CEF2090F2C1CBB9200212C47 /* PhoneNumberField.swift in Sources */,
 				CEF8C6BD2C30BF66008A6946 /* PayoutMethod.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
@@ -1178,6 +1233,7 @@
 				CE5081A62C42C9E5000D9E73 /* PaymentReceiver.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
 				CE5081B92C49D9D1000D9E73 /* ProxyCallHubScreen.swift in Sources */,
+				CE4BB71F2C4F3FD2008BB1F5 /* CreateVideoCall.swift in Sources */,
 				CEF8C6C12C31EE9C008A6946 /* CreatePayoutMethodRequest.swift in Sources */,
 				CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */,
 				CE5081CA2C4C27BA000D9E73 /* ProxyCallEvent.swift in Sources */,
@@ -1200,6 +1256,8 @@
 				CE5081AA2C440E67000D9E73 /* PaymentAmountScreen.swift in Sources */,
 				CEF2091F2C1F796600212C47 /* ThingViewModel.swift in Sources */,
 				CEF2092E2C2128F500212C47 /* PayoutMethodsScreen.swift in Sources */,
+				CE4BB7112C4D5FD0008BB1F5 /* CallKitHelper.swift in Sources */,
+				CE4BB7132C4D5FF9008BB1F5 /* IncomingCallHandler.swift in Sources */,
 				CEF209392C2379AE00212C47 /* UIKitViewController.swift in Sources */,
 				CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */,
 				CEF209082C1630F800212C47 /* CheckboxRow.swift in Sources */,
@@ -1215,6 +1273,7 @@
 				CEF2093B2C237B7900212C47 /* ThingIntroScreen.swift in Sources */,
 				CEF2089A2C04DBD700212C47 /* BackButton.swift in Sources */,
 				CEF208962C04AB4E00212C47 /* SnagScreen.swift in Sources */,
+				CE4BB7252C4F40BE008BB1F5 /* VideoCall.swift in Sources */,
 				CEF209152C1E285200212C47 /* ThingMethods.swift in Sources */,
 				CEF208F62C127E6400212C47 /* ThingScreen.swift in Sources */,
 				CEF2091D2C1F775400212C47 /* Thing.swift in Sources */,
@@ -1224,6 +1283,7 @@
 				CEF209492C24EEA300212C47 /* UpdateUserPrivateResponse.swift in Sources */,
 				CEF209472C23D75200212C47 /* AdminDeleteUserResponse.swift in Sources */,
 				CEF208DA2C0D352500212C47 /* UpdateUserBody.swift in Sources */,
+				CE4BB70F2C4D5F75008BB1F5 /* CallHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

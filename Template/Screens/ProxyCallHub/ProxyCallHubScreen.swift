@@ -47,7 +47,6 @@ struct ProxyCallHubScreen: View {
                     }
                     .padding(0)
                 }
-                
             }
         }
         .onAppear {
@@ -67,7 +66,7 @@ struct ProxyCallHubScreen: View {
         return ""
     }
 
-    private func fetchUsers() async {
+    private func fetchUsers(refresh: Bool = false) async {
         let response = await APIGatewayService.shared.readUsers()
         switch response {
         case .success(let data):
@@ -78,39 +77,33 @@ struct ProxyCallHubScreen: View {
                 }
             }
             events = newEvents
-            await fetchProxyCalls()
+            await fetchProxyCalls(refresh: refresh)
             break
         case .failure(let error):
             break
         }
     }
     
-    private func fetchProxyCalls() async {
-        let response = await APIGatewayService.shared.privateReadProxyCalls(userId: UserRepo.shared.userId ?? "")
-        switch response {
-        case .success(let data):
+    private func fetchProxyCalls(refresh: Bool = false) async {
+        if let response = await EventsRepository.shared.fetchProxyCalls(refresh: refresh) {
             var newEvents = [ProxyCallEvent]()
-            var proxyCalls = data.calls ?? []
             for event in events {
-                if let call = proxyCalls.first(where: { $0.receiverId == event.user?.userId || $0.senderId == event.user?.userId }) {
+                if let call = response.first(where: { $0.receiverId == event.user?.userId || $0.senderId == event.user?.userId }) {
                     newEvents.append(ProxyCallEvent(user: event.user, proxyCall: call))
                 } else {
                     newEvents.append(event)
                 }
             }
             events = newEvents
-            break
-        case .failure(let error):
-            break
         }
     }
     
     private func createProxyCall(event: ProxyCallEvent) async {
         var body = CreateProxyCallRequest(senderId: UserRepo.shared.userId ?? "", receiverId: event.user?.userId ?? "")
-        let response = await APIGatewayService.shared.privateCreateProxyCall(body: body)
+        let response = await APIGatewayService.shared.createProxyCall(body: body)
         switch response {
         case .success(let data):
-            await fetchUsers()
+            await fetchUsers(refresh: true)
             break
         case .failure(let error):
             break

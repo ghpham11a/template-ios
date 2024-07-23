@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AzureCommunicationCommon
 
 struct VideoCallHubScreen: View {
     
@@ -16,22 +17,49 @@ struct VideoCallHubScreen: View {
     var body: some View {
         List {
             ForEach(events, id: \.user?.userId) { event in
-                Button(action: {
-                    
-                }) {
-                    Text(event.user?.preferredName ?? event.user?.firstName ?? "")
+                HStack {
+                    VStack {
+                        Text(event.user?.preferredName ?? event.user?.firstName ?? "")
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        HStack {
+                            
+                            if event.videoCall == nil {
+                                Button(action: {
+                                    Task {
+                                        await createVideoCall(event: event)
+                                    }
+                                }) {
+                                    Text("Create masked phone call")
+                                }
+                            } else {
+                                Button(action: {
+                                    path.append(Route.videoCall(id: event.videoCall?.id ?? ""))
+                                }) {
+                                    Text("Enter video call")
+                                }
+                                Button(action: {
+
+                                }) {
+                                    Text("Delete")
+                                }
+                            }
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(0)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(0)
                 }
             }
         }
         .onAppear {
             Task {
                 await fetchUsers()
-                await fetchAccessToken()
             }
         }
     }
     
-    private func fetchUsers() async {
+    private func fetchUsers(refresh: Bool = false) async {
         let response = await APIGatewayService.shared.readUsers()
         switch response {
         case .success(let data):
@@ -42,17 +70,32 @@ struct VideoCallHubScreen: View {
                 }
             }
             events = newEvents
-            break
+            await fetchVideoCalls(refresh: refresh)
         case .failure(let error):
             break
         }
     }
     
-    private func fetchAccessToken() async {
-        let response = await UserRepo.shared.createAZCSAccessToken(refresh: true)
+    private func fetchVideoCalls(refresh: Bool = false) async {
+        if let response = await EventsRepository.shared.fetchVideoCalls(refresh: refresh) {
+            var newEvents = [VideoCallEvent]()
+            for event in events {
+                if let call = response.first(where: { $0.receiverId == event.user?.userId || $0.senderId == event.user?.userId }) {
+                    newEvents.append(VideoCallEvent(user: event.user, videoCall: call))
+                } else {
+                    newEvents.append(event)
+                }
+            }
+            events = newEvents
+        }
+    }
+    
+    private func createVideoCall(event: VideoCallEvent) async {
+        var body = CreateVideoCallRequest(senderId: UserRepo.shared.userId ?? "", receiverId: event.user?.userId ?? "")
+        let response = await APIGatewayService.shared.createVideoCall(body: body)
         switch response {
         case .success(let data):
-            break
+            await fetchUsers(refresh: true)
         case .failure(let error):
             break
         }

@@ -9,8 +9,15 @@ import AWSMobileClient
 import Stripe
 import UIKit
 import PushKit
+import SwiftUI
+import Combine
+import AzureCommunicationCalling
 
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let appPubs = AppPubs()
+
+    private var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
@@ -37,6 +44,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    internal func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        // Create a push registry object
+        // Set the registry's delegate to self
+        voipRegistry.delegate = self
+        // Set the push type to VoIP
+        voipRegistry.desiredPushTypes = [PKPushType.voIP]
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate, PKPushRegistryDelegate {
+    func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
+        appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
+    }
+
+    // Handle incoming pushes
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
+        let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
+        let callKitOptions = CallKitOptions(with: CallKitHelper.createCXProvideConfiguration())
+        CallClient.reportIncomingCall(with: callNotification, callKitOptions: callKitOptions) { error in
+            if error == nil {
+                self.appPubs.pushPayload = payload
+            }
+        }
     }
 }
 

@@ -24,8 +24,12 @@ struct FeaturesCard: View {
                     .foregroundStyle(.black)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            .padding()
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(PlainButtonStyle())
+//        .buttonStyle(PlainButtonStyle())
+        .background(Color.white)
+        .cornerRadius(5)
+        .shadow(radius: 1)
     }
 }
