@@ -28,6 +28,7 @@ struct ProxyCallHubScreen: View {
                                 }) {
                                     Text("Create masked phone call")
                                 }
+                                .buttonStyle(BorderlessButtonStyle())
                             } else {
                                 Button(action: {
                                     if let url = URL(string: "tel://\(getPhoneNumber(event: event))") {
@@ -36,11 +37,18 @@ struct ProxyCallHubScreen: View {
                                 }) {
                                     Text("Call")
                                 }
+                                .buttonStyle(BorderlessButtonStyle())
+                                
+                                Spacer()
+                                
                                 Button(action: {
-
+                                    Task {
+                                        await deleteProxyCall(id: event.proxyCall?.id ?? "")
+                                    }
                                 }) {
                                     Text("Delete")
                                 }
+                                .buttonStyle(BorderlessButtonStyle())
                             }
                         }
                         .padding(0)
@@ -101,6 +109,17 @@ struct ProxyCallHubScreen: View {
     private func createProxyCall(event: ProxyCallEvent) async {
         var body = CreateProxyCallRequest(senderId: UserRepo.shared.userId ?? "", receiverId: event.user?.userId ?? "")
         let response = await APIGatewayService.shared.createProxyCall(body: body)
+        switch response {
+        case .success(let data):
+            await fetchUsers(refresh: true)
+            break
+        case .failure(let error):
+            break
+        }
+    }
+    
+    private func deleteProxyCall(id: String) async {
+        let response = await APIGatewayService.shared.deleteProxyCall(id: id)
         switch response {
         case .success(let data):
             await fetchUsers(refresh: true)

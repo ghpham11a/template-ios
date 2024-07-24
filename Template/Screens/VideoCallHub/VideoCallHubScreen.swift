@@ -31,17 +31,25 @@ struct VideoCallHubScreen: View {
                                 }) {
                                     Text("Create masked phone call")
                                 }
+                                .buttonStyle(BorderlessButtonStyle())
                             } else {
                                 Button(action: {
                                     path.append(Route.videoCall(id: event.videoCall?.id ?? ""))
                                 }) {
                                     Text("Enter video call")
                                 }
+                                .buttonStyle(BorderlessButtonStyle())
+                                
+                                Spacer()
+                                
                                 Button(action: {
-
+                                    Task {
+                                        await deleteVideoCall(id: event.videoCall?.id ?? "")
+                                    }
                                 }) {
                                     Text("Delete")
                                 }
+                                .buttonStyle(BorderlessButtonStyle())
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -93,6 +101,16 @@ struct VideoCallHubScreen: View {
     private func createVideoCall(event: VideoCallEvent) async {
         var body = CreateVideoCallRequest(senderId: UserRepo.shared.userId ?? "", receiverId: event.user?.userId ?? "")
         let response = await APIGatewayService.shared.createVideoCall(body: body)
+        switch response {
+        case .success(let data):
+            await fetchUsers(refresh: true)
+        case .failure(let error):
+            break
+        }
+    }
+    
+    private func deleteVideoCall(id: String) async {
+        let response = await APIGatewayService.shared.deleteVideoCall(id: id)
         switch response {
         case .success(let data):
             await fetchUsers(refresh: true)
