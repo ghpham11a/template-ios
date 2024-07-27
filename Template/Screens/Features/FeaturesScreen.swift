@@ -15,6 +15,9 @@ struct FeaturesScreen: View {
     
     @Binding private var path: NavigationPath
     
+    @EnvironmentObject
+    var appPubs: AppPubs
+    
     init(path: Binding<NavigationPath>) {
         self._path = path
     }
@@ -77,7 +80,7 @@ struct FeaturesScreen: View {
                 case .videoCallHub:
                     VideoCallHubScreen(path: $path)
                 case .videoCall(let id):
-                    VideoCallScreen(path: $path, id: id, appPubs: AppPubs())
+                    VideoCallScreen(path: $path, id: id, appPubs: appPubs)
                 case .chatHub:
                     ChatHubScreen(path: $path)
                 case .voiceCallHub:
@@ -87,6 +90,9 @@ struct FeaturesScreen: View {
                 }
             }
             .onAppear {
+                
+                print("__DEBUG appPubs.pushToken \(appPubs.check ?? "NULL")")
+                
                 viewModel.fetchItems()
             }
         }

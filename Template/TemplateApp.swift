@@ -16,7 +16,7 @@ struct TemplateApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                ContentView()
+                ContentView(appPubs: appDelegate.appPubs)
             }
         }
     }

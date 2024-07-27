@@ -52,7 +52,7 @@ final class IncomingCallHandler: IncomingCallHandlerBase, CallAgentDelegate, Inc
             // We need to set the call instances and auto-navigate to call in progress screen.
             if addedCall.direction == .incoming {
                 contentView?.isIncomingCall = false
-                contentView?.setCallAndObersever(call: addedCall, error: nil)
+                contentView?.setCallAndObserver(call: addedCall, error: nil)
             }
         }
     }

@@ -26,6 +26,8 @@ class EventsRepository: ObservableObject {
     
     var proxyCalls: [ProxyCall]? = nil
     var videoCalls: [VideoCall]? = nil
+    var voiceCalls: [VoiceCall]? = nil
+    var chats: [Chat]? = nil
     
     func fetchProxyCalls(refresh: Bool = false) async -> [ProxyCall]? {
         
@@ -54,6 +56,38 @@ class EventsRepository: ObservableObject {
         case .success(let data):
             videoCalls = data.calls
             return videoCalls
+        case .failure(let error):
+            return nil
+        }
+    }
+    
+    func fetchVoiceCalls(refresh: Bool = false) async -> [VoiceCall]? {
+        
+        if voiceCalls != nil && !refresh {
+            return voiceCalls
+        }
+        
+        let response = await APIGatewayService.shared.readVoiceCalls(userId: UserRepo.shared.userId ?? "")
+        switch response {
+        case .success(let data):
+            voiceCalls = data.calls
+            return voiceCalls
+        case .failure(let error):
+            return nil
+        }
+    }
+    
+    func fetchChats(refresh: Bool = false) async -> [Chat]? {
+        
+        if chats != nil && !refresh {
+            return chats
+        }
+        
+        let response = await APIGatewayService.shared.readChats(userId: UserRepo.shared.userId ?? "")
+        switch response {
+        case .success(let data):
+            chats = data.chats
+            return chats
         case .failure(let error):
             return nil
         }

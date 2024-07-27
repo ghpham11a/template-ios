@@ -13,11 +13,18 @@ struct ContentView: View {
     @State private var selectedTab = 0 
     @State private var path = NavigationPath()
     
+    var appPubs: AppPubs
+    
+    init(appPubs: AppPubs) {
+        self.appPubs = appPubs
+    }
+    
     var body: some View {
         ZStack {
             
             TabView(selection: $selectedTab) { // Step 2: Bind the state variable
                 FeaturesScreen(path: $path)
+                    .environmentObject(appPubs)
                     .tabItem {
                         Label("Features", systemImage: "checkmark.circle")
                     }

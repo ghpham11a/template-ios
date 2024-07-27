@@ -10,6 +10,13 @@
 		15D3C8F3B2B1FAD393C29BA8 /* Pods_Template.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4121D4D501849EFEDE8EDD83 /* Pods_Template.framework */; };
 		400F6054E631F4F23CF11662 /* Pods_TemplateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D8F88D288926250E58CF3A6 /* Pods_TemplateTests.framework */; };
 		737734696BA1600FC3275C1D /* Pods_Template_TemplateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B922F7D955101843620EB6CA /* Pods_Template_TemplateUITests.framework */; };
+		CE1178332C54469900F2C218 /* CreateVoiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178322C54469900F2C218 /* CreateVoiceCall.swift */; };
+		CE1178352C5446C300F2C218 /* CreateChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178342C5446C300F2C218 /* CreateChat.swift */; };
+		CE1178372C5446E000F2C218 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178362C5446E000F2C218 /* Chat.swift */; };
+		CE1178392C54475900F2C218 /* VoiceCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178382C54475900F2C218 /* VoiceCall.swift */; };
+		CE11783B2C54478F00F2C218 /* ReadVoiceCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783A2C54478F00F2C218 /* ReadVoiceCalls.swift */; };
+		CE11783D2C5447A900F2C218 /* ReadChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783C2C5447A900F2C218 /* ReadChats.swift */; };
+		CE1178402C55476200F2C218 /* VoiceCallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */; };
 		CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */; };
 		CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */; };
 		CE3F84FD2C388F0900CCE27D /* DeletePayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */; };
@@ -188,6 +195,13 @@
 		8D8F88D288926250E58CF3A6 /* Pods_TemplateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TemplateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		977C1EF09600D4BCA5E6AA4E /* Pods-Template.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Template.release.xcconfig"; path = "Target Support Files/Pods-Template/Pods-Template.release.xcconfig"; sourceTree = "<group>"; };
 		B922F7D955101843620EB6CA /* Pods_Template_TemplateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Template_TemplateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE1178322C54469900F2C218 /* CreateVoiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateVoiceCall.swift; sourceTree = "<group>"; };
+		CE1178342C5446C300F2C218 /* CreateChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChat.swift; sourceTree = "<group>"; };
+		CE1178362C5446E000F2C218 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		CE1178382C54475900F2C218 /* VoiceCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCall.swift; sourceTree = "<group>"; };
+		CE11783A2C54478F00F2C218 /* ReadVoiceCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadVoiceCalls.swift; sourceTree = "<group>"; };
+		CE11783C2C5447A900F2C218 /* ReadChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChats.swift; sourceTree = "<group>"; };
+		CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallEvent.swift; sourceTree = "<group>"; };
 		CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamoDBUser.swift; sourceTree = "<group>"; };
 		CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAccount.swift; sourceTree = "<group>"; };
 		CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePayoutMethod.swift; sourceTree = "<group>"; };
@@ -562,6 +576,13 @@
 				CE4BB71E2C4F3FD2008BB1F5 /* CreateVideoCall.swift */,
 				CE4BB7202C4F4042008BB1F5 /* ReadVideoCalls.swift */,
 				CE4BB7242C4F40BE008BB1F5 /* VideoCall.swift */,
+				CE1178322C54469900F2C218 /* CreateVoiceCall.swift */,
+				CE1178342C5446C300F2C218 /* CreateChat.swift */,
+				CE1178362C5446E000F2C218 /* Chat.swift */,
+				CE1178382C54475900F2C218 /* VoiceCall.swift */,
+				CE11783A2C54478F00F2C218 /* ReadVoiceCalls.swift */,
+				CE11783C2C5447A900F2C218 /* ReadChats.swift */,
+				CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1153,6 +1174,7 @@
 				CEF8C6B72C30B307008A6946 /* AddPayoutScreen.swift in Sources */,
 				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
 				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
+				CE1178332C54469900F2C218 /* CreateVoiceCall.swift in Sources */,
 				CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */,
 				CEF208E42C0EA4D400212C47 /* ResetPasswordScreen.swift in Sources */,
 				CE5081B42C45D1A2000D9E73 /* ReadProxyCalls.swift in Sources */,
@@ -1227,12 +1249,14 @@
 				CEF8C6BD2C30BF66008A6946 /* PayoutMethod.swift in Sources */,
 				CEF2087B2BFFD5C500212C47 /* JSONPlaceholderRepo.swift in Sources */,
 				CEF209192C1E432800212C47 /* ReadUserPublicResponse.swift in Sources */,
+				CE1178372C5446E000F2C218 /* Chat.swift in Sources */,
 				CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
 				CE5081A62C42C9E5000D9E73 /* PaymentReceiver.swift in Sources */,
 				CEF2088E2C03E3D400212C47 /* AuthHubScreen.swift in Sources */,
 				CE5081B92C49D9D1000D9E73 /* ProxyCallHubScreen.swift in Sources */,
+				CE11783B2C54478F00F2C218 /* ReadVoiceCalls.swift in Sources */,
 				CE4BB71F2C4F3FD2008BB1F5 /* CreateVideoCall.swift in Sources */,
 				CEF8C6C12C31EE9C008A6946 /* CreatePayoutMethodRequest.swift in Sources */,
 				CEF209502C28E2A800212C47 /* MapScreen.swift in Sources */,
@@ -1251,6 +1275,7 @@
 				CE5081BE2C4B655F000D9E73 /* CreateAZCSAccessToken.swift in Sources */,
 				CEF209432C23C9AC00212C47 /* AdminDisableUserResponse.swift in Sources */,
 				CE5081CE2C4C2A60000D9E73 /* CreateProxyCall.swift in Sources */,
+				CE1178392C54475900F2C218 /* VoiceCall.swift in Sources */,
 				CEF8C6C32C31EEAC008A6946 /* CreatePayoutMethodResponse.swift in Sources */,
 				CEF208D82C0D346100212C47 /* EditProfileViewModel.swift in Sources */,
 				CE5081AA2C440E67000D9E73 /* PaymentAmountScreen.swift in Sources */,
@@ -1258,8 +1283,11 @@
 				CEF2092E2C2128F500212C47 /* PayoutMethodsScreen.swift in Sources */,
 				CE4BB7112C4D5FD0008BB1F5 /* CallKitHelper.swift in Sources */,
 				CE4BB7132C4D5FF9008BB1F5 /* IncomingCallHandler.swift in Sources */,
+				CE1178402C55476200F2C218 /* VoiceCallEvent.swift in Sources */,
 				CEF209392C2379AE00212C47 /* UIKitViewController.swift in Sources */,
 				CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */,
+				CE11783D2C5447A900F2C218 /* ReadChats.swift in Sources */,
+				CE1178352C5446C300F2C218 /* CreateChat.swift in Sources */,
 				CEF209082C1630F800212C47 /* CheckboxRow.swift in Sources */,
 				CEF208C32C0C256500212C47 /* FilterListViewModel.swift in Sources */,
 				CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */,

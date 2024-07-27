@@ -13,6 +13,8 @@ struct ProxyCallHubScreen: View {
     
     @State var events: [ProxyCallEvent] = []
     
+    @State var isLoadingStates: [String: Bool] = [:]
+    
     var body: some View {
         List {
             ForEach(events, id: \.user?.userId) { event in
@@ -43,7 +45,7 @@ struct ProxyCallHubScreen: View {
                                 
                                 Button(action: {
                                     Task {
-                                        await deleteProxyCall(id: event.proxyCall?.id ?? "")
+                                        await deleteProxyCall(id: event.proxyCall?.id ?? "", userId: event.user?.userId ?? "")
                                     }
                                 }) {
                                     Text("Delete")
@@ -51,9 +53,9 @@ struct ProxyCallHubScreen: View {
                                 .buttonStyle(BorderlessButtonStyle())
                             }
                         }
-                        .padding(0)
+                        .padding()
                     }
-                    .padding(0)
+                    .padding()
                 }
             }
         }
@@ -118,7 +120,7 @@ struct ProxyCallHubScreen: View {
         }
     }
     
-    private func deleteProxyCall(id: String) async {
+    private func deleteProxyCall(id: String, userId: String) async {
         let response = await APIGatewayService.shared.deleteProxyCall(id: id)
         switch response {
         case .success(let data):
@@ -127,5 +129,11 @@ struct ProxyCallHubScreen: View {
         case .failure(let error):
             break
         }
+    }
+    
+    private func toggleLoadingStates(userId: String) {
+        var oldCopy = isLoadingStates
+        oldCopy[userId]?.toggle()
+        isLoadingStates = oldCopy
     }
 }

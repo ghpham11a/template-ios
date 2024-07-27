@@ -10,12 +10,13 @@ import PushKit
 import Combine
 import AzureCommunicationCalling
 
-class AppPubs {
+class AppPubs: ObservableObject {
+    
+    @Published var pushPayload: PKPushPayload?
+    @Published var pushToken: Data?
+    
     init() {
         self.pushPayload = nil
         self.pushToken = nil
     }
-
-    @Published var pushPayload: PKPushPayload?
-    @Published var pushToken: Data?
 }

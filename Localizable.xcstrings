@@ -52,6 +52,12 @@
     "Add" : {
 
     },
+    "Add Participant" : {
+
+    },
+    "Answer" : {
+
+    },
     "Availability" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -96,10 +102,19 @@
     "Call" : {
 
     },
+    "Call State" : {
+
+    },
+    "CallAgent Type" : {
+
+    },
     "Confirm account number" : {
 
     },
     "Confirm password" : {
+
+    },
+    "Create CallAgent" : {
 
     },
     "Create masked phone call" : {
@@ -108,10 +123,19 @@
     "Create new password" : {
 
     },
+    "CTE" : {
+
+    },
     "Current password" : {
 
     },
+    "Decline" : {
+
+    },
     "Delete" : {
+
+    },
+    "Dismiss" : {
 
     },
     "Edit" : {
@@ -120,16 +144,19 @@
     "Email" : {
 
     },
+    "End Call" : {
+
+    },
     "End Time" : {
 
     },
     "Enter password" : {
 
     },
-    "Enter video call" : {
+    "Enter your text:" : {
 
     },
-    "Enter your text:" : {
+    "ERROR" : {
 
     },
     "Features" : {
@@ -141,7 +168,13 @@
     "Forgot your password? " : {
 
     },
+    "Hold" : {
+
+    },
     "How would you like to get paid?" : {
+
+    },
+    "Incoming call" : {
 
     },
     "Last name on ID" : {
@@ -171,6 +204,12 @@
 
     },
     "Login or sign up" : {
+
+    },
+    "MRI" : {
+
+    },
+    "Mute" : {
 
     },
     "New password" : {
@@ -246,6 +285,9 @@
     "Reset Password" : {
 
     },
+    "Resume" : {
+
+    },
     "Routing number" : {
 
     },
@@ -265,6 +307,12 @@
 
     },
     "Snag" : {
+
+    },
+    "Speaker" : {
+
+    },
+    "Start Call" : {
 
     },
     "Start Time" : {
@@ -297,6 +345,15 @@
     "To start, let us know where you like us to send your money" : {
 
     },
+    "Turn Off Video" : {
+
+    },
+    "Turn On Video" : {
+
+    },
+    "UnMute" : {
+
+    },
     "Update phone number" : {
 
     },
@@ -304,6 +361,9 @@
 
     },
     "Verify account details through Stripe" : {
+
+    },
+    "Video Calling Quickstart" : {
 
     },
     "Welcome back" : {

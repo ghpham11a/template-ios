@@ -14,6 +14,8 @@ struct VideoCallHubScreen: View {
     
     @State var events: [VideoCallEvent] = []
     
+    @State var isLoadingStates: [String: Bool] = [:]
+    
     var body: some View {
         List {
             ForEach(events, id: \.user?.userId) { event in
@@ -21,42 +23,51 @@ struct VideoCallHubScreen: View {
                     VStack {
                         Text(event.user?.preferredName ?? event.user?.firstName ?? "")
                             .frame(maxWidth: .infinity, alignment: .leading)
+                        Spacer()
                         HStack {
-                            
-                            if event.videoCall == nil {
-                                Button(action: {
-                                    Task {
-                                        await createVideoCall(event: event)
-                                    }
-                                }) {
-                                    Text("Create masked phone call")
+                            if let userId = event.user?.userId, let value = isLoadingStates[userId] {
+                                if event.videoCall == nil {
+                                    LoadingButton(
+                                        title: "Create video call",
+                                        isLoading: Binding(
+                                            get: { value },
+                                            set: { isLoadingStates[userId] = $0 }
+                                        ),
+                                        isEnabled: true,
+                                        action: {
+                                            Task {
+                                                await createVideoCall(event: event)
+                                            }
+                                        }
+                                    )
+                                } else {
+                                    
+                                    LoadingButton(title: "Enter video call", isLoading: false, isEnabled: true, action: {
+                                        path.append(Route.videoCall(id: event.videoCall?.id ?? ""))
+                                    })
+                                    
+                                    Spacer()
+                                    
+                                    LoadingButton(
+                                        title: "Delete",
+                                        isLoading: Binding(
+                                            get: { value },
+                                            set: { isLoadingStates[userId] = $0 }
+                                        ),
+                                        isEnabled: true,
+                                        action: {
+                                            Task {
+                                                await deleteVideoCall(id: event.videoCall?.id ?? "", userId: event.user?.userId ?? "")
+                                            }
+                                        }
+                                    )
                                 }
-                                .buttonStyle(BorderlessButtonStyle())
-                            } else {
-                                Button(action: {
-                                    path.append(Route.videoCall(id: event.videoCall?.id ?? ""))
-                                }) {
-                                    Text("Enter video call")
-                                }
-                                .buttonStyle(BorderlessButtonStyle())
-                                
-                                Spacer()
-                                
-                                Button(action: {
-                                    Task {
-                                        await deleteVideoCall(id: event.videoCall?.id ?? "")
-                                    }
-                                }) {
-                                    Text("Delete")
-                                }
-                                .buttonStyle(BorderlessButtonStyle())
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(0)
                     }
+                    .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(0)
                 }
             }
         }
@@ -72,12 +83,15 @@ struct VideoCallHubScreen: View {
         switch response {
         case .success(let data):
             var newEvents = [VideoCallEvent]()
+            var loadingStates: [String: Bool] = [:]
             for user in (data.users ?? []) {
                 if user.userId != UserRepo.shared.userId {
                     newEvents.append(VideoCallEvent(user: user))
+                    loadingStates[user.userId ?? ""] = false
                 }
             }
             events = newEvents
+            isLoadingStates = loadingStates
             await fetchVideoCalls(refresh: refresh)
         case .failure(let error):
             break
@@ -99,8 +113,14 @@ struct VideoCallHubScreen: View {
     }
     
     private func createVideoCall(event: VideoCallEvent) async {
-        var body = CreateVideoCallRequest(senderId: UserRepo.shared.userId ?? "", receiverId: event.user?.userId ?? "")
+        
+        toggleLoadingStates(userId: event.user?.userId ?? "")
+        
+        let body = CreateVideoCallRequest(senderId: UserRepo.shared.userId ?? "", receiverId: event.user?.userId ?? "")
         let response = await APIGatewayService.shared.createVideoCall(body: body)
+        
+        toggleLoadingStates(userId: event.user?.userId ?? "")
+        
         switch response {
         case .success(let data):
             await fetchUsers(refresh: true)
@@ -109,14 +129,26 @@ struct VideoCallHubScreen: View {
         }
     }
     
-    private func deleteVideoCall(id: String) async {
+    private func deleteVideoCall(id: String, userId: String) async {
+        
+        toggleLoadingStates(userId: userId)
+        
         let response = await APIGatewayService.shared.deleteVideoCall(id: id)
+        
+        toggleLoadingStates(userId: userId)
+        
         switch response {
         case .success(let data):
             await fetchUsers(refresh: true)
         case .failure(let error):
             break
         }
+    }
+    
+    private func toggleLoadingStates(userId: String) {
+        var oldCopy = isLoadingStates
+        oldCopy[userId]?.toggle()
+        isLoadingStates = oldCopy
     }
 }
 

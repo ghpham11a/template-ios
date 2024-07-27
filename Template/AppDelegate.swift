@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let appPubs = AppPubs()
 
-    private var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
+    var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 STPAPIClient.shared.publishableKey = stripePublishableKey
             }
         }
+    
         
         AWSMobileClient.default().initialize { (userState, error) in
             if let error = error {
@@ -43,10 +44,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        if #available(iOS 10.0, *){
+            UNUserNotificationCenter.current().delegate = self
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+                (granted, error) in
+                
+                if (granted)
+                {
+                    DispatchQueue.main.async {
+                        application.registerForRemoteNotifications()
+                    }
+                }
+            }
+        }
+        
         return true
     }
     
     internal func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        print("__DEBUG didRegisterForRemoteNotificationsWithDeviceToken")
         // Create a push registry object
         // Set the registry's delegate to self
         voipRegistry.delegate = self
@@ -55,7 +71,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension AppDelegate: UNUserNotificationCenterDelegate, PKPushRegistryDelegate {
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    
+    
+}
+
+extension AppDelegate: PKPushRegistryDelegate {
+    
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
         appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
     }
@@ -69,6 +92,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate, PKPushRegistryDelegate 
                 self.appPubs.pushPayload = payload
             }
         }
+    }
+    
+    func pushRegistry(_ registry: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
+        NSLog("__DEBUG pushRegistry:didInvalidatePushTokenForType:")
+    }
+
+    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
+        NSLog("__DEBUG pushRegistry:didReceiveIncomingPushWithPayload:forType:")
     }
 }
 

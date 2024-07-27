@@ -29,7 +29,7 @@ struct VideoCallScreen: View {
     private let cteToken = "<CTE_USER_ACCESS_TOKEN>"
     
     @State var currentMri: String = "<CTE_MRI>"
-    @State var callee: String = "29228d3e-040e-4656-a70e-890ab4e173e4"
+    // @State var callee: String = "29228d3e-040e-4656-a70e-890ab4e173e4"
     @State var callClient = CallClient()
     @State var callAgent: CallAgent?
     @State var call: Call?
@@ -68,18 +68,160 @@ struct VideoCallScreen: View {
     @State var remoteParticipantObserver:RemoteParticipantObserver?
     @State var pushToken: Data?
     
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var appPubs: AppPubs
     
     
     var body: some View {
-        ZStack {
-            Text(callee)
+        HStack {
+            Form {
+                Section {
+                    Button(action: createCallAgentButton) {
+                        Text("Create CallAgent")
+                    }
+                    Button(action: startCall) {
+                        Text("Start Call")
+                    }.disabled(callAgent == nil && teamsCallAgent == nil)
+                    Button(action: addParticipant) {
+                        Text("Add Participant")
+                    }.disabled(call == nil && teamsCall == nil)
+#if BETA
+                    Button(action: serverMuteParticipant1) {
+                        Text("Mute the Participant #1")
+                    }.disabled(call == nil && teamsCall == nil)
+                    Button(action: muteAllParticipants) {
+                        Text("Mute all Participants")
+                    }.disabled(call == nil && teamsCall == nil)
+#endif
+                    Button(action: holdCall) {
+                        Text(isHeld ? "Resume" : "Hold")
+                    }.disabled(call == nil && teamsCall == nil)
+                    Button(action: switchMicrophone) {
+                        Text(isMuted ? "UnMute" : "Mute")
+                    }
+                    Button(action: endCall) {
+                        Text("End Call")
+                    }.disabled(call == nil && teamsCall == nil)
+                    Button(action: toggleLocalVideo) {
+                        HStack {
+                            Text(sendingVideo ? "Turn Off Video" : "Turn On Video")
+                        }
+                    }
+                    VStack {
+                        Toggle("CTE", isOn: $isCte)
+                        Toggle("Speaker", isOn: $isSpeakerOn)
+                            .onChange(of: isSpeakerOn) { newValue in
+                                switchSpeaker(newValue)
+                            }.disabled(call == nil && teamsCall == nil)
+                        TextField("Call State", text: $callState)
+                            .foregroundColor(.red)
+                        TextField("MRI", text: $currentMri)
+                            .foregroundColor(.blue)
+                        TextField("CallAgent Type", text: $callAgentType)
+                            .foregroundColor(.green)
+                    }
+                }
+            }
+            if (isIncomingCall) {
+                HStack() {
+                    VStack {
+                        Text("Incoming call")
+                            .padding(10)
+                            .frame(maxWidth: .infinity, alignment: .topLeading)
+                    }
+                    Button(action: answerIncomingCall) {
+                        HStack {
+                            Text("Answer")
+                        }
+                        .frame(width:80)
+                        .padding(.vertical, 10)
+                        .background(Color(.green))
+                    }
+                    Button(action: declineIncomingCall) {
+                        HStack {
+                            Text("Decline")
+                        }
+                        .frame(width:80)
+                        .padding(.vertical, 10)
+                        .background(Color(.red))
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .topLeading)
+                .padding(10)
+                .background(Color.gray)
+            }
+            ZStack {
+                VStack {
+                    ForEach(remoteVideoStreamData, id:\.self) { remoteVideoStreamData in
+                        ZStack{
+                            VStack{
+                                RemoteVideoView(view: remoteVideoStreamData.rendererView!)
+                                    .frame(width: .infinity, height: .infinity)
+                                    .background(Color(.lightGray))
+                            }
+                        }
+                    }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                VStack {
+                    if(sendingVideo)
+                    {
+                        VStack{
+                            PreviewVideoStream(view: previewView!)
+                                .frame(width: 135, height: 240)
+                                .background(Color(.lightGray))
+                        }
+                    }
+                }.frame(maxWidth:.infinity, maxHeight:.infinity,alignment: .bottomTrailing)
+            }
+            .navigationBarTitle("Video Calling Quickstart")
         }
-        .onAppear {
+        .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
+            guard let newPushToken = newPushToken else {
+                print("Got empty token")
+                return
+            }
+            
+            if let existingToken = self.pushToken {
+                if existingToken != newPushToken {
+                    self.pushToken = newPushToken
+                }
+            } else {
+                self.pushToken = newPushToken
+            }
+        })
+        .onReceive(self.appPubs.$pushPayload, perform: { payload in
+            handlePushNotification(payload)
+        })
+        .onAppear{
             isSpeakerOn = userDefaults.value(forKey: "isSpeakerOn") as? Bool ?? false
-            askForPermissions()
+            AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
+                if granted {
+                    AVCaptureDevice.requestAccess(for: .video) { (videoGranted) in
+                        /* NO OPERATION */
+                    }
+                }
+            }
+            
+            if deviceManager == nil {
+                self.callClient.getDeviceManager { (deviceManager, error) in
+                    if (error == nil) {
+                        print("Got device manager instance")
+                        // This app does not support landscape mode
+                        // But iOS still generates the device orientation events
+                        // This is a work-around so that iOS stops generating those events
+                        // And stop sending it to the SDK.
+                        UIDevice.current.endGeneratingDeviceOrientationNotifications()
+                        self.deviceManager = deviceManager
+                    } else {
+                        self.showAlert = true
+                        self.alertMessage = "Failed to get DeviceManager"
+                    }
+                }
+            }
+            
             getAccessToken()
+        }
+        .alert(isPresented: $showAlert) { () -> Alert in
+            Alert(title: Text("ERROR"), message: Text(alertMessage), dismissButton: .default(Text("Dismiss")))
         }
     }
     
@@ -93,11 +235,23 @@ struct VideoCallScreen: View {
             }
         }
     }
-
+    
+    func getIdentity() -> String {
+        if let event = EventsRepository.shared.videoCalls?.filter({ $0.id == id }).first {
+            if event.senderId == UserRepo.shared.userId, let identity = event.senderIdentity {
+                return identity
+            }
+            if event.receiverId == UserRepo.shared.userId, let identity = event.receiverIdentity {
+                return identity
+            }
+        }
+        return ""
+    }
+    
     // MARK: - Azure Communication Service Video Calling Steps
     private func authenticateClient(accessToken: String) {
         do {
-            var credential = try CommunicationTokenCredential(token: accessToken)
+            let credential = try CommunicationTokenCredential(token: accessToken)
             self.initializeCallAgentAndAccessDeviceManager(credential: credential)
         } catch {
             print("ERROR: It was not possible to create user credential.")
@@ -111,7 +265,7 @@ struct VideoCallScreen: View {
                 print("ERROR: It was not possible to create a call agent.")
                 return
             }
-
+            
             else {
                 self.callAgent = agent
                 print("Call agent successfully created.")
@@ -138,7 +292,7 @@ struct VideoCallScreen: View {
         }
     }
     
-    #if BETA
+#if BETA
     private func serverMuteParticipant1() {
         guard let firstParticipant = self.call?.remoteParticipants.first else {
             self.showAlert = true
@@ -168,7 +322,7 @@ struct VideoCallScreen: View {
             }
         }
     }
-    #endif
+#endif
     
     private func getCallBase() -> CommonCall? {
         var callBase: CommonCall?
@@ -267,7 +421,7 @@ struct VideoCallScreen: View {
     }
     
     func addParticipant() {
-        let allCallees = self.callee.components(separatedBy: ";")
+        let allCallees = getIdentity().components(separatedBy: ";")
         
         let callees = allCallees.filter({ (e) -> Bool in (e.starts(with: "8:") )})
             .map { (e) -> CommunicationIdentifier in CommunicationUserIdentifier(e)}
@@ -587,7 +741,7 @@ struct VideoCallScreen: View {
             }
             
             incomingCall.accept(options: options) { (call, error) in
-                setCallAndObersever(call: call, error: error)
+                setCallAndObserver(call: call, error: error)
             }
         }
     }
@@ -697,14 +851,32 @@ struct VideoCallScreen: View {
         }
     }
     
+
+    
     func startCall() {
+        let startCallOptions = StartCallOptions()
+        if(sendingVideo)
+        {
+            if (self.localVideoStream == nil) {
+                self.localVideoStream = [LocalVideoStream]()
+            }
+            let videoOptions = VideoOptions(localVideoStreams: localVideoStream)
+            startCallOptions.videoOptions = videoOptions
+        }
+        let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(getIdentity())]
+        self.callAgent?.startCall(participants: callees, options: startCallOptions) { (call, error) in
+            setCallAndObserver(call: call, error: error)
+        }
+    }
+    
+    func _startCall() {
         Task {
             var callOptions: CallOptions?
             var meetingLocator: JoinMeetingLocator?
             var callees:[CommunicationIdentifier] = []
             
-            if self.callee.starts(with: "8:") {
-                let calleesRaw = self.callee.split(separator: ";")
+            if getIdentity().starts(with: "8:") {
+                let calleesRaw = getIdentity().split(separator: ";")
                 for calleeRaw in calleesRaw {
                     if calleeRaw.starts(with: "8:orgid") {
                         callees.append(MicrosoftTeamsUserIdentifier(userId: String(calleeRaw)))
@@ -725,9 +897,9 @@ struct VideoCallScreen: View {
                 } else {
                     callOptions = StartCallOptions()
                 }
-            } else if self.callee.starts(with: "4:") {
+            } else if getIdentity().starts(with: "4:") {
                 if isCte {
-                    let calleesRaw = self.callee.split(separator: ";")
+                    let calleesRaw = getIdentity().split(separator: ";")
                     for calleeRaw in calleesRaw {
                         callees.append(PhoneNumberIdentifier(phoneNumber: String(calleeRaw.replacingOccurrences(of: "4:", with: ""))))
                     }
@@ -743,7 +915,7 @@ struct VideoCallScreen: View {
                     let startCallOptions = StartCallOptions()
                     startCallOptions.alternateCallerId = PhoneNumberIdentifier(phoneNumber: "+12133947338")
                 }
-            } else if let groupId = UUID(uuidString: self.callee) {
+            } else if let groupId = UUID(uuidString: getIdentity()) {
                 if isCte {
                     self.showAlert = true
                     self.alertMessage = "CTE does not support group call"
@@ -753,8 +925,8 @@ struct VideoCallScreen: View {
                     meetingLocator = groupCallLocator
                     callOptions = JoinCallOptions()
                 }
-            } else if (self.callee.starts(with: "https:")) {
-                let teamsMeetingLinkLocator = TeamsMeetingLinkLocator(meetingLink: self.callee)
+            } else if (getIdentity().starts(with: "https:")) {
+                let teamsMeetingLinkLocator = TeamsMeetingLinkLocator(meetingLink: getIdentity())
                 if isCte {
                     callOptions = JoinTeamsCallOptions()
                 } else {
@@ -764,8 +936,7 @@ struct VideoCallScreen: View {
             }
             
             
-            if sendingVideo
-            {
+            if sendingVideo {
                 if let callOptions = callOptions {
                     let outgoingVideoOptions = OutgoingVideoOptions()
                     initLocalVideoStreams()
@@ -799,7 +970,7 @@ struct VideoCallScreen: View {
                 
                 do {
                     var teamsCall: TeamsCall?
-                    if self.callee.starts(with: "https:") {
+                    if getIdentity().starts(with: "https:") {
                         if let meetingLocator = meetingLocator as? TeamsMeetingLinkLocator,
                            let options = callOptions as? JoinTeamsCallOptions {
                             teamsCall = try await teamsCallAgent.join(with: meetingLocator,
@@ -839,7 +1010,7 @@ struct VideoCallScreen: View {
                 
                 do {
                     var call: Call?
-                    if self.callee.starts(with: "https:") {
+                    if getIdentity().starts(with: "https:") {
                         if let meetingLocator = meetingLocator,
                            let options = callOptions as? JoinCallOptions {
                             call = try await callAgent.join(with: meetingLocator, joinCallOptions: options)
@@ -858,15 +1029,15 @@ struct VideoCallScreen: View {
                         self.alertMessage = "Failed to join call"
                         return
                     }
-                    setCallAndObersever(call: call, error: nil)
+                    setCallAndObserver(call: call, error: nil)
                 } catch {
-                    setCallAndObersever(call: nil, error: error)
+                    setCallAndObserver(call: nil, error: error)
                 }
             }
         }
     }
     
-    func setCallAndObersever(call: Call?, error:Error?) {
+    func setCallAndObserver(call: Call?, error:Error?) {
         
         guard let call = call else {
             self.showAlert = true
