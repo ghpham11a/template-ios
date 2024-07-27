@@ -99,9 +99,6 @@
     "Billing country/region" : {
 
     },
-    "Call" : {
-
-    },
     "Call State" : {
 
     },
@@ -115,9 +112,6 @@
 
     },
     "Create CallAgent" : {
-
-    },
-    "Create masked phone call" : {
 
     },
     "Create new password" : {

@@ -21,39 +21,60 @@ struct ProxyCallHubScreen: View {
                 HStack {
                     VStack {
                         Text(event.user?.preferredName ?? event.user?.firstName ?? "")
-                        HStack {
-                            if event.proxyCall == nil {
-                                Button(action: {
-                                    Task {
-                                        await createProxyCall(event: event)
+                        
+                        if let userId = event.user?.userId, let value = isLoadingStates[userId] {
+                            HStack {
+                                if event.proxyCall == nil {
+                                    
+                                    LoadingButton(
+                                        title: "Create masked phone call",
+                                        isLoading: Binding(
+                                            get: { value },
+                                            set: { isLoadingStates[userId] = $0 }
+                                        ),
+                                        isEnabled: true,
+                                        action: {
+                                            Task {
+                                                await createProxyCall(event: event)
+                                            }
+                                        }
+                                    )
+                                } else {
+                                    
+                                    LoadingButton(title: "Call", isLoading: false, isEnabled: true, action: {
+                                        if let url = URL(string: "tel://\(getPhoneNumber(event: event))") {
+                                            UIApplication.shared.open(url)
+                                        }
+                                    })
+                                    
+                                    Spacer()
+                                    
+                                    LoadingButton(
+                                        title: "Delete",
+                                        isLoading: Binding(
+                                            get: { value },
+                                            set: { isLoadingStates[userId] = $0 }
+                                        ),
+                                        isEnabled: true,
+                                        action: {
+                                            Task {
+                                                await deleteProxyCall(id: event.proxyCall?.id ?? "", userId: event.user?.userId ?? "")
+                                            }
+                                        }
+                                    )
+                                    
+                                    Button(action: {
+                                        Task {
+                                            await deleteProxyCall(id: event.proxyCall?.id ?? "", userId: event.user?.userId ?? "")
+                                        }
+                                    }) {
+                                        Text("Delete")
                                     }
-                                }) {
-                                    Text("Create masked phone call")
+                                    .buttonStyle(BorderlessButtonStyle())
                                 }
-                                .buttonStyle(BorderlessButtonStyle())
-                            } else {
-                                Button(action: {
-                                    if let url = URL(string: "tel://\(getPhoneNumber(event: event))") {
-                                        UIApplication.shared.open(url)
-                                    }
-                                }) {
-                                    Text("Call")
-                                }
-                                .buttonStyle(BorderlessButtonStyle())
-                                
-                                Spacer()
-                                
-                                Button(action: {
-                                    Task {
-                                        await deleteProxyCall(id: event.proxyCall?.id ?? "", userId: event.user?.userId ?? "")
-                                    }
-                                }) {
-                                    Text("Delete")
-                                }
-                                .buttonStyle(BorderlessButtonStyle())
                             }
+                            .padding()
                         }
-                        .padding()
                     }
                     .padding()
                 }
@@ -109,8 +130,10 @@ struct ProxyCallHubScreen: View {
     }
     
     private func createProxyCall(event: ProxyCallEvent) async {
+        toggleLoadingStates(userId: event.user?.userId ?? "")
         var body = CreateProxyCallRequest(senderId: UserRepo.shared.userId ?? "", receiverId: event.user?.userId ?? "")
         let response = await APIGatewayService.shared.createProxyCall(body: body)
+        toggleLoadingStates(userId: event.user?.userId ?? "")
         switch response {
         case .success(let data):
             await fetchUsers(refresh: true)
@@ -121,7 +144,9 @@ struct ProxyCallHubScreen: View {
     }
     
     private func deleteProxyCall(id: String, userId: String) async {
+        toggleLoadingStates(userId: userId)
         let response = await APIGatewayService.shared.deleteProxyCall(id: id)
+        toggleLoadingStates(userId: userId)
         switch response {
         case .success(let data):
             await fetchUsers(refresh: true)

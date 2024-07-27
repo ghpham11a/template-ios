@@ -90,9 +90,6 @@ struct FeaturesScreen: View {
                 }
             }
             .onAppear {
-                
-                print("__DEBUG appPubs.pushToken \(appPubs.check ?? "NULL")")
-                
                 viewModel.fetchItems()
             }
         }
