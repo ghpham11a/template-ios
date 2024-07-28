@@ -13,15 +13,25 @@ struct EditProfileScreen: View {
     @State private var image: UIImage? = nil
     @State private var isImagePickerPresented = false
     @StateObject private var viewModel = EditProfileViewModel()
+    @State private var isLoading = false
     
     @State private var schoolName = ""
     @State private var isSchoolExpanded = false
     @State private var isSchoolEnabled = true
-    @State private var isSchoolFieldLoading = false
     
     @State private var isEnabledPlaceholder = false
+        
+    @State private var userTags: [Tag] = []
     
-    @State private var tags = ["Swift", "SwiftUI", "iOS", "Apple", "Development", "UI", "Programming", "Xcode"]
+    @State private var selectedTags: [Tag] = []
+    
+    @State private var selectableTags: [Tag] = [
+        Tag(id: 1, title: "Alpha"),
+        Tag(id: 2, title: "Bravo"),
+        Tag(id: 3, title: "Charlie"),
+        Tag(id: 4, title: "Delta"),
+        Tag(id: 5, title: "Echo")
+    ]
     @State private var showTagListSheet = false
 
     init(path: Binding<NavigationPath>) {
@@ -102,12 +112,10 @@ struct EditProfileScreen: View {
                 Divider()
                 
                 VStack {
-                    LoadingButton(title: "Save", isLoading: $isSchoolFieldLoading, isEnabled: $isEnabledPlaceholder, action: {
-                        isSchoolFieldLoading.toggle()
+                    LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: $isEnabledPlaceholder, action: {
                         Task {
                             let success = await updateSchool(schoolName: schoolName)
                             if success {
-                                isSchoolFieldLoading = false
                                 isSchoolExpanded = false
                             }
                         }
@@ -121,15 +129,17 @@ struct EditProfileScreen: View {
             
             HeadingText(title: "Tags")
             
-            TagList(tags: tags)
+            TagList(tags: userTags)
             
             Button(action: {
+                selectedTags = userTags
                 showTagListSheet.toggle()
             }) {
                 Text("Edit")
             }
             
         }
+        .padding()
         .background(Color.clear)
         .onAppear {
             Task {
@@ -137,7 +147,69 @@ struct EditProfileScreen: View {
             }
         }
         .sheet(isPresented: $showTagListSheet) {
-            TagListSheet(selectedTags: $tags, tagList: ["Swift", "SwiftUI", "iOS", "Apple", "Development", "UI", "Programming", "Xcode"])
+            VStack {
+                VStack {
+                    ZStack {
+                        HStack {
+                            Button(action: {
+                                exit()
+                            }) {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundColor(.gray)
+                                    .imageScale(.large)
+                            }
+                            .padding()
+                            Spacer()
+                        }
+                        Text("Edit tags")
+                            .font(.headline)
+                    }
+
+
+                    List(selectableTags, id: \.id) { tag in
+                        CheckboxRow(title: tag.title ?? "", isChecked: selectedTags.contains(tag)) { _ in
+                            selectOrDeselectTag(tag: tag)
+                        }
+                    }
+                }
+                VStack {
+                    LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: true, action: {
+                        Task {
+                            var result = await updateTags(tags: selectedTags)
+                            if result {
+                                showTagListSheet.toggle()
+                            }
+                        }
+                    })
+                }
+                .padding()
+            }
+            .presentationDetents([.fraction(0.75)])
+        }
+    }
+    
+    func tagTitleFromId(id: Int) -> String {
+        switch id {
+        case 1:
+            return "Alpha"
+        case 2:
+            return "Bravo"
+        case 3:
+            return "Charlie"
+        case 4:
+            return "Delta"
+        case 5:
+            return "Echo"
+        default:
+            return ""
+        }
+    }
+    
+    func selectOrDeselectTag(tag: Tag) {
+        if let index = selectedTags.firstIndex(where: { $0.id == tag.id }) {
+            selectedTags.remove(at: index)
+        } else {
+            selectedTags.append(tag)
         }
     }
     
@@ -147,15 +219,31 @@ struct EditProfileScreen: View {
         switch response {
         case .success(let data):
             schoolName = data.schoolName ?? ""
-        case .failure(let error):
+            userTags = data.tags?.map { Tag(id: $0, title: tagTitleFromId(id: $0)) } ?? []
+            selectedTags = userTags
+        case .failure(_):
             break
         }
     }
     
     private func updateSchool(schoolName: String) async -> Bool {
+        isLoading.toggle()
         var body = UpdateUserBody()
         body.updateSchool = UpdateSchool(schoolName: schoolName)
         let response = await executeUpdate(body: body)
+        isLoading.toggle()
+        return response
+    }
+    
+    private func updateTags(tags: [Tag]) async -> Bool {
+        isLoading.toggle()
+        var body = UpdateUserBody()
+        body.updateTags = UpdateTags(tags: tags.map { $0.id ?? -1 })
+        let response = await executeUpdate(body: body)
+        isLoading.toggle()
+        if response {
+            userTags = tags
+        }
         return response
     }
     
@@ -163,45 +251,10 @@ struct EditProfileScreen: View {
         let userSub = UserRepo.shared.userId ?? ""
         let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)
         switch response {
-        case .success(let data):
+        case .success(_):
             return true
-        case .failure(let error):
+        case .failure(_):
             return false
-        }
-    }
-}
-
-struct TagListSheet: View {
-    @Binding var selectedTags: [String]
-    let tagList: [String]
-
-    var body: some View {
-        VStack {
-            ZStack {
-                HStack {
-                    Button(action: {
-                        exit()
-                    }) {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                    }
-                    .padding()
-                    Spacer()
-                }
-                Text("Select Country Code")
-                    .font(.headline)
-            }
-
-
-            List(tagList, id: \.self) { code in
-                Button(action: {
-                    selectedTags.append(code)
-                }) {
-                    Text(code)
-                        .foregroundColor(.black)
-                }
-            }
         }
     }
     

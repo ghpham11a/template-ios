@@ -17,6 +17,7 @@
 		CE11783B2C54478F00F2C218 /* ReadVoiceCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783A2C54478F00F2C218 /* ReadVoiceCalls.swift */; };
 		CE11783D2C5447A900F2C218 /* ReadChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783C2C5447A900F2C218 /* ReadChats.swift */; };
 		CE1178402C55476200F2C218 /* VoiceCallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */; };
+		CE1178422C5696E400F2C218 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178412C5696E400F2C218 /* Tag.swift */; };
 		CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */; };
 		CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */; };
 		CE3F84FD2C388F0900CCE27D /* DeletePayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */; };
@@ -202,6 +203,7 @@
 		CE11783A2C54478F00F2C218 /* ReadVoiceCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadVoiceCalls.swift; sourceTree = "<group>"; };
 		CE11783C2C5447A900F2C218 /* ReadChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChats.swift; sourceTree = "<group>"; };
 		CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallEvent.swift; sourceTree = "<group>"; };
+		CE1178412C5696E400F2C218 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamoDBUser.swift; sourceTree = "<group>"; };
 		CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAccount.swift; sourceTree = "<group>"; };
 		CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePayoutMethod.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				CE11783A2C54478F00F2C218 /* ReadVoiceCalls.swift */,
 				CE11783C2C5447A900F2C218 /* ReadChats.swift */,
 				CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */,
+				CE1178412C5696E400F2C218 /* Tag.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1251,6 +1254,7 @@
 				CEF209192C1E432800212C47 /* ReadUserPublicResponse.swift in Sources */,
 				CE1178372C5446E000F2C218 /* Chat.swift in Sources */,
 				CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */,
+				CE1178422C5696E400F2C218 /* Tag.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,
 				CE5081A62C42C9E5000D9E73 /* PaymentReceiver.swift in Sources */,

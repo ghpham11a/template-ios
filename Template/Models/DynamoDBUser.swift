@@ -17,6 +17,7 @@ struct DynamoDBUser: Codable {
     var countryCode: String? = nil
     var stripeCustomerId: String? = nil
     var stripeAccountId: String? = nil
+    var tags: [Int]? = nil
     
     enum CodingKeys: String, CodingKey {
         case userId = "userId"
@@ -28,5 +29,6 @@ struct DynamoDBUser: Codable {
         case countryCode = "countryCode"
         case stripeCustomerId = "stripeCustomerId"
         case stripeAccountId = "stripeAccountId"
+        case tags = "tags"
     }
 }

@@ -19,11 +19,11 @@ struct PaymentsHubScreen: View {
             
             HeadingText(title: "Payments")
             
-            HorizontalIconButton(name: "star.fill", buttonText: "Payment methods", action: {
+            HorizontalIconButton(name: "ic_payments_hub", buttonText: "Payment methods", action: {
                 path.append(Route.paymentMethods)
             })
             
-            HorizontalIconButton(name: "star.fill", buttonText: "Your payments", action: {
+            HorizontalIconButton(name: "ic_payments_hub", buttonText: "Your payments", action: {
                 path.append(Route.yourPayments)
             })
             
@@ -31,7 +31,7 @@ struct PaymentsHubScreen: View {
             
             HeadingText(title: "Payouts")
             
-            HorizontalIconButton(name: "star.fill", buttonText: "Payout methods", action: {
+            HorizontalIconButton(name: "ic_payments_hub", buttonText: "Payout methods", action: {
                 path.append(Route.payoutMethods)
             })
         }

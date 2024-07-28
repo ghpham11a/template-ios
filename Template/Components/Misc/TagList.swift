@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TagList: View {
-    let tags: [String]
+    let tags: [Tag]
 
     var body: some View {
         GeometryReader { geometry in
@@ -21,8 +21,8 @@ struct TagList: View {
         var height = CGFloat.zero
 
         return ZStack(alignment: .topLeading) {
-            ForEach(tags, id: \.self) { tag in
-                TagView(tag: tag)
+            ForEach(tags, id: \.id) { tag in
+                TagView(tag: tag.title ?? "")
                     .padding([.horizontal, .vertical], 4)
                     .alignmentGuide(.leading, computeValue: { dimension in
                         if (abs(width - dimension.width) > geometry.size.width) {

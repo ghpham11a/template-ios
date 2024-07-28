@@ -5,7 +5,6 @@
 //  Created by Anthony Pham on 5/27/24.
 //
 
-import AWSMobileClient
 import Foundation
 
 class AuthHubViewModel: ObservableObject {

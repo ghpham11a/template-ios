@@ -8,27 +8,52 @@
 import SwiftUI
 
 struct DayOfWeekSelector: View {
-    
-    @Binding var selectedDay: Date
     @Binding var days: [Date]
+    @Binding var selectedDay: Date
+    @State var currentIndex: Int
     var onDaySelected: (Date) -> Void
-
+    
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 16) {
-                ForEach(days, id: \.self) { day in
-                    Button(action: {
-                        onDaySelected(day)
-                    }) {
-                        VStack {
-                            Text(day.ISO8601Format())
-                        }
-                    }
-                    .background(Color.gray)
-                    .frame(width: 50, height: 100)
+        HStack {
+            Button(action: {
+                // Move back by one day
+                if currentIndex > 0 {
+                    currentIndex -= 1
+                    onDaySelected(days[currentIndex])
                 }
+            }) {
+                Image(systemName: "chevron.left")
+                    .font(.title)
             }
-            .padding()
+            
+            Spacer()
+            
+            Text(dateFormatter.string(from: selectedDay))
+                .font(.headline)
+            
+            Spacer()
+            
+            Button(action: {
+                // Move forward by one day
+                if currentIndex < days.count - 1 {
+                    currentIndex += 1
+                    onDaySelected(days[currentIndex])
+                }
+            }) {
+                Image(systemName: "chevron.right")
+                    .font(.title)
+            }
         }
+        .onAppear {
+            if let index = days.firstIndex(of: selectedDay) {
+                currentIndex = index
+            }
+        }
+    }
+    
+    private var dateFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
     }
 }

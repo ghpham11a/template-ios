@@ -14,11 +14,12 @@ struct AvailabilityBlock: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            VStack {
+            HStack {
                 VStack(alignment: .leading) {
                     Text("Start Time")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                    Spacer()
                     DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
                         .labelsHidden()
                 }
@@ -27,16 +28,18 @@ struct AvailabilityBlock: View {
                     Text("End Time")
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                    Spacer()
                     DatePicker("End Time", selection: $endTime, displayedComponents: .hourAndMinute)
                         .labelsHidden()
                 }
             }
-            .padding(.top, 8)
+            .padding()
         }
-        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
         .background(Color.white)
-        .cornerRadius(15)
-        .shadow(radius: 5)
-        .padding(.horizontal)
+        .cornerRadius(10)
+        .shadow(radius: 2)
+        .padding(2)
+        
     }
 }

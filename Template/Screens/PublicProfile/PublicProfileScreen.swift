@@ -15,6 +15,7 @@ struct PublicProfileScreen: View {
     @StateObject private var userRepo = UserRepo.shared
     
     @State private var schoolName: String = ""
+    @State private var userTags: [Tag] = []
     
     @State private var isScreenLoading: Bool = true
 
@@ -55,13 +56,37 @@ struct PublicProfileScreen: View {
                 .clipShape(.circle)
                 .frame(width: 100, height: 100)
                 
-                HorizontalIconButton(name: "star.fill", buttonText: "Where I went to school \(schoolName != "" ? ": \(schoolName)" : "")", action: {}, isLabelOnly: true)
+                HorizontalIconButton(name: "ic_payments_hub", buttonText: "Where I went to school \(schoolName != "" ? ": \(schoolName)" : "")", action: {}, isLabelOnly: true)
+                
+                Spacer()
+                
+                HeadingText(title: "Tags")
+                
+                TagList(tags: userTags)
             }
+            .padding()
             .navigationBarItems(trailing: viewModel.isEditable ? Button(action: {
                 path.append(Route.editProfile)
             }) {
                 Text("Edit")
             } : nil)
+        }
+    }
+    
+    func tagTitleFromId(id: Int) -> String {
+        switch id {
+        case 1:
+            return "Alpha"
+        case 2:
+            return "Bravo"
+        case 3:
+            return "Charlie"
+        case 4:
+            return "Delta"
+        case 5:
+            return "Echo"
+        default:
+            return ""
         }
     }
     
@@ -71,6 +96,7 @@ struct PublicProfileScreen: View {
         switch response {
         case .success(let data):
             schoolName = data.schoolName ?? ""
+            userTags = data.tags?.map { Tag(id: $0, title: tagTitleFromId(id: $0)) } ?? []
             isScreenLoading = false
         case .failure(let error):
             isScreenLoading = false

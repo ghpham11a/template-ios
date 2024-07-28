@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AzureCommunicationCommon
 
 struct VideoCallHubScreen: View {
     
