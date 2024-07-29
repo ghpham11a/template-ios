@@ -30,8 +30,10 @@ struct AvailabilityScreen: View {
     @State var availabilityType3Blocks: [Block] = []
     @State var availabilityType4Blocks: [Block] = []
     
-    let dateFormatter = DateFormatter()
+    @State var isLoading: Bool = false
     
+    let dateFormatter = DateFormatter()
+
     let availabilityTypes = ["Availability Type 1", "Availability Type 2", "Availability Type 3", "Availability Type 4"]
     
     var body: some View {
@@ -62,17 +64,44 @@ struct AvailabilityScreen: View {
             ScrollView {
                 
                 ForEach(displayedBlocks, id: \.id) { block in
-                    AvailabilityBlock(startTime: block.startTime, endTime: block.endTime)
+                    AvailabilityBlock(
+                        id: block.id,
+                        startTime: block.startTime,
+                        endTime: block.endTime,
+                        onRemove: {
+                            deleteBlock(block: block)
+                        }, 
+                        onStartDateChange: { id, date in
+                            udpateBlock(id: block.id, type: "start", date: date)
+                        },
+                        onEndDateChange: { id, date in
+                            udpateBlock(id: block.id, type: "end", date: date)
+                        }
+                    )
                 }
                 
                 LoadingButton(title: "Add", isLoading: false, isEnabled: true, action: {
                     addBlock()
                 })
             }
+            
+            Spacer()
+            
+            LoadingButton(title: "Save", isLoading: $isLoading, isEnabled: true, action: {
+                Task {
+                    let response = await updateAvailability()
+                    if response {
+                        path.removeLast()
+                    }
+                }
+            })
         }
         .onAppear {
             days = getDatesInRange().map { getDayOfWeek($0) }
+            
             dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            setupBlocks()
         }
         .sheet(isPresented: $showAvailabilityTypes) {
             VStack{
@@ -89,12 +118,96 @@ struct AvailabilityScreen: View {
         .padding()
     }
     
+    func udpateBlock(id: String, type: String, date: Date) {
+        
+        switch selectedAvailabilityType {
+        case 1:
+            if let index = availabilityType1Blocks.firstIndex(where: { $0.id == id }) {
+                if type == "start" {
+                    availabilityType1Blocks[index].startTime = date
+                }
+                if type == "end" {
+                    availabilityType1Blocks[index].endTime = date
+                }
+            }
+        case 2:
+            if let index = availabilityType2Blocks.firstIndex(where: { $0.id == id }) {
+                if type == "start" {
+                    availabilityType2Blocks[index].startTime = date
+                }
+                if type == "end" {
+                    availabilityType2Blocks[index].endTime = date
+                }
+            }
+        case 3:
+            if let index = availabilityType3Blocks.firstIndex(where: { $0.id == id }) {
+                if type == "start" {
+                    availabilityType3Blocks[index].startTime = date
+                }
+                if type == "end" {
+                    availabilityType3Blocks[index].endTime = date
+                }
+            }
+        case 4:
+            if let index = availabilityType4Blocks.firstIndex(where: { $0.id == id }) {
+                if type == "start" {
+                    availabilityType4Blocks[index].startTime = date
+                }
+                if type == "end" {
+                    availabilityType4Blocks[index].endTime = date
+                }
+            }
+        default:
+            break
+        }
+        
+        displayedBlocks = getBlocksToDisplay(selectedDay: selectedDay, selectedAvailabilityType: selectedAvailabilityType)
+    }
+    
+    
+    func setupBlocks() {
+        guard let user = UserRepo.shared.userPrivate?.user else { return }
+        
+        let keyFormatter = DateFormatter()
+        keyFormatter.dateFormat = "yyyy-MM-dd"
+        
+        let startAndEndFormatter = DateFormatter()
+        startAndEndFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        for (index, blocks) in [(user.availabilityType1 ?? []), (user.availabilityType2 ?? []), (user.availabilityType3 ?? []), (user.availabilityType4 ?? [])].enumerated() {
+            let realType = index + 1
+            
+            for block in blocks {
+                let startAndEndBlocks = block.split(separator: "->")
+                
+                guard let start = startAndEndFormatter.date(from: String(startAndEndBlocks[0])) else { continue }
+                guard let end = startAndEndFormatter.date(from: String(startAndEndBlocks[1])) else { continue }
+                let key = keyFormatter.string(from: start)
+                
+                switch realType {
+                case 1:
+                    availabilityType1Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+                case 2:
+                    availabilityType2Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+                case 3:
+                    availabilityType3Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+                case 4:
+                    availabilityType4Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+                default:
+                    continue
+                }
+            }
+        }
+        
+        displayedBlocks = getBlocksToDisplay(selectedDay: selectedDay, selectedAvailabilityType: selectedAvailabilityType)
+    }
+    
     func addBlock() {
         
         let key = dateFormatter.string(from: selectedDay)
         
-        guard let start = Date.from("2024-07-01 13:00:00") else { return }
-        guard let end = Date.from("2024-07-01 15:00:00") else { return }
+        guard let start = Date.from("\(key) 13:00:00") else { return }
+        guard let end = Date.from("\(key) 15:00:00") else { return }
         
         switch selectedAvailabilityType {
         case 1:
@@ -109,6 +222,30 @@ struct AvailabilityScreen: View {
             break
         }
         
+        displayedBlocks = getBlocksToDisplay(selectedDay: selectedDay, selectedAvailabilityType: selectedAvailabilityType)
+    }
+    
+    func deleteBlock(block: Block) {
+        switch selectedAvailabilityType {
+        case 1:
+            if let index  = availabilityType1Blocks.firstIndex(where: { $0.id == block.id }) {
+                availabilityType1Blocks.remove(at: index)
+            }
+        case 2:
+            if let index  = availabilityType2Blocks.firstIndex(where: { $0.id == block.id }) {
+                availabilityType2Blocks.remove(at: index)
+            }
+        case 3:
+            if let index  = availabilityType3Blocks.firstIndex(where: { $0.id == block.id }) {
+                availabilityType3Blocks.remove(at: index)
+            }
+        case 4:
+            if let index  = availabilityType4Blocks.firstIndex(where: { $0.id == block.id }) {
+                availabilityType4Blocks.remove(at: index)
+            }
+        default:
+            break
+        }
         displayedBlocks = getBlocksToDisplay(selectedDay: selectedDay, selectedAvailabilityType: selectedAvailabilityType)
     }
     
@@ -177,6 +314,35 @@ struct AvailabilityScreen: View {
         
         
         return dateStrings
+    }
+    
+    private func updateAvailability() async -> Bool {
+        isLoading.toggle()
+        var body = UpdateUserBody()
+        
+        let simpleISODateFormatter = DateFormatter()
+        simpleISODateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+
+        let formatted1Blocks = availabilityType1Blocks.map { "\(simpleISODateFormatter.string(from: $0.startTime))->\(simpleISODateFormatter.string(from: $0.endTime))" }
+        let formatted2Blocks = availabilityType2Blocks.map { "\(simpleISODateFormatter.string(from: $0.startTime))->\(simpleISODateFormatter.string(from: $0.endTime))" }
+        let formatted3Blocks = availabilityType3Blocks.map { "\(simpleISODateFormatter.string(from: $0.startTime))->\(simpleISODateFormatter.string(from: $0.endTime))" }
+        let formatted4Blocks = availabilityType4Blocks.map { "\(simpleISODateFormatter.string(from: $0.startTime))->\(simpleISODateFormatter.string(from: $0.endTime))" }
+        
+        body.updateAvailability = UpdateAvailability(availabilityType1: formatted1Blocks, availabilityType2: formatted2Blocks, availabilityType3: formatted3Blocks, availabilityType4: formatted4Blocks)
+        let response = await executeUpdate(body: body)
+        isLoading.toggle()
+        return response
+    }
+    
+    private func executeUpdate(body: UpdateUserBody) async -> Bool {
+        let userSub = UserRepo.shared.userId ?? ""
+        let response = await APIGatewayService.shared.privateUpdateUser(userSub: userSub, body: body)
+        switch response {
+        case .success(_):
+            return true
+        case .failure(_):
+            return false
+        }
     }
 }
 

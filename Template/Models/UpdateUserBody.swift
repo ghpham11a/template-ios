@@ -87,12 +87,16 @@ struct UpdateEmail: Codable {
 }
 
 struct UpdateAvailability: Codable {
-    let availabilityType: Int
-    let availability: [String]
+    let availabilityType1: [String]
+    let availabilityType2: [String]
+    let availabilityType3: [String]
+    let availabilityType4: [String]
     
     enum CodingKeys: String, CodingKey {
-        case availabilityType = "availabilityType"
-        case availability = "availability"
+        case availabilityType1 = "availabilityType1"
+        case availabilityType2 = "availabilityType2"
+        case availabilityType3 = "availabilityType3"
+        case availabilityType4 = "availabilityType4"
     }
 }
 
