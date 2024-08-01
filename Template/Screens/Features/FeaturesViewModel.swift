@@ -29,6 +29,7 @@ class FeaturesViewModel: ObservableObject {
                 Feature(title: "Video Calls", description: "Make a video call using Azure Communication Service", route: .videoCallHub),
                 Feature(title: "Chat", description: "Chat using Azure Communication Service", route: .chatHub),
                 Feature(title: "Voice Calls", description: "Make a VOIP call using Azure Communication Service", route: .voiceCallHub),
+                Feature(title: "Scheduler", description: "Choose an available time on another user's schedule", route: .schedulerHub),
             ]
             
             self.oldItems = []

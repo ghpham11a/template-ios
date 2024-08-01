@@ -18,6 +18,8 @@
 		CE11783D2C5447A900F2C218 /* ReadChats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783C2C5447A900F2C218 /* ReadChats.swift */; };
 		CE1178402C55476200F2C218 /* VoiceCallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */; };
 		CE1178422C5696E400F2C218 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178412C5696E400F2C218 /* Tag.swift */; };
+		CE1178452C5B121300F2C218 /* SchedulerHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178442C5B121300F2C218 /* SchedulerHubScreen.swift */; };
+		CE1178472C5B18FD00F2C218 /* SchedulerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178462C5B18FD00F2C218 /* SchedulerScreen.swift */; };
 		CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */; };
 		CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */; };
 		CE3F84FD2C388F0900CCE27D /* DeletePayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */; };
@@ -204,6 +206,8 @@
 		CE11783C2C5447A900F2C218 /* ReadChats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadChats.swift; sourceTree = "<group>"; };
 		CE11783F2C55476200F2C218 /* VoiceCallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallEvent.swift; sourceTree = "<group>"; };
 		CE1178412C5696E400F2C218 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		CE1178442C5B121300F2C218 /* SchedulerHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerHubScreen.swift; sourceTree = "<group>"; };
+		CE1178462C5B18FD00F2C218 /* SchedulerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerScreen.swift; sourceTree = "<group>"; };
 		CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamoDBUser.swift; sourceTree = "<group>"; };
 		CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAccount.swift; sourceTree = "<group>"; };
 		CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePayoutMethod.swift; sourceTree = "<group>"; };
@@ -396,6 +400,15 @@
 				8D8F88D288926250E58CF3A6 /* Pods_TemplateTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE1178432C5B120300F2C218 /* SchedulerHub */ = {
+			isa = PBXGroup;
+			children = (
+				CE1178442C5B121300F2C218 /* SchedulerHubScreen.swift */,
+				CE1178462C5B18FD00F2C218 /* SchedulerScreen.swift */,
+			);
+			path = SchedulerHub;
 			sourceTree = "<group>";
 		};
 		CE3F85002C3A123B00CCE27D /* Availability */ = {
@@ -593,6 +606,7 @@
 		CEF208712BFFD4A400212C47 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CE1178432C5B120300F2C218 /* SchedulerHub */,
 				CE4BB70B2C4D4C12008BB1F5 /* VoiceCallHub */,
 				CE5081C42C4B67BE000D9E73 /* ChatHub */,
 				CE5081C12C4B66E7000D9E73 /* VideoCallHub */,
@@ -1220,7 +1234,9 @@
 				CEF208A72C04EC5000212C47 /* LoadingButton.swift in Sources */,
 				CEF2090B2C16381F00212C47 /* PersonalInfoScreen.swift in Sources */,
 				CEF209062C162AD500212C47 /* ThingDescriptionScreen.swift in Sources */,
+				CE1178452C5B121300F2C218 /* SchedulerHubScreen.swift in Sources */,
 				CEF2092C2C2128BC00212C47 /* YourPaymentsScreen.swift in Sources */,
+				CE1178472C5B18FD00F2C218 /* SchedulerScreen.swift in Sources */,
 				CE4BB70A2C4D4BA6008BB1F5 /* VideoCallScreen.swift in Sources */,
 				CEF208E12C0EA4B400212C47 /* LoginAndSecurityScreen.swift in Sources */,
 				CE3F85082C3A224D00CCE27D /* String+Extensions.swift in Sources */,

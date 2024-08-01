@@ -43,4 +43,6 @@ enum Route: Hashable, Codable {
     case videoCall(id: String)
     case chatHub
     case voiceCallHub
+    case schedulerHub
+    case schedulerScreen(userId: String, availabilityType: String)
 }

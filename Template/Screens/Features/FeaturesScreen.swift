@@ -85,6 +85,10 @@ struct FeaturesScreen: View {
                     ChatHubScreen(path: $path)
                 case .voiceCallHub:
                     VoiceCallHubScreen(path: $path)
+                case .schedulerHub:
+                    SchedulerHubScreen(path: $path)
+                case .schedulerScreen(let userId, let availabilityType):
+                    SchedulerScreen(path: $path, userId: userId, availabilityType: availabilityType)
                 default:
                     SnagScreen()
                 }

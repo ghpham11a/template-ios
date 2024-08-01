@@ -40,6 +40,9 @@
     "%lld" : {
 
     },
+    "%lld minutes" : {
+
+    },
     "$%@" : {
 
     },
@@ -47,6 +50,9 @@
 
     },
     "Account number" : {
+
+    },
+    "Add conflicts" : {
 
     },
     "Add Participant" : {
