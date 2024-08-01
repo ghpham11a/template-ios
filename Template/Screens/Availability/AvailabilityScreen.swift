@@ -22,6 +22,7 @@ struct AvailabilityScreen: View {
     @State var days: [Date] = []
     @State var selectedAvailabilityType: Int = 1
     @State var showAvailabilityTypes: Bool = false
+    @State var showTimes: Bool = false
     
     @State var displayedBlocks: [Block] = []
     
@@ -33,6 +34,13 @@ struct AvailabilityScreen: View {
     @State var isLoading: Bool = false
     
     let dateFormatter = DateFormatter()
+    let timeFormatter = DateFormatter()
+    let dateTimeFormatter = DateFormatter()
+    
+    @State var displayedTimes = [String]()
+    
+    @State var selectedId = ""
+    @State var selectedType = ""
 
     let availabilityTypes = ["Availability Type 1", "Availability Type 2", "Availability Type 3", "Availability Type 4"]
     
@@ -66,16 +74,20 @@ struct AvailabilityScreen: View {
                 ForEach(displayedBlocks, id: \.id) { block in
                     AvailabilityBlock(
                         id: block.id,
-                        startTime: block.startTime,
-                        endTime: block.endTime,
+                        startTime: timeFormatter.string(from: block.startTime),
+                        endTime: timeFormatter.string(from: block.endTime),
                         onRemove: {
                             deleteBlock(block: block)
                         }, 
-                        onStartDateChange: { id, date in
-                            udpateBlock(id: block.id, type: "start", date: date)
+                        onStartTapped: { id in
+                            selectedId = id
+                            selectedType = "start"
+                            tapStart(id: id)
                         },
-                        onEndDateChange: { id, date in
-                            udpateBlock(id: block.id, type: "end", date: date)
+                        onEndTapped: { id in
+                            selectedId = id
+                            selectedType = "end"
+                            tapEnd(id: id)
                         }
                     )
                 }
@@ -99,7 +111,9 @@ struct AvailabilityScreen: View {
         .onAppear {
             days = getDatesInRange().map { getDayOfWeek($0) }
             
+            dateTimeFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             dateFormatter.dateFormat = "yyyy-MM-dd"
+            timeFormatter.dateFormat = "HH:mm"
             
             setupBlocks()
         }
@@ -115,10 +129,169 @@ struct AvailabilityScreen: View {
             }
             .presentationDetents([.fraction(0.5)])
         }
+        .sheet(isPresented: $showTimes) {
+            ScrollView {
+                ForEach(displayedTimes, id: \.localized) { time in
+                    Button(action: {
+                        udpateBlock(time: time)
+                    }) {
+                        Text(time)
+                    }
+                    .padding()
+                    
+                    Divider()
+                }
+            }
+            .padding()
+            .presentationDetents([.fraction(0.5)])
+        }
         .padding()
     }
     
-    func udpateBlock(id: String, type: String, date: Date) {
+    func tapStart(id: String) {
+        
+        showTimes.toggle()
+        
+        let key = dateFormatter.string(from: selectedDay)
+        var typeBlocks = [Block]()
+        
+        switch selectedAvailabilityType {
+        case 1:
+            typeBlocks = availabilityType1Blocks.filter { $0.dateKey == key }
+        case 2:
+            typeBlocks = availabilityType2Blocks.filter { $0.dateKey == key }
+        case 3:
+            typeBlocks = availabilityType3Blocks.filter { $0.dateKey == key }
+        case 4:
+            typeBlocks = availabilityType4Blocks.filter { $0.dateKey == key }
+        default:
+            break
+        }
+        
+        guard let blockIndex = typeBlocks.firstIndex(where: { $0.id == id }) else { return }
+        
+        var timeRange = [String]()
+        
+        if typeBlocks.count == 1 || blockIndex == (typeBlocks.count - 1) {
+            let endTime = timeFormatter.string(from: typeBlocks[blockIndex].endTime)
+            timeRange = createRange(end: endTime)
+        } else if typeBlocks.count == 2 && blockIndex == 0 {
+            let endTime = timeFormatter.string(from: typeBlocks[blockIndex].endTime)
+            timeRange = createRange(end: endTime)
+        } else if typeBlocks.count == 2 && blockIndex == 1 {
+            let startTime = timeFormatter.string(from: typeBlocks[0].endTime)
+            let endTime = timeFormatter.string(from: typeBlocks[blockIndex].endTime)
+            timeRange = createRange(start: startTime, end: endTime)
+        } else {
+            let startTime = timeFormatter.string(from: typeBlocks[blockIndex - 1].endTime)
+            let endTime = timeFormatter.string(from: typeBlocks[blockIndex].endTime)
+            timeRange = createRange(start: startTime, end: endTime)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.displayedTimes = timeRange
+        }
+    }
+    
+    func tapEnd(id: String) {
+        
+        showTimes.toggle()
+        
+        let key = dateFormatter.string(from: selectedDay)
+        var typeBlocks = [Block]()
+        switch selectedAvailabilityType {
+        case 1:
+            typeBlocks = availabilityType1Blocks.filter { $0.dateKey == key }
+        case 2:
+            typeBlocks = availabilityType2Blocks.filter { $0.dateKey == key }
+        case 3:
+            typeBlocks = availabilityType3Blocks.filter { $0.dateKey == key }
+        case 4:
+            typeBlocks = availabilityType4Blocks.filter { $0.dateKey == key }
+        default:
+            break
+        }
+        
+        guard let blockIndex = typeBlocks.firstIndex(where: { $0.id == id }) else { return }
+        
+        var timeRange = [String]()
+        
+        if typeBlocks.count == 1 || blockIndex == (typeBlocks.count - 1) {
+            let startTime = timeFormatter.string(from: typeBlocks[blockIndex].startTime)
+            timeRange = createRange(start: startTime)
+        } else if typeBlocks.count == 2 && blockIndex == 0 {
+            let startTime = timeFormatter.string(from: typeBlocks[blockIndex].startTime)
+            let endTime = timeFormatter.string(from: typeBlocks[1].startTime)
+            timeRange = createRange(start: startTime, end: endTime)
+        } else if typeBlocks.count == 2 && blockIndex == 1 {
+            let startTime = timeFormatter.string(from: typeBlocks[blockIndex].startTime)
+            timeRange = createRange(start: startTime)
+        } else {
+            let startTime = timeFormatter.string(from: typeBlocks[blockIndex].startTime)
+            let endTime = timeFormatter.string(from: typeBlocks[blockIndex + 1].startTime)
+            timeRange = createRange(start: startTime, end: endTime)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.displayedTimes = timeRange
+        }
+    }
+    
+    func createRange(start: String = "00:00", end: String = "23:45") -> [String] {
+        
+        let key = dateFormatter.string(from: selectedDay)
+        
+        let selectedDay = Date() // Replace with actual selected day
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateFormat = "yyyy-MM-dd" // Adjust format as needed
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateFormat = "HH:mm"
+        
+        let dateTimeFormatter = DateFormatter()
+        dateTimeFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        guard let startTime = dateTimeFormatter.date(from: "\(key) \(start)"),
+              let endTime = dateTimeFormatter.date(from: "\(key) \(end)") else {
+            return []
+        }
+        
+        var currentTime = startTime
+        var timeRange = [String]()
+        
+        while currentTime <= endTime {
+            timeRange.append(timeFormatter.string(from: currentTime))
+            currentTime = Calendar.current.date(byAdding: .minute, value: 15, to: currentTime)!
+        }
+        
+        return timeRange
+    }
+    
+    func udpateBlock(time: String) {
+        
+        let key = dateFormatter.string(from: selectedDay)
+        
+        switch selectedAvailabilityType {
+        case 1:
+            if let index = availabilityType1Blocks.firstIndex(where: { $0.id == selectedId }) {
+                if selectedType == "start" {
+                    availabilityType1Blocks[index].startTime = dateTimeFormatter.date(from: "\(key) \(time)") ?? Date()
+                }
+                if selectedType == "end" {
+                    availabilityType1Blocks[index].endTime = dateTimeFormatter.date(from: "\(key) \(time)") ?? Date()
+                }
+            }
+        default:
+            break
+        }
+        
+        displayedBlocks = []
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.displayedBlocks = self.getBlocksToDisplay(selectedDay: self.selectedDay, selectedAvailabilityType: self.selectedAvailabilityType)
+            self.showTimes.toggle()
+        }
+    }
+    
+    func _udpateBlock(id: String, type: String, date: Date) {
         
         switch selectedAvailabilityType {
         case 1:
@@ -205,19 +378,45 @@ struct AvailabilityScreen: View {
     func addBlock() {
         
         let key = dateFormatter.string(from: selectedDay)
+        var typeBlocks = [Block]()
+        switch selectedAvailabilityType {
+        case 1:
+            typeBlocks = availabilityType1Blocks.filter { $0.dateKey == key }
+        case 2:
+            typeBlocks = availabilityType2Blocks.filter { $0.dateKey == key }
+        case 3:
+            typeBlocks = availabilityType3Blocks.filter { $0.dateKey == key }
+        case 4:
+            typeBlocks = availabilityType4Blocks.filter { $0.dateKey == key }
+        default:
+            break
+        }
         
-        guard let start = Date.from("\(key) 13:00:00") else { return }
-        guard let end = Date.from("\(key) 15:00:00") else { return }
+        var block = Block(id: "", dateKey: "", startTime: Date(), endTime: Date())
+        
+        let startAndEndFormatter = DateFormatter()
+        startAndEndFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        if typeBlocks.isEmpty {
+            guard let start = startAndEndFormatter.date(from: "\(key) 12:00") else { return }
+            guard let end = startAndEndFormatter.date(from: "\(key) 13:00") else { return }
+            block = Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end)
+        } else if let lastBlock = typeBlocks.last {
+            let startTime = lastBlock.endTime
+            if let endTime = Calendar.current.date(byAdding: .minute, value: 60, to: startTime) {
+                block = Block(id: UUID().uuidString, dateKey: key, startTime: startTime, endTime: endTime)
+            }
+        }
         
         switch selectedAvailabilityType {
         case 1:
-            availabilityType1Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+            availabilityType1Blocks.append(block)
         case 2:
-            availabilityType2Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+            availabilityType2Blocks.append(block)
         case 3:
-            availabilityType3Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+            availabilityType3Blocks.append(block)
         case 4:
-            availabilityType4Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: start, endTime: end))
+            availabilityType4Blocks.append(block)
         default:
             break
         }
@@ -251,7 +450,7 @@ struct AvailabilityScreen: View {
     
     func getBlocksToDisplay(selectedDay: Date, selectedAvailabilityType: Int) -> [Block] {
         
-        var key = dateFormatter.string(from: selectedDay)
+        let key = dateFormatter.string(from: selectedDay)
         
         switch selectedAvailabilityType {
         case 1:

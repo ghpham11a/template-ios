@@ -10,11 +10,11 @@ import SwiftUI
 struct AvailabilityBlock: View {
     
     @State var id: String
-    @State var startTime = Date()
-    @State var endTime = Date()
+    @State var startTime = ""
+    @State var endTime = ""
     var onRemove: () -> Void
-    var onStartDateChange: (String, Date) -> Void
-    var onEndDateChange: (String, Date) -> Void
+    var onStartTapped: (String) -> Void
+    var onEndTapped: (String) -> Void
     
     var body: some View {
         HStack {
@@ -24,12 +24,17 @@ struct AvailabilityBlock: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Spacer()
-                    DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
-                        .labelsHidden()
-                        .onChange(of: startTime) { oldValue, newValue in
-                            // startTime = roundToNearestQuarterHour(date: newValue)
-                            onStartDateChange(id, newValue)
-                        }
+                    Button(action: {
+                        onStartTapped(id)
+                    }) {
+                        Text(startTime)
+                    }
+//                    DatePicker("Start Time", selection: $startTime, displayedComponents: .hourAndMinute)
+//                        .labelsHidden()
+//                        .onChange(of: startTime) { oldValue, newValue in
+//                            // startTime = roundToNearestQuarterHour(date: newValue)
+//                            onStartDateChange(id, newValue)
+//                        }
                     
                 }
                 Spacer()
@@ -38,12 +43,17 @@ struct AvailabilityBlock: View {
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                     Spacer()
-                    DatePicker("End Time", selection: $endTime, displayedComponents: .hourAndMinute)
-                        .labelsHidden()
-                        .onChange(of: endTime) { oldValue, newValue in
-                            // startTime = roundToNearestQuarterHour(date: newValue)
-                            onEndDateChange(id, newValue)
-                        }
+                    Button(action: {
+                        onEndTapped(id)
+                    }) {
+                        Text(endTime)
+                    }
+//                    DatePicker("End Time", selection: $endTime, displayedComponents: .hourAndMinute)
+//                        .labelsHidden()
+//                        .onChange(of: endTime) { oldValue, newValue in
+//                            // startTime = roundToNearestQuarterHour(date: newValue)
+//                            onEndDateChange(id, newValue)
+//                        }
                 }
             }
             .padding()
