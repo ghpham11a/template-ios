@@ -279,6 +279,18 @@
     "Save" : {
 
     },
+    "Schedule Type 1" : {
+
+    },
+    "Schedule Type 2" : {
+
+    },
+    "Schedule Type 3" : {
+
+    },
+    "Select a time" : {
+
+    },
     "Select Country Code" : {
 
     },
@@ -298,6 +310,9 @@
 
     },
     "Start Call" : {
+
+    },
+    "Start immediately upon acceptance" : {
 
     },
     "Start Time" : {

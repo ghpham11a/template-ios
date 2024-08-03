@@ -20,6 +20,9 @@
 		CE1178422C5696E400F2C218 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178412C5696E400F2C218 /* Tag.swift */; };
 		CE1178452C5B121300F2C218 /* SchedulerHubScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178442C5B121300F2C218 /* SchedulerHubScreen.swift */; };
 		CE1178472C5B18FD00F2C218 /* SchedulerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178462C5B18FD00F2C218 /* SchedulerScreen.swift */; };
+		CE1178492C5C639D00F2C218 /* TimeHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1178482C5C639D00F2C218 /* TimeHelpers.swift */; };
+		CE11784B2C5DBD8400F2C218 /* ConflictsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11784A2C5DBD8400F2C218 /* ConflictsScreen.swift */; };
+		CE11784D2C5DBE0A00F2C218 /* SchedulesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE11784C2C5DBE0A00F2C218 /* SchedulesRepository.swift */; };
 		CE3F84F92C3711AB00CCE27D /* DynamoDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */; };
 		CE3F84FB2C37120E00CCE27D /* StripeAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */; };
 		CE3F84FD2C388F0900CCE27D /* DeletePayoutMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */; };
@@ -208,6 +211,9 @@
 		CE1178412C5696E400F2C218 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		CE1178442C5B121300F2C218 /* SchedulerHubScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerHubScreen.swift; sourceTree = "<group>"; };
 		CE1178462C5B18FD00F2C218 /* SchedulerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerScreen.swift; sourceTree = "<group>"; };
+		CE1178482C5C639D00F2C218 /* TimeHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelpers.swift; sourceTree = "<group>"; };
+		CE11784A2C5DBD8400F2C218 /* ConflictsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConflictsScreen.swift; sourceTree = "<group>"; };
+		CE11784C2C5DBE0A00F2C218 /* SchedulesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulesRepository.swift; sourceTree = "<group>"; };
 		CE3F84F82C3711AB00CCE27D /* DynamoDBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamoDBUser.swift; sourceTree = "<group>"; };
 		CE3F84FA2C37120E00CCE27D /* StripeAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeAccount.swift; sourceTree = "<group>"; };
 		CE3F84FC2C388F0900CCE27D /* DeletePayoutMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletePayoutMethod.swift; sourceTree = "<group>"; };
@@ -407,6 +413,7 @@
 			children = (
 				CE1178442C5B121300F2C218 /* SchedulerHubScreen.swift */,
 				CE1178462C5B18FD00F2C218 /* SchedulerScreen.swift */,
+				CE11784A2C5DBD8400F2C218 /* ConflictsScreen.swift */,
 			);
 			path = SchedulerHub;
 			sourceTree = "<group>";
@@ -669,6 +676,7 @@
 				CEF208882C03DF7600212C47 /* UserRepo.swift */,
 				CEF209312C227FA300212C47 /* ThingRepository.swift */,
 				CE4BB7222C4F405A008BB1F5 /* EventsRepository.swift */,
+				CE11784C2C5DBE0A00F2C218 /* SchedulesRepository.swift */,
 			);
 			path = Repos;
 			sourceTree = "<group>";
@@ -700,6 +708,7 @@
 				CEF208922C04A97A00212C47 /* TabBarManager.swift */,
 				CEF208B72C05674A00212C47 /* Helpers.swift */,
 				CEF209522C28E8ED00212C47 /* LocationManager.swift */,
+				CE1178482C5C639D00F2C218 /* TimeHelpers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1188,6 +1197,7 @@
 				CEF8C6C52C333919008A6946 /* AddBankInfoScreen.swift in Sources */,
 				CEF8C6B42C2E5CA8008A6946 /* CreateSetupIntentResponse.swift in Sources */,
 				CEF209112C1DA9BD00212C47 /* NetworkModels.swift in Sources */,
+				CE11784B2C5DBD8400F2C218 /* ConflictsScreen.swift in Sources */,
 				CEF8C6B72C30B307008A6946 /* AddPayoutScreen.swift in Sources */,
 				CEF208872C03D97000212C47 /* AppDelegate.swift in Sources */,
 				CEF208A22C04E77800212C47 /* EnterPasswordScreen.swift in Sources */,
@@ -1195,6 +1205,7 @@
 				CEF208C92C0C2B0000212C47 /* ImagePicker.swift in Sources */,
 				CEF208E42C0EA4D400212C47 /* ResetPasswordScreen.swift in Sources */,
 				CE5081B42C45D1A2000D9E73 /* ReadProxyCalls.swift in Sources */,
+				CE1178492C5C639D00F2C218 /* TimeHelpers.swift in Sources */,
 				CEF208E82C0EA4F100212C47 /* LoginAndSecurityViewModel.swift in Sources */,
 				CE4BB7232C4F405A008BB1F5 /* EventsRepository.swift in Sources */,
 				CE4BB70D2C4D4C23008BB1F5 /* VoiceCallHubScreen.swift in Sources */,
@@ -1283,6 +1294,7 @@
 				CE5081CA2C4C27BA000D9E73 /* ProxyCallEvent.swift in Sources */,
 				CEF209042C162AC400212C47 /* ThingTypeScreen.swift in Sources */,
 				CEF209002C14D0BF00212C47 /* Feature.swift in Sources */,
+				CE11784D2C5DBE0A00F2C218 /* SchedulesRepository.swift in Sources */,
 				CEF208AE2C0553D700212C47 /* CodeVerificationScreen.swift in Sources */,
 				CE5081AC2C440EB8000D9E73 /* Numpad.swift in Sources */,
 				CEF208EB2C0EA51200212C47 /* NewPasswordScreen.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Block {
+struct Block: Equatable {
     var id: String
     var dateKey: String
     var startTime: Date
@@ -109,7 +109,8 @@ struct AvailabilityScreen: View {
             })
         }
         .onAppear {
-            days = getDatesInRange().map { getDayOfWeek($0) }
+            
+            days = TimeHelpers.shared.getDatesInRange().map { getDayOfWeek($0) }
             
             dateTimeFormatter.dateFormat = "yyyy-MM-dd HH:mm"
             dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -481,39 +482,6 @@ struct AvailabilityScreen: View {
         }
     }
     
-    func getDatesInRange() -> [String] {
-        // Get the current date
-        let currentDate = Date()
-        
-        // Calculate the start and end dates
-        let twoDaysAgo = Calendar.current.date(byAdding: .day, value: -2, to: currentDate)!
-        let twoWeeksLater = Calendar.current.date(byAdding: .day, value: 14, to: currentDate)!
-        
-        // Date formatter to display the dates in the desired format
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        
-        // Initialize the date to the start date
-        var date = twoDaysAgo
-        
-        // Array to hold the formatted date strings
-        var dateStrings: [String] = []
-        
-        // Loop through each date in the range
-        while date <= twoWeeksLater {
-            // Convert the date to a string
-            let dateString = dateFormatter.string(from: date)
-            
-            // Append the date string to the array
-            dateStrings.append(dateString)
-            
-            // Move to the next date
-            date = Calendar.current.date(byAdding: .day, value: 1, to: date)!
-        }
-        
-        
-        return dateStrings
-    }
     
     private func updateAvailability() async -> Bool {
         isLoading.toggle()

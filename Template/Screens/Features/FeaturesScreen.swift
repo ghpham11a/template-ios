@@ -89,6 +89,8 @@ struct FeaturesScreen: View {
                     SchedulerHubScreen(path: $path)
                 case .schedulerScreen(let userId, let availabilityType):
                     SchedulerScreen(path: $path, userId: userId, availabilityType: availabilityType)
+                case .conflicts(let userId, let availabilityType):
+                    ConflictsScreen(path: $path, userId: userId, availabilityType: availabilityType)
                 default:
                     SnagScreen()
                 }

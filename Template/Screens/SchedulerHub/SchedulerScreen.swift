@@ -48,61 +48,111 @@ struct SchedulerScreen: View {
     @State var schedulingMethod: Int = 0
     
     @State var timeOptions: [SchedulerOption] = []
-    @State var time: String = ""
+    @State var time2Options: [SchedulerOption] = []
+    @State var selectedTime: Time? = nil
     
     @State var availabilityType1Blocks: [Block] = []
     @State var availabilityType2Blocks: [Block] = []
     @State var availabilityType3Blocks: [Block] = []
     @State var availabilityType4Blocks: [Block] = []
     
+    @State var conflict = SchedulesRepository.shared.conflict
+    
     let dateFormatter = DateFormatter()
     let timeFormatter = DateFormatter()
     let dateTimeFormatter = DateFormatter()
     
+    @State var isLoading: Bool = true
+    
     var body: some View {
         GeometryReader { geometry in
-            ScrollView {
-                
-                HeadingText(title: "How long?")
-                
-                self.generateDurations(durations: durationOptions, in: geometry)
-                
-                Divider()
-                
-                HeadingText(title: "What type?")
-                
-                LoadingButton(title: "Schedule Type 1", isLoading: false, isEnabled: true, action: {
-                    onSchedulingMethodChange(value: 1)
-                })
-                Spacer()
-                LoadingButton(title: "Schedule Type 2", isLoading: false, isEnabled: true, action: {
-                    onSchedulingMethodChange(value: 2)
-                })
-                Spacer()
-                LoadingButton(title: "Schedule Type 3", isLoading: false, isEnabled: true, action: {
-                    onSchedulingMethodChange(value: 3)
-                })
-                
-                Divider()
-                
-                VStack(alignment: .leading) {
-                    ForEach($timeOptions, id: \.date) { day in
+            
+            if isLoading {
+                LoadingScreen()
+            } else {
+                ScrollView {
+                    
+                    HeadingText(title: "How long?")
+                    
+                    self.generateDurations(durations: durationOptions, in: geometry)
+                    
+                    Divider()
+                    
+                    HeadingText(title: "What type?")
+                    
+                    Button(action: {
+                        onSchedulingMethodChange(value: 1)
+                    }) {
+                        Text("Schedule Type 1")
+                    }
+                    .background(schedulingMethod == 1 ? Color.green : Color.cyan)
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        onSchedulingMethodChange(value: 2)
+                    }) {
+                        Text("Schedule Type 2")
+                    }
+                    .background(schedulingMethod == 2 ? Color.green : Color.cyan)
+ 
+                    Spacer()
+                    
+                    Button(action: {
+                        onSchedulingMethodChange(value: 3)
+                    }) {
+                        Text("Schedule Type 3")
+                    }
+                    .background(schedulingMethod == 3 ? Color.green : Color.cyan)
+                    
+                    Divider()
+                    
+                    if schedulingMethod == 1 {
+                        Text("Select a time")
                         VStack(alignment: .leading) {
-                            Text(day.wrappedValue.date)
+                            ForEach($timeOptions, id: \.date) { day in
+                                VStack(alignment: .leading) {
+                                    Text(day.wrappedValue.date)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    Spacer()
+                                    ForEach(day.times, id: \.description) { times in
+                                        self.generateTimes(times: times.wrappedValue, in: geometry)
+                                    }
+                                }
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            Spacer()
-                            ForEach(day.times, id: \.description) { times in
-                                self.generateTimes(times: times.wrappedValue, in: geometry)
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
+                    
+//                    if schedulingMethod == 2 {
+//                        VStack(alignment: .leading) {
+//                            ForEach($time2Options, id: \.date) { day in
+//                                VStack(alignment: .leading) {
+//                                    Text(day.wrappedValue.date)
+//                                        .frame(maxWidth: .infinity, alignment: .leading)
+//                                    Spacer()
+//                                    ForEach(day.times, id: \.description) { times in
+//                                        self.generateTimes(times: times.wrappedValue, in: geometry)
+//                                    }
+//                                }
+//                                .frame(maxWidth: .infinity, alignment: .leading)
+//                            }
+//                        }
+//                        .frame(maxWidth: .infinity, alignment: .leading)
+//                    }
+                    
+                    if schedulingMethod == 3 {
+                        Text("Start immediately upon acceptance")
+                    }
+                    
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
-        .navigationBarItems(trailing: Button(action: {}) {
-            Text("Add conflicts")
+        .navigationBarItems(trailing: Button(action: {
+            path.append(Route.conflicts(userId: userId, availabilityType: availabilityType))
+        }) {
+            Text(isLoading ? "" : "Add conflicts")
         })
         .onAppear {
             
@@ -135,7 +185,7 @@ struct SchedulerScreen: View {
                     Text("\(tag) minutes")
                         .padding()
                 }
-                .background(Color.cyan)
+                .background(tag == duration ? Color.green : Color.cyan)
                 .padding([.horizontal, .vertical], 4)
                 .alignmentGuide(.leading, computeValue: { dimension in
                     if (abs(width - dimension.width) > geometry.size.width) {
@@ -168,12 +218,12 @@ struct SchedulerScreen: View {
         return ZStack(alignment: .topLeading) {
             ForEach(times, id: \.start.description) { tag in
                 Button(action: {
-//                    onDurationChange(value: tag)
+                    selectedTime = tag
                 }) {
-                    Text(timeFormatter.string(from: tag.start))
-                        .padding()
-                }
-                .background(Color.cyan)
+                    Text(TimeHelpers.shared.timeFormatter.string(from: tag.start))
+                }                
+                .background(getColor(tag))
+                .disabled(tag.isSelectable == false)
                 .padding([.horizontal, .vertical], 4)
                 .alignmentGuide(.leading, computeValue: { dimension in
                     if (abs(width - dimension.width) > geometry.size.width) {
@@ -196,6 +246,16 @@ struct SchedulerScreen: View {
                     return result
                 })
             }
+        }
+    }
+    
+    func getColor(_ tag: Time) -> Color {
+        if (tag.isSelectable == false) {
+            return Color.gray
+        } else if (TimeHelpers.shared.timeFormatter.string(from: tag.start) == TimeHelpers.shared.timeFormatter.string(from: selectedTime?.start ?? Date())) {
+            return Color.green
+        } else {
+            return Color.cyan
         }
     }
     
@@ -260,6 +320,9 @@ struct SchedulerScreen: View {
                             if !isSelectable {
                                 break
                             }
+                            if mask.id == "IGNORE" {
+                                continue
+                            }
                             let adjustedMaskStart = Calendar.current.date(byAdding: .minute, value: -5, to: mask.startTime)!
                             let adjustedMaskEnd = Calendar.current.date(byAdding: .minute, value: 5, to: mask.endTime)!
                             if time.start < adjustedMaskEnd && time.end > adjustedMaskStart {
@@ -283,9 +346,19 @@ struct SchedulerScreen: View {
     }
     
     private func fetchUser() async {
+        
+        if SchedulesRepository.shared.userId == userId {
+            updateTimeOptions()
+            return
+        }
+        
+        SchedulesRepository.shared.userId = userId
+        
         let response = await APIGatewayService.shared.publicReadUser(userSub: userId)
         switch response {
         case .success(let data):
+            
+            SchedulesRepository.shared.user = data
             
             if let blocks = data.availabilityType1 {
                 for block in blocks {
@@ -299,9 +372,9 @@ struct SchedulerScreen: View {
                     availabilityType1Blocks.append(Block(id: UUID().uuidString, dateKey: key, startTime: startDate, endTime: endDate))
                 }
             }
-            break
+            isLoading.toggle()
         case .failure(let error):
-            break
+            isLoading.toggle()
         }
     }
     
@@ -321,17 +394,46 @@ struct SchedulerScreen: View {
             return
         }
 
-        switch availabilityType {
-        case "1":
-            timeOptions = getOptions(duration: duration, blocks: availabilityType1Blocks, masks: [])
-        case "2":
-            timeOptions = getOptions(duration: duration, blocks: availabilityType2Blocks, masks: [])
-        case "3":
-            timeOptions = getOptions(duration: duration, blocks: availabilityType3Blocks, masks: [])
-        case "4":
-            timeOptions = getOptions(duration: duration, blocks: availabilityType4Blocks, masks: [])
-        default:
-            break
+        if schedulingMethod == 1 || schedulingMethod == 2 {
+            switch availabilityType {
+            case "1":
+                timeOptions = getOptions(duration: duration, blocks: Array(availabilityType1Blocks), masks: [SchedulesRepository.shared.conflict])
+            case "2":
+                timeOptions = getOptions(duration: duration, blocks: Array(availabilityType2Blocks), masks: [SchedulesRepository.shared.conflict])
+            case "3":
+                timeOptions = getOptions(duration: duration, blocks: Array(availabilityType3Blocks), masks: [SchedulesRepository.shared.conflict])
+            case "4":
+                timeOptions = getOptions(duration: duration, blocks: Array(availabilityType4Blocks), masks: [SchedulesRepository.shared.conflict])
+            default:
+                break
+            }
+            
+//            let dates = TimeHelpers.shared.getDatesInRange()
+//            var blocks = [Block]()
+//            for date in dates {
+//                guard let start = TimeHelpers.shared.dateTimeFormatter.date(from: "\(date) 00:00") else { return }
+//                guard let end = TimeHelpers.shared.dateTimeFormatter.date(from: "\(date) 23:45") else { return }
+//                blocks.append(Block(id: UUID().uuidString, dateKey: date, startTime: start, endTime: end))
+//            }
+//            time2Options = getOptions(duration: duration, blocks: blocks, masks: [])
+        }
+        
+//        if schedulingMethod == 2 {
+//            let dates = TimeHelpers.shared.getDatesInRange()
+//            var blocks = [Block]()
+//            for date in dates {
+//                guard let start = TimeHelpers.shared.dateTimeFormatter.date(from: "\(date) 00:00") else { return }
+//                guard let end = TimeHelpers.shared.dateTimeFormatter.date(from: "\(date) 23:45") else { return }
+//                blocks.append(Block(id: UUID().uuidString, dateKey: date, startTime: start, endTime: end))
+//            }
+//            DispatchQueue.main.async {
+//                self.timeOptions = self.getOptions(duration: duration, blocks: blocks, masks: [])
+//                self.isLoading.toggle()
+//            }
+//        }
+        
+        if schedulingMethod == 3 {
+            timeOptions = []
         }
     }
 }
