@@ -75,15 +75,15 @@ struct VideoCallScreen: View {
         HStack {
             Form {
                 Section {
-                    Button(action: createCallAgentButton) {
-                        Text("Create CallAgent")
-                    }
+//                    Button(action: createCallAgentButton) {
+//                        Text("Create CallAgent")
+//                    }
                     Button(action: startCall) {
                         Text("Start Call")
                     }.disabled(callAgent == nil && teamsCallAgent == nil)
-                    Button(action: addParticipant) {
-                        Text("Add Participant")
-                    }.disabled(call == nil && teamsCall == nil)
+//                    Button(action: addParticipant) {
+//                        Text("Add Participant")
+//                    }.disabled(call == nil && teamsCall == nil)
 #if BETA
                     Button(action: serverMuteParticipant1) {
                         Text("Mute the Participant #1")
@@ -172,7 +172,6 @@ struct VideoCallScreen: View {
                     }
                 }.frame(maxWidth:.infinity, maxHeight:.infinity,alignment: .bottomTrailing)
             }
-            .navigationBarTitle("Video Calling Quickstart")
         }
         .onReceive(self.appPubs.$pushToken, perform: { newPushToken in
             guard let newPushToken = newPushToken else {
@@ -226,6 +225,7 @@ struct VideoCallScreen: View {
     }
     
     func getAccessToken() {
+        
         if let event = EventsRepository.shared.videoCalls?.filter({ $0.id == id }).first {
             if event.senderId == UserRepo.shared.userId, let token = event.senderToken {
                 authenticateClient(accessToken: token)
@@ -237,6 +237,18 @@ struct VideoCallScreen: View {
     }
     
     func getIdentity() -> String {
+        if let event = EventsRepository.shared.videoCalls?.filter({ $0.id == id }).first {
+            if event.senderId == UserRepo.shared.userId, let identity = event.receiverIdentity {
+                return identity
+            }
+            if event.receiverId == UserRepo.shared.userId, let identity = event.senderIdentity {
+                return identity
+            }
+        }
+        return ""
+    }
+    
+    func getIdentityReverse() -> String {
         if let event = EventsRepository.shared.videoCalls?.filter({ $0.id == id }).first {
             if event.senderId == UserRepo.shared.userId, let identity = event.senderIdentity {
                 return identity
@@ -262,11 +274,9 @@ struct VideoCallScreen: View {
     private func initializeCallAgentAndAccessDeviceManager(credential: CommunicationTokenCredential) {
         self.callClient.createCallAgent(userCredential: credential) { (agent, error) in
             if error != nil {
-                print("ERROR: It was not possible to create a call agent.")
+                print("__DEBUG ERROR: It was not possible to create a call agent.")
                 return
-            }
-            
-            else {
+            } else {
                 self.callAgent = agent
                 print("Call agent successfully created.")
                 self.callAgent!.delegate = incomingCallHandler
@@ -278,6 +288,7 @@ struct VideoCallScreen: View {
                         print("Failed to get device manager instance")
                     }
                 }
+                
             }
         }
     }
@@ -863,7 +874,10 @@ struct VideoCallScreen: View {
             let videoOptions = VideoOptions(localVideoStreams: localVideoStream)
             startCallOptions.videoOptions = videoOptions
         }
-        let callees:[CommunicationIdentifier] = [CommunicationUserIdentifier(getIdentity())]
+        let callees:[CommunicationIdentifier] = [
+            CommunicationUserIdentifier(getIdentity()),
+            CommunicationUserIdentifier(getIdentityReverse())
+        ]
         self.callAgent?.startCall(participants: callees, options: startCallOptions) { (call, error) in
             setCallAndObserver(call: call, error: error)
         }

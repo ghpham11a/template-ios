@@ -55,9 +55,6 @@
     "Add conflicts" : {
 
     },
-    "Add Participant" : {
-
-    },
     "Answer" : {
 
     },
@@ -97,9 +94,6 @@
 
     },
     "Confirm password" : {
-
-    },
-    "Create CallAgent" : {
 
     },
     "Create new password" : {
@@ -361,9 +355,6 @@
 
     },
     "Verify account details through Stripe" : {
-
-    },
-    "Video Calling Quickstart" : {
 
     },
     "Welcome back" : {
