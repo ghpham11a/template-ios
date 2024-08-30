@@ -41,8 +41,8 @@ struct VoiceCallHubScreen: View {
                                     )
                                 } else {
                                     
-                                    LoadingButton(title: "Enter video call", isLoading: false, isEnabled: true, action: {
-                                        path.append(Route.videoCall(id: event.voiceCall?.id ?? ""))
+                                    LoadingButton(title: "Enter voice call", isLoading: false, isEnabled: true, action: {
+                                        path.append(Route.voiceCall(id: event.voiceCall?.id ?? ""))
                                     })
                                     
                                     Spacer()
@@ -56,7 +56,7 @@ struct VoiceCallHubScreen: View {
                                         isEnabled: true,
                                         action: {
                                             Task {
-                                                await deleteVideoCall(id: event.voiceCall?.id ?? "", userId: event.user?.userId ?? "")
+                                                await deleteVoiceCall(id: event.voiceCall?.id ?? "", userId: event.user?.userId ?? "")
                                             }
                                         }
                                     )
@@ -128,7 +128,7 @@ struct VoiceCallHubScreen: View {
         }
     }
     
-    private func deleteVideoCall(id: String, userId: String) async {
+    private func deleteVoiceCall(id: String, userId: String) async {
         
         toggleLoadingStates(userId: userId)
         

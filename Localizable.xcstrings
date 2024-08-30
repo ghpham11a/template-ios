@@ -55,6 +55,9 @@
     "Add conflicts" : {
 
     },
+    "Add Participant" : {
+
+    },
     "Answer" : {
 
     },
@@ -94,6 +97,9 @@
 
     },
     "Confirm password" : {
+
+    },
+    "Create CallAgent" : {
 
     },
     "Create new password" : {

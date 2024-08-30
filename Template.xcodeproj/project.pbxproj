@@ -65,6 +65,7 @@
 		CE5081CA2C4C27BA000D9E73 /* ProxyCallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081C92C4C27BA000D9E73 /* ProxyCallEvent.swift */; };
 		CE5081CC2C4C27C6000D9E73 /* VideoCallEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081CB2C4C27C5000D9E73 /* VideoCallEvent.swift */; };
 		CE5081CE2C4C2A60000D9E73 /* CreateProxyCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5081CD2C4C2A60000D9E73 /* CreateProxyCall.swift */; };
+		CE57BE942C8131F7004A65C0 /* VoiceCallScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE57BE932C8131F7004A65C0 /* VoiceCallScreen.swift */; };
 		CEF2080D2BFADF0100212C47 /* TemplateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080C2BFADF0100212C47 /* TemplateApp.swift */; };
 		CEF2080F2BFADF0100212C47 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF2080E2BFADF0100212C47 /* ContentView.swift */; };
 		CEF208112BFADF0400212C47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEF208102BFADF0400212C47 /* Assets.xcassets */; };
@@ -258,6 +259,7 @@
 		CE5081C92C4C27BA000D9E73 /* ProxyCallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProxyCallEvent.swift; sourceTree = "<group>"; };
 		CE5081CB2C4C27C5000D9E73 /* VideoCallEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCallEvent.swift; sourceTree = "<group>"; };
 		CE5081CD2C4C2A60000D9E73 /* CreateProxyCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProxyCall.swift; sourceTree = "<group>"; };
+		CE57BE932C8131F7004A65C0 /* VoiceCallScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceCallScreen.swift; sourceTree = "<group>"; };
 		CEF208092BFADF0100212C47 /* Template.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Template.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF2080C2BFADF0100212C47 /* TemplateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateApp.swift; sourceTree = "<group>"; };
 		CEF2080E2BFADF0100212C47 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				CE4BB70C2C4D4C23008BB1F5 /* VoiceCallHubScreen.swift */,
+				CE57BE932C8131F7004A65C0 /* VoiceCallScreen.swift */,
 			);
 			path = VoiceCallHub;
 			sourceTree = "<group>";
@@ -1281,6 +1284,7 @@
 				CEF209192C1E432800212C47 /* ReadUserPublicResponse.swift in Sources */,
 				CE1178372C5446E000F2C218 /* Chat.swift in Sources */,
 				CE3F84FF2C388F1500CCE27D /* DeletePaymentMethod.swift in Sources */,
+				CE57BE942C8131F7004A65C0 /* VoiceCallScreen.swift in Sources */,
 				CE1178422C5696E400F2C218 /* Tag.swift in Sources */,
 				CEF208932C04A97A00212C47 /* TabBarManager.swift in Sources */,
 				CEF209022C14D47700212C47 /* FeatureCard.swift in Sources */,

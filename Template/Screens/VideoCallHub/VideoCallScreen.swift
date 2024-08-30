@@ -19,17 +19,21 @@ enum CreateCallAgentErrors: Error {
     case callKitInSDKNotSupported
 }
 
+
 struct VideoCallScreen: View {
     
     @Binding var path: NavigationPath
     @State var id: String
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+    var appPubs: AppPubs
     
-    private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "ACSVideoSample")
-    private let acsToken = "<ACS_USER_ACCESS_TOKEN>"
+    @State var acsToken = "<ACS_USER_ACCESS_TOKEN>"
     private let cteToken = "<CTE_USER_ACCESS_TOKEN>"
     
+    private let log = OSLog(subsystem: Bundle.main.bundleIdentifier!, category: "Template")
+    
     @State var currentMri: String = "<CTE_MRI>"
-    // @State var callee: String = "29228d3e-040e-4656-a70e-890ab4e173e4"
+    // @State var callee: String = "8:acs:de80ab6a-7bf8-44b6-a73d-41448be58e7c_00000022-30ef-168d-c811-24482200f55d"
     @State var callClient = CallClient()
     @State var callAgent: CallAgent?
     @State var call: Call?
@@ -68,30 +72,27 @@ struct VideoCallScreen: View {
     @State var remoteParticipantObserver:RemoteParticipantObserver?
     @State var pushToken: Data?
     
-    var appPubs: AppPubs
-    
-    
     var body: some View {
         HStack {
             Form {
                 Section {
-//                    Button(action: createCallAgentButton) {
-//                        Text("Create CallAgent")
-//                    }
+                    Button(action: createCallAgentButton) {
+                        Text("Create CallAgent")
+                    }
                     Button(action: startCall) {
                         Text("Start Call")
                     }.disabled(callAgent == nil && teamsCallAgent == nil)
-//                    Button(action: addParticipant) {
-//                        Text("Add Participant")
-//                    }.disabled(call == nil && teamsCall == nil)
-#if BETA
+                    Button(action: addParticipant) {
+                        Text("Add Participant")
+                    }.disabled(call == nil && teamsCall == nil)
+                    #if BETA
                     Button(action: serverMuteParticipant1) {
                         Text("Mute the Participant #1")
                     }.disabled(call == nil && teamsCall == nil)
                     Button(action: muteAllParticipants) {
                         Text("Mute all Participants")
                     }.disabled(call == nil && teamsCall == nil)
-#endif
+                    #endif
                     Button(action: holdCall) {
                         Text(isHeld ? "Resume" : "Hold")
                     }.disabled(call == nil && teamsCall == nil)
@@ -190,7 +191,10 @@ struct VideoCallScreen: View {
         .onReceive(self.appPubs.$pushPayload, perform: { payload in
             handlePushNotification(payload)
         })
-        .onAppear{
+        .onAppear {
+            
+            acsToken = getAccessToken()
+            
             isSpeakerOn = userDefaults.value(forKey: "isSpeakerOn") as? Bool ?? false
             AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
                 if granted {
@@ -210,30 +214,30 @@ struct VideoCallScreen: View {
                         // And stop sending it to the SDK.
                         UIDevice.current.endGeneratingDeviceOrientationNotifications()
                         self.deviceManager = deviceManager
+                        
+                        self.createCallAgentButton()
                     } else {
                         self.showAlert = true
                         self.alertMessage = "Failed to get DeviceManager"
                     }
                 }
             }
-            
-            getAccessToken()
         }
         .alert(isPresented: $showAlert) { () -> Alert in
             Alert(title: Text("ERROR"), message: Text(alertMessage), dismissButton: .default(Text("Dismiss")))
         }
     }
     
-    func getAccessToken() {
-        
+    func getAccessToken() -> String {
         if let event = EventsRepository.shared.videoCalls?.filter({ $0.id == id }).first {
             if event.senderId == UserRepo.shared.userId, let token = event.senderToken {
-                authenticateClient(accessToken: token)
+                return token
             }
             if event.receiverId == UserRepo.shared.userId, let token = event.receiverToken {
-                authenticateClient(accessToken: token)
+                return token
             }
         }
+        return ""
     }
     
     func getIdentity() -> String {
@@ -248,62 +252,7 @@ struct VideoCallScreen: View {
         return ""
     }
     
-    func getIdentityReverse() -> String {
-        if let event = EventsRepository.shared.videoCalls?.filter({ $0.id == id }).first {
-            if event.senderId == UserRepo.shared.userId, let identity = event.senderIdentity {
-                return identity
-            }
-            if event.receiverId == UserRepo.shared.userId, let identity = event.receiverIdentity {
-                return identity
-            }
-        }
-        return ""
-    }
-    
-    // MARK: - Azure Communication Service Video Calling Steps
-    private func authenticateClient(accessToken: String) {
-        do {
-            let credential = try CommunicationTokenCredential(token: accessToken)
-            self.initializeCallAgentAndAccessDeviceManager(credential: credential)
-        } catch {
-            print("ERROR: It was not possible to create user credential.")
-            return
-        }
-    }
-    
-    private func initializeCallAgentAndAccessDeviceManager(credential: CommunicationTokenCredential) {
-        self.callClient.createCallAgent(userCredential: credential) { (agent, error) in
-            if error != nil {
-                print("__DEBUG ERROR: It was not possible to create a call agent.")
-                return
-            } else {
-                self.callAgent = agent
-                print("Call agent successfully created.")
-                self.callAgent!.delegate = incomingCallHandler
-                self.callClient.getDeviceManager { (deviceManager, error) in
-                    if (error == nil) {
-                        print("Got device manager instance")
-                        self.deviceManager = deviceManager
-                    } else {
-                        print("Failed to get device manager instance")
-                    }
-                }
-                
-            }
-        }
-    }
-    
-    private func askForPermissions() {
-        AVAudioSession.sharedInstance().requestRecordPermission { (granted) in
-            if granted {
-                AVCaptureDevice.requestAccess(for: .video) { (videoGranted) in
-                    /* NO OPERATION */
-                }
-            }
-        }
-    }
-    
-#if BETA
+    #if BETA
     private func serverMuteParticipant1() {
         guard let firstParticipant = self.call?.remoteParticipants.first else {
             self.showAlert = true
@@ -333,7 +282,7 @@ struct VideoCallScreen: View {
             }
         }
     }
-#endif
+    #endif
     
     private func getCallBase() -> CommonCall? {
         var callBase: CommonCall?
@@ -432,7 +381,7 @@ struct VideoCallScreen: View {
     }
     
     func addParticipant() {
-        let allCallees = getIdentity().components(separatedBy: ";")
+        let allCallees = self.getIdentity().components(separatedBy: ";")
         
         let callees = allCallees.filter({ (e) -> Bool in (e.starts(with: "8:") )})
             .map { (e) -> CommunicationIdentifier in CommunicationUserIdentifier(e)}
@@ -627,6 +576,9 @@ struct VideoCallScreen: View {
     }
     
     private func createCallAgent(completionHandler: ((Error?) -> Void)?) {
+        
+        acsToken = getAccessToken()
+        
         DispatchQueue.main.async {
             if isCte {
                 if teamsCallAgent != nil {
@@ -669,7 +621,7 @@ struct VideoCallScreen: View {
                 
                 var userCredential: CommunicationTokenCredential
                 do {
-                    userCredential = try CommunicationTokenCredential(token: acsToken)
+                    userCredential = try CommunicationTokenCredential(token: getAccessToken())
                 } catch {
                     self.showAlert = true
                     self.alertMessage = "Failed to create CommunicationTokenCredential"
@@ -677,7 +629,7 @@ struct VideoCallScreen: View {
                     return
                 }
                 
-                currentMri = getMri(recvdToken: acsToken)
+                currentMri = getMri(recvdToken: getAccessToken())
                 
                 self.callClient.createCallAgent(userCredential: userCredential,
                                                 options: createCallAgentOptions()) { (agent, error) in
@@ -862,35 +814,16 @@ struct VideoCallScreen: View {
         }
     }
     
-
-    
     func startCall() {
-        let startCallOptions = StartCallOptions()
-        if(sendingVideo)
-        {
-            if (self.localVideoStream == nil) {
-                self.localVideoStream = [LocalVideoStream]()
-            }
-            let videoOptions = VideoOptions(localVideoStreams: localVideoStream)
-            startCallOptions.videoOptions = videoOptions
-        }
-        let callees:[CommunicationIdentifier] = [
-            CommunicationUserIdentifier(getIdentity()),
-            CommunicationUserIdentifier(getIdentityReverse())
-        ]
-        self.callAgent?.startCall(participants: callees, options: startCallOptions) { (call, error) in
-            setCallAndObserver(call: call, error: error)
-        }
-    }
-    
-    func _startCall() {
         Task {
             var callOptions: CallOptions?
             var meetingLocator: JoinMeetingLocator?
             var callees:[CommunicationIdentifier] = []
             
-            if getIdentity().starts(with: "8:") {
-                let calleesRaw = getIdentity().split(separator: ";")
+            let callee = getIdentity()
+            
+            if callee.starts(with: "8:") {
+                let calleesRaw = callee.split(separator: ";")
                 for calleeRaw in calleesRaw {
                     if calleeRaw.starts(with: "8:orgid") {
                         callees.append(MicrosoftTeamsUserIdentifier(userId: String(calleeRaw)))
@@ -911,9 +844,9 @@ struct VideoCallScreen: View {
                 } else {
                     callOptions = StartCallOptions()
                 }
-            } else if getIdentity().starts(with: "4:") {
+            } else if callee.starts(with: "4:") {
                 if isCte {
-                    let calleesRaw = getIdentity().split(separator: ";")
+                    let calleesRaw = callee.split(separator: ";")
                     for calleeRaw in calleesRaw {
                         callees.append(PhoneNumberIdentifier(phoneNumber: String(calleeRaw.replacingOccurrences(of: "4:", with: ""))))
                     }
@@ -929,7 +862,7 @@ struct VideoCallScreen: View {
                     let startCallOptions = StartCallOptions()
                     startCallOptions.alternateCallerId = PhoneNumberIdentifier(phoneNumber: "+12133947338")
                 }
-            } else if let groupId = UUID(uuidString: getIdentity()) {
+            } else if let groupId = UUID(uuidString: callee) {
                 if isCte {
                     self.showAlert = true
                     self.alertMessage = "CTE does not support group call"
@@ -939,8 +872,8 @@ struct VideoCallScreen: View {
                     meetingLocator = groupCallLocator
                     callOptions = JoinCallOptions()
                 }
-            } else if (getIdentity().starts(with: "https:")) {
-                let teamsMeetingLinkLocator = TeamsMeetingLinkLocator(meetingLink: getIdentity())
+            } else if (callee.starts(with: "https:")) {
+                let teamsMeetingLinkLocator = TeamsMeetingLinkLocator(meetingLink: callee)
                 if isCte {
                     callOptions = JoinTeamsCallOptions()
                 } else {
@@ -984,7 +917,7 @@ struct VideoCallScreen: View {
                 
                 do {
                     var teamsCall: TeamsCall?
-                    if getIdentity().starts(with: "https:") {
+                    if callee.starts(with: "https:") {
                         if let meetingLocator = meetingLocator as? TeamsMeetingLinkLocator,
                            let options = callOptions as? JoinTeamsCallOptions {
                             teamsCall = try await teamsCallAgent.join(with: meetingLocator,
@@ -1024,7 +957,7 @@ struct VideoCallScreen: View {
                 
                 do {
                     var call: Call?
-                    if getIdentity().starts(with: "https:") {
+                    if callee.starts(with: "https:") {
                         if let meetingLocator = meetingLocator,
                            let options = callOptions as? JoinCallOptions {
                             call = try await callAgent.join(with: meetingLocator, joinCallOptions: options)
@@ -1089,24 +1022,24 @@ public class RemoteVideoStreamData : NSObject, RendererDelegate {
     public func videoStreamRenderer(didFailToStart renderer: VideoStreamRenderer) {
         owner.errorMessage = "Renderer failed to start"
     }
-    
+
     private var owner: VideoCallScreen
-    let stream: RemoteVideoStream
-    var renderer: VideoStreamRenderer? {
+    let stream:RemoteVideoStream
+    var renderer:VideoStreamRenderer? {
         didSet {
             if renderer != nil {
                 renderer!.delegate = self
             }
         }
     }
-    
+
     var rendererView: RendererView?
-    
-    init(view: VideoCallScreen, stream: RemoteVideoStream) {
+
+    init(view: VideoCallScreen, stream:RemoteVideoStream) {
         owner = view
         self.stream = stream
     }
-    
+
     public func videoStreamRenderer(didRenderFirstFrame renderer: VideoStreamRenderer) {
         let size:StreamSize = renderer.size
         owner.remoteVideoSize = String(size.width) + " X " + String(size.height)
@@ -1118,7 +1051,7 @@ public class RemoteParticipantObserver : NSObject, RemoteParticipantDelegate {
     init(_ view: VideoCallScreen) {
         owner = view
     }
-    
+
     public func renderRemoteStream(_ stream: RemoteVideoStream!) {
         let data:RemoteVideoStreamData = RemoteVideoStreamData(view: owner, stream: stream)
         let scalingMode = ScalingMode.fit
@@ -1132,8 +1065,7 @@ public class RemoteParticipantObserver : NSObject, RemoteParticipantDelegate {
             self.owner.showAlert = true
         }
     }
-    
-    
+
     private func cleanupRemoteVideo(args: VideoStreamStateChangedEventArgs) {
         if let remoteVideoStream = args.stream as? RemoteVideoStream {
             var i = 0
@@ -1155,25 +1087,23 @@ public class RemoteParticipantObserver : NSObject, RemoteParticipantDelegate {
                 renderRemoteStream(remoteVideoStream)
             }
             break
-            
+
         case .notAvailable:
             cleanupRemoteVideo(args: args)
             break
-            
+
         case .stopping:
             cleanupRemoteVideo(args: args)
             break
-            
+
         default:
             break
         }
     }
 }
 
-//Functions and Observers
-
 struct PreviewVideoStream: UIViewRepresentable {
-    let view:RendererView
+    let view: RendererView
     func makeUIView(context: Context) -> UIView {
         return view
     }
@@ -1181,9 +1111,12 @@ struct PreviewVideoStream: UIViewRepresentable {
 }
 
 struct RemoteVideoView: UIViewRepresentable {
-    let view:RendererView
+    let view: RendererView
     func makeUIView(context: Context) -> UIView {
         return view
     }
     func updateUIView(_ uiView: UIView, context: Context) {}
 }
+
+
+

@@ -13,10 +13,10 @@ import SwiftUI
 import Combine
 import AzureCommunicationCalling
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, PKPushRegistryDelegate {
     
     let appPubs = AppPubs()
-
+    
     var voipRegistry: PKPushRegistry = PKPushRegistry(queue:DispatchQueue.main)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 STPAPIClient.shared.publishableKey = stripePublishableKey
             }
         }
-    
+        
         
         AWSMobileClient.default().initialize { (userState, error) in
             if let error = error {
@@ -61,28 +61,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    internal func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("__DEBUG didRegisterForRemoteNotificationsWithDeviceToken")
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         // Create a push registry object
         // Set the registry's delegate to self
         voipRegistry.delegate = self
         // Set the push type to VoIP
         voipRegistry.desiredPushTypes = [PKPushType.voIP]
     }
-}
-
-extension AppDelegate: UNUserNotificationCenterDelegate {
-    
-    
-    
-}
-
-extension AppDelegate: PKPushRegistryDelegate {
     
     func pushRegistry(_ registry: PKPushRegistry, didUpdate pushCredentials: PKPushCredentials, for type: PKPushType) {
         appPubs.pushToken = registry.pushToken(for: .voIP) ?? nil
     }
-
+    
     // Handle incoming pushes
     func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType, completion: @escaping () -> Void) {
         let callNotification = PushNotificationInfo.fromDictionary(payload.dictionaryPayload)
@@ -93,14 +83,4 @@ extension AppDelegate: PKPushRegistryDelegate {
             }
         }
     }
-    
-    func pushRegistry(_ registry: PKPushRegistry, didInvalidatePushTokenFor type: PKPushType) {
-        NSLog("__DEBUG pushRegistry:didInvalidatePushTokenForType:")
-    }
-
-    func pushRegistry(_ registry: PKPushRegistry, didReceiveIncomingPushWith payload: PKPushPayload, for type: PKPushType) {
-        NSLog("__DEBUG pushRegistry:didReceiveIncomingPushWithPayload:forType:")
-    }
 }
-
-
